@@ -309,7 +309,9 @@
     "preco_regular": 59.9,
     "preco_promocional": 59.9,
     "em_estoque": true,
-    "data_coleta": "2026-08-19"
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
   },
   {
     "gtin_ean": "7891089453671",
@@ -1325,7 +1327,9 @@
     "preco_regular": 2.89,
     "preco_promocional": 2.89,
     "em_estoque": true,
-    "data_coleta": "2026-08-19"
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
   },
   {
     "gtin_ean": "7891079014318",
@@ -1541,15 +1545,19 @@
     "preco_regular": 1.89,
     "preco_promocional": 1.89,
     "em_estoque": true,
-    "data_coleta": "2026-08-19"
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
   },
   {
     "gtin_ean": "7896102503814",
     "supermercado": "Atacadão",
-    "preco_regular": 2.89,
-    "preco_promocional": 2.89,
+    "preco_regular": 1.99,
+    "preco_promocional": 1.99,
     "em_estoque": true,
-    "data_coleta": "2026-08-19"
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
   },
   {
     "gtin_ean": "7896292302228",
@@ -1613,7 +1621,9 @@
     "preco_regular": 4.79,
     "preco_promocional": 4.79,
     "em_estoque": true,
-    "data_coleta": "2026-08-19"
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
   },
   {
     "gtin_ean": "7896102503838",
@@ -4874,10 +4884,12 @@
   {
     "gtin_ean": "7896311768332",
     "supermercado": "Atacadão",
-    "preco_regular": 7.9,
-    "preco_promocional": 7.9,
+    "preco_regular": 8.9,
+    "preco_promocional": 8.9,
     "em_estoque": true,
-    "data_coleta": "2026-08-19"
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
   },
   {
     "gtin_ean": "7896311773275",
@@ -9533,7 +9545,9 @@
     "preco_regular": 6.79,
     "preco_promocional": 6.79,
     "em_estoque": true,
-    "data_coleta": "2026-08-19"
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
   },
   {
     "gtin_ean": "7891999004864",
@@ -10538,10 +10552,12 @@
   {
     "gtin_ean": "7891515485528",
     "supermercado": "Atacadão",
-    "preco_regular": 8.9,
-    "preco_promocional": 8.9,
+    "preco_regular": 7.5,
+    "preco_promocional": 7.5,
     "em_estoque": true,
-    "data_coleta": "2026-08-19"
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
   },
   {
     "gtin_ean": "7891515546212",
@@ -11141,7 +11157,9 @@
     "preco_regular": 11.8,
     "preco_promocional": 11.8,
     "em_estoque": true,
-    "data_coleta": "2026-08-19"
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
   },
   {
     "gtin_ean": "7891515605803",
@@ -23021,7 +23039,9 @@
     "preco_regular": 18.9,
     "preco_promocional": 18.9,
     "em_estoque": true,
-    "data_coleta": "2026-08-19"
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
   },
   {
     "gtin_ean": "7894904197743",
@@ -28494,5 +28514,3905 @@
     "preco_promocional": 7.7,
     "em_estoque": true,
     "data_coleta": "2026-08-19"
+  },
+  {
+    "gtin_ean": "7896006751113",
+    "supermercado": "Atacadão",
+    "preco_regular": 6.55,
+    "preco_promocional": 6.55,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7896181709244",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7796539419422",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7893500112655",
+    "supermercado": "Atacadão",
+    "preco_regular": 20.9,
+    "preco_promocional": 20.9,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7893500044352",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7893500020134",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7893500019206",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7893500025368",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7893500019220",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896006755517",
+    "supermercado": "Atacadão",
+    "preco_regular": 5.25,
+    "preco_promocional": 5.25,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7893500089650",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7893500089629",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896290300714",
+    "supermercado": "Atacadão",
+    "preco_regular": 5.39,
+    "preco_promocional": 5.39,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7893500018483",
+    "supermercado": "Atacadão",
+    "preco_regular": 5.2,
+    "preco_promocional": 5.2,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7896079431158",
+    "supermercado": "Atacadão",
+    "preco_regular": 19.45,
+    "preco_promocional": 19.45,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7896062699961",
+    "supermercado": "Atacadão",
+    "preco_regular": 17.59,
+    "preco_promocional": 17.59,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7893500020110",
+    "supermercado": "Atacadão",
+    "preco_regular": 5.4,
+    "preco_promocional": 5.4,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7896006711155",
+    "supermercado": "Atacadão",
+    "preco_regular": 21.69,
+    "preco_promocional": 21.69,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7898206500027",
+    "supermercado": "Atacadão",
+    "preco_regular": 5.99,
+    "preco_promocional": 5.99,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7896894900013",
+    "supermercado": "Atacadão",
+    "preco_regular": 2.95,
+    "preco_promocional": 2.95,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7891959000295",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898279790394",
+    "supermercado": "Atacadão",
+    "preco_regular": 7.9,
+    "preco_promocional": 7.9,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7896104866238",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896181704119",
+    "supermercado": "Atacadão",
+    "preco_regular": 10.98,
+    "preco_promocional": 10.98,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "2575404642685",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7897594100086",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896798603584",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7896798603287",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7896261403482",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891331010508",
+    "supermercado": "Atacadão",
+    "preco_regular": 1.69,
+    "preco_promocional": 1.69,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7896311768325",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896066761886",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896061302244",
+    "supermercado": "Atacadão",
+    "preco_regular": 1.75,
+    "preco_promocional": 1.75,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7896256065602",
+    "supermercado": "Atacadão",
+    "preco_regular": 5.99,
+    "preco_promocional": 5.99,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7891000051436",
+    "supermercado": "Atacadão",
+    "preco_regular": 2.98,
+    "preco_promocional": 2.98,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7896006716464",
+    "supermercado": "Atacadão",
+    "preco_regular": 8.0,
+    "preco_promocional": 8.0,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7896283007460",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896546160017",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896006779513",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7896006779643",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891000369203",
+    "supermercado": "Atacadão",
+    "preco_regular": 5.78,
+    "preco_promocional": 5.78,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7896006716471",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7891021005043",
+    "supermercado": "Atacadão",
+    "preco_regular": 28.9,
+    "preco_promocional": 28.9,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7896089012019",
+    "supermercado": "Atacadão",
+    "preco_regular": 22.9,
+    "preco_promocional": 22.9,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7896253400499",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7908320926358",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7908320926365",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7908320926242",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7908320926228",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7908320926235",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891021005562",
+    "supermercado": "Atacadão",
+    "preco_regular": 17.9,
+    "preco_promocional": 17.9,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7908320926143",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891021005586",
+    "supermercado": "Atacadão",
+    "preco_regular": 17.9,
+    "preco_promocional": 17.9,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7908320926204",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7908320926211",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7908320926181",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7908320926198",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896089011357",
+    "supermercado": "Atacadão",
+    "preco_regular": 22.9,
+    "preco_promocional": 22.9,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7894969647894",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896089016291",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7908320919411",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7908320919367",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896089012118",
+    "supermercado": "Atacadão",
+    "preco_regular": 15.9,
+    "preco_promocional": 15.9,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7896089012880",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7908320919275",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7908320919244",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7908320919336",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7908320919251",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898957493173",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "0609963170968",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891150012318",
+    "supermercado": "Atacadão",
+    "preco_regular": 2.88,
+    "preco_promocional": 2.88,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7891000250150",
+    "supermercado": "Atacadão",
+    "preco_regular": 2.24,
+    "preco_promocional": 2.24,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7891000253526",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "0618341522992",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896216100534",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7896228100577",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7898678660069",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7898637354671",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "9788565056281",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7897486300150",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891000073100",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7891000319543",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7891991299619",
+    "supermercado": "Atacadão",
+    "preco_regular": 6.59,
+    "preco_promocional": 6.59,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7896045506934",
+    "supermercado": "Atacadão",
+    "preco_regular": 3.19,
+    "preco_promocional": 3.19,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7896045505319",
+    "supermercado": "Atacadão",
+    "preco_regular": 2.69,
+    "preco_promocional": 2.69,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7896045506095",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7896045506873",
+    "supermercado": "Atacadão",
+    "preco_regular": 4.79,
+    "preco_promocional": 4.79,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7898915949957",
+    "supermercado": "Atacadão",
+    "preco_regular": 5.19,
+    "preco_promocional": 5.19,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7891991011723",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7896045506064",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7891991295086",
+    "supermercado": "Atacadão",
+    "preco_regular": 3.69,
+    "preco_promocional": 3.69,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7897395099329",
+    "supermercado": "Atacadão",
+    "preco_regular": 2.79,
+    "preco_promocional": 2.79,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7891991006101",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898367983790",
+    "supermercado": "Atacadão",
+    "preco_regular": 4.79,
+    "preco_promocional": 4.79,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7891991303200",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7897395099695",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7898605251827",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "0040232728549",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891991297424",
+    "supermercado": "Atacadão",
+    "preco_regular": 4.99,
+    "preco_promocional": 4.99,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7891149101900",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7896371000007",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7891991298407",
+    "supermercado": "Atacadão",
+    "preco_regular": 4.39,
+    "preco_promocional": 4.39,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "9788538902041",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891515410315",
+    "supermercado": "Atacadão",
+    "preco_regular": 7.99,
+    "preco_promocional": 7.99,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7896279600293",
+    "supermercado": "Atacadão",
+    "preco_regular": 3.49,
+    "preco_promocional": 3.49,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7894900701517",
+    "supermercado": "Atacadão",
+    "preco_regular": 12.29,
+    "preco_promocional": 12.29,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7894900700015",
+    "supermercado": "Atacadão",
+    "preco_regular": 4.49,
+    "preco_promocional": 4.49,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7908477600897",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7908477600866",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7893000437029",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7898637354640",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "erro_catalogo:ReadTimeout"
+  },
+  {
+    "gtin_ean": "7898215151784",
+    "supermercado": "Atacadão",
+    "preco_regular": 2.99,
+    "preco_promocional": 2.99,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7898215151982",
+    "supermercado": "Atacadão",
+    "preco_regular": 4.59,
+    "preco_promocional": 4.59,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7898080640222",
+    "supermercado": "Atacadão",
+    "preco_regular": 2.29,
+    "preco_promocional": 2.29,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7798419670084",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896839173137",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7893000979932",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7891022638004",
+    "supermercado": "Atacadão",
+    "preco_regular": 2.55,
+    "preco_promocional": 2.55,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7806360400800",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896360400801",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "8005121218107",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898958338015",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898961989136",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898215150480",
+    "supermercado": "Atacadão",
+    "preco_regular": 12.9,
+    "preco_promocional": 12.9,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "8480017641076",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7894904219636",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7894904577897",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "2220860211240",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896036000724",
+    "supermercado": "Atacadão",
+    "preco_regular": 7.79,
+    "preco_promocional": 7.79,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7896036000717",
+    "supermercado": "Atacadão",
+    "preco_regular": 7.79,
+    "preco_promocional": 7.79,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7896036000793",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7897517206284",
+    "supermercado": "Atacadão",
+    "preco_regular": 3.29,
+    "preco_promocional": 3.29,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7896102502534",
+    "supermercado": "Atacadão",
+    "preco_regular": 4.89,
+    "preco_promocional": 4.89,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7893500085768",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7896115400063",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898234852150",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "8480017336323",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896022206147",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896419438014",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7898234850019",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896005212714",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896005212905",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7896090082056",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7891080000119",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7897932900149",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896412851216",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891080147951",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891080007705",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7896005202074",
+    "supermercado": "Atacadão",
+    "preco_regular": 5.29,
+    "preco_promocional": 5.29,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7896090082063",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7892840815783",
+    "supermercado": "Atacadão",
+    "preco_regular": 4.98,
+    "preco_promocional": 4.98,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7898080642790",
+    "supermercado": "Atacadão",
+    "preco_regular": 5.99,
+    "preco_promocional": 5.99,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7898954933474",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898276600108",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896062602008",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7898007290295",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896006744115",
+    "supermercado": "Atacadão",
+    "preco_regular": 7.39,
+    "preco_promocional": 7.39,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7896482100016",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7896200115346",
+    "supermercado": "Atacadão",
+    "preco_regular": 8.99,
+    "preco_promocional": 8.99,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7897593105181",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "0602883177369",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "0602883177116",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898916030821",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898916031637",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "0619205605080",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896099100256",
+    "supermercado": "Atacadão",
+    "preco_regular": 6.39,
+    "preco_promocional": 6.39,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7896070800014",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7898007290035",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896116900029",
+    "supermercado": "Atacadão",
+    "preco_regular": 8.29,
+    "preco_promocional": 8.29,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7898949924197",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898007290202",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7890300155929",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7896200115360",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7896260012203",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7898033580100",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896101062015",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7899567209864",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7897593100292",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "0602883177352",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898916030548",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898916031620",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896401100097",
+    "supermercado": "Atacadão",
+    "preco_regular": 6.49,
+    "preco_promocional": 6.49,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7895000319008",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896061734892",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7893753603467",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891515488536",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7893000482401",
+    "supermercado": "Atacadão",
+    "preco_regular": 19.98,
+    "preco_promocional": 19.98,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "2221672810256",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7622300847753",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891772144855",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891091049428",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7908109125583",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7894904575350",
+    "supermercado": "Atacadão",
+    "preco_regular": 23.5,
+    "preco_promocional": 23.5,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7898205923940",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7898205925562",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898080642899",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7890013110857",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7890013110864",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898387248107",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891000397077",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7793650841415",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7894577803187",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7899541490233",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898387243225",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7894807582141",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891233258886",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7890013110970",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7893909380716",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7793650841248",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898387200051",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898387200082",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898387202581",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7793650700903",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7793650841101",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7890013110987",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7890013112004",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898387213877",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898387213907",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898387244468",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898387215062",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898387214539",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898387213624",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898387214546",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7890013110277",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891150020689",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891150025103",
+    "supermercado": "Atacadão",
+    "preco_regular": 64.9,
+    "preco_promocional": 64.9,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7898080640413",
+    "supermercado": "Atacadão",
+    "preco_regular": 6.79,
+    "preco_promocional": 6.79,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7896590817035",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7896275960896",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7891000366059",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7896434920778",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7897076023391",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896256604962",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7891000107041",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898215151203",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7891000100103",
+    "supermercado": "Atacadão",
+    "preco_regular": 8.99,
+    "preco_promocional": 8.99,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7896051115014",
+    "supermercado": "Atacadão",
+    "preco_regular": 6.79,
+    "preco_promocional": 6.79,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7896051115038",
+    "supermercado": "Atacadão",
+    "preco_regular": 8.9,
+    "preco_promocional": 8.9,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7898215152002",
+    "supermercado": "Atacadão",
+    "preco_regular": 6.99,
+    "preco_promocional": 6.99,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7898403781298",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7897076021403",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7898080641380",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898215152019",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7898968764149",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898080641564",
+    "supermercado": "Atacadão",
+    "preco_regular": 8.9,
+    "preco_promocional": 8.9,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7898215151999",
+    "supermercado": "Atacadão",
+    "preco_regular": 8.9,
+    "preco_promocional": 8.9,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7896004400372",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7898215157830",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891000393284",
+    "supermercado": "Atacadão",
+    "preco_regular": 21.89,
+    "preco_promocional": 21.89,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7891000444764",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898215157953",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7891000109908",
+    "supermercado": "Atacadão",
+    "preco_regular": 27.5,
+    "preco_promocional": 27.5,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7898215151708",
+    "supermercado": "Atacadão",
+    "preco_regular": 5.65,
+    "preco_promocional": 5.65,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7898215151722",
+    "supermercado": "Atacadão",
+    "preco_regular": 4.47,
+    "preco_promocional": 4.47,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7891000065440",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7898215157403",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891000340981",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7898215152811",
+    "supermercado": "Atacadão",
+    "preco_regular": 6.99,
+    "preco_promocional": 6.99,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7891000325858",
+    "supermercado": "Atacadão",
+    "preco_regular": 21.89,
+    "preco_promocional": 21.89,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7898080640635",
+    "supermercado": "Atacadão",
+    "preco_regular": 5.75,
+    "preco_promocional": 5.75,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7898080640611",
+    "supermercado": "Atacadão",
+    "preco_regular": 5.75,
+    "preco_promocional": 5.75,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7898215151760",
+    "supermercado": "Atacadão",
+    "preco_regular": 5.19,
+    "preco_promocional": 5.19,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7896005286593",
+    "supermercado": "Atacadão",
+    "preco_regular": 2.69,
+    "preco_promocional": 2.69,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7891515600624",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896022200732",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896022200206",
+    "supermercado": "Atacadão",
+    "preco_regular": 3.59,
+    "preco_promocional": 3.59,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "8001250152091",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896022200022",
+    "supermercado": "Atacadão",
+    "preco_regular": 5.99,
+    "preco_promocional": 5.99,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7896022203634",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896022200756",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7896022205539",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7891079000311",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891079000205",
+    "supermercado": "Atacadão",
+    "preco_regular": 2.89,
+    "preco_promocional": 2.89,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7891079001004",
+    "supermercado": "Atacadão",
+    "preco_regular": 2.99,
+    "preco_promocional": 2.99,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7891079012963",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891079000212",
+    "supermercado": "Atacadão",
+    "preco_regular": 2.89,
+    "preco_promocional": 2.89,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7891079001028",
+    "supermercado": "Atacadão",
+    "preco_regular": 2.99,
+    "preco_promocional": 2.99,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "8005121000931",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7898951850118",
+    "supermercado": "Atacadão",
+    "preco_regular": 5.29,
+    "preco_promocional": 5.29,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7896022200879",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7896063223011",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891999862501",
+    "supermercado": "Atacadão",
+    "preco_regular": 20.9,
+    "preco_promocional": 20.9,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7891515901059",
+    "supermercado": "Atacadão",
+    "preco_regular": 4.95,
+    "preco_promocional": 4.95,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7894904271498",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7894904271481",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7894904271528",
+    "supermercado": "Atacadão",
+    "preco_regular": 7.9,
+    "preco_promocional": 7.9,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7894904271511",
+    "supermercado": "Atacadão",
+    "preco_regular": 14.9,
+    "preco_promocional": 14.9,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7894904271535",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891515537531",
+    "supermercado": "Atacadão",
+    "preco_regular": 5.4,
+    "preco_promocional": 5.4,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7891515901066",
+    "supermercado": "Atacadão",
+    "preco_regular": 3.5,
+    "preco_promocional": 3.5,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7893000079298",
+    "supermercado": "Atacadão",
+    "preco_regular": 15.28,
+    "preco_promocional": 15.28,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7891515555337",
+    "supermercado": "Atacadão",
+    "preco_regular": 8.9,
+    "preco_promocional": 8.9,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7891515555245",
+    "supermercado": "Atacadão",
+    "preco_regular": 5.98,
+    "preco_promocional": 5.98,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7894904271573",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7893000383005",
+    "supermercado": "Atacadão",
+    "preco_regular": 9.5,
+    "preco_promocional": 9.5,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7891515555252",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7894904271566",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891515520656",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896038311194",
+    "supermercado": "Atacadão",
+    "preco_regular": 5.98,
+    "preco_promocional": 5.98,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7893500066545",
+    "supermercado": "Atacadão",
+    "preco_regular": 9.4,
+    "preco_promocional": 9.4,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7896006779674",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7898954881393",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7804646450273",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891515952570",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896036095126",
+    "supermercado": "Atacadão",
+    "preco_regular": 4.68,
+    "preco_promocional": 4.68,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7896036099520",
+    "supermercado": "Atacadão",
+    "preco_regular": 2.39,
+    "preco_promocional": 2.39,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7899659901096",
+    "supermercado": "Atacadão",
+    "preco_regular": 1.79,
+    "preco_promocional": 1.79,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7896036036051",
+    "supermercado": "Atacadão",
+    "preco_regular": 3.88,
+    "preco_promocional": 3.88,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7896036096079",
+    "supermercado": "Atacadão",
+    "preco_regular": 3.88,
+    "preco_promocional": 3.88,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7896036098806",
+    "supermercado": "Atacadão",
+    "preco_regular": 18.98,
+    "preco_promocional": 18.98,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7897517206086",
+    "supermercado": "Atacadão",
+    "preco_regular": 2.09,
+    "preco_promocional": 2.09,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7896102501872",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7896102501896",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7896036095102",
+    "supermercado": "Atacadão",
+    "preco_regular": 4.98,
+    "preco_promocional": 4.98,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7896036099988",
+    "supermercado": "Atacadão",
+    "preco_regular": 3.29,
+    "preco_promocional": 3.29,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7898930142654",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7891164006860",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891164016098",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891097103841",
+    "supermercado": "Atacadão",
+    "preco_regular": 19.6,
+    "preco_promocional": 19.6,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7891000304839",
+    "supermercado": "Atacadão",
+    "preco_regular": 4.35,
+    "preco_promocional": 4.35,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7891079012420",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898905356567",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891172421297",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898495101202",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891172433078",
+    "supermercado": "Atacadão",
+    "preco_regular": 37.98,
+    "preco_promocional": 37.98,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7891172523410",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7806163478600",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896104992692",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896104993705",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896104995136",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7896104993460",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7896104993613",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7890019510156",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7890019511061",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7890019510095",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7890019510118",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896104991398",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7890019510668",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7890013110642",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896018704275",
+    "supermercado": "Atacadão",
+    "preco_regular": 19.89,
+    "preco_promocional": 19.89,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7891172432026",
+    "supermercado": "Atacadão",
+    "preco_regular": 27.15,
+    "preco_promocional": 27.15,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7891172432736",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891172432804",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7896181710202",
+    "supermercado": "Atacadão",
+    "preco_regular": 14.99,
+    "preco_promocional": 14.99,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7896089012637",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7898215157977",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7894000000350",
+    "supermercado": "Atacadão",
+    "preco_regular": 4.78,
+    "preco_promocional": 4.78,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7894900010022",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891193010081",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7897571108913",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891000268100",
+    "supermercado": "Atacadão",
+    "preco_regular": 12.7,
+    "preco_promocional": 12.7,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7896733400575",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7891143017313",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "2040800006008",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898193870011",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898951352612",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7896051165446",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7898955617526",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7896114100902",
+    "supermercado": "Atacadão",
+    "preco_regular": 22.89,
+    "preco_promocional": 22.89,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7898205924909",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898194163440",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "0618231386031",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898194160081",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896504301018",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7896122302510",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7896259422051",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896051166047",
+    "supermercado": "Atacadão",
+    "preco_regular": 54.9,
+    "preco_promocional": 54.9,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7891097000737",
+    "supermercado": "Atacadão",
+    "preco_regular": 39.9,
+    "preco_promocional": 39.9,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7896030520181",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898205924138",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7893000084315",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7894900680508",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7894900701159",
+    "supermercado": "Atacadão",
+    "preco_regular": 3.89,
+    "preco_promocional": 3.89,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "8001860260315",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "0192505321992",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7897664120037",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898132847289",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891150062825",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891150067646",
+    "supermercado": "Atacadão",
+    "preco_regular": 73.9,
+    "preco_promocional": 73.9,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7897306735506",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891150080140",
+    "supermercado": "Atacadão",
+    "preco_regular": 73.9,
+    "preco_promocional": 73.9,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7891150072817",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891167099685",
+    "supermercado": "Atacadão",
+    "preco_regular": 3.98,
+    "preco_promocional": 3.98,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7896009301049",
+    "supermercado": "Atacadão",
+    "preco_regular": 6.29,
+    "preco_promocional": 6.29,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7891167021013",
+    "supermercado": "Atacadão",
+    "preco_regular": 6.25,
+    "preco_promocional": 6.25,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7896236305469",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891000582107",
+    "supermercado": "Atacadão",
+    "preco_regular": 8.49,
+    "preco_promocional": 8.49,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7891000584804",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7891107101621",
+    "supermercado": "Atacadão",
+    "preco_regular": 7.09,
+    "preco_promocional": 7.09,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7891132019281",
+    "supermercado": "Atacadão",
+    "preco_regular": 6.09,
+    "preco_promocional": 6.09,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7891000103104",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891000502204",
+    "supermercado": "Atacadão",
+    "preco_regular": 8.99,
+    "preco_promocional": 8.99,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7898199199284",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7898678660793",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896102503708",
+    "supermercado": "Atacadão",
+    "preco_regular": 17.99,
+    "preco_promocional": 17.99,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7897900310604",
+    "supermercado": "Atacadão",
+    "preco_regular": 1.59,
+    "preco_promocional": 1.59,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7802950012316",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7891910000197",
+    "supermercado": "Atacadão",
+    "preco_regular": 3.49,
+    "preco_promocional": 3.49,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7896038314195",
+    "supermercado": "Atacadão",
+    "preco_regular": 5.98,
+    "preco_promocional": 5.98,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7896038305193",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896534400200",
+    "supermercado": "Atacadão",
+    "preco_regular": 4.79,
+    "preco_promocional": 4.79,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
+  },
+  {
+    "gtin_ean": "7891025115632",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7896036090602",
+    "supermercado": "Atacadão",
+    "preco_regular": 14.88,
+    "preco_promocional": 14.88,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - SANTOS N S FATIMA"
+  },
+  {
+    "gtin_ean": "7897001010014",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7898247780075",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "6015636015087",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "0602883177178",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "observacao": "nao_cadastrado"
+  },
+  {
+    "gtin_ean": "7896279600538",
+    "supermercado": "Atacadão",
+    "preco_regular": null,
+    "preco_promocional": null,
+    "em_estoque": false,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "observacao": "sem_estoque"
+  },
+  {
+    "gtin_ean": "7896036090244",
+    "supermercado": "Atacadão",
+    "preco_regular": 7.09,
+    "preco_promocional": 7.09,
+    "em_estoque": true,
+    "data_coleta": "2026-08-24",
+    "cep_coleta": "11060-002",
+    "loja_coleta": "Atacadão - GUARUJA"
   }
 ]

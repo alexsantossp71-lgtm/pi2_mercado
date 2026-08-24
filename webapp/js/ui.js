@@ -7,7 +7,7 @@ import { buscarMarcasAPI } from './api.js';
 import { LOJAS, CHAVES_LOJA } from './dataLoader.js';
 import { buscarProdutos } from './searchEngine.js';
 import { getLista, getTotalItens, adicionarItem, removerItem, alterarQtd, limparLista, gerarTextoCompartilhamento } from './shoppingList.js';
-import { fmtBRL, totalPorLoja, melhorLojaUnica, divisaoMultiLoja } from './priceCalculator.js';
+import { fmtBRL, totalPorLoja, melhorLojaUnica, divisaoMultiLoja, disponivelEm, itensIndisponiveisPorLoja } from './priceCalculator.js';
 
 /* ================================================================
    REFERÊNCIAS DOM
@@ -109,10 +109,18 @@ export function renderLista() {
   corpoLista.innerHTML = '';
   lista.forEach(({ produto, qtd }, id) => {
     const tr = document.createElement('tr');
-    const precoDisponiveis = (produto.preco || []).filter(v => v != null);
+    const precoDisponiveis = CHAVES_LOJA
+      .map((k, i) => disponivelEm(produto, i) ? produto.preco[i] : null)
+      .filter(v => v != null);
     const menor = precoDisponiveis.length ? Math.min(...precoDisponiveis) : null;
+    const badgesFalta = CHAVES_LOJA
+      .map((k, i) => ({ k, i }))
+      .filter(({ k, i }) => !disponivelEm(produto, i))
+      .map(({ k }) => `<span class="price-unavailable">indisponível em ${LOJAS[k].nome}</span>`)
+      .join('');
     const precoCell = menor != null
-      ? `<span class="price-value">${fmtBRL(menor)}</span>`
+      ? `<span class="price-value">${fmtBRL(menor)}</span>` +
+        (badgesFalta ? `<div class="price-missing-stores">${badgesFalta}</div>` : '')
       : `<span class="price-unavailable">indisponível</span>`;
 
     tr.innerHTML = `
@@ -147,6 +155,10 @@ export function renderResultados() {
   const lista = getLista();
   const { loja, total, piorLoja, economia } = melhorLojaUnica(lista);
   const todosTotais = totalPorLoja(lista);
+  const faltas = itensIndisponiveisPorLoja(lista);
+  const notaFalta = (k) => faltas[k] > 0
+    ? `<p class="store-missing">${faltas[k]} ${faltas[k] === 1 ? 'item indisponível' : 'itens indisponíveis'} nesta loja</p>`
+    : '';
 
   // OPÇÃO 1: Melhor loja única
   const r1 = $('#resultadoLojaUnica');
@@ -161,11 +173,12 @@ export function renderResultados() {
           ${melhor ? '<span class="badge badge-primary" style="margin-left:auto">MELHOR</span>' : ''}
         </div>
         <p class="store-price ${melhor ? 'is-best' : ''}">${fmtBRL(todosTotais[k])}</p>
+        ${notaFalta(k)}
       </div>`;
   }).join('');
 
   // OPÇÃO 2: Multi-loja
-  const { distribuicao, lojasOrdenadas, total: totalOtim } = divisaoMultiLoja(lista);
+  const { distribuicao, lojasOrdenadas, total: totalOtim, indisponiveis } = divisaoMultiLoja(lista);
   $('#valorTotalOtimizado').textContent = fmtBRL(totalOtim);
   const economiaMulti = piorLoja != null ? todosTotais[piorLoja] - totalOtim : 0;
   $('#economiaMulti').textContent = fmtBRL(economiaMulti);
@@ -189,6 +202,20 @@ export function renderResultados() {
     divLojas.appendChild(card);
   });
 
+  if (indisponiveis.length) {
+    const cardIndisp = document.createElement('div');
+    cardIndisp.className = 'card-flat split-store-card split-unavailable';
+    cardIndisp.innerHTML = `
+      <div class="split-header">
+        <p class="split-store-name">🚫 Indisponíveis</p>
+        <span class="split-store-total price-unavailable">—</span>
+      </div>
+      <ul class="split-items">
+        ${indisponiveis.map(i => `<li><span>${i.qtd}× ${i.nome}</span><span class="price-unavailable">indisponível</span></li>`).join('')}
+      </ul>`;
+    divLojas.appendChild(cardIndisp);
+  }
+
   // Comparativo geral
   const comp = $('#comparativoGeral');
   const melhorComp = Math.min(...Object.values(todosTotais).filter(v => v > 0));
@@ -200,6 +227,7 @@ export function renderResultados() {
       <div class="${ringClass} store-card">
         <p class="store-name">${LOJAS[k].icone} ${LOJAS[k].nome}</p>
         <p class="store-price">${fmtBRL(v)}</p>
+        ${notaFalta(k)}
         ${ehMelhor
           ? '<span class="best-indicator">⭐ MENOR PREÇO</span>'
           : `<span class="diff-indicator">+${fmtBRL(v - melhorComp)} vs. menor</span>`}
