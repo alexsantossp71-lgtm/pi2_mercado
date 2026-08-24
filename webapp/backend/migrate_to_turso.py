@@ -1,11 +1,16 @@
 import sqlite3
 import libsql_client
 import asyncio
+import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+# Credenciais lidas de webapp/backend/.env (nunca versionar este arquivo)
+load_dotenv(Path(__file__).parent / ".env")
 
 DB_PATH = Path(__file__).parent / "dispensa.db"
-TURSO_URL = "https://dispensa-alex-santos-sp.aws-us-east-1.turso.io"
-TURSO_TOKEN = "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJhIjoicnciLCJpYXQiOjE3ODcyNjY5NjYsImlkIjoiMDFhMDIxNjktNTQwMS03NzEwLWE0YWMtODA5MGJmNzQ3MGQyIiwia2lkIjoiTWNULTJqQ0NIZ2RqaHpGTTcxWTd0MkhpUndXYktodV9fWVh0QzdMcmJRbyIsInJpZCI6ImYwOWJiYzRkLWZlZDEtNDkwMy1hZmQyLTg4OTA4NWYwMzVjNyJ9.kIRVjGmeGOPBgOrb6EYcuQdF6bgvjk7nBYTbiby5tnMoZfGe3aTdXCKfYBLFNMWaHlzia1QTFOKb_wy3holtBw"
+TURSO_URL = os.environ["TURSO_DATABASE_URL"]
+TURSO_TOKEN = os.environ["TURSO_AUTH_TOKEN"]
 
 async def migrate():
     print("Conectando ao Turso...")
