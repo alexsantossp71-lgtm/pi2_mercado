@@ -1,0 +1,1 @@
+- Backend Python não tocado: arrays preco/em_estoque já vêm corretos de product_service.py; problema era só omissão no frontend. Validação visual no browser pendente (credenciais Turso não verificadas nesta sessão).

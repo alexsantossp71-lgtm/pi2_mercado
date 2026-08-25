@@ -1,0 +1,1034 @@
+EANs sem preço/estoque em Atacadão: 275
+=== Atualização de preços por EAN + CEP ===
+Data: 2026-08-24 | lote: 275 EANs | lojas: Atacadão | CEPs: 11060-002, 01310-100
+------------------------------------------------------------------------
+[1/275] EAN 7896181709244
+  Atacadão       -> indisponível (sem_estoque)
+[2/275] EAN 7796539419422
+  Atacadão       -> indisponível (nao_cadastrado)
+[3/275] EAN 7893500044352
+  Atacadão       -> indisponível (nao_cadastrado)
+[4/275] EAN 7893500020134
+  Atacadão       -> indisponível (sem_estoque)
+[5/275] EAN 7893500019206
+  Atacadão       -> indisponível (sem_estoque)
+[6/275] EAN 7893500025368
+  Atacadão       -> indisponível (nao_cadastrado)
+[7/275] EAN 7893500019220
+  Atacadão       -> indisponível (nao_cadastrado)
+[8/275] EAN 7893500089650
+  Atacadão       -> indisponível (nao_cadastrado)
+[9/275] EAN 7893500089629
+  Atacadão       -> indisponível (nao_cadastrado)
+[10/275] EAN 7891959000295
+  Atacadão       -> indisponível (nao_cadastrado)
+[11/275] EAN 7896104866238
+  Atacadão       -> indisponível (nao_cadastrado)
+[12/275] EAN 2575404642685
+  Atacadão       -> indisponível (nao_cadastrado)
+[13/275] EAN 7897594100086
+  Atacadão       -> indisponível (nao_cadastrado)
+[14/275] EAN 7896798603584
+  Atacadão       -> indisponível (sem_estoque)
+[15/275] EAN 7896798603287
+  Atacadão       -> indisponível (sem_estoque)
+[16/275] EAN 7896261403482
+  Atacadão       -> indisponível (nao_cadastrado)
+[17/275] EAN 7896311768325
+  Atacadão       -> indisponível (nao_cadastrado)
+[18/275] EAN 7896066761886
+  Atacadão       -> indisponível (nao_cadastrado)
+[19/275] EAN 7896283007460
+  Atacadão       -> indisponível (nao_cadastrado)
+[20/275] EAN 7896546160017
+  Atacadão       -> indisponível (nao_cadastrado)
+[21/275] EAN 7896006779513
+  Atacadão       -> indisponível (sem_estoque)
+[22/275] EAN 7896006779643
+  Atacadão       -> indisponível (nao_cadastrado)
+[23/275] EAN 7896006716471
+  Atacadão       -> indisponível (sem_estoque)
+[24/275] EAN 7896253400499
+  Atacadão       -> indisponível (nao_cadastrado)
+[25/275] EAN 7908320926358
+  Atacadão       -> indisponível (nao_cadastrado)
+[26/275] EAN 7908320926365
+  Atacadão       -> indisponível (nao_cadastrado)
+[27/275] EAN 7908320926242
+  Atacadão       -> indisponível (nao_cadastrado)
+[28/275] EAN 7908320926228
+  Atacadão       -> indisponível (nao_cadastrado)
+[29/275] EAN 7908320926235
+  Atacadão       -> indisponível (nao_cadastrado)
+[30/275] EAN 7908320926143
+  Atacadão       -> indisponível (nao_cadastrado)
+[31/275] EAN 7908320926204
+  Atacadão       -> indisponível (nao_cadastrado)
+[32/275] EAN 7908320926211
+  Atacadão       -> indisponível (nao_cadastrado)
+[33/275] EAN 7908320926181
+  Atacadão       -> indisponível (nao_cadastrado)
+[34/275] EAN 7908320926198
+  Atacadão       -> indisponível (nao_cadastrado)
+[35/275] EAN 7894969647894
+  Atacadão       -> indisponível (nao_cadastrado)
+[36/275] EAN 7896089016291
+  Atacadão       -> indisponível (sem_estoque)
+[37/275] EAN 7908320919411
+  Atacadão       -> indisponível (nao_cadastrado)
+[38/275] EAN 7908320919367
+  Atacadão       -> indisponível (nao_cadastrado)
+[39/275] EAN 7896089012880
+  Atacadão       -> indisponível (nao_cadastrado)
+[40/275] EAN 7908320919275
+  Atacadão       -> indisponível (nao_cadastrado)
+[41/275] EAN 7908320919244
+  Atacadão       -> indisponível (nao_cadastrado)
+[42/275] EAN 7908320919336
+  Atacadão       -> indisponível (nao_cadastrado)
+[43/275] EAN 7908320919251
+  Atacadão       -> indisponível (nao_cadastrado)
+[44/275] EAN 7898957493173
+  Atacadão       -> indisponível (nao_cadastrado)
+[45/275] EAN 0609963170968
+  Atacadão       -> indisponível (nao_cadastrado)
+[46/275] EAN 7891000253526
+  Atacadão       -> indisponível (nao_cadastrado)
+[47/275] EAN 0618341522992
+  Atacadão       -> indisponível (nao_cadastrado)
+[48/275] EAN 7896216100534
+  Atacadão       -> indisponível (sem_estoque)
+[49/275] EAN 7896228100577
+  Atacadão       -> indisponível (sem_estoque)
+[50/275] EAN 7898678660069
+  Atacadão       -> indisponível (sem_estoque)
+[51/275] EAN 7898637354671
+  Atacadão       -> indisponível (nao_cadastrado)
+[52/275] EAN 9788565056281
+  Atacadão       -> indisponível (nao_cadastrado)
+[53/275] EAN 7897486300150
+  Atacadão       -> indisponível (nao_cadastrado)
+[54/275] EAN 7891000073100
+  Atacadão       -> indisponível (sem_estoque)
+[55/275] EAN 7891000319543
+  Atacadão       -> indisponível (sem_estoque)
+[56/275] EAN 7896045506095
+  Atacadão       -> indisponível (sem_estoque)
+[57/275] EAN 7891991011723
+  Atacadão       -> indisponível (sem_estoque)
+[58/275] EAN 7896045506064
+  Atacadão       -> indisponível (sem_estoque)
+[59/275] EAN 7891991006101
+  Atacadão       -> indisponível (nao_cadastrado)
+[60/275] EAN 7891991303200
+  Atacadão       -> indisponível (sem_estoque)
+[61/275] EAN 7897395099695
+  Atacadão       -> indisponível (sem_estoque)
+[62/275] EAN 7898605251827
+  Atacadão       -> indisponível (sem_estoque)
+[63/275] EAN 0040232728549
+  Atacadão       -> indisponível (nao_cadastrado)
+[64/275] EAN 7891149101900
+  Atacadão       -> indisponível (sem_estoque)
+[65/275] EAN 7896371000007
+  Atacadão       -> indisponível (sem_estoque)
+[66/275] EAN 9788538902041
+  Atacadão       -> indisponível (nao_cadastrado)
+[67/275] EAN 7908477600897
+  Atacadão       -> indisponível (nao_cadastrado)
+[68/275] EAN 7908477600866
+  Atacadão       -> indisponível (nao_cadastrado)
+[69/275] EAN 7893000437029
+  Atacadão       -> indisponível (sem_estoque)
+[70/275] EAN 7898637354640
+  Atacadão       -> indisponível (nao_cadastrado)
+[71/275] EAN 7798419670084
+  Atacadão       -> indisponível (nao_cadastrado)
+[72/275] EAN 7896839173137
+  Atacadão       -> indisponível (nao_cadastrado)
+[73/275] EAN 7893000979932
+  Atacadão       -> indisponível (sem_estoque)
+[74/275] EAN 7806360400800
+  Atacadão       -> indisponível (nao_cadastrado)
+[75/275] EAN 7896360400801
+  Atacadão       -> indisponível (sem_estoque)
+[76/275] EAN 8005121218107
+  Atacadão       -> indisponível (nao_cadastrado)
+[77/275] EAN 7898958338015
+  Atacadão       -> indisponível (nao_cadastrado)
+[78/275] EAN 7898961989136
+  Atacadão       -> indisponível (nao_cadastrado)
+[79/275] EAN 8480017641076
+  Atacadão       -> indisponível (nao_cadastrado)
+[80/275] EAN 7894904219636
+  Atacadão       -> indisponível (sem_estoque)
+[81/275] EAN 7894904577897
+  Atacadão       -> indisponível (nao_cadastrado)
+[82/275] EAN 2220860211240
+  Atacadão       -> indisponível (nao_cadastrado)
+[83/275] EAN 7896036000793
+  Atacadão       -> indisponível (nao_cadastrado)
+[84/275] EAN 7893500085768
+  Atacadão       -> indisponível (sem_estoque)
+[85/275] EAN 7896115400063
+  Atacadão       -> indisponível (nao_cadastrado)
+[86/275] EAN 7898234852150
+  Atacadão       -> indisponível (sem_estoque)
+[87/275] EAN 8480017336323
+  Atacadão       -> indisponível (nao_cadastrado)
+[88/275] EAN 7896022206147
+  Atacadão       -> indisponível (nao_cadastrado)
+[89/275] EAN 7896419438014
+  Atacadão       -> indisponível (sem_estoque)
+[90/275] EAN 7898234850019
+  Atacadão       -> indisponível (nao_cadastrado)
+[91/275] EAN 7896005212714
+  Atacadão       -> indisponível (nao_cadastrado)
+[92/275] EAN 7896005212905
+  Atacadão       -> indisponível (sem_estoque)
+[93/275] EAN 7896090082056
+  Atacadão       -> indisponível (sem_estoque)
+[94/275] EAN 7891080000119
+  Atacadão       -> indisponível (nao_cadastrado)
+[95/275] EAN 7897932900149
+  Atacadão       -> indisponível (nao_cadastrado)
+[96/275] EAN 7896412851216
+  Atacadão       -> indisponível (nao_cadastrado)
+[97/275] EAN 7891080147951
+  Atacadão       -> indisponível (nao_cadastrado)
+[98/275] EAN 7891080007705
+  Atacadão       -> indisponível (sem_estoque)
+[99/275] EAN 7896090082063
+  Atacadão       -> indisponível (sem_estoque)
+[100/275] EAN 7898954933474
+  Atacadão       -> indisponível (nao_cadastrado)
+[101/275] EAN 7898276600108
+  Atacadão       -> indisponível (nao_cadastrado)
+[102/275] EAN 7896062602008
+  Atacadão       -> indisponível (sem_estoque)
+[103/275] EAN 7898007290295
+  Atacadão       -> indisponível (nao_cadastrado)
+[104/275] EAN 7896482100016
+  Atacadão       -> indisponível (sem_estoque)
+[105/275] EAN 7897593105181
+  Atacadão       -> indisponível (nao_cadastrado)
+[106/275] EAN 0602883177369
+  Atacadão       -> indisponível (nao_cadastrado)
+[107/275] EAN 0602883177116
+  Atacadão       -> indisponível (nao_cadastrado)
+[108/275] EAN 7898916030821
+  Atacadão       -> indisponível (nao_cadastrado)
+[109/275] EAN 7898916031637
+  Atacadão       -> indisponível (nao_cadastrado)
+[110/275] EAN 0619205605080
+  Atacadão       -> indisponível (nao_cadastrado)
+[111/275] EAN 7896070800014
+  Atacadão       -> indisponível (sem_estoque)
+[112/275] EAN 7898007290035
+  Atacadão       -> indisponível (nao_cadastrado)
+[113/275] EAN 7898949924197
+  Atacadão       -> indisponível (nao_cadastrado)
+[114/275] EAN 7898007290202
+  Atacadão       -> indisponível (sem_estoque)
+[115/275] EAN 7890300155929
+  Atacadão       -> indisponível (sem_estoque)
+[116/275] EAN 7896200115360
+  Atacadão       -> indisponível (sem_estoque)
+[117/275] EAN 7896260012203
+  Atacadão       -> indisponível (sem_estoque)
+[118/275] EAN 7898033580100
+  Atacadão       -> indisponível (nao_cadastrado)
+[119/275] EAN 7896101062015
+  Atacadão       -> indisponível (sem_estoque)
+[120/275] EAN 7899567209864
+  Atacadão       -> indisponível (nao_cadastrado)
+[121/275] EAN 7897593100292
+  Atacadão       -> indisponível (nao_cadastrado)
+[122/275] EAN 0602883177352
+  Atacadão       -> indisponível (nao_cadastrado)
+[123/275] EAN 7898916030548
+  Atacadão       -> indisponível (nao_cadastrado)
+[124/275] EAN 7898916031620
+  Atacadão       -> indisponível (nao_cadastrado)
+[125/275] EAN 7895000319008
+  Atacadão       -> indisponível (nao_cadastrado)
+[126/275] EAN 7896061734892
+  Atacadão       -> indisponível (nao_cadastrado)
+[127/275] EAN 7893753603467
+  Atacadão       -> indisponível (nao_cadastrado)
+[128/275] EAN 7891515488536
+  Atacadão       -> indisponível (nao_cadastrado)
+[129/275] EAN 2221672810256
+  Atacadão       -> indisponível (nao_cadastrado)
+[130/275] EAN 7622300847753
+  Atacadão       -> indisponível (nao_cadastrado)
+[131/275] EAN 7891772144855
+  Atacadão       -> indisponível (nao_cadastrado)
+[132/275] EAN 7891091049428
+  Atacadão       -> indisponível (sem_estoque)
+[133/275] EAN 7908109125583
+  Atacadão       -> indisponível (nao_cadastrado)
+[134/275] EAN 7898205923940
+  Atacadão       -> indisponível (sem_estoque)
+[135/275] EAN 7898205925562
+  Atacadão       -> indisponível (nao_cadastrado)
+[136/275] EAN 7898080642899
+  Atacadão       -> indisponível (nao_cadastrado)
+[137/275] EAN 7890013110857
+  Atacadão       -> indisponível (nao_cadastrado)
+[138/275] EAN 7890013110864
+  Atacadão       -> indisponível (nao_cadastrado)
+[139/275] EAN 7898387248107
+  Atacadão       -> indisponível (nao_cadastrado)
+[140/275] EAN 7891000397077
+  Atacadão       -> indisponível (sem_estoque)
+[141/275] EAN 7793650841415
+  Atacadão       -> indisponível (nao_cadastrado)
+[142/275] EAN 7894577803187
+  Atacadão       -> indisponível (nao_cadastrado)
+[143/275] EAN 7899541490233
+  Atacadão       -> indisponível (nao_cadastrado)
+[144/275] EAN 7898387243225
+  Atacadão       -> indisponível (nao_cadastrado)
+[145/275] EAN 7894807582141
+  Atacadão       -> indisponível (nao_cadastrado)
+[146/275] EAN 7891233258886
+  Atacadão       -> indisponível (nao_cadastrado)
+[147/275] EAN 7890013110970
+  Atacadão       -> indisponível (nao_cadastrado)
+[148/275] EAN 7893909380716
+  Atacadão       -> indisponível (nao_cadastrado)
+[149/275] EAN 7793650841248
+  Atacadão       -> indisponível (nao_cadastrado)
+[150/275] EAN 7898387200051
+  Atacadão       -> indisponível (nao_cadastrado)
+[151/275] EAN 7898387200082
+  Atacadão       -> indisponível (nao_cadastrado)
+[152/275] EAN 7898387202581
+  Atacadão       -> indisponível (nao_cadastrado)
+[153/275] EAN 7793650700903
+  Atacadão       -> indisponível (nao_cadastrado)
+[154/275] EAN 7793650841101
+  Atacadão       -> indisponível (nao_cadastrado)
+[155/275] EAN 7890013110987
+  Atacadão       -> indisponível (nao_cadastrado)
+[156/275] EAN 7890013112004
+  Atacadão       -> indisponível (nao_cadastrado)
+[157/275] EAN 7898387213877
+  Atacadão       -> indisponível (nao_cadastrado)
+[158/275] EAN 7898387213907
+  Atacadão       -> indisponível (nao_cadastrado)
+[159/275] EAN 7898387244468
+  Atacadão       -> indisponível (nao_cadastrado)
+[160/275] EAN 7898387215062
+  Atacadão       -> indisponível (nao_cadastrado)
+[161/275] EAN 7898387214539
+  Atacadão       -> indisponível (nao_cadastrado)
+[162/275] EAN 7898387213624
+  Atacadão       -> indisponível (nao_cadastrado)
+[163/275] EAN 7898387214546
+  Atacadão       -> indisponível (nao_cadastrado)
+[164/275] EAN 7890013110277
+  Atacadão       -> indisponível (nao_cadastrado)
+[165/275] EAN 7891150020689
+  Atacadão       -> indisponível (nao_cadastrado)
+[166/275] EAN 7896590817035
+  Atacadão       -> indisponível (sem_estoque)
+[167/275] EAN 7896275960896
+  Atacadão       -> indisponível (sem_estoque)
+[168/275] EAN 7891000366059
+  Atacadão       -> indisponível (sem_estoque)
+[169/275] EAN 7896434920778
+  Atacadão       -> indisponível (sem_estoque)
+[170/275] EAN 7897076023391
+  Atacadão       -> indisponível (nao_cadastrado)
+[171/275] EAN 7896256604962
+  Atacadão       -> indisponível (sem_estoque)
+[172/275] EAN 7891000107041
+  Atacadão       -> indisponível (nao_cadastrado)
+[173/275] EAN 7898215151203
+  Atacadão       -> indisponível (sem_estoque)
+[174/275] EAN 7898403781298
+  Atacadão       -> indisponível (sem_estoque)
+[175/275] EAN 7897076021403
+  Atacadão       -> indisponível (sem_estoque)
+[176/275] EAN 7898080641380
+  Atacadão       -> indisponível (nao_cadastrado)
+[177/275] EAN 7898215152019
+  Atacadão       -> indisponível (sem_estoque)
+[178/275] EAN 7898968764149
+  Atacadão       -> indisponível (nao_cadastrado)
+[179/275] EAN 7896004400372
+  Atacadão       -> indisponível (sem_estoque)
+[180/275] EAN 7898215157830
+  Atacadão       -> indisponível (nao_cadastrado)
+[181/275] EAN 7891000444764
+  Atacadão       -> indisponível (nao_cadastrado)
+[182/275] EAN 7898215157953
+  Atacadão       -> indisponível (sem_estoque)
+[183/275] EAN 7891000065440
+  Atacadão       -> indisponível (sem_estoque)
+[184/275] EAN 7898215157403
+  Atacadão       -> indisponível (nao_cadastrado)
+[185/275] EAN 7891000340981
+  Atacadão       -> indisponível (sem_estoque)
+[186/275] EAN 7891515600624
+  Atacadão       -> indisponível (nao_cadastrado)
+[187/275] EAN 7896022200732
+  Atacadão       -> indisponível (nao_cadastrado)
+[188/275] EAN 8001250152091
+  Atacadão       -> indisponível (nao_cadastrado)
+[189/275] EAN 7896022203634
+  Atacadão       -> indisponível (nao_cadastrado)
+[190/275] EAN 7896022200756
+  Atacadão       -> indisponível (sem_estoque)
+[191/275] EAN 7896022205539
+  Atacadão       -> indisponível (sem_estoque)
+[192/275] EAN 7891079000311
+  Atacadão       -> indisponível (nao_cadastrado)
+[193/275] EAN 7891079012963
+  Atacadão       -> indisponível (nao_cadastrado)
+[194/275] EAN 8005121000931
+  Atacadão       -> indisponível (sem_estoque)
+[195/275] EAN 7896022200879
+  Atacadão       -> indisponível (sem_estoque)
+[196/275] EAN 7896063223011
+  Atacadão       -> indisponível (nao_cadastrado)
+[197/275] EAN 7894904271498
+  Atacadão       -> indisponível (nao_cadastrado)
+[198/275] EAN 7894904271481
+  Atacadão       -> indisponível (nao_cadastrado)
+[199/275] EAN 7894904271535
+  Atacadão       -> indisponível (nao_cadastrado)
+[200/275] EAN 7894904271573
+  Atacadão       -> indisponível (nao_cadastrado)
+[201/275] EAN 7891515555252
+  Atacadão       -> indisponível (sem_estoque)
+[202/275] EAN 7894904271566
+  Atacadão       -> indisponível (nao_cadastrado)
+[203/275] EAN 7891515520656
+  Atacadão       -> indisponível (nao_cadastrado)
+[204/275] EAN 7896006779674
+  Atacadão       -> indisponível (sem_estoque)
+[205/275] EAN 7898954881393
+  Atacadão       -> indisponível (nao_cadastrado)
+[206/275] EAN 7804646450273
+  Atacadão       -> indisponível (nao_cadastrado)
+[207/275] EAN 7891515952570
+  Atacadão       -> indisponível (nao_cadastrado)
+[208/275] EAN 7896102501872
+  Atacadão       -> indisponível (sem_estoque)
+[209/275] EAN 7896102501896
+  Atacadão       -> indisponível (sem_estoque)
+[210/275] EAN 7898930142654
+  Atacadão       -> indisponível (sem_estoque)
+[211/275] EAN 7891164006860
+  Atacadão       -> indisponível (nao_cadastrado)
+[212/275] EAN 7891164016098
+  Atacadão       -> indisponível (nao_cadastrado)
+[213/275] EAN 7891079012420
+  Atacadão       -> indisponível (nao_cadastrado)
+[214/275] EAN 7898905356567
+  Atacadão       -> indisponível (nao_cadastrado)
+[215/275] EAN 7891172421297
+  Atacadão       -> indisponível (nao_cadastrado)
+[216/275] EAN 7898495101202
+  Atacadão       -> indisponível (nao_cadastrado)
+[217/275] EAN 7891172523410
+  Atacadão       -> indisponível (nao_cadastrado)
+[218/275] EAN 7806163478600
+  Atacadão       -> indisponível (nao_cadastrado)
+[219/275] EAN 7896104992692
+  Atacadão       -> indisponível (nao_cadastrado)
+[220/275] EAN 7896104993705
+  Atacadão       -> indisponível (nao_cadastrado)
+[221/275] EAN 7896104995136
+  Atacadão       -> indisponível (sem_estoque)
+[222/275] EAN 7896104993460
+  Atacadão       -> indisponível (sem_estoque)
+[223/275] EAN 7896104993613
+  Atacadão       -> indisponível (sem_estoque)
+[224/275] EAN 7890019510156
+  Atacadão       -> indisponível (nao_cadastrado)
+[225/275] EAN 7890019511061
+  Atacadão       -> indisponível (nao_cadastrado)
+[226/275] EAN 7890019510095
+  Atacadão       -> indisponível (nao_cadastrado)
+[227/275] EAN 7890019510118
+  Atacadão       -> indisponível (nao_cadastrado)
+[228/275] EAN 7896104991398
+  Atacadão       -> indisponível (nao_cadastrado)
+[229/275] EAN 7890019510668
+  Atacadão       -> indisponível (nao_cadastrado)
+[230/275] EAN 7890013110642
+  Atacadão       -> indisponível (nao_cadastrado)
+[231/275] EAN 7891172432736
+  Atacadão       -> indisponível (nao_cadastrado)
+[232/275] EAN 7891172432804
+  Atacadão       -> indisponível (sem_estoque)
+[233/275] EAN 7896089012637
+  Atacadão       -> indisponível (sem_estoque)
+[234/275] EAN 7898215157977
+  Atacadão       -> indisponível (sem_estoque)
+[235/275] EAN 7894900010022
+  Atacadão       -> indisponível (nao_cadastrado)
+[236/275] EAN 7891193010081
+  Atacadão       -> indisponível (sem_estoque)
+[237/275] EAN 7897571108913
+  Atacadão       -> indisponível (nao_cadastrado)
+[238/275] EAN 7896733400575
+  Atacadão       -> indisponível (sem_estoque)
+[239/275] EAN 7891143017313
+  Atacadão       -> indisponível (nao_cadastrado)
+[240/275] EAN 2040800006008
+  Atacadão       -> indisponível (nao_cadastrado)
+[241/275] EAN 7898193870011
+  Atacadão       -> indisponível (nao_cadastrado)
+[242/275] EAN 7898951352612
+  Atacadão       -> indisponível (sem_estoque)
+[243/275] EAN 7896051165446
+  Atacadão       -> indisponível (sem_estoque)
+[244/275] EAN 7898955617526
+  Atacadão       -> indisponível (sem_estoque)
+[245/275] EAN 7898205924909
+  Atacadão       -> indisponível (nao_cadastrado)
+[246/275] EAN 7898194163440
+  Atacadão       -> indisponível (nao_cadastrado)
+[247/275] EAN 0618231386031
+  Atacadão       -> indisponível (nao_cadastrado)
+[248/275] EAN 7898194160081
+  Atacadão       -> indisponível (nao_cadastrado)
+[249/275] EAN 7896504301018
+  Atacadão       -> indisponível (sem_estoque)
+[250/275] EAN 7896122302510
+  Atacadão       -> indisponível (sem_estoque)
+[251/275] EAN 7896259422051
+  Atacadão       -> indisponível (nao_cadastrado)
+[252/275] EAN 7896030520181
+  Atacadão       -> indisponível (nao_cadastrado)
+[253/275] EAN 7898205924138
+  Atacadão       -> indisponível (nao_cadastrado)
+[254/275] EAN 7893000084315
+  Atacadão       -> indisponível (sem_estoque)
+[255/275] EAN 7894900680508
+  Atacadão       -> indisponível (sem_estoque)
+[256/275] EAN 8001860260315
+  Atacadão       -> indisponível (nao_cadastrado)
+[257/275] EAN 0192505321992
+  Atacadão       -> indisponível (nao_cadastrado)
+[258/275] EAN 7897664120037
+  Atacadão       -> indisponível (nao_cadastrado)
+[259/275] EAN 7898132847289
+  Atacadão       -> indisponível (nao_cadastrado)
+[260/275] EAN 7891150062825
+  Atacadão       -> indisponível (nao_cadastrado)
+[261/275] EAN 7897306735506
+  Atacadão       -> indisponível (nao_cadastrado)
+[262/275] EAN 7891150072817
+  Atacadão       -> indisponível (nao_cadastrado)
+[263/275] EAN 7896236305469
+  Atacadão       -> indisponível (nao_cadastrado)
+[264/275] EAN 7891000584804
+  Atacadão       -> indisponível (sem_estoque)
+[265/275] EAN 7891000103104
+  Atacadão       -> indisponível (nao_cadastrado)
+[266/275] EAN 7898199199284
+  Atacadão       -> indisponível (nao_cadastrado)
+[267/275] EAN 7898678660793
+  Atacadão       -> indisponível (nao_cadastrado)
+[268/275] EAN 7802950012316
+  Atacadão       -> indisponível (nao_cadastrado)
+[269/275] EAN 7896038305193
+  Atacadão       -> indisponível (nao_cadastrado)
+[270/275] EAN 7891025115632
+  Atacadão       -> indisponível (sem_estoque)
+[271/275] EAN 7897001010014
+  Atacadão       -> indisponível (sem_estoque)
+[272/275] EAN 7898247780075
+  Atacadão       -> indisponível (sem_estoque)
+[273/275] EAN 6015636015087
+  Atacadão       -> indisponível (nao_cadastrado)
+[274/275] EAN 0602883177178
+  Atacadão       -> indisponível (nao_cadastrado)
+[275/275] EAN 7896279600538
+  Atacadão       -> indisponível (sem_estoque)
+-> 275 EAN(s) sem preço. Nova tentativa (2/3)...
+[1/275] EAN 7896181709244
+  Atacadão       -> indisponível (sem_estoque)
+[2/275] EAN 7796539419422
+  Atacadão       -> indisponível (nao_cadastrado)
+[3/275] EAN 7893500044352
+  Atacadão       -> indisponível (nao_cadastrado)
+[4/275] EAN 7893500020134
+  Atacadão       -> indisponível (sem_estoque)
+[5/275] EAN 7893500019206
+  Atacadão       -> indisponível (sem_estoque)
+[6/275] EAN 7893500025368
+  Atacadão       -> indisponível (nao_cadastrado)
+[7/275] EAN 7893500019220
+  Atacadão       -> indisponível (nao_cadastrado)
+[8/275] EAN 7893500089650
+  Atacadão       -> indisponível (nao_cadastrado)
+[9/275] EAN 7893500089629
+  Atacadão       -> indisponível (nao_cadastrado)
+[10/275] EAN 7891959000295
+  Atacadão       -> indisponível (nao_cadastrado)
+[11/275] EAN 7896104866238
+  Atacadão       -> indisponível (nao_cadastrado)
+[12/275] EAN 2575404642685
+  Atacadão       -> indisponível (nao_cadastrado)
+[13/275] EAN 7897594100086
+  Atacadão       -> indisponível (nao_cadastrado)
+[14/275] EAN 7896798603584
+  Atacadão       -> indisponível (sem_estoque)
+[15/275] EAN 7896798603287
+  Atacadão       -> indisponível (sem_estoque)
+[16/275] EAN 7896261403482
+  Atacadão       -> indisponível (nao_cadastrado)
+[17/275] EAN 7896311768325
+  Atacadão       -> indisponível (nao_cadastrado)
+[18/275] EAN 7896066761886
+  Atacadão       -> indisponível (nao_cadastrado)
+[19/275] EAN 7896283007460
+  Atacadão       -> indisponível (nao_cadastrado)
+[20/275] EAN 7896546160017
+  Atacadão       -> indisponível (nao_cadastrado)
+[21/275] EAN 7896006779513
+  Atacadão       -> indisponível (sem_estoque)
+[22/275] EAN 7896006779643
+  Atacadão       -> indisponível (nao_cadastrado)
+[23/275] EAN 7896006716471
+  Atacadão       -> indisponível (sem_estoque)
+[24/275] EAN 7896253400499
+  Atacadão       -> indisponível (nao_cadastrado)
+[25/275] EAN 7908320926358
+  Atacadão       -> indisponível (nao_cadastrado)
+[26/275] EAN 7908320926365
+  Atacadão       -> indisponível (nao_cadastrado)
+[27/275] EAN 7908320926242
+  Atacadão       -> indisponível (nao_cadastrado)
+[28/275] EAN 7908320926228
+  Atacadão       -> indisponível (nao_cadastrado)
+[29/275] EAN 7908320926235
+  Atacadão       -> indisponível (nao_cadastrado)
+[30/275] EAN 7908320926143
+  Atacadão       -> indisponível (nao_cadastrado)
+[31/275] EAN 7908320926204
+  Atacadão       -> indisponível (nao_cadastrado)
+[32/275] EAN 7908320926211
+  Atacadão       -> indisponível (nao_cadastrado)
+[33/275] EAN 7908320926181
+  Atacadão       -> indisponível (nao_cadastrado)
+[34/275] EAN 7908320926198
+  Atacadão       -> indisponível (nao_cadastrado)
+[35/275] EAN 7894969647894
+  Atacadão       -> indisponível (nao_cadastrado)
+[36/275] EAN 7896089016291
+  Atacadão       -> indisponível (sem_estoque)
+[37/275] EAN 7908320919411
+  Atacadão       -> indisponível (nao_cadastrado)
+[38/275] EAN 7908320919367
+  Atacadão       -> indisponível (nao_cadastrado)
+[39/275] EAN 7896089012880
+  Atacadão       -> indisponível (nao_cadastrado)
+[40/275] EAN 7908320919275
+  Atacadão       -> indisponível (nao_cadastrado)
+[41/275] EAN 7908320919244
+  Atacadão       -> indisponível (nao_cadastrado)
+[42/275] EAN 7908320919336
+  Atacadão       -> indisponível (nao_cadastrado)
+[43/275] EAN 7908320919251
+  Atacadão       -> indisponível (nao_cadastrado)
+[44/275] EAN 7898957493173
+  Atacadão       -> indisponível (nao_cadastrado)
+[45/275] EAN 0609963170968
+  Atacadão       -> indisponível (nao_cadastrado)
+[46/275] EAN 7891000253526
+  Atacadão       -> indisponível (nao_cadastrado)
+[47/275] EAN 0618341522992
+  Atacadão       -> indisponível (nao_cadastrado)
+[48/275] EAN 7896216100534
+  Atacadão       -> indisponível (sem_estoque)
+[49/275] EAN 7896228100577
+  Atacadão       -> indisponível (sem_estoque)
+[50/275] EAN 7898678660069
+  Atacadão       -> indisponível (sem_estoque)
+[51/275] EAN 7898637354671
+  Atacadão       -> indisponível (nao_cadastrado)
+[52/275] EAN 9788565056281
+  Atacadão       -> indisponível (nao_cadastrado)
+[53/275] EAN 7897486300150
+  Atacadão       -> indisponível (nao_cadastrado)
+[54/275] EAN 7891000073100
+  Atacadão       -> indisponível (sem_estoque)
+[55/275] EAN 7891000319543
+  Atacadão       -> indisponível (sem_estoque)
+[56/275] EAN 7896045506095
+  Atacadão       -> indisponível (sem_estoque)
+[57/275] EAN 7891991011723
+  Atacadão       -> indisponível (sem_estoque)
+[58/275] EAN 7896045506064
+  Atacadão       -> indisponível (sem_estoque)
+[59/275] EAN 7891991006101
+  Atacadão       -> indisponível (nao_cadastrado)
+[60/275] EAN 7891991303200
+  Atacadão       -> indisponível (sem_estoque)
+[61/275] EAN 7897395099695
+  Atacadão       -> indisponível (sem_estoque)
+[62/275] EAN 7898605251827
+  Atacadão       -> indisponível (sem_estoque)
+[63/275] EAN 0040232728549
+  Atacadão       -> indisponível (nao_cadastrado)
+[64/275] EAN 7891149101900
+  Atacadão       -> indisponível (sem_estoque)
+[65/275] EAN 7896371000007
+  Atacadão       -> indisponível (sem_estoque)
+[66/275] EAN 9788538902041
+  Atacadão       -> indisponível (nao_cadastrado)
+[67/275] EAN 7908477600897
+  Atacadão       -> indisponível (nao_cadastrado)
+[68/275] EAN 7908477600866
+  Atacadão       -> indisponível (nao_cadastrado)
+[69/275] EAN 7893000437029
+  Atacadão       -> indisponível (sem_estoque)
+[70/275] EAN 7898637354640
+  Atacadão       -> indisponível (nao_cadastrado)
+[71/275] EAN 7798419670084
+  Atacadão       -> indisponível (nao_cadastrado)
+[72/275] EAN 7896839173137
+  Atacadão       -> indisponível (nao_cadastrado)
+[73/275] EAN 7893000979932
+  Atacadão       -> indisponível (sem_estoque)
+[74/275] EAN 7806360400800
+  Atacadão       -> indisponível (nao_cadastrado)
+[75/275] EAN 7896360400801
+  Atacadão       -> indisponível (sem_estoque)
+[76/275] EAN 8005121218107
+  Atacadão       -> indisponível (nao_cadastrado)
+[77/275] EAN 7898958338015
+  Atacadão       -> indisponível (nao_cadastrado)
+[78/275] EAN 7898961989136
+  Atacadão       -> indisponível (nao_cadastrado)
+[79/275] EAN 8480017641076
+  Atacadão       -> indisponível (nao_cadastrado)
+[80/275] EAN 7894904219636
+  Atacadão       -> indisponível (sem_estoque)
+[81/275] EAN 7894904577897
+  Atacadão       -> indisponível (nao_cadastrado)
+[82/275] EAN 2220860211240
+  Atacadão       -> indisponível (nao_cadastrado)
+[83/275] EAN 7896036000793
+  Atacadão       -> indisponível (nao_cadastrado)
+[84/275] EAN 7893500085768
+  Atacadão       -> indisponível (sem_estoque)
+[85/275] EAN 7896115400063
+  Atacadão       -> indisponível (nao_cadastrado)
+[86/275] EAN 7898234852150
+  Atacadão       -> indisponível (sem_estoque)
+[87/275] EAN 8480017336323
+  Atacadão       -> indisponível (nao_cadastrado)
+[88/275] EAN 7896022206147
+  Atacadão       -> indisponível (nao_cadastrado)
+[89/275] EAN 7896419438014
+  Atacadão       -> indisponível (sem_estoque)
+[90/275] EAN 7898234850019
+  Atacadão       -> indisponível (nao_cadastrado)
+[91/275] EAN 7896005212714
+  Atacadão       -> indisponível (nao_cadastrado)
+[92/275] EAN 7896005212905
+  Atacadão       -> indisponível (sem_estoque)
+[93/275] EAN 7896090082056
+  Atacadão       -> indisponível (sem_estoque)
+[94/275] EAN 7891080000119
+  Atacadão       -> indisponível (nao_cadastrado)
+[95/275] EAN 7897932900149
+  Atacadão       -> indisponível (nao_cadastrado)
+[96/275] EAN 7896412851216
+  Atacadão       -> indisponível (nao_cadastrado)
+[97/275] EAN 7891080147951
+  Atacadão       -> indisponível (nao_cadastrado)
+[98/275] EAN 7891080007705
+  Atacadão       -> indisponível (sem_estoque)
+[99/275] EAN 7896090082063
+  Atacadão       -> indisponível (sem_estoque)
+[100/275] EAN 7898954933474
+  Atacadão       -> indisponível (nao_cadastrado)
+[101/275] EAN 7898276600108
+  Atacadão       -> indisponível (nao_cadastrado)
+[102/275] EAN 7896062602008
+  Atacadão       -> indisponível (sem_estoque)
+[103/275] EAN 7898007290295
+  Atacadão       -> indisponível (nao_cadastrado)
+[104/275] EAN 7896482100016
+  Atacadão       -> indisponível (sem_estoque)
+[105/275] EAN 7897593105181
+  Atacadão       -> indisponível (nao_cadastrado)
+[106/275] EAN 0602883177369
+  Atacadão       -> indisponível (nao_cadastrado)
+[107/275] EAN 0602883177116
+  Atacadão       -> indisponível (nao_cadastrado)
+[108/275] EAN 7898916030821
+  Atacadão       -> indisponível (nao_cadastrado)
+[109/275] EAN 7898916031637
+  Atacadão       -> indisponível (nao_cadastrado)
+[110/275] EAN 0619205605080
+  Atacadão       -> indisponível (nao_cadastrado)
+[111/275] EAN 7896070800014
+  Atacadão       -> indisponível (sem_estoque)
+[112/275] EAN 7898007290035
+  Atacadão       -> indisponível (nao_cadastrado)
+[113/275] EAN 7898949924197
+  Atacadão       -> indisponível (nao_cadastrado)
+[114/275] EAN 7898007290202
+  Atacadão       -> indisponível (sem_estoque)
+[115/275] EAN 7890300155929
+  Atacadão       -> indisponível (sem_estoque)
+[116/275] EAN 7896200115360
+  Atacadão       -> indisponível (sem_estoque)
+[117/275] EAN 7896260012203
+  Atacadão       -> indisponível (sem_estoque)
+[118/275] EAN 7898033580100
+  Atacadão       -> indisponível (nao_cadastrado)
+[119/275] EAN 7896101062015
+  Atacadão       -> indisponível (sem_estoque)
+[120/275] EAN 7899567209864
+  Atacadão       -> indisponível (nao_cadastrado)
+[121/275] EAN 7897593100292
+  Atacadão       -> indisponível (nao_cadastrado)
+[122/275] EAN 0602883177352
+  Atacadão       -> indisponível (nao_cadastrado)
+[123/275] EAN 7898916030548
+  Atacadão       -> indisponível (nao_cadastrado)
+[124/275] EAN 7898916031620
+  Atacadão       -> indisponível (nao_cadastrado)
+[125/275] EAN 7895000319008
+  Atacadão       -> indisponível (nao_cadastrado)
+[126/275] EAN 7896061734892
+  Atacadão       -> indisponível (nao_cadastrado)
+[127/275] EAN 7893753603467
+  Atacadão       -> indisponível (nao_cadastrado)
+[128/275] EAN 7891515488536
+  Atacadão       -> indisponível (nao_cadastrado)
+[129/275] EAN 2221672810256
+  Atacadão       -> indisponível (nao_cadastrado)
+[130/275] EAN 7622300847753
+  Atacadão       -> indisponível (nao_cadastrado)
+[131/275] EAN 7891772144855
+  Atacadão       -> indisponível (nao_cadastrado)
+[132/275] EAN 7891091049428
+  Atacadão       -> indisponível (sem_estoque)
+[133/275] EAN 7908109125583
+  Atacadão       -> indisponível (nao_cadastrado)
+[134/275] EAN 7898205923940
+  Atacadão       -> indisponível (sem_estoque)
+[135/275] EAN 7898205925562
+  Atacadão       -> indisponível (nao_cadastrado)
+[136/275] EAN 7898080642899
+  Atacadão       -> indisponível (nao_cadastrado)
+[137/275] EAN 7890013110857
+  Atacadão       -> indisponível (nao_cadastrado)
+[138/275] EAN 7890013110864
+  Atacadão       -> indisponível (nao_cadastrado)
+[139/275] EAN 7898387248107
+  Atacadão       -> indisponível (nao_cadastrado)
+[140/275] EAN 7891000397077
+  Atacadão       -> indisponível (sem_estoque)
+[141/275] EAN 7793650841415
+  Atacadão       -> indisponível (nao_cadastrado)
+[142/275] EAN 7894577803187
+  Atacadão       -> indisponível (nao_cadastrado)
+[143/275] EAN 7899541490233
+  Atacadão       -> indisponível (nao_cadastrado)
+[144/275] EAN 7898387243225
+  Atacadão       -> indisponível (nao_cadastrado)
+[145/275] EAN 7894807582141
+  Atacadão       -> indisponível (nao_cadastrado)
+[146/275] EAN 7891233258886
+  Atacadão       -> indisponível (nao_cadastrado)
+[147/275] EAN 7890013110970
+  Atacadão       -> indisponível (nao_cadastrado)
+[148/275] EAN 7893909380716
+  Atacadão       -> indisponível (nao_cadastrado)
+[149/275] EAN 7793650841248
+  Atacadão       -> indisponível (nao_cadastrado)
+[150/275] EAN 7898387200051
+  Atacadão       -> indisponível (nao_cadastrado)
+[151/275] EAN 7898387200082
+  Atacadão       -> indisponível (nao_cadastrado)
+[152/275] EAN 7898387202581
+  Atacadão       -> indisponível (nao_cadastrado)
+[153/275] EAN 7793650700903
+  Atacadão       -> indisponível (nao_cadastrado)
+[154/275] EAN 7793650841101
+  Atacadão       -> indisponível (nao_cadastrado)
+[155/275] EAN 7890013110987
+  Atacadão       -> indisponível (nao_cadastrado)
+[156/275] EAN 7890013112004
+  Atacadão       -> indisponível (nao_cadastrado)
+[157/275] EAN 7898387213877
+  Atacadão       -> indisponível (nao_cadastrado)
+[158/275] EAN 7898387213907
+  Atacadão       -> indisponível (nao_cadastrado)
+[159/275] EAN 7898387244468
+  Atacadão       -> indisponível (nao_cadastrado)
+[160/275] EAN 7898387215062
+  Atacadão       -> indisponível (nao_cadastrado)
+[161/275] EAN 7898387214539
+  Atacadão       -> indisponível (nao_cadastrado)
+[162/275] EAN 7898387213624
+  Atacadão       -> indisponível (nao_cadastrado)
+[163/275] EAN 7898387214546
+  Atacadão       -> indisponível (nao_cadastrado)
+[164/275] EAN 7890013110277
+  Atacadão       -> indisponível (nao_cadastrado)
+[165/275] EAN 7891150020689
+  Atacadão       -> indisponível (nao_cadastrado)
+[166/275] EAN 7896590817035
+  Atacadão       -> indisponível (sem_estoque)
+[167/275] EAN 7896275960896
+  Atacadão       -> indisponível (sem_estoque)
+[168/275] EAN 7891000366059
+  Atacadão       -> indisponível (sem_estoque)
+[169/275] EAN 7896434920778
+  Atacadão       -> indisponível (sem_estoque)
+[170/275] EAN 7897076023391
+  Atacadão       -> indisponível (nao_cadastrado)
+[171/275] EAN 7896256604962
+  Atacadão       -> indisponível (sem_estoque)
+[172/275] EAN 7891000107041
+  Atacadão       -> indisponível (nao_cadastrado)
+[173/275] EAN 7898215151203
+  Atacadão       -> indisponível (sem_estoque)
+[174/275] EAN 7898403781298
+  Atacadão       -> indisponível (sem_estoque)
+[175/275] EAN 7897076021403
+  Atacadão       -> indisponível (sem_estoque)
+[176/275] EAN 7898080641380
+  Atacadão       -> indisponível (nao_cadastrado)
+[177/275] EAN 7898215152019
+  Atacadão       -> indisponível (sem_estoque)
+[178/275] EAN 7898968764149
+  Atacadão       -> indisponível (nao_cadastrado)
+[179/275] EAN 7896004400372
+  Atacadão       -> indisponível (sem_estoque)
+[180/275] EAN 7898215157830
+  Atacadão       -> indisponível (nao_cadastrado)
+[181/275] EAN 7891000444764
+  Atacadão       -> indisponível (nao_cadastrado)
+[182/275] EAN 7898215157953
+  Atacadão       -> indisponível (sem_estoque)
+[183/275] EAN 7891000065440
+  Atacadão       -> indisponível (sem_estoque)
+[184/275] EAN 7898215157403
+  Atacadão       -> indisponível (nao_cadastrado)
+[185/275] EAN 7891000340981
+  Atacadão       -> indisponível (sem_estoque)
+[186/275] EAN 7891515600624
+  Atacadão       -> indisponível (nao_cadastrado)
+[187/275] EAN 7896022200732
+  Atacadão       -> indisponível (nao_cadastrado)
+[188/275] EAN 8001250152091
+  Atacadão       -> indisponível (nao_cadastrado)
+[189/275] EAN 7896022203634
+  Atacadão       -> indisponível (nao_cadastrado)
+[190/275] EAN 7896022200756
+  Atacadão       -> indisponível (sem_estoque)
+[191/275] EAN 7896022205539
+  Atacadão       -> indisponível (sem_estoque)
+[192/275] EAN 7891079000311
+  Atacadão       -> indisponível (nao_cadastrado)
+[193/275] EAN 7891079012963
+  Atacadão       -> indisponível (nao_cadastrado)
+[194/275] EAN 8005121000931
+  Atacadão       -> indisponível (sem_estoque)
+[195/275] EAN 7896022200879
+  Atacadão       -> indisponível (sem_estoque)
+[196/275] EAN 7896063223011
+  Atacadão       -> indisponível (nao_cadastrado)
+[197/275] EAN 7894904271498
+  Atacadão       -> indisponível (nao_cadastrado)
+[198/275] EAN 7894904271481
+  Atacadão       -> indisponível (nao_cadastrado)
+[199/275] EAN 7894904271535
+  Atacadão       -> indisponível (nao_cadastrado)
+[200/275] EAN 7894904271573
+  Atacadão       -> indisponível (nao_cadastrado)
+[201/275] EAN 7891515555252
+  Atacadão       -> indisponível (sem_estoque)
+[202/275] EAN 7894904271566
+  Atacadão       -> indisponível (nao_cadastrado)
+[203/275] EAN 7891515520656
+  Atacadão       -> indisponível (nao_cadastrado)
+[204/275] EAN 7896006779674
+  Atacadão       -> indisponível (sem_estoque)
+[205/275] EAN 7898954881393
+  Atacadão       -> indisponível (nao_cadastrado)
+[206/275] EAN 7804646450273
+  Atacadão       -> indisponível (nao_cadastrado)
+[207/275] EAN 7891515952570
+  Atacadão       -> indisponível (nao_cadastrado)
+[208/275] EAN 7896102501872
+  Atacadão       -> indisponível (sem_estoque)
+[209/275] EAN 7896102501896
+  Atacadão       -> indisponível (sem_estoque)
+[210/275] EAN 7898930142654
+  Atacadão       -> indisponível (sem_estoque)
+[211/275] EAN 7891164006860
+  Atacadão       -> indisponível (nao_cadastrado)
+[212/275] EAN 7891164016098
+  Atacadão       -> indisponível (nao_cadastrado)
+[213/275] EAN 7891079012420
+  Atacadão       -> indisponível (nao_cadastrado)
+[214/275] EAN 7898905356567
+  Atacadão       -> indisponível (nao_cadastrado)
+[215/275] EAN 7891172421297
+  Atacadão       -> indisponível (nao_cadastrado)
+[216/275] EAN 7898495101202
+  Atacadão       -> indisponível (nao_cadastrado)
+[217/275] EAN 7891172523410
+  Atacadão       -> indisponível (nao_cadastrado)
+[218/275] EAN 7806163478600
+  Atacadão       -> indisponível (nao_cadastrado)
+[219/275] EAN 7896104992692
+  Atacadão       -> indisponível (nao_cadastrado)
+[220/275] EAN 7896104993705
+  Atacadão       -> indisponível (nao_cadastrado)
+[221/275] EAN 7896104995136
+  Atacadão       -> indisponível (sem_estoque)
+[222/275] EAN 7896104993460
+  Atacadão       -> indisponível (sem_estoque)
+[223/275] EAN 7896104993613
+  Atacadão       -> indisponível (sem_estoque)
+[224/275] EAN 7890019510156
+  Atacadão       -> indisponível (nao_cadastrado)
+[225/275] EAN 7890019511061
+  Atacadão       -> indisponível (nao_cadastrado)
+[226/275] EAN 7890019510095
+  Atacadão       -> indisponível (nao_cadastrado)
+[227/275] EAN 7890019510118
+  Atacadão       -> indisponível (nao_cadastrado)
+[228/275] EAN 7896104991398
+  Atacadão       -> indisponível (nao_cadastrado)
+[229/275] EAN 7890019510668
+  Atacadão       -> indisponível (nao_cadastrado)
+[230/275] EAN 7890013110642
+  Atacadão       -> indisponível (nao_cadastrado)
+[231/275] EAN 7891172432736
+  Atacadão       -> indisponível (nao_cadastrado)
+[232/275] EAN 7891172432804
+  Atacadão       -> indisponível (sem_estoque)
+[233/275] EAN 7896089012637
+  Atacadão       -> indisponível (sem_estoque)
+[234/275] EAN 7898215157977
+  Atacadão       -> indisponível (sem_estoque)
+[235/275] EAN 7894900010022
+  Atacadão       -> indisponível (nao_cadastrado)
+[236/275] EAN 7891193010081
+  Atacadão       -> indisponível (sem_estoque)
+[237/275] EAN 7897571108913
+  Atacadão       -> indisponível (nao_cadastrado)
+[238/275] EAN 7896733400575
+  Atacadão       -> indisponível (sem_estoque)
+[239/275] EAN 7891143017313
+  Atacadão       -> indisponível (nao_cadastrado)
+[240/275] EAN 2040800006008

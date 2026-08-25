@@ -1,0 +1,1683 @@
+=== Atualização de preços por EAN + CEP ===
+Data: 2026-08-24 | lote: 418 EANs | CEPs: 11060-002, 01310-100
+------------------------------------------------------------------------
+[1/418] EAN 7896181709244
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[2/418] EAN 7796539419422
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[3/418] EAN 7893500112655
+  Atacadão       -> R$ 20.90
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 30.99
+[4/418] EAN 7893500044352
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[5/418] EAN 7893500020134
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 12.49
+[6/418] EAN 7893500019206
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[7/418] EAN 7893500025368
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[8/418] EAN 7893500019220
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[9/418] EAN 7896006755517
+  Atacadão       -> R$ 5.25
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[10/418] EAN 7893500089650
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[11/418] EAN 7893500089629
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[12/418] EAN 7896290300714
+  Atacadão       -> R$ 5.39
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[13/418] EAN 7893500018483
+  Atacadão       -> R$ 5.20
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[14/418] EAN 7896079431158
+  Atacadão       -> R$ 19.45
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[15/418] EAN 7896062699961
+  Atacadão       -> R$ 17.59
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 19.99
+[16/418] EAN 7893500020110
+  Atacadão       -> R$ 5.40
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 6.59
+[17/418] EAN 7896006711155
+  Atacadão       -> R$ 21.69
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 23.99
+[18/418] EAN 7898206500027
+  Atacadão       -> R$ 5.99
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 9.99
+[19/418] EAN 7896894900013
+  Atacadão       -> R$ 2.95
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 3.49
+[20/418] EAN 7891959000295
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[21/418] EAN 7898279790394
+  Atacadão       -> R$ 7.90
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 9.29
+[22/418] EAN 7896104866238
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[23/418] EAN 7896181704119
+  Atacadão       -> R$ 10.98
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[24/418] EAN 2575404642685
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[25/418] EAN 7897594100086
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[26/418] EAN 7896798603584
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[27/418] EAN 7896798603287
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[28/418] EAN 7896261403482
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 4.79
+[29/418] EAN 7891331010508
+  Atacadão       -> R$ 1.69
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[30/418] EAN 7896311768325
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[31/418] EAN 7896066761886
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[32/418] EAN 7896061302244
+  Atacadão       -> R$ 1.75
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[33/418] EAN 7896256065602
+  Atacadão       -> R$ 5.99
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[34/418] EAN 7891000051436
+  Atacadão       -> R$ 2.98
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 3.89
+[35/418] EAN 7896006716464
+  Atacadão       -> R$ 8.00
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 12.49
+[36/418] EAN 7896283007460
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[37/418] EAN 7896546160017
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[38/418] EAN 7896006779513
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 9.49
+[39/418] EAN 7896006779643
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[40/418] EAN 7891000369203
+  Atacadão       -> R$ 5.78
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[41/418] EAN 7896006716471
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[42/418] EAN 7891021005043
+  Atacadão       -> R$ 28.90
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 26.99
+[43/418] EAN 7896089012019
+  Atacadão       -> R$ 22.90
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 24.99
+[44/418] EAN 7896253400499
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[45/418] EAN 7908320926358
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[46/418] EAN 7908320926365
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[47/418] EAN 7908320926242
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[48/418] EAN 7908320926228
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[49/418] EAN 7908320926235
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[50/418] EAN 7891021005562
+  Atacadão       -> R$ 17.90
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[51/418] EAN 7908320926143
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[52/418] EAN 7891021005586
+  Atacadão       -> R$ 17.90
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[53/418] EAN 7908320926204
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[54/418] EAN 7908320926211
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[55/418] EAN 7908320926181
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[56/418] EAN 7908320926198
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[57/418] EAN 7896089011357
+  Atacadão       -> R$ 22.90
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 22.99
+[58/418] EAN 7894969647894
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[59/418] EAN 7896089016291
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[60/418] EAN 7908320919411
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[61/418] EAN 7908320919367
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[62/418] EAN 7896089012118
+  Atacadão       -> R$ 15.90
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 32.99
+[63/418] EAN 7896089012880
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[64/418] EAN 7908320919275
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[65/418] EAN 7908320919244
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[66/418] EAN 7908320919336
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[67/418] EAN 7908320919251
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[68/418] EAN 7898957493173
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[69/418] EAN 0609963170968
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[70/418] EAN 7891150012318
+  Atacadão       -> R$ 2.88
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 3.29
+[71/418] EAN 7891000250150
+  Atacadão       -> R$ 2.24
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[72/418] EAN 7891000253526
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[73/418] EAN 0618341522992
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[74/418] EAN 7896216100534
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 13.90
+[75/418] EAN 7896228100577
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[76/418] EAN 7898678660069
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[77/418] EAN 7898637354671
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[78/418] EAN 7897122601252
+  Atacadão       -> R$ 59.90
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 69.90
+[79/418] EAN 9788565056281
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[80/418] EAN 7897486300150
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[81/418] EAN 7891000073100
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 26.99
+[82/418] EAN 7891000319543
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 8.79
+[83/418] EAN 7891991299619
+  Atacadão       -> R$ 6.59
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 4.69
+[84/418] EAN 7896045506934
+  Atacadão       -> R$ 3.19
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 3.49
+[85/418] EAN 7896045505319
+  Atacadão       -> R$ 2.69
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 2.79
+[86/418] EAN 7896045506095
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[87/418] EAN 7896045506873
+  Atacadão       -> R$ 4.79
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 4.99
+[88/418] EAN 7898915949957
+  Atacadão       -> R$ 5.19
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 3.99
+[89/418] EAN 7891991011723
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[90/418] EAN 7896045506064
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[91/418] EAN 7891991295086
+  Atacadão       -> R$ 3.69
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 3.59
+[92/418] EAN 7897395099329
+  Atacadão       -> R$ 2.79
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[93/418] EAN 7891991006101
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[94/418] EAN 7898367983790
+  Atacadão       -> R$ 4.79
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 3.49
+[95/418] EAN 7891991303200
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[96/418] EAN 7897395099695
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[97/418] EAN 7898605251827
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 15.49
+[98/418] EAN 0040232728549
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[99/418] EAN 7891991297424
+  Atacadão       -> R$ 4.99
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 4.15
+[100/418] EAN 7891149101900
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[101/418] EAN 7896371000007
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[102/418] EAN 7891991298407
+  Atacadão       -> R$ 4.39
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 3.79
+[103/418] EAN 9788538902041
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[104/418] EAN 7891515410315
+  Atacadão       -> R$ 7.99
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[105/418] EAN 7896279600293
+  Atacadão       -> R$ 3.49
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[106/418] EAN 7894900701517
+  Atacadão       -> R$ 12.29
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 12.49
+[107/418] EAN 7894900700015
+  Atacadão       -> R$ 4.49
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 4.49
+[108/418] EAN 7908477600897
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[109/418] EAN 7908477600866
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[110/418] EAN 7893000437029
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 53.90
+[111/418] EAN 7898637354640
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 34.90
+[112/418] EAN 7898215151784
+  Atacadão       -> R$ 2.99
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 4.39
+[113/418] EAN 7898215151982
+  Atacadão       -> R$ 4.59
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[114/418] EAN 7898080640222
+  Atacadão       -> R$ 2.29
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 5.79
+[115/418] EAN 7798419670084
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[116/418] EAN 7896839173137
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[117/418] EAN 7893000979932
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[118/418] EAN 7891022638004
+  Atacadão       -> R$ 2.55
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 2.89
+[119/418] EAN 7806360400800
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[120/418] EAN 7896360400801
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[121/418] EAN 8005121218107
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[122/418] EAN 7898958338015
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[123/418] EAN 7898961989136
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[124/418] EAN 7898215150480
+  Atacadão       -> R$ 12.90
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[125/418] EAN 8480017641076
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[126/418] EAN 7894904219636
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 23.50
+[127/418] EAN 7891515485528
+  Atacadão       -> R$ 7.50
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 12.50
+[128/418] EAN 7894904577897
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[129/418] EAN 2220860211240
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[130/418] EAN 7896036000724
+  Atacadão       -> R$ 7.79
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 9.99
+[131/418] EAN 7896036000717
+  Atacadão       -> R$ 7.79
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 9.99
+[132/418] EAN 7896036000793
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[133/418] EAN 7897517206284
+  Atacadão       -> R$ 3.29
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[134/418] EAN 7896102502534
+  Atacadão       -> R$ 4.89
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[135/418] EAN 7893500085768
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 12.49
+[136/418] EAN 7896115400063
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[137/418] EAN 7898234852150
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[138/418] EAN 8480017336323
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[139/418] EAN 7896022206147
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 11.49
+[140/418] EAN 7896419438014
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[141/418] EAN 7898234850019
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[142/418] EAN 7896005212714
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[143/418] EAN 7896005212905
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[144/418] EAN 7896090082056
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[145/418] EAN 7891080000119
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 4.29
+[146/418] EAN 7897932900149
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[147/418] EAN 7896412851216
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[148/418] EAN 7891080147951
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[149/418] EAN 7891080007705
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[150/418] EAN 7896005202074
+  Atacadão       -> R$ 5.29
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[151/418] EAN 7896090082063
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[152/418] EAN 7892840815783
+  Atacadão       -> R$ 4.98
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 6.99
+[153/418] EAN 7898080642790
+  Atacadão       -> R$ 5.99
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[154/418] EAN 7898954933474
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 28.99
+[155/418] EAN 7898276600108
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[156/418] EAN 7896062602008
+  Atacadão       -> indisponível (erro_catalogo:HTTPError)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[157/418] EAN 7898007290295
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[158/418] EAN 7896006744115
+  Atacadão       -> R$ 7.39
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 9.79
+[159/418] EAN 7896482100016
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[160/418] EAN 7896200115346
+  Atacadão       -> R$ 8.99
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 10.99
+[161/418] EAN 7897593105181
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[162/418] EAN 0602883177369
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[163/418] EAN 0602883177116
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[164/418] EAN 7898916030821
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[165/418] EAN 7898916031637
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[166/418] EAN 0619205605080
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[167/418] EAN 7896099100256
+  Atacadão       -> R$ 6.39
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[168/418] EAN 7896070800014
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 11.49
+[169/418] EAN 7898007290035
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[170/418] EAN 7896116900029
+  Atacadão       -> R$ 8.29
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 10.49
+[171/418] EAN 7898949924197
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[172/418] EAN 7898007290202
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[173/418] EAN 7890300155929
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[174/418] EAN 7896200115360
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 7.99
+[175/418] EAN 7896260012203
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[176/418] EAN 7898033580100
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[177/418] EAN 7896101062015
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[178/418] EAN 7899567209864
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[179/418] EAN 7897593100292
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[180/418] EAN 0602883177352
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[181/418] EAN 7898916030548
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[182/418] EAN 7898916031620
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[183/418] EAN 7896401100097
+  Atacadão       -> R$ 6.49
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 8.49
+[184/418] EAN 7895000319008
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 7.29
+[185/418] EAN 7896061734892
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[186/418] EAN 7893753603467
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[187/418] EAN 7891515488536
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 33.90
+[188/418] EAN 7894904015108
+  Atacadão       -> R$ 18.90
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[189/418] EAN 7893000482401
+  Atacadão       -> R$ 19.98
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[190/418] EAN 2221672810256
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[191/418] EAN 7622300847753
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 7.79
+[192/418] EAN 7891772144855
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[193/418] EAN 7891091049428
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[194/418] EAN 7908109125583
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[195/418] EAN 7894904575350
+  Atacadão       -> R$ 23.50
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[196/418] EAN 7898205923940
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 14.49
+[197/418] EAN 7898205925562
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[198/418] EAN 7898080642899
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[199/418] EAN 7890013110857
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[200/418] EAN 7890013110864
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[201/418] EAN 7898387248107
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[202/418] EAN 7891000397077
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 25.99
+[203/418] EAN 7793650841415
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[204/418] EAN 7894577803187
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[205/418] EAN 7899541490233
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[206/418] EAN 7898387243225
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[207/418] EAN 7894807582141
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[208/418] EAN 7891233258886
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[209/418] EAN 7890013110970
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[210/418] EAN 7896311768332
+  Atacadão       -> R$ 8.90
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[211/418] EAN 7893909380716
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[212/418] EAN 7793650841248
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[213/418] EAN 7898387200051
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[214/418] EAN 7898387200082
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[215/418] EAN 7898387202581
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[216/418] EAN 7793650700903
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[217/418] EAN 7793650841101
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[218/418] EAN 7890013110987
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[219/418] EAN 7890013112004
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[220/418] EAN 7898387213877
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[221/418] EAN 7898387213907
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[222/418] EAN 7898387244468
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[223/418] EAN 7898387215062
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[224/418] EAN 7898387214539
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[225/418] EAN 7898387213624
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[226/418] EAN 7898387214546
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[227/418] EAN 7890013110277
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[228/418] EAN 7891150020689
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[229/418] EAN 7891150025103
+  Atacadão       -> R$ 64.90
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[230/418] EAN 7898080640413
+  Atacadão       -> R$ 6.79
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 8.79
+[231/418] EAN 7896590817035
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[232/418] EAN 7896275960896
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[233/418] EAN 7891000366059
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 7.99
+[234/418] EAN 7896434920778
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[235/418] EAN 7897076023391
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[236/418] EAN 7896256604962
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[237/418] EAN 7891000107041
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[238/418] EAN 7898215151203
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[239/418] EAN 7891000100103
+  Atacadão       -> R$ 8.99
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 8.99
+[240/418] EAN 7896051115014
+  Atacadão       -> R$ 6.79
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 8.99
+[241/418] EAN 7896051115038
+  Atacadão       -> R$ 8.90
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 9.79
+[242/418] EAN 7898215152002
+  Atacadão       -> R$ 6.99
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 7.79
+[243/418] EAN 7898403781298
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[244/418] EAN 7897076021403
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[245/418] EAN 7898080641380
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[246/418] EAN 7898215152019
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 6.29
+[247/418] EAN 7898968764149
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[248/418] EAN 7898080641564
+  Atacadão       -> R$ 8.90
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 10.49
+[249/418] EAN 7898215151999
+  Atacadão       -> R$ 8.90
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[250/418] EAN 7896004400372
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[251/418] EAN 7898215157830
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 7.29
+[252/418] EAN 7891000393284
+  Atacadão       -> R$ 21.89
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 18.99
+[253/418] EAN 7891000444764
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 75.90
+[254/418] EAN 7898215157953
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[255/418] EAN 7891000109908
+  Atacadão       -> R$ 27.50
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 28.99
+[256/418] EAN 7898215151708
+  Atacadão       -> R$ 5.65
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[257/418] EAN 7898215151722
+  Atacadão       -> R$ 4.47
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[258/418] EAN 7891000065440
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 7.99
+[259/418] EAN 7898215157403
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[260/418] EAN 7891000340981
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[261/418] EAN 7898215152811
+  Atacadão       -> R$ 6.99
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 7.79
+[262/418] EAN 7891000325858
+  Atacadão       -> R$ 21.89
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 18.99
+[263/418] EAN 7898080640635
+  Atacadão       -> R$ 5.75
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 6.79
+[264/418] EAN 7898080640611
+  Atacadão       -> R$ 5.75
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 6.79
+[265/418] EAN 7898215151760
+  Atacadão       -> R$ 5.19
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[266/418] EAN 7896005286593
+  Atacadão       -> R$ 2.69
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 4.89
+[267/418] EAN 7891515600624
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[268/418] EAN 7896022200732
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[269/418] EAN 7896022200206
+  Atacadão       -> R$ 3.59
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 4.99
+[270/418] EAN 8001250152091
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[271/418] EAN 7896022200022
+  Atacadão       -> R$ 5.99
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 10.49
+[272/418] EAN 7896022203634
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[273/418] EAN 7896022200756
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 4.89
+[274/418] EAN 7896022205539
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[275/418] EAN 7891079000311
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 2.49
+[276/418] EAN 7891079000205
+  Atacadão       -> R$ 2.89
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 2.49
+[277/418] EAN 7891079001004
+  Atacadão       -> R$ 2.99
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 3.59
+[278/418] EAN 7891079012963
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[279/418] EAN 7891079000212
+  Atacadão       -> R$ 2.89
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 2.49
+[280/418] EAN 7891079011775
+  Atacadão       -> R$ 2.89
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[281/418] EAN 7891079001028
+  Atacadão       -> R$ 2.99
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 3.59
+[282/418] EAN 8005121000931
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[283/418] EAN 7898951850118
+  Atacadão       -> R$ 5.29
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 6.29
+[284/418] EAN 7896022200879
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[285/418] EAN 7896063223011
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[286/418] EAN 7891999862501
+  Atacadão       -> R$ 20.90
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 26.90
+[287/418] EAN 7891515901059
+  Atacadão       -> R$ 4.95
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 7.39
+[288/418] EAN 7894904271498
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[289/418] EAN 7894904271481
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[290/418] EAN 7894904271528
+  Atacadão       -> R$ 7.90
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 10.90
+[291/418] EAN 7894904271511
+  Atacadão       -> R$ 14.90
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[292/418] EAN 7894904271535
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 5.99
+[293/418] EAN 7891515537531
+  Atacadão       -> R$ 5.40
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 5.49
+[294/418] EAN 7891515901066
+  Atacadão       -> R$ 3.50
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[295/418] EAN 7893000079298
+  Atacadão       -> R$ 15.28
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 19.90
+[296/418] EAN 7891515555337
+  Atacadão       -> R$ 8.90
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 13.90
+[297/418] EAN 7891515555245
+  Atacadão       -> R$ 5.98
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 7.79
+[298/418] EAN 7894904271573
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[299/418] EAN 7893000383005
+  Atacadão       -> R$ 9.50
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 10.50
+[300/418] EAN 7891515555252
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 13.90
+[301/418] EAN 7894904271566
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 10.90
+[302/418] EAN 7891515520656
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[303/418] EAN 7891999011039
+  Atacadão       -> R$ 6.79
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[304/418] EAN 7896038311194
+  Atacadão       -> R$ 5.98
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[305/418] EAN 7893500066545
+  Atacadão       -> R$ 9.40
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[306/418] EAN 7891515625535
+  Atacadão       -> R$ 11.80
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 14.79
+[307/418] EAN 7896006779674
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[308/418] EAN 7898954881393
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[309/418] EAN 7804646450273
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[310/418] EAN 7891515952570
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[311/418] EAN 7896102503821
+  Atacadão       -> R$ 4.79
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 3.99
+[312/418] EAN 7896036095126
+  Atacadão       -> R$ 4.68
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 4.79
+[313/418] EAN 7896036099520
+  Atacadão       -> R$ 2.39
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[314/418] EAN 7899659901096
+  Atacadão       -> R$ 1.79
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[315/418] EAN 7896036036051
+  Atacadão       -> R$ 3.88
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 4.79
+[316/418] EAN 7896102503814
+  Atacadão       -> R$ 1.99
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 2.99
+[317/418] EAN 7896036096079
+  Atacadão       -> R$ 3.88
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 4.79
+[318/418] EAN 7896036098806
+  Atacadão       -> R$ 18.98
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 26.99
+[319/418] EAN 7897517206086
+  Atacadão       -> R$ 2.09
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[320/418] EAN 7896102501872
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[321/418] EAN 7896102503661
+  Atacadão       -> R$ 1.89
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 2.89
+[322/418] EAN 7896102501896
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[323/418] EAN 7896036095102
+  Atacadão       -> R$ 4.98
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[324/418] EAN 7896036099988
+  Atacadão       -> R$ 3.29
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 3.79
+[325/418] EAN 7898930142654
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 2.39
+[326/418] EAN 7891164006860
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[327/418] EAN 7891164016098
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[328/418] EAN 7891097103841
+  Atacadão       -> R$ 19.60
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 26.90
+[329/418] EAN 7891000304839
+  Atacadão       -> R$ 4.35
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[330/418] EAN 7891079012420
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[331/418] EAN 7898905356567
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[332/418] EAN 7891172421297
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[333/418] EAN 7898495101202
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[334/418] EAN 7891172433078
+  Atacadão       -> R$ 37.98
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 39.99
+[335/418] EAN 7891172523410
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 29.99
+[336/418] EAN 7806163478600
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[337/418] EAN 7896104992692
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[338/418] EAN 7896104993705
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[339/418] EAN 7896104995136
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[340/418] EAN 7896104993460
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[341/418] EAN 7896104993613
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[342/418] EAN 7890019510156
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[343/418] EAN 7890019511061
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[344/418] EAN 7890019510095
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[345/418] EAN 7890019510118
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[346/418] EAN 7896104991398
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[347/418] EAN 7890019510668
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[348/418] EAN 7890013110642
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[349/418] EAN 7896018704275
+  Atacadão       -> R$ 19.89
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[350/418] EAN 7891172432026
+  Atacadão       -> R$ 27.15
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 38.99
+[351/418] EAN 7891172432736
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[352/418] EAN 7891172432804
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 38.99
+[353/418] EAN 7896181710202
+  Atacadão       -> R$ 14.99
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[354/418] EAN 7896089012637
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[355/418] EAN 7898215157977
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 9.79
+[356/418] EAN 7894000000350
+  Atacadão       -> R$ 4.78
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 5.99
+[357/418] EAN 7894900010022
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[358/418] EAN 7891193010081
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 7.99
+[359/418] EAN 7897571108913
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[360/418] EAN 7891000268100
+  Atacadão       -> R$ 12.70
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[361/418] EAN 7896733400575
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[362/418] EAN 7891143017313
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[363/418] EAN 2040800006008
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[364/418] EAN 7898193870011
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[365/418] EAN 7898951352612
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[366/418] EAN 7896051165446
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 13.90
+[367/418] EAN 7898955617526
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 13.90
+[368/418] EAN 7896114100902
+  Atacadão       -> R$ 22.89
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[369/418] EAN 7898205924909
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 16.79
+[370/418] EAN 7898194163440
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[371/418] EAN 0618231386031
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[372/418] EAN 7898194160081
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[373/418] EAN 7896504301018
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[374/418] EAN 7896122302510
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[375/418] EAN 7896259422051
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[376/418] EAN 7896051166047
+  Atacadão       -> R$ 54.90
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[377/418] EAN 7891097000737
+  Atacadão       -> R$ 39.90
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[378/418] EAN 7896030520181
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 15.79
+[379/418] EAN 7898205924138
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[380/418] EAN 7893000084315
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[381/418] EAN 7894900680508
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 3.29
+[382/418] EAN 7894900701159
+  Atacadão       -> R$ 3.89
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 4.09
+[383/418] EAN 8001860260315
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[384/418] EAN 0192505321992
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[385/418] EAN 7897664120037
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[386/418] EAN 7898132847289
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[387/418] EAN 7891150062825
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[388/418] EAN 7891150067646
+  Atacadão       -> R$ 73.90
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[389/418] EAN 7897306735506
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[390/418] EAN 7891150080140
+  Atacadão       -> R$ 73.90
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[391/418] EAN 7891150072817
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 15.99
+[392/418] EAN 7891167099685
+  Atacadão       -> R$ 3.98
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[393/418] EAN 7896009301049
+  Atacadão       -> R$ 6.29
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[394/418] EAN 7891167021013
+  Atacadão       -> R$ 6.25
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 5.49
+[395/418] EAN 7896236305469
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[396/418] EAN 7891000582107
+  Atacadão       -> R$ 8.49
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 11.49
+[397/418] EAN 7891000584804
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[398/418] EAN 7891107101621
+  Atacadão       -> R$ 7.09
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 7.79
+[399/418] EAN 7891132019281
+  Atacadão       -> R$ 6.09
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 7.79
+[400/418] EAN 7891000103104
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[401/418] EAN 7891000502204
+  Atacadão       -> R$ 8.99
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 11.99
+[402/418] EAN 7898199199284
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[403/418] EAN 7898678660793
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 25.50
+[404/418] EAN 7896102503708
+  Atacadão       -> R$ 17.99
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 17.99
+[405/418] EAN 7897900310604
+  Atacadão       -> R$ 1.59
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[406/418] EAN 7802950012316
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[407/418] EAN 7891910000197
+  Atacadão       -> R$ 3.49
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 3.99
+[408/418] EAN 7896038314195
+  Atacadão       -> R$ 5.98
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[409/418] EAN 7896038305193
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 5.99
+[410/418] EAN 7896534400200
+  Atacadão       -> R$ 4.79
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[411/418] EAN 7891025115632
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[412/418] EAN 7896036090602
+  Atacadão       -> R$ 14.88
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 19.99
+[413/418] EAN 7897001010014
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[414/418] EAN 7898247780075
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[415/418] EAN 6015636015087
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[416/418] EAN 0602883177178
+  Atacadão       -> indisponível (nao_cadastrado)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[417/418] EAN 7896279600538
+  Atacadão       -> indisponível (sem_estoque)
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> indisponível (pa_sem_busca_por_ean)
+[418/418] EAN 7896036090244
+  Atacadão       -> R$ 7.09
+  Carrefour      -> indisponível (erro_catalogo:HTTPError)
+  Pão de Açúcar  -> R$ 8.29
+------------------------------------------------------------------------
+Cobertura completa: todo EAN tem registro nas 3 lojas.
+------------------------------------------------------------------------
+  Atacadão       registrados: 418/418 | com preço em estoque: 143
+  Carrefour      registrados: 418/418 | com preço em estoque: 0
+  Pão de Açúcar  registrados: 418/418 | com preço em estoque: 132
+
+Concluído: cada EAN do lote possui registro nos 3 supermercados.

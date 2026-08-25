@@ -1,0 +1,37 @@
+{
+  "schema_version": 2,
+  "active_work_id": "recoleta-ean-e-indisponiveis-3c20b8c8",
+  "works": {
+    "recoleta-ean-e-indisponiveis-3c20b8c8": {
+      "work_id": "recoleta-ean-e-indisponiveis-3c20b8c8",
+      "active_plan": "G:\\pi 2 - 2026\\.omo\\plans\\recoleta-ean-e-indisponiveis.md",
+      "plan_name": "recoleta-ean-e-indisponiveis",
+      "status": "completed",
+      "started_at": "2026-08-24T18:00:09.920Z",
+      "updated_at": "2026-08-24T19:25:00.000Z",
+      "elapsed_ms": 4490080,
+      "ended_at": "2026-08-24T19:25:00.000Z",
+      "session_ids": [
+        "opencode:ses_fcb9325ddffeaZAXZTwttm0O7q"
+      ],
+      "session_origins": {
+        "opencode:ses_fcb9325ddffeaZAXZTwttm0O7q": "direct"
+      },
+      "agent": "atlas",
+      "task_sessions": {}
+    }
+  },
+  "active_plan": "G:\\pi 2 - 2026\\.omo\\plans\\recoleta-ean-e-indisponiveis.md",
+  "started_at": "2026-08-24T18:00:09.920Z",
+  "status": "active",
+  "updated_at": "2026-08-24T18:00:09.920Z",
+  "session_ids": [
+    "opencode:ses_fcb9325ddffeaZAXZTwttm0O7q"
+  ],
+  "session_origins": {
+    "opencode:ses_fcb9325ddffeaZAXZTwttm0O7q": "direct"
+  },
+  "plan_name": "recoleta-ean-e-indisponiveis",
+  "task_sessions": {},
+  "agent": "atlas"
+}
