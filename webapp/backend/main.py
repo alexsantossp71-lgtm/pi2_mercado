@@ -153,6 +153,15 @@ def api_calculate(request: CalculoRequest):
     return calculate_basket_prices(request)
 
 
+# Vercel ASGI fallback handler (Mangum). If mangum is unavailable, the module
+# still imports cleanly and the app runs under uvicorn locally.
+try:
+    from mangum import Mangum
+    handler = Mangum(app, lifespan="off")
+except Exception:
+    pass
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
