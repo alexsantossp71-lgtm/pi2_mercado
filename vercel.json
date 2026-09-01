@@ -16,6 +16,10 @@
       "dest": "webapp/backend/main.py"
     },
     {
+      "src": "/",
+      "dest": "/webapp/index.html"
+    },
+    {
       "src": "/(.*)",
       "dest": "/$1"
     }

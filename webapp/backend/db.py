@@ -63,5 +63,12 @@ def get_db_connection():
     if not url or not token:
         raise ValueError("Missing TURSO_DATABASE_URL or TURSO_AUTH_TOKEN environment variable.")
     
+    # Harden env parsing: strip whitespace and surrounding quotes
+    url = url.strip().strip("'\"")
+    token = token.strip().strip("'\"")
+    # Turso libsql URLs must use https:// scheme for the sync client
+    if url.startswith("libsql://"):
+        url = "https://" + url[len("libsql://"):]
+    
     client = libsql_client.create_client_sync(url=url, auth_token=token)
     return LibSQLConnection(client)
