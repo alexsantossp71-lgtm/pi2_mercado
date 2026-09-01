@@ -4,8 +4,9 @@ Atualização em lote de preços por EAN + CEP nos 3 supermercados.
 
 Lê os EANs de um catálogo (padrão: scraper/catalogo_unificado.json) e, para
 cada um, coleta preço/estoque no Atacadão, Carrefour e Pão de Açúcar usando
-a busca por EAN com fallback de CEP (Santos 11060-002 -> São Paulo
-01310-100), reutilizando as funções de recoletar_por_ean.py.
+a busca por EAN com fallback de CEP (Santos 11060-002 → São Paulo
+01310-100 → Campinas 13010-000 → Ribeirão Preto 14010-000), reutilizando as
+funções de recoletar_por_ean.py.
 
 GARANTIA DE COBERTURA: ao final de cada rodada o script audita os 3 arquivos
 de preços e verifica se TODO EAN do lote tem registro em TODAS as lojas.
@@ -89,9 +90,9 @@ def auditar_sem_preco(eans: list, loja: str) -> dict:
             if not registros.get(e, {}).get("em_estoque")}
 
 
-def eans_faltantes_catalogo() -> list:
+def eans_faltantes_catalogo(caminho: str = ARQUIVO_CATALOGO) -> list:
     """EANs do catálogo que ainda não constam em algum dos 3 arquivos."""
-    eans = eans_do_catalogo()
+    eans = eans_do_catalogo(caminho)
     return list(auditar_cobertura(eans).keys())
 
 
@@ -169,7 +170,7 @@ def main() -> None:
             print(f"EANs inválidos (ignorados): {invalidos}")
         eans = [e for e in eans if recoleta.ean_valido(e)]
     elif args.faltantes:
-        eans = [e for e in eans_faltantes_catalogo()
+        eans = [e for e in eans_faltantes_catalogo(args.catalogo)
                 if recoleta.ean_valido(e)]
     else:
         eans = eans_do_catalogo(args.catalogo)
@@ -190,9 +191,12 @@ def main() -> None:
     print("-" * 72)
 
     # 2. Rodadas de coleta com retry apenas dos que faltaram registro/preço
-    auditar = (lambda lote: auditar_sem_preco(lote, args.loja)
-               if args.sem_preco else
-               lambda lote: auditar_cobertura(lote, lojas))
+    if args.sem_preco:
+        def auditar(lote):
+            return auditar_sem_preco(lote, args.loja)
+    else:
+        def auditar(lote):
+            return auditar_cobertura(lote, lojas)
     pendentes = eans
     for tentativa in range(1, args.max_tentativas + 1):
         stats = rodada(pendentes, args.delay, lojas)
