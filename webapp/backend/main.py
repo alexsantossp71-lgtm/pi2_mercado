@@ -12,21 +12,26 @@ from typing import Optional
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 
-from models import (
-    BuscaResponse,
-    CalculoRequest,
-    CalculoResponse,
-    CategoriaOut,
-    MarcaOut,
-    ProdutoOut,
-)
-from services.product_service import (
-    get_brands,
-    get_categories,
-    get_product_by_id,
-    search_products,
-)
-from services.price_service import calculate_basket_prices
+IMPORT_ERROR = None
+try:
+    from models import (
+        BuscaResponse,
+        CalculoRequest,
+        CalculoResponse,
+        CategoriaOut,
+        MarcaOut,
+        ProdutoOut,
+    )
+    from services.product_service import (
+        get_brands,
+        get_categories,
+        get_product_by_id,
+        search_products,
+    )
+    from services.price_service import calculate_basket_prices
+except Exception:
+    import traceback
+    IMPORT_ERROR = traceback.format_exc()[-2000:]
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
 logger = logging.getLogger("dispensa.main")
@@ -89,6 +94,7 @@ def health_probe():
         "turso_url_set": bool(os.environ.get("TURSO_DATABASE_URL")),
         "turso_token_set": bool(os.environ.get("TURSO_AUTH_TOKEN")),
         "turso_url_prefix": (os.environ.get("TURSO_DATABASE_URL") or "")[:12],
+        "import_error": IMPORT_ERROR,
     }
     try:
         from db import get_db_connection
