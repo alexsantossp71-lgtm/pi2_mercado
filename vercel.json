@@ -8,6 +8,10 @@
     {
       "src": "webapp/index.html",
       "use": "@vercel/static"
+    },
+    {
+      "src": "assets/img/*",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
