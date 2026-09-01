@@ -1,0 +1,46 @@
+# Dados locais e artefatos grandes — o backend em produção lê do Turso, não destes arquivos
+.git
+*.bak
+*.log
+**/__pycache__
+**/.pytest_cache
+**/.ruff_cache
+**/.codegraph
+**/.playwright-mcp
+.omo
+.agents
+
+# Dados do scraper (não são servidos pelo site)
+scraper
+catalogo_*.json
+precos_*.json
+produtos_ampliado.json
+produtos_atacadao*.json
+
+# Diretórios auxiliares do repositório (docs, planejamento, testes offline)
+geral
+regulamentos
+modelos_documentos
+prototipo
+testes_app
+Teoria_scrap
+scratch
+cronograma
+"plano proficionalização"
+node_modules
+turso_cli
+turso
+
+# Banco local — produção usa Turso
+webapp/backend/dispensa.db
+webapp/backend/.pytest_cache
+webapp/backend/__pycache__
+
+# Arquivos grandes de dados dentro do webapp (estáticos antigos/data)
+webapp/produtos_ampliado.json
+webapp/precos_*.json
+webapp/produtos.zip
+webapp/produtos_*.json
+
+# Artefato estranho de build
+"%TEMP%"
