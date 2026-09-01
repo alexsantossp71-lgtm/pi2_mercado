@@ -26,13 +26,16 @@ testes_app
 Teoria_scrap
 scratch
 cronograma
-"plano proficionalização"
+plano proficionalização
 node_modules
 turso_cli
 turso
 
-# Banco local — produção usa Turso
-webapp/backend/dispensa.db
+# Bancos SQLite locais — produção usa Turso
+dispensa*.db
+dispensa*.backup
+webapp/backend/*.db
+webapp/backend/*.backup
 webapp/backend/.pytest_cache
 webapp/backend/__pycache__
 
@@ -43,4 +46,4 @@ webapp/produtos.zip
 webapp/produtos_*.json
 
 # Artefato estranho de build
-"%TEMP%"
+%TEMP%
