@@ -77,6 +77,33 @@ def read_root():
     }
 
 
+@app.get("/api/health")
+def health_probe():
+    """Diagnóstico temporário de runtime (remover após resolver o 500)."""
+    import os
+    import sys
+    import traceback
+
+    info = {
+        "python": sys.version,
+        "turso_url_set": bool(os.environ.get("TURSO_DATABASE_URL")),
+        "turso_token_set": bool(os.environ.get("TURSO_AUTH_TOKEN")),
+        "turso_url_prefix": (os.environ.get("TURSO_DATABASE_URL") or "")[:12],
+    }
+    try:
+        from db import get_db_connection
+        conn = get_db_connection()
+        cur = conn.cursor()
+        cur.execute("SELECT COUNT(*) FROM produtos")
+        info["db_check"] = cur.fetchone()[0]
+        info["db_ok"] = True
+        conn.close()
+    except Exception:
+        info["db_ok"] = False
+        info["db_error"] = traceback.format_exc()[-1500:]
+    return info
+
+
 @app.get("/api/produtos", response_model=BuscaResponse)
 def api_search_products(
     q: Optional[str] = Query(None, description="Termo de busca (Full-Text Search FTS5)"),
