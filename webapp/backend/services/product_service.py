@@ -38,7 +38,11 @@ def search_products(
 
     if q_clean:
         conditions.append("(p.id IN (SELECT id FROM produtos_fts WHERE produtos_fts MATCH ?) OR LOWER(p.nome) LIKE ? OR LOWER(p.marca) LIKE ?)")
-        fts_query = f'"{q_clean}"*'
+        # Order-independent FTS: split the query into whitespace-separated
+        # tokens and AND-combine each token with a trailing wildcard, so
+        # "Biscoito club social" and "club social biscoito" match the same set.
+        words = q_clean.split()
+        fts_query = " AND ".join(f'"{w}"*' for w in words)
         like_query = f"%{q_clean.lower()}%"
         params.extend([fts_query, like_query, like_query])
 
