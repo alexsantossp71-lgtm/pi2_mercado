@@ -10,6 +10,22 @@
       "use": "@vercel/static"
     },
     {
+      "src": "webapp/css/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "webapp/js/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "webapp/manifest.json",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "webapp/sw.js",
+      "use": "@vercel/static"
+    },
+    {
       "src": "assets/img/*",
       "use": "@vercel/static"
     }
@@ -22,6 +38,22 @@
     {
       "src": "/",
       "dest": "/webapp/index.html"
+    },
+    {
+      "src": "/css/(.*)",
+      "dest": "/webapp/css/$1"
+    },
+    {
+      "src": "/js/(.*)",
+      "dest": "/webapp/js/$1"
+    },
+    {
+      "src": "/manifest.json",
+      "dest": "/webapp/manifest.json"
+    },
+    {
+      "src": "/sw.js",
+      "dest": "/webapp/sw.js"
     },
     {
       "src": "/(.*)",
