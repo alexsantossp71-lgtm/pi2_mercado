@@ -6,8 +6,15 @@ Powered by SQLite SGBD Relacional + FTS5
 
 from contextlib import asynccontextmanager
 import logging
+import sys
 from pathlib import Path
 from typing import Optional
+
+# Vercel importa este arquivo com o repo-root como cwd; garantir que webapp/backend/
+# esteja no sys.path para que os modulos locais (models, services, db) importem.
+_BACKEND_DIR = Path(__file__).resolve().parent
+if str(_BACKEND_DIR) not in sys.path:
+    sys.path.insert(0, str(_BACKEND_DIR))
 
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
