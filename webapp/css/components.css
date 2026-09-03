@@ -619,6 +619,21 @@
   background: rgba(255, 255, 255, 0.25);
 }
 
+/* Store price display in suggestions and list */
+.store-prices {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-1);
+  font-size: var(--font-size-xs);
+}
+.store-price {
+  font-weight: var(--font-weight-medium);
+}
+.store-price.text-muted {
+  color: var(--color-text-tertiary);
+  font-style: italic;
+}
+
 /* ================================================================
    LOADING INDICATOR
    ================================================================ */

@@ -50,6 +50,7 @@ SECOES_ATACADAO = [
     "descartaveis-e-embalagens",
     "cafeteria",
     "utilidades-domesticas",
+    "bebe-e-infantil",
 ]
 
 # ---------------------------------------------------------------------------

@@ -18,11 +18,9 @@ Uso:
     python coletar_pa.py
 """
 
-import io
 import json
 import os
 import re
-import sys
 import time
 from datetime import date
 
@@ -111,7 +109,17 @@ CATEGORIAS = [
     ]),
     ("bebe-e-crianca", "Bebê e Criança", [
         "facetSubShelf_ss:12003_Cuidados Pessoais Infantil",
+        "facetSubShelf_ss:12003_Cuidados Pessoais Infantil__facetSubShelf_ss:12003/12031_Fralda Infantil",
+        "facetSubShelf_ss:12003_Cuidados Pessoais Infantil__facetSubShelf_ss:12003/12031_Cuidados com Corpo Infantil",
+        "facetSubShelf_ss:12003_Cuidados Pessoais Infantil__facetSubShelf_ss:12003/12031_Cuidados com Cabelo Infantil",
+        "facetSubShelf_ss:12003_Cuidados Pessoais Infantil__facetSubShelf_ss:12003/12031_Creme Dental Infantil",
+        "facetSubShelf_ss:12003_Cuidados Pessoais Infantil__facetSubShelf_ss:12003/12031_Escova Dental Infantil",
+        "facetSubShelf_ss:12003_Cuidados Pessoais Infantil__facetSubShelf_ss:12003/12031_Higiene Bucal Infantil",
         "facetSubShelf_ss:12003_Nutrição Infantil",
+        "facetSubShelf_ss:12003_Nutrição Infantil__facetSubShelf_ss:12003/12033_Cereais Infantil",
+        "facetSubShelf_ss:12003_Nutrição Infantil__facetSubShelf_ss:12003/12033_Papinhas",
+        "facetSubShelf_ss:12003_Nutrição Infantil__facetSubShelf_ss:12003/12033_Complemento Nutrição Infantil",
+        "facetSubShelf_ss:12003_Nutrição Infantil__facetSubShelf_ss:12003/12033_Leites e Fórmulas",
     ]),
     ("petshop", "Petshop", [
         "facetSubShelf_ss:12010_Ração",
@@ -394,7 +402,7 @@ def main() -> None:
     print(f"Fase 2: {len(pendentes)} detalhes pendentes de {len(id_info)}")
     print("-" * 72)
 
-    novos_cad = atualizados = sem_ean = sem_preco = 0
+    novos_cad = atualizados = sem_ean = 0
     for idx, pid in enumerate(pendentes, 1):
         info = id_info[pid]
         try:
@@ -436,7 +444,7 @@ def main() -> None:
     print("-" * 72)
     print(f"IDs únicos coletados: {len(id_info)}")
     print(f"Novos cadastros: {novos_cad} | preços {len(precos)} | sem EAN/preço: {sem_ean}")
-    print(f"Arquivos:")
+    print("Arquivos:")
     print(f"  {ARQUIVO_PRODUTOS}")
     print(f"  {ARQUIVO_PRECOS}")
     print("-" * 72)

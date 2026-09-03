@@ -16,10 +16,11 @@ const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => document.querySelectorAll(sel);
 
 const campoBusca       = $('#campoBusca');
+const campoMarca       = $('#campoMarca');
 const sugestoes        = $('#sugestoes');
+const sugestoesMarca   = $('#sugestoesMarca');
 const selectQtd        = $('#selectQtd');
 const selectCategoria  = $('#selectCategoria');
-const selectMarca      = $('#selectMarca');
 const btnAdicionar     = $('#btnAdicionar');
 const listaVazia       = $('#listaVazia');
 const tabelaLista      = $('#tabelaLista');
@@ -34,6 +35,7 @@ const btnSairChecklist = $('#btnSairChecklist');
 const btnCompartilhar  = $('#btnCompartilhar');
 
 let produtoSelecionado = null;
+let debounceTimerMarca;
 
 /* ================================================================
    POPULADORES DE SELECT
@@ -66,11 +68,23 @@ async function renderSugestoes() {
     const precoMin = p.preco && p.preco.length ? Math.min(...p.preco.filter(v => v != null)) : null;
     const precoExib = precoMin != null ? fmtBRL(precoMin) : 'Indisponível';
 
+    // Build per-store price display
+    let pricesHTML = '';
+    CHAVES_LOJA.forEach((chave, idx) => {
+      const loja = LOJAS[chave];
+      const preco = p.preco && p.preco.length > idx ? p.preco[idx] : null;
+      const disponivel = p.em_estoque && p.em_estoque.length > idx ? p.em_estoque[idx] : false;
+      const precoTexto = disponivel && preco !== null ? fmtBRL(preco) : 'Indisponível';
+      const cor = disponivel && preco !== null ? '' : 'text-muted';
+      pricesHTML += `<span class="store-price ${cor}" title="${loja.nome}">${loja.icone} ${precoTexto}</span> `;
+    });
+
     div.innerHTML = `
       <div>
         <p class="item-name">${p.nome}</p>
         <p class="item-meta">${p.categoria} • ${p.marca}</p>
       </div>
+      <div class="store-prices">${pricesHTML}</div>
       <span class="item-price">${precoExib}</span>`;
 
     div.addEventListener('click', () => selecionarProduto(p));
@@ -80,11 +94,62 @@ async function renderSugestoes() {
   sugestoes.classList.remove('hidden');
 }
 
+async function renderSugestoesMarca() {
+  const marcaTexto = campoMarca.value.trim();
+  const categoriaFiltro = selectCategoria.value;
+
+  if (!marcaTexto && !categoriaFiltro) {
+    sugestoesMarca.classList.add('hidden');
+    return;
+  }
+
+  try {
+    const marcas = await buscarMarcasAPI(categoriaFiltro);
+
+    // Filter marcas that match the text input
+    const marcasFiltradas = marcas.filter(marca =>
+      marca.nome.toLowerCase().includes(marcaTexto.toLowerCase())
+    );
+
+    if (!marcasFiltradas.length) {
+      sugestoesMarca.classList.add('hidden');
+      return;
+    }
+
+    sugestoesMarca.innerHTML = '';
+    marcasFiltradas.forEach((marca, i) => {
+      const div = document.createElement('div');
+      div.className = 'dropdown-item' + (i === 0 ? ' active' : '');
+
+      div.innerHTML = `
+        <div>
+          <p class="item-name">${marca.nome}</p>
+        </div>`;
+
+      div.addEventListener('click', () => selecionarMarca(marca.nome));
+      sugestoesMarca.appendChild(div);
+    });
+
+    sugestoesMarca.classList.remove('hidden');
+  } catch (err) {
+    console.error('[ui] Erro ao buscar marcas:', err);
+    sugestoesMarca.classList.add('hidden');
+  }
+}
+
 function selecionarProduto(p) {
   campoBusca.value = p.nome;
   sugestoes.classList.add('hidden');
   produtoSelecionado = p;
   campoBusca.dataset.produtoId = p.id;
+}
+
+function selecionarMarca(marcaNome) {
+  campoMarca.value = marcaNome;
+  selectMarca.value = marcaNome;
+  sugestoesMarca.classList.add('hidden');
+  // Update products based on selected brand
+  renderSugestoes();
 }
 
 /* ================================================================
@@ -109,19 +174,17 @@ export function renderLista() {
   corpoLista.innerHTML = '';
   lista.forEach(({ produto, qtd }, id) => {
     const tr = document.createElement('tr');
-    const precoDisponiveis = CHAVES_LOJA
-      .map((k, i) => disponivelEm(produto, i) ? produto.preco[i] : null)
-      .filter(v => v != null);
-    const menor = precoDisponiveis.length ? Math.min(...precoDisponiveis) : null;
-    const badgesFalta = CHAVES_LOJA
-      .map((k, i) => ({ k, i }))
-      .filter(({ k, i }) => !disponivelEm(produto, i))
-      .map(({ k }) => `<span class="price-unavailable">indisponível em ${LOJAS[k].nome}</span>`)
-      .join('');
-    const precoCell = menor != null
-      ? `<span class="price-value">${fmtBRL(menor)}</span>` +
-        (badgesFalta ? `<div class="price-missing-stores">${badgesFalta}</div>` : '')
-      : `<span class="price-unavailable">indisponível</span>`;
+    // Build per-store price display for the list row
+    let pricesHTML = '';
+    CHAVES_LOJA.forEach((chave, idx) => {
+      const loja = LOJAS[chave];
+      const preco = produto.preco && produto.preco.length > idx ? produto.preco[idx] : null;
+      const disponivel = produto.em_estoque && produto.em_estoque.length > idx ? produto.em_estoque[idx] : false;
+      const precoTexto = disponivel && preco !== null ? fmtBRL(preco) : 'Indisponível';
+      const cor = disponivel && preco !== null ? '' : 'text-muted';
+      pricesHTML += `<span class="store-price ${cor}" title="${loja.nome}">${loja.icone} ${precoTexto}</span> `;
+    });
+    const precoCell = `<div class="store-prices">${pricesHTML}</div>`;
 
     tr.innerHTML = `
       <td>
@@ -343,14 +406,13 @@ export function initUI() {
     popularMarcas(selectCategoria.value);
     renderSugestoes();
   });
-  selectMarca.addEventListener('change', () => renderSugestoes());
 
   let debounceTimer;
   // Busca
   campoBusca.addEventListener('input', () => {
     produtoSelecionado = null;
     campoBusca.dataset.produtoId = '';
-    
+
     if (campoBusca.value.trim().length > 0) {
       sugestoes.innerHTML = '<div class="dropdown-item" style="text-align: center; color: var(--color-text-muted);">⏳ Buscando...</div>';
       sugestoes.classList.remove('hidden');
@@ -365,6 +427,23 @@ export function initUI() {
   });
   campoBusca.addEventListener('focus', () => renderSugestoes());
   campoBusca.addEventListener('blur', () => setTimeout(() => sugestoes.classList.add('hidden'), 150));
+
+  // Marca autocomplete
+  campoMarca.addEventListener('input', () => {
+    if (campoMarca.value.trim().length > 0) {
+      sugestoesMarca.innerHTML = '<div class="dropdown-item" style="text-align: center; color: var(--color-text-muted);">⏳ Buscando marcas...</div>';
+      sugestoesMarca.classList.remove('hidden');
+    } else {
+      sugestoesMarca.classList.add('hidden');
+    }
+
+    clearTimeout(debounceTimerMarca);
+    debounceTimerMarca = setTimeout(() => {
+      renderSugestoesMarca();
+    }, 500);
+  });
+  campoMarca.addEventListener('focus', () => renderSugestoesMarca());
+  campoMarca.addEventListener('blur', () => setTimeout(() => sugestoesMarca.classList.add('hidden'), 150));
 
   // Adicionar
   btnAdicionar.addEventListener('click', async () => {

@@ -78,8 +78,10 @@ def init_db(conn: sqlite3.Connection):
         preco_promocional REAL,
         preco_regular REAL,
         em_estoque INTEGER DEFAULT 0,
+        cep_coleta TEXT DEFAULT NULL,
         FOREIGN KEY(produto_id) REFERENCES produtos(id) ON DELETE CASCADE,
-        FOREIGN KEY(loja_id) REFERENCES lojas(id) ON DELETE CASCADE
+        FOREIGN KEY(loja_id) REFERENCES lojas(id) ON DELETE CASCADE,
+        UNIQUE(produto_id, loja_id, cep_coleta)
     );
 
     -- Índices B-Tree para buscas ultra-rápidas
@@ -87,6 +89,7 @@ def init_db(conn: sqlite3.Connection):
     CREATE INDEX idx_produtos_cat ON produtos(categoria);
     CREATE INDEX idx_produtos_marca ON produtos(marca);
     CREATE INDEX idx_precos_prod_loja ON precos(produto_id, loja_id);
+    CREATE INDEX IF NOT EXISTS idx_precos_cepa ON precos(produto_id, loja_id, cep_coleta);
 
     -- Tabela Virtual FTS5 para busca textual por termos
     CREATE VIRTUAL TABLE produtos_fts USING fts5(
@@ -171,7 +174,7 @@ def run_etl():
                     prom = info.get("preco_promocional")
                     reg = info.get("preco_regular")
                     est = 1 if info.get("em_estoque") else 0
-                    preco_tuples.append((i, l_id, prom, reg, est))
+                    preco_tuples.append((i, l_id, prom, reg, est, None))
 
     # 4. Cadastra produtos órfãos (existem em preços mas não no catálogo)
     eans_orfaos = set(precos_por_ean.keys()) - eans_cadastrados
@@ -210,7 +213,7 @@ def run_etl():
                     prom = info.get("preco_promocional")
                     reg = info.get("preco_regular")
                     est = 1 if info.get("em_estoque") else 0
-                    preco_tuples.append((next_id, l_id, prom, reg, est))
+                    preco_tuples.append((next_id, l_id, prom, reg, est, None))
 
             next_id += 1
             orfaos_count += 1
@@ -225,7 +228,7 @@ def run_etl():
         fts_tuples
     )
     cursor.executemany(
-        "INSERT INTO precos (produto_id, loja_id, preco_promocional, preco_regular, em_estoque) VALUES (?, ?, ?, ?, ?);",
+        "INSERT INTO precos (produto_id, loja_id, preco_promocional, preco_regular, em_estoque, cep_coleta) VALUES (?, ?, ?, ?, ?, ?);",
         preco_tuples
     )
 

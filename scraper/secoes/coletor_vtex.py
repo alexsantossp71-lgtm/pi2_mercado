@@ -23,10 +23,19 @@ import os
 import re
 import sys
 import time
-import io
 from datetime import date
 
 import requests
+
+# Importa módulos do pacote scraper (funciona tanto de secoes/ quanto da raiz)
+try:
+    from ..ceps import CEPS as CEPS_LIST
+    from ..gravar_precos_cep import gravar_precos_cep
+except ImportError:
+    # Fallback para execução direta de secoes/
+    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    from ceps import CEPS as CEPS_LIST
+    from gravar_precos_cep import gravar_precos_cep
 
 # ---------------------------------------------------------------------------
 # Utilitários
@@ -167,6 +176,77 @@ def transformar_preco(ean: str, oferta: dict, nome_supermercado: str, hoje: str)
     }
 
 
+def transformar_preco_cep(ean: str, oferta: dict, nome_supermercado: str, hoje: str, cep: str) -> dict:
+    """Transforma oferta de simulação VTEX para formato multi-CEP."""
+    return {
+        "gtin_ean": ean,
+        "supermercado": nome_supermercado,
+        "preco_regular": oferta["preco_regular"],
+        "preco_promocional": oferta["preco_promocional"],
+        "em_estoque": oferta["em_estoque"],
+        "data_coleta": hoje,
+        "cep_coleta": cep,
+    }
+
+
+def simular_vtex_cep(base_url: str, item_id: str, seller_id: str, cep: str, headers: dict, timeout: int) -> dict | None:
+    """
+    Chama a API de simulação VTEX para um CEP específico.
+
+    Retorna dict com preco_regular, preco_promocional, em_estoque ou None se falhar.
+    """
+    url = f"{base_url}/api/checkout/pub/orderForms/simulation"
+    payload = {
+        "items": [{
+            "id": item_id,
+            "quantity": 1,
+            "seller": seller_id,
+        }],
+        "postalCode": cep.replace("-", ""),
+        "country": "BRA",
+    }
+    try:
+        resp = requests.post(url, json=payload, headers=headers, timeout=timeout)
+        resp.raise_for_status()
+        data = resp.json()
+    except requests.exceptions.RequestException:
+        return None
+
+    # Extrai preço e disponibilidade da resposta
+    items = data.get("items", [])
+    if not items:
+        return None
+
+    item = items[0]
+    price = item.get("price", 0)  # em centavos
+    availability = item.get("availability", "withoutStock")
+
+    # Também verifica purchaseConditions para preço final
+    purchase_conditions = data.get("purchaseConditions", {})
+    item_purchase_conditions = purchase_conditions.get("itemPurchaseConditions", [])
+    final_price = price
+    for pc in item_purchase_conditions:
+        if pc.get("itemId") == item_id:
+            final_price = pc.get("price", price)
+            break
+
+    if availability == "available" and final_price > 0:
+        preco = round(final_price / 100.0, 2)
+        return {
+            "preco_regular": preco,
+            "preco_promocional": preco,
+            "em_estoque": True,
+        }
+    elif availability == "withoutStock":
+        return {
+            "preco_regular": None,
+            "preco_promocional": None,
+            "em_estoque": False,
+        }
+
+    return None
+
+
 # ---------------------------------------------------------------------------
 # Coleta paginada de uma folha
 # ---------------------------------------------------------------------------
@@ -188,6 +268,8 @@ def coletar_folha(cfg: dict, folha: dict) -> tuple[int, int, int]:
     offset = 0
     validos = duplicados = sem_ean = 0
     vistos = cfg["vistos_execucao"]
+    multi_cep = cfg.get("multi_cep", False)
+    headers = {"User-Agent": cfg["user_agent"]}
 
     while offset < limite:
         try:
@@ -211,6 +293,17 @@ def coletar_folha(cfg: dict, folha: dict) -> tuple[int, int, int]:
                 continue
             vistos.add(ean)
 
+            # Extrai itemId e sellerId para simulação multi-CEP
+            items = prod.get("items")
+            item_id = None
+            seller_id = None
+            if items:
+                item_id = items[0].get("itemId")
+                sellers = items[0].get("sellers") or []
+                if sellers:
+                    seller_id = sellers[0].get("sellerId")
+
+            # Preço do catálogo (sempre coletado)
             oferta = extrair_preco(prod)
             if not oferta:
                 sem_ean += 1
@@ -223,6 +316,32 @@ def coletar_folha(cfg: dict, folha: dict) -> tuple[int, int, int]:
                 )
             cfg["precos"][ean] = transformar_preco(ean, oferta, cfg["nome_supermercado"], hoje)
             validos += 1
+
+            # Multi-CEP: simula preço para cada CEP
+            if multi_cep and item_id and seller_id:
+                precos_cep = []
+                for cep_info in CEPS_LIST:
+                    cep = cep_info["cep"]
+                    sim = simular_vtex_cep(cfg["base_url"], item_id, seller_id, cep, headers, cfg["timeout"])
+                    if sim and sim.get("em_estoque") and sim.get("preco_promocional"):
+                        precos_cep.append(transformar_preco_cep(ean, sim, cfg["nome_supermercado"], hoje, cep))
+                    elif sim and not sim.get("em_estoque"):
+                        # Produto sem estoque neste CEP - registra como indisponível
+                        precos_cep.append({
+                            "gtin_ean": ean,
+                            "supermercado": cfg["nome_supermercado"],
+                            "preco_regular": None,
+                            "preco_promocional": None,
+                            "em_estoque": False,
+                            "data_coleta": hoje,
+                            "cep_coleta": cep,
+                        })
+                    else:
+                        # Fallback: usa preço do catálogo
+                        precos_cep.append(transformar_preco_cep(ean, oferta, cfg["nome_supermercado"], hoje, cep))
+
+                if precos_cep:
+                    gravar_precos_cep(precos_cep, cfg["chave_loja"])
 
         offset += cfg["pagina_tamanho"]
         time.sleep(cfg["sleep"])
@@ -308,7 +427,7 @@ def coletar_vtex(cfg: dict) -> None:
         print(f"Erros de requisição: {len(cfg['erros'])} (primeiros 5):")
         for e in cfg["erros"][:5]:
             print("   ", e)
-    print(f"Arquivos:")
+    print("Arquivos:")
     print(f"  {cfg['arquivo_produtos']}")
     print(f"  {cfg['arquivo_precos']}")
     print("-" * 72)

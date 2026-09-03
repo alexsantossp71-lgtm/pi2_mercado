@@ -83,10 +83,15 @@
             <option value="Utilidades Domésticas">Utilidades Domésticas</option>
           </select>
 
-          <label for="selectMarca" class="sr-only">Marca</label>
-          <select id="selectMarca" class="select" style="width: auto; min-width: 160px;">
-            <option value="">Todas as marcas</option>
-          </select>
+          <div class="input-group" style="flex: 1;">
+            <label for="campoMarca" class="sr-only">Marca</label>
+            <span class="input-icon" aria-hidden="true">🏷️</span>
+            <input id="campoMarca" type="text" autocomplete="off"
+                   placeholder="Digite o nome da marca..."
+                   class="input" />
+            <div id="sugestoesMarca" class="dropdown hidden" role="listbox"></div>
+            <select id="selectMarca" class="select" style="display: none;"></select>
+          </div>
         </div>
 
         <!-- Linha 2: Campo de busca + quantidade + adicionar -->
