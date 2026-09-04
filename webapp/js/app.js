@@ -7,7 +7,7 @@
 import { buscarMarcasAPI } from './api.js';
 import { buscarProdutos } from './searchEngine.js';
 import { onListaChange, restaurarDoStorage } from './shoppingList.js';
-import { initUI, popularMarcas, renderLista } from './ui.js';
+import { initUI, renderLista } from './ui.js';
 
 /**
  * Expõe módulos no window para acesso cross-module em event handlers
@@ -30,8 +30,7 @@ async function init() {
   // 1. Omitimos o carregamento de JSON local! (Agora vai direto na API)
   if (loading) loading.classList.add('hidden');
 
-  // 2. Popula filtro de marcas
-  await popularMarcas();
+  // 2. Popula filtro de marcas - removido pois agora é dinâmico (autocomplete)
 
   // 3. Restaura lista do localStorage
   await restaurarDoStorage();

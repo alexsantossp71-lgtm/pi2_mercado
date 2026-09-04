@@ -41,20 +41,15 @@ let debounceTimerMarca;
    POPULADORES DE SELECT
    ================================================================ */
 export async function popularMarcas(categoriaFiltro) {
-  try {
-    const marcas = await buscarMarcasAPI(categoriaFiltro);
-    selectMarca.innerHTML = '<option value="">Todas as marcas</option>' +
-      marcas.map(m => `<option value="${m.nome.replace(/"/g, '&quot;')}">${m.nome}</option>`).join('');
-  } catch (err) {
-    console.error('Erro ao popular marcas', err);
-  }
+  // Mantido para compatibilidade — marcas agora são carregadas dinamicamente via autocomplete
 }
 
 /* ================================================================
    AUTOCOMPLETE / SUGESTÕES
    ================================================================ */
 async function renderSugestoes() {
-  const itens = await buscarProdutos(campoBusca.value, selectCategoria.value, selectMarca.value);
+  const marcaFiltro = campoMarca ? campoMarca.value.trim() : '';
+  const itens = await buscarProdutos(campoBusca.value, selectCategoria.value, marcaFiltro);
 
   if (!itens.length) {
     sugestoes.classList.add('hidden');
@@ -146,7 +141,6 @@ function selecionarProduto(p) {
 
 function selecionarMarca(marcaNome) {
   campoMarca.value = marcaNome;
-  selectMarca.value = marcaNome;
   sugestoesMarca.classList.add('hidden');
   // Update products based on selected brand
   renderSugestoes();
@@ -402,8 +396,7 @@ export function initUI() {
 
   // Filtros
   selectCategoria.addEventListener('change', () => {
-    selectMarca.value = '';
-    popularMarcas(selectCategoria.value);
+    campoMarca.value = '';
     renderSugestoes();
   });
 
@@ -423,7 +416,7 @@ export function initUI() {
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(() => {
       renderSugestoes();
-    }, 500); // Espera 500ms apÃ³s a digitaÃ§Ã£o para buscar
+    }, 500); // Espera 500ms após a digitação para buscar
   });
   campoBusca.addEventListener('focus', () => renderSugestoes());
   campoBusca.addEventListener('blur', () => setTimeout(() => sugestoes.classList.add('hidden'), 150));
@@ -440,6 +433,7 @@ export function initUI() {
     clearTimeout(debounceTimerMarca);
     debounceTimerMarca = setTimeout(() => {
       renderSugestoesMarca();
+      renderSugestoes();
     }, 500);
   });
   campoMarca.addEventListener('focus', () => renderSugestoesMarca());
@@ -451,7 +445,8 @@ export function initUI() {
     let p = produtoSelecionado;
 
     if (!id || !p) {
-      const resultados = await buscarProdutos(campoBusca.value, selectCategoria.value, selectMarca.value);
+      const marcaFiltro = campoMarca ? campoMarca.value.trim() : '';
+      const resultados = await buscarProdutos(campoBusca.value, selectCategoria.value, marcaFiltro);
       const match = resultados[0];
       if (!match) { alert('Produto não encontrado. Selecione uma sugestão.'); return; }
       selecionarProduto(match);
