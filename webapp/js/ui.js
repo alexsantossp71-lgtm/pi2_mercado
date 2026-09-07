@@ -3,7 +3,7 @@
    Dispensa Planejada Santos
    ================================================================ */
 
-import { buscarMarcasAPI } from './api.js';
+import { buscarCategoriasAPI, buscarMarcasAPI } from './api.js';
 import { LOJAS, CHAVES_LOJA } from './dataLoader.js';
 import { buscarProdutos } from './searchEngine.js';
 import { getLista, getTotalItens, adicionarItem, removerItem, alterarQtd, limparLista, gerarTextoCompartilhamento } from './shoppingList.js';
@@ -47,6 +47,23 @@ let debounceTimerMarca;
 /* ================================================================
    POPULADORES DE SELECT
    ================================================================ */
+export async function popularCategorias() {
+  try {
+    const categorias = await buscarCategoriasAPI();
+    selectCategoria.innerHTML = '<option value="">Todas as seções</option>';
+    categorias.forEach(({ nome }) => {
+      const option = document.createElement('option');
+      option.value = nome;
+      option.textContent = nome;
+      selectCategoria.appendChild(option);
+    });
+  } catch (err) {
+    console.error('[ui] Erro ao carregar seções:', err);
+    selectCategoria.innerHTML = '<option value="">Seções indisponíveis</option>';
+    selectCategoria.disabled = true;
+  }
+}
+
 export async function popularMarcas(categoriaFiltro) {
   // Mantido para compatibilidade — marcas agora são carregadas dinamicamente via autocomplete
 }
