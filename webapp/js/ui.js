@@ -86,7 +86,7 @@ async function renderSugestoes() {
     div.innerHTML = `
       <div>
         <p class="item-name">${escapeHtml(p.nome)}</p>
-        <p class="item-meta">${escapeHtml(p.categoria)} • ${escapeHtml(p.marca)}</p>
+        <p class="item-meta">Marca: ${escapeHtml(p.marca)}</p>
       </div>
       <div class="store-prices">${pricesHTML}</div>
       <span class="item-price">${precoExib}</span>`;
@@ -228,7 +228,7 @@ export function renderLista() {
     tr.innerHTML = `
       <td>
         <p class="product-name">${escapeHtml(produto.nome)}</p>
-        <p class="product-meta">${escapeHtml(produto.categoria)} • ${escapeHtml(produto.marca)}</p>
+        <p class="product-meta">Marca: ${escapeHtml(produto.marca)}</p>
       </td>
       <td class="text-center">
         <div class="qty-stepper">
