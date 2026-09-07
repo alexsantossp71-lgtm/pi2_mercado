@@ -449,6 +449,9 @@
   font-size: var(--font-size-xs);
   color: var(--color-text-tertiary);
 }
+.mobile-best-price {
+  display: none;
+}
 .table .price-value {
   font-weight: var(--font-weight-semibold);
   color: var(--color-primary-600);

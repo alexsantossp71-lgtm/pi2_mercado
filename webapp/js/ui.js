@@ -231,6 +231,9 @@ export function renderLista() {
   corpoLista.innerHTML = '';
   lista.forEach(({ produto, qtd }, id) => {
     const tr = document.createElement('tr');
+    const precosDisponiveis = (produto.preco || []).filter(preco => preco != null);
+    const melhorPreco = precosDisponiveis.length ? Math.min(...precosDisponiveis) : null;
+    const melhorPrecoHTML = melhorPreco != null ? fmtBRL(melhorPreco) : precoIndisponivel;
     // Build per-store price display for the list row
     let pricesHTML = '';
     CHAVES_LOJA.forEach((chave, idx) => {
@@ -247,6 +250,7 @@ export function renderLista() {
       <td>
         <p class="product-name">${escapeHtml(produto.nome)}</p>
         <p class="product-meta">${escapeHtml(produto.categoria)} • ${escapeHtml(produto.marca)}</p>
+        <p class="mobile-best-price">Melhor preço: <strong>${melhorPrecoHTML}</strong></p>
       </td>
       <td class="text-center">
         <div class="qty-stepper">

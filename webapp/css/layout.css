@@ -390,3 +390,40 @@
     display: table-cell;
   }
 }
+
+@media (max-width: 639px) {
+  .table tbody tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    align-items: center;
+  }
+
+  .table tbody tr > td:first-child {
+    grid-column: 1 / -1;
+    padding-bottom: var(--space-2);
+  }
+
+  .table tbody tr > td:nth-child(2),
+  .table tbody tr > td:nth-child(4) {
+    padding-top: var(--space-2);
+    padding-bottom: var(--space-3);
+  }
+
+  .table .product-name {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+  }
+
+  .table .mobile-best-price {
+    display: block;
+    margin-top: var(--space-2);
+    color: var(--color-primary-700);
+    font-size: var(--font-size-sm);
+  }
+
+  .table .mobile-best-price strong {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-extrabold);
+  }
+}
