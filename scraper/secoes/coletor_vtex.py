@@ -293,6 +293,12 @@ def coletar_folha(cfg: dict, folha: dict) -> tuple[int, int, int]:
                 continue
             vistos.add(ean)
 
+            hoje = cfg["hoje"]
+            if ean not in cfg["produtos"]:
+                cfg["produtos"][ean] = transformar_produto(
+                    prod, ean, folha["secao"], folha["nome"], hoje
+                )
+
             # Extrai itemId e sellerId para simulação multi-CEP
             items = prod.get("items")
             item_id = None
@@ -309,11 +315,6 @@ def coletar_folha(cfg: dict, folha: dict) -> tuple[int, int, int]:
                 sem_ean += 1
                 continue
 
-            hoje = cfg["hoje"]
-            if ean not in cfg["produtos"]:
-                cfg["produtos"][ean] = transformar_produto(
-                    prod, ean, folha["secao"], folha["nome"], hoje
-                )
             cfg["precos"][ean] = transformar_preco(ean, oferta, cfg["nome_supermercado"], hoje)
             validos += 1
 
