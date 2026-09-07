@@ -11,6 +11,7 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
+  min-height: 44px;
   padding: var(--space-3) var(--space-5);
   font-family: var(--font-family);
   font-size: var(--font-size-sm);
@@ -66,6 +67,8 @@
   padding: var(--space-4) var(--space-8);
   border-radius: var(--radius-2xl);
   box-shadow: var(--shadow-md);
+  white-space: normal;
+  width: 100%;
 }
 .btn-cta:hover {
   background: var(--color-warning-600);
@@ -111,7 +114,9 @@
 
 /* Icon-only */
 .btn-icon {
-  padding: var(--space-2);
+  width: 40px;
+  height: 40px;
+  padding: 0;
   border-radius: var(--radius-md);
   background: transparent;
   color: var(--color-text-tertiary);
@@ -141,6 +146,7 @@
 .btn-sm {
   padding: var(--space-1) var(--space-3);
   font-size: var(--font-size-xs);
+  min-height: 40px;
 }
 
 /* ================================================================
@@ -288,8 +294,8 @@
   padding: var(--space-1);
 }
 .qty-stepper button {
-  width: 28px;
-  height: 28px;
+  width: 40px;
+  height: 40px;
   border-radius: var(--radius-md);
   border: none;
   background: transparent;

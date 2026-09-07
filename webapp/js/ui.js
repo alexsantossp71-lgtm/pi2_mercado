@@ -14,6 +14,13 @@ import { fmtBRL, totalPorLoja, melhorLojaUnica, divisaoMultiLoja, disponivelEm, 
    ================================================================ */
 const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => document.querySelectorAll(sel);
+const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&#39;'
+}[char]));
 
 const campoBusca       = $('#campoBusca');
 const campoMarca       = $('#campoMarca');
@@ -60,6 +67,8 @@ async function renderSugestoes() {
   itens.forEach((p, i) => {
     const div = document.createElement('div');
     div.className = 'dropdown-item' + (i === 0 ? ' active' : '');
+    div.setAttribute('role', 'option');
+    div.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
     const precoMin = p.preco && p.preco.length ? Math.min(...p.preco.filter(v => v != null)) : null;
     const precoExib = precoMin != null ? fmtBRL(precoMin) : 'Indisponível';
 
@@ -68,7 +77,7 @@ async function renderSugestoes() {
     CHAVES_LOJA.forEach((chave, idx) => {
       const loja = LOJAS[chave];
       const preco = p.preco && p.preco.length > idx ? p.preco[idx] : null;
-      const disponivel = p.em_estoque && p.em_estoque.length > idx ? p.em_estoque[idx] : false;
+      const disponivel = disponivelEm(p, idx);
       const precoTexto = disponivel && preco !== null ? fmtBRL(preco) : 'Indisponível';
       const cor = disponivel && preco !== null ? '' : 'text-muted';
       pricesHTML += `<span class="store-price ${cor}" title="${loja.nome}">${loja.icone} ${precoTexto}</span> `;
@@ -76,8 +85,8 @@ async function renderSugestoes() {
 
     div.innerHTML = `
       <div>
-        <p class="item-name">${p.nome}</p>
-        <p class="item-meta">${p.categoria} • ${p.marca}</p>
+        <p class="item-name">${escapeHtml(p.nome)}</p>
+        <p class="item-meta">${escapeHtml(p.categoria)} • ${escapeHtml(p.marca)}</p>
       </div>
       <div class="store-prices">${pricesHTML}</div>
       <span class="item-price">${precoExib}</span>`;
@@ -115,10 +124,12 @@ async function renderSugestoesMarca() {
     marcasFiltradas.forEach((marca, i) => {
       const div = document.createElement('div');
       div.className = 'dropdown-item' + (i === 0 ? ' active' : '');
+      div.setAttribute('role', 'option');
+      div.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
 
       div.innerHTML = `
         <div>
-          <p class="item-name">${marca.nome}</p>
+          <p class="item-name">${escapeHtml(marca.nome)}</p>
         </div>`;
 
       div.addEventListener('click', () => selecionarMarca(marca.nome));
@@ -144,6 +155,40 @@ function selecionarMarca(marcaNome) {
   sugestoesMarca.classList.add('hidden');
   // Update products based on selected brand
   renderSugestoes();
+}
+
+function navegarSugestoes(event, container) {
+  if (container.classList.contains('hidden')) return;
+
+  const opcoes = [...container.querySelectorAll('[role="option"]')];
+  if (!opcoes.length) return;
+
+  const indiceAtual = opcoes.findIndex(opcao => opcao.classList.contains('active'));
+  let proximoIndice = indiceAtual;
+
+  if (event.key === 'ArrowDown') {
+    event.preventDefault();
+    proximoIndice = indiceAtual < opcoes.length - 1 ? indiceAtual + 1 : 0;
+  } else if (event.key === 'ArrowUp') {
+    event.preventDefault();
+    proximoIndice = indiceAtual > 0 ? indiceAtual - 1 : opcoes.length - 1;
+  } else if (event.key === 'Enter') {
+    event.preventDefault();
+    opcoes[indiceAtual >= 0 ? indiceAtual : 0].click();
+    return;
+  } else if (event.key === 'Escape') {
+    event.preventDefault();
+    container.classList.add('hidden');
+    return;
+  } else {
+    return;
+  }
+
+  opcoes.forEach((opcao, indice) => {
+    const ativo = indice === proximoIndice;
+    opcao.classList.toggle('active', ativo);
+    opcao.setAttribute('aria-selected', ativo ? 'true' : 'false');
+  });
 }
 
 /* ================================================================
@@ -173,7 +218,7 @@ export function renderLista() {
     CHAVES_LOJA.forEach((chave, idx) => {
       const loja = LOJAS[chave];
       const preco = produto.preco && produto.preco.length > idx ? produto.preco[idx] : null;
-      const disponivel = produto.em_estoque && produto.em_estoque.length > idx ? produto.em_estoque[idx] : false;
+      const disponivel = disponivelEm(produto, idx);
       const precoTexto = disponivel && preco !== null ? fmtBRL(preco) : 'Indisponível';
       const cor = disponivel && preco !== null ? '' : 'text-muted';
       pricesHTML += `<span class="store-price ${cor}" title="${loja.nome}">${loja.icone} ${precoTexto}</span> `;
@@ -182,19 +227,19 @@ export function renderLista() {
 
     tr.innerHTML = `
       <td>
-        <p class="product-name">${produto.nome}</p>
-        <p class="product-meta">${produto.categoria} • ${produto.marca}</p>
+        <p class="product-name">${escapeHtml(produto.nome)}</p>
+        <p class="product-meta">${escapeHtml(produto.categoria)} • ${escapeHtml(produto.marca)}</p>
       </td>
       <td class="text-center">
         <div class="qty-stepper">
-          <button class="btnQtdMenos" aria-label="Diminuir quantidade de ${produto.nome}">−</button>
+          <button class="btnQtdMenos" aria-label="Diminuir quantidade de ${escapeHtml(produto.nome)}">−</button>
           <span class="qty-value">${qtd}</span>
-          <button class="btnQtdMais" aria-label="Aumentar quantidade de ${produto.nome}">+</button>
+          <button class="btnQtdMais" aria-label="Aumentar quantidade de ${escapeHtml(produto.nome)}">+</button>
         </div>
       </td>
       <td class="text-center col-mobile-hidden">${precoCell}</td>
       <td class="text-center">
-        <button class="btn-icon btnRemover" title="Remover" aria-label="Remover ${produto.nome}">✕</button>
+        <button class="btn-icon btnRemover" title="Remover" aria-label="Remover ${escapeHtml(produto.nome)}">✕</button>
       </td>`;
 
     tr.querySelector('.btnQtdMenos').addEventListener('click', () => alterarQtd(id, -1));
@@ -254,7 +299,7 @@ export function renderResultados() {
         <span class="split-store-total">${fmtBRL(soma)}</span>
       </div>
       <ul class="split-items">
-        ${itens.map(i => `<li><span>${i.qtd}× ${i.nome}</span><span class="item-cost">${fmtBRL(i.custo)}</span></li>`).join('')}
+        ${itens.map(i => `<li><span>${i.qtd}× ${escapeHtml(i.nome)}</span><span class="item-cost">${fmtBRL(i.custo)}</span></li>`).join('')}
       </ul>`;
     divLojas.appendChild(card);
   });
@@ -268,7 +313,7 @@ export function renderResultados() {
         <span class="split-store-total price-unavailable">—</span>
       </div>
       <ul class="split-items">
-        ${indisponiveis.map(i => `<li><span>${i.qtd}× ${i.nome}</span><span class="price-unavailable">indisponível</span></li>`).join('')}
+        ${indisponiveis.map(i => `<li><span>${i.qtd}× ${escapeHtml(i.nome)}</span><span class="price-unavailable">indisponível</span></li>`).join('')}
       </ul>`;
     divLojas.appendChild(cardIndisp);
   }
@@ -316,7 +361,7 @@ function renderChecklist() {
   Object.entries(grupos).forEach(([categoria, itens]) => {
     const bloco = document.createElement('div');
     bloco.className = 'category-group';
-    bloco.innerHTML = `<h4 class="category-title">${categoria}</h4>`;
+    bloco.innerHTML = `<h4 class="category-title">${escapeHtml(categoria)}</h4>`;
 
     const listaUl = document.createElement('ul');
     listaUl.style.listStyle = 'none';
@@ -325,13 +370,13 @@ function renderChecklist() {
     listaUl.style.gap = 'var(--space-2)';
 
     itens.forEach(({ produto, qtd }) => {
-      totalItensChecklist += qtd;
+      totalItensChecklist += 1;
       const li = document.createElement('li');
       li.className = 'checkbox-item';
       li.innerHTML = `
-        <input type="checkbox" class="checkItem" data-id="${produto.id}" aria-label="Marcar ${produto.nome}">
+        <input type="checkbox" class="checkItem" data-id="${produto.id}" aria-label="Marcar ${escapeHtml(produto.nome)}">
         <div>
-          <span class="check-label">${produto.nome}</span>
+          <span class="check-label">${escapeHtml(produto.nome)}</span>
           <span class="check-qty">× ${qtd}</span>
         </div>`;
 
@@ -349,7 +394,7 @@ function renderChecklist() {
 function atualizarProgresso() {
   const checks = $$('.checkItem');
   const marcados = [...checks].filter(c => c.checked).length;
-  $('#checklistProgresso').textContent = `✅ ${marcados} de ${totalItensChecklist} itens marcados`;
+  $('#checklistProgresso').textContent = `✅ ${marcados} de ${totalItensChecklist} produtos marcados`;
 }
 
 /* ================================================================
@@ -419,6 +464,7 @@ export function initUI() {
     }, 500); // Espera 500ms após a digitação para buscar
   });
   campoBusca.addEventListener('focus', () => renderSugestoes());
+  campoBusca.addEventListener('keydown', event => navegarSugestoes(event, sugestoes));
   campoBusca.addEventListener('blur', () => setTimeout(() => sugestoes.classList.add('hidden'), 150));
 
   // Marca autocomplete
@@ -437,6 +483,7 @@ export function initUI() {
     }, 500);
   });
   campoMarca.addEventListener('focus', () => renderSugestoesMarca());
+  campoMarca.addEventListener('keydown', event => navegarSugestoes(event, sugestoesMarca));
   campoMarca.addEventListener('blur', () => setTimeout(() => sugestoesMarca.classList.add('hidden'), 150));
 
   // Adicionar

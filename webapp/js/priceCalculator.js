@@ -57,7 +57,7 @@ export function totalPorLoja(lista) {
 
   lista.forEach(({ produto, qtd }) => {
     CHAVES_LOJA.forEach((k, i) => {
-      if (produto.preco && produto.preco[i] != null) {
+      if (disponivelEm(produto, i)) {
         totais[k] += produto.preco[i] * qtd;
       }
     });
@@ -111,8 +111,8 @@ export function divisaoMultiLoja(lista) {
 
   lista.forEach(({ produto, qtd }) => {
     const precoDisponiveis = CHAVES_LOJA
-      .map((k, i) => ({ k, v: produto.preco ? produto.preco[i] : null }))
-      .filter(x => x.v != null);
+      .map((k, i) => ({ k, v: produto.preco ? produto.preco[i] : null, i }))
+      .filter(x => disponivelEm(produto, x.i));
 
     if (!precoDisponiveis.length) {
       indisponiveis.push({ nome: produto.nome, qtd });

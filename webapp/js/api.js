@@ -32,8 +32,8 @@ export async function buscarMarcasAPI(categoria) {
 export async function calcularCestaAPI(lista) {
   const reqBody = {
     itens: lista.map(item => ({
-      produto_id: item.produto.id,
-      quantidade: item.quantidade
+      id: item.produto.id,
+      qtd: item.qtd
     }))
   };
   const res = await fetch(`${API_URL}/api/calcular`, {

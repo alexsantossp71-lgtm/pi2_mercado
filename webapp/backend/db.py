@@ -9,6 +9,15 @@ import libsql_client
 
 load_dotenv()
 
+class CompatRow(dict):
+    """Linha que suporta acesso por nome de coluna e por índice."""
+
+    def __getitem__(self, key):
+        if isinstance(key, int):
+            return list(self.values())[key]
+        return super().__getitem__(key)
+
+
 class LibSQLCursor:
     def __init__(self, client):
         self.client = client
@@ -30,18 +39,13 @@ class LibSQLCursor:
         results = []
         for row in self.rs.rows:
             # We assume row supports indexing and rs.columns provides keys
-            results.append(dict(zip(self.rs.columns, row)))
+            results.append(CompatRow(zip(self.rs.columns, row)))
         return results
 
     def fetchone(self):
         all_rows = self.fetchall()
         if all_rows:
-            # fetchone()[0] is used in product_service.py for COUNT(*)
-            # if we return a dict, it doesn't support integer indexing for dict keys.
-            # product_service uses total = cursor.fetchone()[0]
-            # so we should make our dict-like object also support integer index?
-            # Wait, dict values can be accessed by list(d.values())[0]
-            return list(all_rows[0].values())
+            return all_rows[0]
         return None
 
 class LibSQLConnection:

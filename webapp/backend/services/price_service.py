@@ -52,7 +52,9 @@ def calculate_basket_prices(request: CalculoRequest) -> CalculoResponse:
 
         for idx, key in enumerate(CHAVES_LOJA):
             p_val = precos[idx] if idx < len(precos) else None
-            if p_val is not None:
+            estoque = prod.get("em_estoque", [])
+            disponivel = not isinstance(estoque, list) or idx >= len(estoque) or estoque[idx] is not False
+            if p_val is not None and disponivel:
                 totais_por_loja[key] += p_val * qtd
                 disponiveis_por_loja[key] += 1
 
@@ -93,7 +95,9 @@ def calculate_basket_prices(request: CalculoRequest) -> CalculoResponse:
         opcoes = []
         for idx, key in enumerate(CHAVES_LOJA):
             p_val = precos[idx] if idx < len(precos) else None
-            if p_val is not None:
+            estoque = prod.get("em_estoque", [])
+            disponivel = not isinstance(estoque, list) or idx >= len(estoque) or estoque[idx] is not False
+            if p_val is not None and disponivel:
                 opcoes.append((key, p_val))
 
         if not opcoes:

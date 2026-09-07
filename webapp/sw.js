@@ -11,6 +11,7 @@ const ASSETS_TO_CACHE = [
   './css/components.css',
   './css/layout.css',
   './js/app.js',
+  './js/api.js',
   './js/dataLoader.js',
   './js/searchEngine.js',
   './js/shoppingList.js',

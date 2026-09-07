@@ -2,19 +2,10 @@
 Unit & Integration Tests for Dispensa Planejada FastAPI SGBD Backend
 """
 
-import pytest
+from unittest.mock import patch
+
 from fastapi.testclient import TestClient
 from main import app
-from db import DB_PATH
-from importar_json_para_sqlite import run_etl
-
-
-@pytest.fixture(scope="module", autouse=True)
-def setup_sgbd():
-    if not DB_PATH.exists():
-        run_etl()
-
-
 def test_read_root():
     with TestClient(app) as client:
         response = client.get("/")
@@ -66,3 +57,24 @@ def test_calculate_prices_sql():
         calc_data = calc_res.json()
         assert "totais_lojas" in calc_data
         assert "multiloja" in calc_data
+
+
+def test_calculate_prices_ignores_out_of_stock():
+    product = {
+        "id": 99,
+        "nome": "Produto sem estoque no Carrefour",
+        "gtin_ean": None,
+        "preco": [1.0, 5.0, None],
+        "preco_regular": [None, None, None],
+        "em_estoque": [False, True, False],
+    }
+    with patch("services.price_service.get_product_by_id", return_value=product):
+        with TestClient(app) as client:
+            response = client.post("/api/calcular", json={"itens": [{"id": 99, "qtd": 1}]})
+
+    assert response.status_code == 200
+    data = response.json()
+    totais = {item["loja_key"]: item for item in data["totais_lojas"]}
+    assert totais["carrefour"]["total"] == 0
+    assert totais["pao_de_acucar"]["total"] == 5
+    assert data["multiloja"]["total"] == 5

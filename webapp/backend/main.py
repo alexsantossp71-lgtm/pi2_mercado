@@ -6,6 +6,7 @@ Powered by SQLite SGBD Relacional + FTS5
 
 from contextlib import asynccontextmanager
 import logging
+import os
 import sys
 from pathlib import Path
 from typing import Optional
@@ -63,13 +64,17 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# Enable CORS for web clients (Vercel, GitHub Pages, Localhost)
+# Same-origin deployment needs no CORS; local development uses port 8080.
+cors_origins = [origin.strip() for origin in os.getenv(
+    "CORS_ORIGINS",
+    "http://localhost:8080,http://127.0.0.1:8080",
+).split(",") if origin.strip()]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_origins=cors_origins,
+    allow_credentials=False,
+    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["Content-Type"],
 )
 
 
@@ -82,33 +87,6 @@ def read_root():
         "versao": "2.0.0",
         "docs": "/docs",
     }
-
-
-@app.get("/api/health")
-def health_probe():
-    """Diagnóstico temporário de runtime (remover após resolver o 500)."""
-    import os
-    import sys
-    import traceback
-
-    info = {
-        "python": sys.version,
-        "turso_url_set": bool(os.environ.get("TURSO_DATABASE_URL")),
-        "turso_token_set": bool(os.environ.get("TURSO_AUTH_TOKEN")),
-        "turso_url_prefix": (os.environ.get("TURSO_DATABASE_URL") or "")[:12],
-    }
-    try:
-        from db import get_db_connection
-        conn = get_db_connection()
-        cur = conn.cursor()
-        cur.execute("SELECT COUNT(*) FROM produtos")
-        info["db_check"] = cur.fetchone()[0]
-        info["db_ok"] = True
-        conn.close()
-    except Exception:
-        info["db_ok"] = False
-        info["db_error"] = traceback.format_exc()[-1500:]
-    return info
 
 
 @app.get("/api/produtos", response_model=BuscaResponse)

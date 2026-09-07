@@ -1,0 +1,14 @@
+# Local databases are not used in production; the API connects to Turso.
+backend/*.db
+backend/*.db.*
+
+# Local catalog exports and scraper reports are not runtime assets.
+*.json
+*.zip
+%TEMP%/
+*.log
+*.bak
+
+# Local development helpers are not part of the deployed app.
+servidor_local.py
+iniciar_webapp.bat
