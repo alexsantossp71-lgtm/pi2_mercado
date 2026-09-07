@@ -639,6 +639,13 @@
   color: var(--color-text-tertiary);
   font-style: italic;
 }
+.price-unavailable-icon {
+  display: inline-block;
+  font-size: 0.9em;
+  font-style: normal;
+  line-height: 1;
+  opacity: 0.85;
+}
 
 /* ================================================================
    LOADING INDICATOR

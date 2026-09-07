@@ -21,6 +21,7 @@ const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => 
   '"': '&quot;',
   "'": '&#39;'
 }[char]));
+const precoIndisponivel = '<span class="price-unavailable-icon" role="img" aria-label="Indisponível" title="Indisponível">⊘</span>';
 
 const campoBusca       = $('#campoBusca');
 const campoMarca       = $('#campoMarca');
@@ -87,7 +88,7 @@ async function renderSugestoes() {
     div.setAttribute('role', 'option');
     div.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
     const precoMin = p.preco && p.preco.length ? Math.min(...p.preco.filter(v => v != null)) : null;
-    const precoExib = precoMin != null ? fmtBRL(precoMin) : 'Indisponível';
+    const precoExib = precoMin != null ? fmtBRL(precoMin) : precoIndisponivel;
 
     // Build per-store price display
     let pricesHTML = '';
@@ -95,7 +96,7 @@ async function renderSugestoes() {
       const loja = LOJAS[chave];
       const preco = p.preco && p.preco.length > idx ? p.preco[idx] : null;
       const disponivel = disponivelEm(p, idx);
-      const precoTexto = disponivel && preco !== null ? fmtBRL(preco) : 'Indisponível';
+      const precoTexto = disponivel && preco !== null ? fmtBRL(preco) : precoIndisponivel;
       const cor = disponivel && preco !== null ? '' : 'text-muted';
       pricesHTML += `<span class="store-price ${cor}" title="${loja.nome}">${loja.icone} ${precoTexto}</span> `;
     });
@@ -236,7 +237,7 @@ export function renderLista() {
       const loja = LOJAS[chave];
       const preco = produto.preco && produto.preco.length > idx ? produto.preco[idx] : null;
       const disponivel = disponivelEm(produto, idx);
-      const precoTexto = disponivel && preco !== null ? fmtBRL(preco) : 'Indisponível';
+      const precoTexto = disponivel && preco !== null ? fmtBRL(preco) : precoIndisponivel;
       const cor = disponivel && preco !== null ? '' : 'text-muted';
       pricesHTML += `<span class="store-price ${cor}" title="${loja.nome}">${loja.icone} ${precoTexto}</span> `;
     });
