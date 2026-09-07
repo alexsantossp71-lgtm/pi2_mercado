@@ -143,6 +143,14 @@
   border-radius: var(--radius-2xl);
 }
 
+#btnAbrirChecklist {
+  box-sizing: border-box;
+  max-width: 100%;
+  min-width: 0;
+  white-space: normal;
+  text-align: center;
+}
+
 .btn-sm {
   padding: var(--space-1) var(--space-3);
   font-size: var(--font-size-xs);
