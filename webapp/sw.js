@@ -4,7 +4,6 @@
 
 const CACHE_NAME = 'dispensa-planejada-v1';
 const ASSETS_TO_CACHE = [
-  './',
   './index.html',
   './manifest.json',
   './css/design-system.css',
@@ -24,7 +23,15 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       console.log('[Service Worker] Pré-cache de recursos do app');
-      return cache.addAll(ASSETS_TO_CACHE);
+      return Promise.all(
+        ASSETS_TO_CACHE.map((url) => {
+          return cache.add(url).catch((error) => {
+            console.error('[Service Worker] Falha ao pré-cachear:', url, error);
+            // Não falha a instalação se um recurso falhar (opcional)
+            return null;
+          });
+        })
+      );
     }).then(() => self.skipWaiting())
   );
 });
