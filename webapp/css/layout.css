@@ -377,6 +377,16 @@
     flex: 1;
     min-height: 40px;
   }
+
+  /* Mobile: Stack suggestion items vertically and hide meta for two-line layout */
+  .dropdown-item {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-2);
+  }
+  .dropdown-item .item-meta {
+    display: none;
+  }
 }
 
 /* ================================================================
