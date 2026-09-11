@@ -15,7 +15,7 @@ class ProdutoOut(BaseModel):
     relevancia: int = 0
     imagem_url: Optional[str] = None
     apresentacao: Optional[str] = None
-    preco: List[Optional[float]] = Field(default_factory=list, description="Preço por loja: [Carrefour, Pão de Açúcar, Atacadão]")
+    preco: List[Optional[float]] = Field(default_factory=list, description="Preço por loja: [Carrefour, Pão de Açúcar, Atacadão, Soudaki]")
     preco_regular: List[Optional[float]] = Field(default_factory=list)
     em_estoque: List[bool] = Field(default_factory=list)
 

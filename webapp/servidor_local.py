@@ -5,7 +5,7 @@ import socketserver
 import webbrowser
 import os
 
-PORT = 8000
+PORT = 8080
 WEBROOT = os.path.dirname(os.path.abspath(__file__))
 
 os.chdir(WEBROOT)

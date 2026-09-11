@@ -58,15 +58,17 @@ def search_products(
 
     # Query items with store prices joined
     query_sql = f"""
-    SELECT 
+    SELECT
         p.id, p.gtin_ean, p.nome, p.categoria, p.marca, p.relevancia, p.imagem_url, p.apresentacao,
         pr1.preco_promocional AS p1, pr1.preco_regular AS r1, pr1.em_estoque AS e1,
         pr2.preco_promocional AS p2, pr2.preco_regular AS r2, pr2.em_estoque AS e2,
-        pr3.preco_promocional AS p3, pr3.preco_regular AS r3, pr3.em_estoque AS e3
+        pr3.preco_promocional AS p3, pr3.preco_regular AS r3, pr3.em_estoque AS e3,
+        pr4.preco_promocional AS p4, pr4.preco_regular AS r4, pr4.em_estoque AS e4
     FROM produtos p
     LEFT JOIN precos pr1 ON p.id = pr1.produto_id AND pr1.loja_id = 1
     LEFT JOIN precos pr2 ON p.id = pr2.produto_id AND pr2.loja_id = 2
     LEFT JOIN precos pr3 ON p.id = pr3.produto_id AND pr3.loja_id = 3
+    LEFT JOIN precos pr4 ON p.id = pr4.produto_id AND pr4.loja_id = 4
     {where_clause}
     ORDER BY p.relevancia DESC, p.nome ASC
     LIMIT ? OFFSET ?;
@@ -88,9 +90,9 @@ def search_products(
             "relevancia": r["relevancia"],
             "imagem_url": r["imagem_url"],
             "apresentacao": r["apresentacao"],
-            "preco": [r["p1"], r["p2"], r["p3"]],
-            "preco_regular": [r["r1"], r["r2"], r["r3"]],
-            "em_estoque": [bool(r["e1"]), bool(r["e2"]), bool(r["e3"])],
+            "preco": [r["p1"], r["p2"], r["p3"], r["p4"]],
+            "preco_regular": [r["r1"], r["r2"], r["r3"], r["r4"]],
+            "em_estoque": [bool(r["e1"]), bool(r["e2"]), bool(r["e3"]), bool(r["e4"])],
         })
 
     return total, page, limit, total_pages, items
@@ -140,15 +142,17 @@ def get_product_by_id(product_id: int) -> Optional[dict]:
     conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute("""
-        SELECT 
+        SELECT
             p.id, p.gtin_ean, p.nome, p.categoria, p.marca, p.relevancia, p.imagem_url, p.apresentacao,
             pr1.preco_promocional AS p1, pr1.preco_regular AS r1, pr1.em_estoque AS e1,
             pr2.preco_promocional AS p2, pr2.preco_regular AS r2, pr2.em_estoque AS e2,
-            pr3.preco_promocional AS p3, pr3.preco_regular AS r3, pr3.em_estoque AS e3
+            pr3.preco_promocional AS p3, pr3.preco_regular AS r3, pr3.em_estoque AS e3,
+            pr4.preco_promocional AS p4, pr4.preco_regular AS r4, pr4.em_estoque AS e4
         FROM produtos p
         LEFT JOIN precos pr1 ON p.id = pr1.produto_id AND pr1.loja_id = 1
         LEFT JOIN precos pr2 ON p.id = pr2.produto_id AND pr2.loja_id = 2
         LEFT JOIN precos pr3 ON p.id = pr3.produto_id AND pr3.loja_id = 3
+        LEFT JOIN precos pr4 ON p.id = pr4.produto_id AND pr4.loja_id = 4
         WHERE p.id = ?;
     """, (product_id,))
     row = cursor.fetchone()

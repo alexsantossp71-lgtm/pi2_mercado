@@ -19,7 +19,7 @@ export function fmtBRL(valor) {
  * Combina preco[i] não-nulo com em_estoque[i] !== false.
  * Se o array em_estoque estiver ausente, deduz de preco[i] == null.
  * @param {Object} produto
- * @param {number} i - índice da loja (0=carrefour, 1=pao_de_acucar, 2=atacadao)
+ * @param {number} i - índice da loja (0=carrefour, 1=pao_de_acucar, 2=atacadao, 3=soudaki)
  * @returns {boolean}
  */
 export function disponivelEm(produto, i) {

@@ -18,9 +18,10 @@ LOJAS = {
     "carrefour": {"nome": "Carrefour - Ponta da Praia", "icone": "🛍️", "index": 0},
     "pao_de_acucar": {"nome": "Pão de Açúcar", "icone": "🥐", "index": 1},
     "atacadao": {"nome": "Atacadão", "icone": "🏬", "index": 2},
+    "soudaki": {"nome": "Soudaki", "icone": "🧁", "index": 3},
 }
 
-CHAVES_LOJA = ["carrefour", "pao_de_acucar", "atacadao"]
+CHAVES_LOJA = ["carrefour", "pao_de_acucar", "atacadao", "soudaki"]
 
 
 def calculate_basket_prices(request: CalculoRequest) -> CalculoResponse:

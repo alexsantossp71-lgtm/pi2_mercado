@@ -14,14 +14,16 @@ LOJAS = {
     "carrefour": {"nome": "Carrefour - Ponta da Praia", "icone": "🛍️", "index": 0},
     "pao_de_acucar": {"nome": "Pão de Açúcar", "icone": "🥐", "index": 1},
     "atacadao": {"nome": "Atacadão", "icone": "🏬", "index": 2},
+    "soudaki": {"nome": "Soudaki", "icone": "🛒", "index": 3},
 }
 
-CHAVES_LOJA = ["carrefour", "pao_de_acucar", "atacadao"]
+CHAVES_LOJA = ["carrefour", "pao_de_acucar", "atacadao", "soudaki"]
 
 ARQUIVOS_PRECOS = {
     "carrefour": "precos_carrefour_ampliado.json",
     "pao_de_acucar": "precos_pao_de_acucar_ampliado.json",
     "atacadao": "precos_atacadao_ampliado.json",
+    "soudaki": "precos_soudaki_ampliado.json",
 }
 
 # Global in-memory storage (mutated in-place to preserve references across imports)

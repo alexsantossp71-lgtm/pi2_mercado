@@ -18,12 +18,14 @@ LOJAS_DATA = [
     (1, "carrefour", "Carrefour - Ponta da Praia", "🛍️"),
     (2, "pao_de_acucar", "Pão de Açúcar", "🥐"),
     (3, "atacadao", "Atacadão", "🏬"),
+    (4, "soudaki", "Soudaki", "🧁"),
 ]
 
 ARQUIVOS_PRECOS = {
     "carrefour": "precos_carrefour_ampliado.json",
     "pao_de_acucar": "precos_pao_de_acucar_ampliado.json",
     "atacadao": "precos_atacadao_ampliado.json",
+    "soudaki": "precos_soudaki_ampliado.json",
 }
 
 
@@ -128,7 +130,7 @@ def run_etl():
 
     # 2. Carrega preços das lojas
     precos_por_ean = {}
-    loja_id_map = {"carrefour": 1, "pao_de_acucar": 2, "atacadao": 3}
+    loja_id_map = {"carrefour": 1, "pao_de_acucar": 2, "atacadao": 3, "soudaki": 4}
 
     for loja_chave, filename in ARQUIVOS_PRECOS.items():
         filepath = DATA_DIR / filename
