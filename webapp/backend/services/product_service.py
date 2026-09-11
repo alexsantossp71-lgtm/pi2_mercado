@@ -170,7 +170,7 @@ def get_product_by_id(product_id: int) -> Optional[dict]:
         "relevancia": row["relevancia"],
         "imagem_url": row["imagem_url"],
         "apresentacao": row["apresentacao"],
-        "preco": [row["p1"], row["p2"], row["p3"]],
-        "preco_regular": [row["r1"], row["r2"], row["r3"]],
-        "em_estoque": [bool(row["e1"]), bool(row["e2"]), bool(row["e3"])],
+        "preco": [row["p1"], row["p2"], row["p3"], row["p4"]],
+        "preco_regular": [row["r1"], row["r2"], row["r3"], row["r4"]],
+        "em_estoque": [bool(row["e1"]), bool(row["e2"]), bool(row["e3"]), bool(row["e4"])],
     }

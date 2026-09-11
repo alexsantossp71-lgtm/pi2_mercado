@@ -114,6 +114,7 @@ def api_get_product(product_id: int):
     prod = get_product_by_id(product_id)
     if not prod:
         raise HTTPException(status_code=404, detail="Produto não encontrado.")
+    logger.info(f"DEBUG api_get_product({product_id}): preco={prod.get('preco')} len={len(prod.get('preco',[]))}")
     return prod
 
 

@@ -1,5 +1,5 @@
-export const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
-  ? 'http://localhost:8000' 
+export const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:8001'
   : ''; // Use relative paths for Vercel deployment
 
 export async function buscarProdutosAPI(texto, categoria, marca, page = 1) {

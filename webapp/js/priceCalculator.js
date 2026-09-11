@@ -24,7 +24,10 @@ export function fmtBRL(valor) {
  */
 export function disponivelEm(produto, i) {
   if (!produto.preco || produto.preco[i] == null) return false;
-  if (Array.isArray(produto.em_estoque) && produto.em_estoque[i] === false) return false;
+  // Para Soudaki (index 3), o campo em_estoque não é confiável: muitos produtos
+  // têm preço válido mas em_estoque=0. Exibimos o preço sempre que ele existir.
+  // Para as demais lojas, mantemos a checagem de em_estoque.
+  if (i !== 3 && Array.isArray(produto.em_estoque) && produto.em_estoque[i] === false) return false;
   return true;
 }
 
