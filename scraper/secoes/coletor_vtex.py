@@ -20,12 +20,40 @@ Uso (biblioteca):
 
 import json
 import os
+import random
 import re
 import sys
 import time
 from datetime import date
 
 import requests
+
+# ---------------------------------------------------------------------------
+# Anti-block: User-Agent rotation + jitter
+# ---------------------------------------------------------------------------
+USER_AGENTS = [
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+]
+
+
+def random_ua():
+    return random.choice(USER_AGENTS)
+
+
+def sleep_with_jitter(base_sleep: float, factor: float = 1.0):
+    """Sleep com jitter randômico para evitar padrão detectável."""
+    time.sleep(base_sleep * factor + random.uniform(0, base_sleep * 0.6))
+
+
+def backoff_sleep(tentativa: int, base: float = 5.0, maximo: float = 60.0):
+    """Backoff exponencial: 5s, 10s, 20s... com jitter."""
+    espera = min(base * (2 ** tentativa), maximo)
+    espera += random.uniform(0, espera * 0.3)
+    print(f"    [backoff] aguardando {espera:.1f}s (tentativa {tentativa + 1})")
+    time.sleep(espera)
 
 # Importa módulos do pacote scraper (funciona tanto de secoes/ quanto da raiz)
 try:
@@ -70,6 +98,14 @@ def ean_valido(ean) -> bool:
         return False
     ean = str(ean).strip()
     return ean.isdigit() and len(ean) == 13
+
+
+def _eh_flv_coleta(secao: str) -> bool:
+    s = (secao or "").lower()
+    return any(k in s for k in (
+        "hortifruti", "fruta", "frutas", "legume", "legumes",
+        "verdura", "verduras", "flv", "alimento",
+    ))
 
 
 def salvar_json(caminho: str, dados) -> None:
@@ -254,10 +290,25 @@ def buscar_pagina(cfg: dict, slug: str, offset: int, limite: int) -> list:
     params = {"_from": offset, "_to": offset + limite - 1}
     if cfg.get("filtro_fq"):
         params["fq"] = cfg["filtro_fq"]
-    headers = {"User-Agent": cfg["user_agent"]}
+    headers = {
+        "User-Agent": random_ua(),
+        "Accept": "application/json, text/plain, */*",
+        "Accept-Language": "pt-BR,pt;q=0.9,en;q=0.8",
+        "Referer": cfg.get("referer", "https://www.carrefour.com.br/"),
+    }
     url = f"{cfg['base_url']}/api/catalog_system/pub/products/search/{slug}"
-    resp = requests.get(url, params=params, headers=headers, timeout=cfg["timeout"])
-    resp.raise_for_status()
+
+    # Backoff + retry em 429 (rate limit) / 5xx
+    for tentativa in range(3):
+        resp = requests.get(url, params=params, headers=headers, timeout=cfg["timeout"])
+        if resp.status_code in (429, 500, 502, 503, 504):
+            if tentativa < 2:
+                backoff_sleep(tentativa)
+                continue
+            resp.raise_for_status()
+        break
+    else:
+        resp.raise_for_status()
     return resp.json()
 
 
@@ -286,6 +337,24 @@ def coletar_folha(cfg: dict, folha: dict) -> tuple[int, int, int]:
         for prod in produtos:
             ean = extrair_ean(prod)
             if not ean:
+                # FLV sem EAN: tenta manter via nome (fruta avulsa por peso)
+                if _eh_flv_coleta(folha.get("secao", "")):
+                    oferta_flv = extrair_preco(prod)
+                    if oferta_flv:
+                        hoje_flv = cfg["hoje"]
+                        # Registro de catálogo sintético (gtin None) — dedup por nome
+                        nome_flv = (prod.get("productName") or "").strip() or "Produto FLV"
+                        chave_flv = f"__flv__{folha.get('secao','')}/{folha.get('nome','')}/{nome_flv}"
+                        if chave_flv not in vistos:
+                            vistos.add(chave_flv)
+                            if chave_flv not in cfg["produtos"]:
+                                cfg["produtos"][chave_flv] = transformar_produto(
+                                    prod, None, folha["secao"], folha["nome"], hoje_flv
+                                )
+                            cfg["precos"][chave_flv] = transformar_preco(
+                                None, oferta_flv, cfg["nome_supermercado"], hoje_flv
+                            )
+                            validos += 1
                 sem_ean += 1
                 continue
             if ean in vistos:
@@ -345,7 +414,7 @@ def coletar_folha(cfg: dict, folha: dict) -> tuple[int, int, int]:
                     gravar_precos_cep(precos_cep, cfg["chave_loja"])
 
         offset += cfg["pagina_tamanho"]
-        time.sleep(cfg["sleep"])
+        sleep_with_jitter(cfg["sleep"])
         if offset >= limite:
             break
 
