@@ -131,7 +131,7 @@ export function gerarTextoCompartilhamento() {
   if (!lista.size) return '';
 
   const fmtBRL = (v) => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-  let texto = '🛒 *Minha Lista — Dispensa Planejada Santos*\n\n';
+  let texto = '🛒 *Minha Lista — Despensa Planejada Santos*\n\n';
 
   lista.forEach(({ produto, qtd }) => {
     const precos = (produto.preco || []).filter(v => v != null);
@@ -140,6 +140,6 @@ export function gerarTextoCompartilhamento() {
     texto += `• ${qtd}× ${produto.nome}${precoStr}\n`;
   });
 
-  texto += '\n📱 Feito com Dispensa Planejada Santos';
+  texto += '\n📱 Feito com Despensa Planejada Santos';
   return texto;
 }

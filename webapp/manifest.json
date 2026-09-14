@@ -1,6 +1,6 @@
 {
-  "name": "Dispensa Planejada Santos",
-  "short_name": "Dispensa Santos",
+  "name": "Despensa Planejada Santos",
+  "short_name": "Despensa Santos",
   "description": "Comparador de Preços de Supermercado para Santos/SP — Projeto Integrador UNIVESP",
   "start_url": "./index.html",
   "display": "standalone",

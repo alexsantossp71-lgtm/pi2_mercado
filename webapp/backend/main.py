@@ -25,7 +25,9 @@ from models import (
     CalculoRequest,
     CalculoResponse,
     CategoriaOut,
+    LojaMeta,
     MarcaOut,
+    MetaResponse,
     ProdutoOut,
 )
 from services.product_service import (
@@ -131,6 +133,50 @@ def api_list_brands(categoria: Optional[str] = Query(None, description="Filtrar 
 @app.post("/api/calcular", response_model=CalculoResponse)
 def api_calculate(request: CalculoRequest):
     return calculate_basket_prices(request)
+
+
+@app.get("/api/meta", response_model=MetaResponse)
+def api_meta():
+    """Metadados do sistema: lojas cadastradas e data da última coleta de preços."""
+    from db import get_db_connection
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    # Garante que a coluna data_coleta existe (ALTER TABLE incremental, sem DROP)
+    try:
+        cursor.execute(
+            "ALTER TABLE precos ADD COLUMN data_coleta TEXT DEFAULT NULL"
+        )
+    except Exception:
+        pass  # coluna já existe
+
+    # Lojas cadastradas (fonte de verdade: tabela lojas)
+    cursor.execute("SELECT chave, nome, icone FROM lojas ORDER BY id")
+    lojas = [LojaMeta(chave=r["chave"], nome=r["nome"], icone=r["icone"]) for r in cursor.fetchall()]
+
+    # Última coleta: maior data_coleta registrada na tabela de preços
+    max_date = None
+    ultima_fmt = None
+    try:
+        cursor.execute("SELECT MAX(data_coleta) AS ultima FROM precos WHERE data_coleta IS NOT NULL")
+        row = cursor.fetchone()
+        if row:
+            max_date = row.get("ultima") or row.get("MAX(data_coleta)")
+        if max_date:
+            parts = str(max_date).split(" ")[0].split("-")
+            if len(parts) == 3:
+                ano, mes, dia = parts
+                ultima_fmt = f"{int(dia)}/{int(mes)}/{ano}"
+    except Exception:
+        pass  # coluna data_coleta pode não existir ainda no Turso
+
+    conn.close()
+
+    return MetaResponse(
+        lojas=lojas,
+        ultima_coleta=max_date,
+        ultima_coleta_fmt=ultima_fmt,
+    )
 
 
 # Vercel ASGI fallback handler (Mangum). If mangum is unavailable, the module

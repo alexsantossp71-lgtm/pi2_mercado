@@ -7,7 +7,7 @@ import { buscarCategoriasAPI, buscarMarcasAPI } from './api.js';
 import { LOJAS, CHAVES_LOJA } from './dataLoader.js';
 import { buscarProdutos } from './searchEngine.js';
 import { getLista, getTotalItens, adicionarItem, removerItem, alterarQtd, limparLista, gerarTextoCompartilhamento } from './shoppingList.js';
-import { fmtBRL, totalPorLoja, melhorLojaUnica, divisaoMultiLoja, disponivelEm, itensIndisponiveisPorLoja } from './priceCalculator.js';
+import { fmtBRL, totalPorLoja, melhorLojaUnica, divisaoMultiLoja, disponivelEm, motivoIndisponivel, itensIndisponiveisPorLoja } from './priceCalculator.js';
 
 /* ================================================================
    REFERÊNCIAS DOM
@@ -21,7 +21,33 @@ const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => 
   '"': '&quot;',
   "'": '&#39;'
 }[char]));
-const precoIndisponivel = '<span class="price-unavailable-icon" role="img" aria-label="Indisponível" title="Indisponível">⊘</span>';
+const precoSemOferta = '<span class="price-unavailable-icon" role="img" aria-label="Sem oferta" title="Sem oferecimento nesta loja">⊘</span>';
+const precoSemEstoque = '<span class="price-unavailable-icon price-out-of-stock" role="img" aria-label="Fora de estoque" title="Fora de estoque no momento da coleta">⊘</span>';
+const precoIndisponivel = precoSemOferta; // fallback compat
+
+
+/**
+ * Build per-store price HTML for a product, with reason-based ⊘ display.
+ * @param {Object} produto
+ * @returns {string} HTML string
+ */
+function buildStorePricesHTML(produto) {
+  let html = '';
+  CHAVES_LOJA.forEach((chave, idx) => {
+    const loja = LOJAS[chave];
+    const preco = produto.preco && produto.preco.length > idx ? produto.preco[idx] : null;
+    const disponivel = disponivelEm(produto, idx);
+    if (disponivel && preco !== null) {
+      html += `<span class="store-price" title="${loja.nome}">${loja.icone} ${fmtBRL(preco)}</span> `;
+    } else {
+      const motivo = motivoIndisponivel(produto, idx);
+      const icon = motivo === 'sem_estoque' ? precoSemEstoque : precoSemOferta;
+      const title = motivo === 'sem_estoque' ? 'Fora de estoque na coleta' : 'Sem oferecimento nesta loja';
+      html += `<span class="store-price text-muted" title="${title}">${loja.icone} ${icon}</span> `;
+    }
+  });
+  return html;
+}
 
 const campoBusca       = $('#campoBusca');
 const campoMarca       = $('#campoMarca');
@@ -29,6 +55,7 @@ const sugestoes        = $('#sugestoes');
 const sugestoesMarca   = $('#sugestoesMarca');
 const selectQtd        = $('#selectQtd');
 const selectCategoria  = $('#selectCategoria');
+const filtroMinLojas    = $('#filtroMinLojas');
 const btnAdicionar     = $('#btnAdicionar');
 const listaVazia       = $('#listaVazia');
 const tabelaLista      = $('#tabelaLista');
@@ -74,7 +101,10 @@ export async function popularMarcas(categoriaFiltro) {
    ================================================================ */
 async function renderSugestoes() {
   const marcaFiltro = campoMarca ? campoMarca.value.trim() : '';
-  const itens = await buscarProdutos(campoBusca.value, selectCategoria.value, marcaFiltro);
+  let itens = await buscarProdutos(campoBusca.value, selectCategoria.value, marcaFiltro);
+  if (filtroMinLojas && filtroMinLojas.checked) {
+    itens = itens.filter(p => (p.preco || []).filter(v => v != null).length >= 2);
+  }
 
   if (!itens.length) {
     sugestoes.classList.add('hidden');
@@ -90,16 +120,7 @@ async function renderSugestoes() {
     const precoMin = p.preco && p.preco.length ? Math.min(...p.preco.filter(v => v != null)) : null;
     const precoExib = precoMin != null ? fmtBRL(precoMin) : precoIndisponivel;
 
-    // Build per-store price display
-    let pricesHTML = '';
-    CHAVES_LOJA.forEach((chave, idx) => {
-      const loja = LOJAS[chave];
-      const preco = p.preco && p.preco.length > idx ? p.preco[idx] : null;
-      const disponivel = disponivelEm(p, idx);
-      const precoTexto = disponivel && preco !== null ? fmtBRL(preco) : precoIndisponivel;
-      const cor = disponivel && preco !== null ? '' : 'text-muted';
-      pricesHTML += `<span class="store-price ${cor}" title="${loja.nome}">${loja.icone} ${precoTexto}</span> `;
-    });
+    const pricesHTML = buildStorePricesHTML(p);
 
     div.innerHTML = `
       <div>
@@ -234,16 +255,7 @@ export function renderLista() {
     const precosDisponiveis = (produto.preco || []).filter(preco => preco != null);
     const melhorPreco = precosDisponiveis.length ? Math.min(...precosDisponiveis) : null;
     const melhorPrecoHTML = melhorPreco != null ? fmtBRL(melhorPreco) : precoIndisponivel;
-    // Build per-store price display for the list row
-    let pricesHTML = '';
-    CHAVES_LOJA.forEach((chave, idx) => {
-      const loja = LOJAS[chave];
-      const preco = produto.preco && produto.preco.length > idx ? produto.preco[idx] : null;
-      const disponivel = disponivelEm(produto, idx);
-      const precoTexto = disponivel && preco !== null ? fmtBRL(preco) : precoIndisponivel;
-      const cor = disponivel && preco !== null ? '' : 'text-muted';
-      pricesHTML += `<span class="store-price ${cor}" title="${loja.nome}">${loja.icone} ${precoTexto}</span> `;
-    });
+    const pricesHTML = buildStorePricesHTML(produto);
     const precoCell = `<div class="store-prices">${pricesHTML}</div>`;
 
     tr.innerHTML = `
@@ -573,6 +585,11 @@ export function initUI() {
   // Compartilhar
   if (btnCompartilhar) {
     btnCompartilhar.addEventListener('click', compartilharWhatsApp);
+  }
+
+  // Filtro: mostrar só produtos com preço em 2+ lojas
+  if (filtroMinLojas) {
+    filtroMinLojas.addEventListener('change', () => renderSugestoes());
   }
 
   // Listener para re-render automático da lista

@@ -24,11 +24,19 @@ export function fmtBRL(valor) {
  */
 export function disponivelEm(produto, i) {
   if (!produto.preco || produto.preco[i] == null) return false;
-  // Para Soudaki (index 3), o campo em_estoque não é confiável: muitos produtos
-  // têm preço válido mas em_estoque=0. Exibimos o preço sempre que ele existir.
-  // Para as demais lojas, mantemos a checagem de em_estoque.
-  if (i !== 3 && Array.isArray(produto.em_estoque) && produto.em_estoque[i] === false) return false;
+  // Mostrar preço sempre que existir, independentemente do estoque
   return true;
+}
+
+/**
+ * Retorna o motivo pelo qual um produto está indisponível numa loja específica.
+ * @param {Object} produto
+ * @param {number} i - índice da loja (0=carrefour, 1=pao_de_acucar, 2=atacadao, 3=soudaki)
+ * @returns {string|null} - 'sem_oferta', 'sem_estoque', ou null se disponível
+ */
+export function motivoIndisponivel(produto, i) {
+  if (!produto.preco || produto.preco[i] == null) return 'sem_oferta';
+  return null;
 }
 
 /**

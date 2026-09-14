@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dispensa Planejada Santos — Comparador de Preços de Supermercado</title>
+  <title>Despensa Planejada Santos — Comparador de Preços de Supermercado</title>
   <meta name="description" content="Compare preços de supermercados em Santos-SP. Monte sua lista de compras e descubra onde fica mais barato: Carrefour, Pão de Açúcar ou Atacadão." />
   <meta name="theme-color" content="#059669" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Dispensa Planejada Santos" />
+  <meta property="og:title" content="Despensa Planejada Santos" />
   <meta property="og:description" content="Comparador de preços de supermercado para Santos-SP. Economia real na sua compra." />
   <meta property="og:type" content="website" />
 
@@ -37,14 +37,14 @@
     <div class="header-brand">
       <h1>
         <span class="brand-icon" aria-hidden="true">🛒</span>
-        Dispensa Planejada Santos
+        Despensa Planejada Santos
       </h1>
       <p>Comparador de Preços de Supermercado — Projeto Integrador UNIVESP</p>
     </div>
     <div class="header-meta">
       <span class="pill">📍 Santos, SP</span>
       <span class="pill">📏 Raio: 5 km</span>
-      <span class="pill">🗓️ Dados: 02/08/2026</span>
+      <span class="pill" id="pillData">🗓️ Dados: —</span>
       <button id="themeToggle" class="theme-toggle" aria-label="Alternar tema claro/escuro" title="Alternar tema">
         🌙
       </button>
@@ -102,6 +102,14 @@
               + Adicionar
             </button>
           </div>
+
+          <!-- Filtro opcional -->
+          <div class="filter-row" style="margin-top: var(--space-3); padding-top: var(--space-2); border-top: 1px solid var(--color-border);">
+            <label class="filter-label">
+              <input type="checkbox" id="filtroMinLojas">
+              Mostrar só produtos com preço em 2+ lojas
+            </label>
+          </div>
         </div>
       </div>
 
@@ -144,7 +152,7 @@
           <button id="btnCalcular" class="btn btn-cta" aria-label="Calcular melhor opção de compra">
             🔍 CALCULAR MELHOR OPÇÃO DE COMPRA
           </button>
-          <p class="cta-disclaimer">Preços reais coletados dos sites do Carrefour, Pão de Açúcar e Atacadão (todas as seções de mercado).</p>
+          <p class="cta-disclaimer">Preços reais coletados dos sites do Carrefour, Pão de Açúcar, Atacadão e Soudaki (todas as seções de mercado).</p>
         </div>
       </div>
     </section>
@@ -215,8 +223,8 @@
 
 <!-- ==================== FOOTER ==================== -->
 <footer class="footer" role="contentinfo">
-  <p>Dispensa Planejada Santos — Projeto Integrador em Computação II (UNIVESP 2026.2)</p>
-  <p>Dados reais coletados dos sites Carrefour, Pão de Açúcar e Atacadão. Última coleta: 02/08/2026.</p>
+  <p>Despensa Planejada Santos — Projeto Integrador em Computação II (UNIVESP 2026.2)</p>
+  <p>Dados reais coletados dos sites <span id="footerLojas">Carrefour, Pão de Açúcar, Atacadão e Soudaki</span>. Última coleta: <span id="footerData">—</span>.</p>
 </footer>
 
 <!-- JavaScript Modules -->

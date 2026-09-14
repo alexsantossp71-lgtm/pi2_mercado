@@ -85,3 +85,15 @@ class CalculoResponse(BaseModel):
     economia_loja_unica: float = 0.0
     totais_lojas: List[LojaTotal] = Field(default_factory=list)
     multiloja: MultilojaResumo
+
+
+class LojaMeta(BaseModel):
+    chave: str
+    nome: str
+    icone: str
+
+
+class MetaResponse(BaseModel):
+    lojas: List[LojaMeta] = Field(default_factory=list)
+    ultima_coleta: Optional[str] = None  # ISO "2026-09-13"
+    ultima_coleta_fmt: Optional[str] = None  # pt-BR "13/09/2026"

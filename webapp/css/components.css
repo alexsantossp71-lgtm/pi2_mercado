@@ -657,6 +657,11 @@
   line-height: 1;
   opacity: 0.85;
 }
+.price-unavailable-icon.price-out-of-stock {
+  opacity: 0.55;
+  text-decoration: line-through;
+  text-decoration-thickness: 1.5px;
+}
 
 /* ================================================================
    LOADING INDICATOR

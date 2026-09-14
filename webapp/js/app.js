@@ -4,7 +4,7 @@
    Inicializa todos os módulos na ordem correta.
    ================================================================ */
 
-import { buscarMarcasAPI } from './api.js';
+import { buscarMarcasAPI, buscarMetaAPI } from './api.js';
 import { buscarProdutos } from './searchEngine.js';
 import { onListaChange, restaurarDoStorage } from './shoppingList.js';
 import { initUI, popularCategorias, renderLista } from './ui.js';
@@ -32,6 +32,28 @@ async function init() {
 
   // 2. Popula o filtro com as classificações reais retornadas pela API
   await popularCategorias();
+
+  // 2b. Carrega metadados (lojas + última coleta) e preenche header/footer
+  try {
+    const meta = await buscarMetaAPI();
+    const pillData = document.getElementById('pillData');
+    if (pillData && meta.ultima_coleta_fmt) {
+      pillData.textContent = `🗓️ Dados: ${meta.ultima_coleta_fmt}`;
+    }
+    const footerLojas = document.getElementById('footerLojas');
+    if (footerLojas && meta.lojas && meta.lojas.length) {
+      const nomes = meta.lojas.map(l => l.nome);
+      footerLojas.textContent = nomes.length > 1
+        ? nomes.slice(0, -1).join(', ') + ' e ' + nomes[nomes.length - 1]
+        : nomes[0];
+    }
+    const footerData = document.getElementById('footerData');
+    if (footerData && meta.ultima_coleta_fmt) {
+      footerData.textContent = meta.ultima_coleta_fmt;
+    }
+  } catch (e) {
+    console.warn('[Meta] Falha ao carregar metadados:', e);
+  }
 
   // 3. Restaura lista do localStorage
   await restaurarDoStorage();

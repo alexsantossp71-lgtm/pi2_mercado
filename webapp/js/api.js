@@ -50,3 +50,9 @@ export async function buscarProdutoPorIdAPI(id) {
   if (!res.ok) throw new Error('Falha ao buscar produto por ID');
   return res.json();
 }
+
+export async function buscarMetaAPI() {
+  const res = await fetch(`${API_URL}/api/meta`);
+  if (!res.ok) throw new Error('Falha ao buscar metadados');
+  return res.json();
+}
