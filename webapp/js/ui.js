@@ -497,7 +497,10 @@ export function initUI() {
       renderSugestoes();
     }, 500); // Espera 500ms após a digitação para buscar
   });
-  campoBusca.addEventListener('focus', () => renderSugestoes());
+  campoBusca.addEventListener('focus', () => {
+    sugestoesMarca.classList.add('hidden'); // evita sobreposição com a caixa de marca
+    renderSugestoes();
+  });
   campoBusca.addEventListener('keydown', event => navegarSugestoes(event, sugestoes));
   campoBusca.addEventListener('blur', () => setTimeout(() => sugestoes.classList.add('hidden'), 150));
 
@@ -516,7 +519,10 @@ export function initUI() {
       renderSugestoes();
     }, 500);
   });
-  campoMarca.addEventListener('focus', () => renderSugestoesMarca());
+  campoMarca.addEventListener('focus', () => {
+    sugestoes.classList.add('hidden'); // evita sobreposição com a caixa de produtos
+    renderSugestoesMarca();
+  });
   campoMarca.addEventListener('keydown', event => navegarSugestoes(event, sugestoesMarca));
   campoMarca.addEventListener('blur', () => setTimeout(() => sugestoesMarca.classList.add('hidden'), 150));
 
