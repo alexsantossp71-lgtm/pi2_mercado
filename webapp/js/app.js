@@ -4,9 +4,9 @@
    Inicializa todos os módulos na ordem correta.
    ================================================================ */
 
-import { buscarMarcasAPI, buscarMetaAPI } from './api.js';
+import { buscarMarcasAPI, buscarMetaAPI, buscarProdutoPorIdAPI } from './api.js';
 import { buscarProdutos } from './searchEngine.js';
-import { onListaChange, restaurarDoStorage } from './shoppingList.js';
+import { onListaChange, restaurarDoStorage, limparLista, adicionarItem } from './shoppingList.js';
 import { initUI, popularCategorias, renderLista } from './ui.js';
 
 /**
@@ -16,6 +16,34 @@ import { initUI, popularCategorias, renderLista } from './ui.js';
 window._dp_modules = {
   onListaChange
 };
+
+/**
+ * Restaura a lista a partir de um link compartilhado (?lista=id:qtd,...).
+ * A URL tem precedência sobre o localStorage; o parâmetro é removido após a carga.
+ */
+async function restaurarDaURL() {
+  const params = new URLSearchParams(location.search);
+  const codigo = params.get('lista');
+  if (!codigo) return;
+
+  limparLista();
+  const pares = codigo.split(',').map(p => p.trim()).filter(Boolean);
+  for (const par of pares) {
+    const [idStr, qtdStr] = par.split(':');
+    const id = parseInt(idStr, 10);
+    const qtd = Math.max(1, parseInt(qtdStr, 10) || 1);
+    if (!id) continue;
+    try {
+      const produto = await buscarProdutoPorIdAPI(id);
+      adicionarItem(produto, qtd);
+    } catch (e) {
+      console.warn(`[Share] Produto ${id} não encontrado:`, e);
+    }
+  }
+
+  // Limpa o parâmetro para não restaurar de novo em refresh
+  history.replaceState(null, '', location.pathname);
+}
 
 /**
  * Ponto de entrada da aplicação.
@@ -57,6 +85,7 @@ async function init() {
 
   // 3. Restaura lista do localStorage
   await restaurarDoStorage();
+  await restaurarDaURL();
 
   // 4. Inicializa event bindings da UI
   initUI();

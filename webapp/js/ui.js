@@ -6,7 +6,7 @@
 import { buscarCategoriasAPI, buscarMarcasAPI } from './api.js';
 import { LOJAS, CHAVES_LOJA } from './dataLoader.js';
 import { buscarProdutos } from './searchEngine.js';
-import { getLista, getTotalItens, adicionarItem, removerItem, alterarQtd, limparLista, gerarTextoCompartilhamento } from './shoppingList.js';
+import { getLista, getTotalItens, adicionarItem, removerItem, alterarQtd, limparLista, gerarTextoCompartilhamento, gerarCodigoLista } from './shoppingList.js';
 import { fmtBRL, totalPorLoja, melhorLojaUnica, divisaoMultiLoja, disponivelEm, motivoIndisponivel, itensIndisponiveisPorLoja } from './priceCalculator.js';
 
 /* ================================================================
@@ -242,11 +242,13 @@ export function renderLista() {
     tabelaLista.classList.add('hidden');
     secaoResultados.classList.add('hidden');
     secaoChecklist.classList.add('hidden');
+    btnCompartilhar.classList.add('hidden');
     return;
   }
 
   listaVazia.classList.add('hidden');
   tabelaLista.classList.remove('hidden');
+  btnCompartilhar.classList.remove('hidden');
   contagemItens.textContent = totalItens + (totalItens === 1 ? ' item' : ' itens');
 
   corpoLista.innerHTML = '';
@@ -437,7 +439,9 @@ function atualizarProgresso() {
 function compartilharWhatsApp() {
   const texto = gerarTextoCompartilhamento();
   if (!texto) return;
-  const url = `https://wa.me/?text=${encodeURIComponent(texto)}`;
+  const link = `${location.origin}${location.pathname}?lista=${encodeURIComponent(gerarCodigoLista())}`;
+  const completo = `${texto}\n\n🔗 Ver lista com preços atualizados:\n${link}`;
+  const url = `https://wa.me/?text=${encodeURIComponent(completo)}`;
   window.open(url, '_blank');
 }
 
