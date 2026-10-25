@@ -16,8 +16,10 @@ def _norm_nome_flv(s: str) -> str:
     """Normaliza nome p/ match de Hortifrúti: minúsculo, sem acento, sem qtde/unidade."""
     s = unicodedata.normalize("NFD", (s or "").lower())
     s = "".join(c for c in s if unicodedata.category(c) != "Mn")
-    s = re.sub(r"\b(kg|g|ml|l|un|unid|unidade|aprox|pct|bandeja|cx|dz|org|organico|taeq)\b", " ", s)
-    s = re.sub(r"\d+(?:[.,]\d+)?", " ", s)
+    # Remove número + unidade acoplada numa passada (ex.: "600g", "500 ml", "1kg")
+    s = re.sub(r"\d+(?:[.,]\d+)?\s*(?:kg|g|ml|l|un|unid|unidade|aprox|pct|bandeja|cx|dz|org|organico|taeq)?", " ", s)
+    # Remove unidades isoladas que tenham sobrado (ex.: "abacate g" -> "abacate")
+    s = re.sub(r"\b(?:kg|g|ml|l|un|unid|unidade|aprox|pct|bandeja|cx|dz|org|organico|taeq)\b", " ", s)
     return re.sub(r"\s+", " ", s).strip()
 
 

@@ -5,12 +5,21 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-# Credenciais lidas de webapp/backend/.env (nunca versionar este arquivo)
+import argparse
+
+# Credenciais lidas de webapp/backend/.env (fallback)
 load_dotenv(Path(__file__).parent / ".env")
 
+parser = argparse.ArgumentParser()
+parser.add_argument("--url", default=os.environ.get("TURSO_DATABASE_URL", ""))
+parser.add_argument("--token", default=os.environ.get("TURSO_AUTH_TOKEN", ""))
+args = parser.parse_args()
+
 DB_PATH = Path(__file__).parent / "dispensa.db"
-TURSO_URL = os.environ["TURSO_DATABASE_URL"]
-TURSO_TOKEN = os.environ["TURSO_AUTH_TOKEN"]
+TURSO_URL = args.url.strip().strip("'\"")
+TURSO_TOKEN = args.token.strip().strip("'\"")
+if TURSO_URL.startswith("libsql://"):
+    TURSO_URL = "https://" + TURSO_URL[len("libsql://"):]
 
 async def migrate():
     print("Conectando ao Turso...")

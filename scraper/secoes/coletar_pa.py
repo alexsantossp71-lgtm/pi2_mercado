@@ -20,11 +20,39 @@ Uso:
 
 import json
 import os
+import random
 import re
 import time
 from datetime import date
 
 import requests
+
+# ---------------------------------------------------------------------------
+# Anti-block: User-Agent rotation + jitter
+# ---------------------------------------------------------------------------
+USER_AGENTS = [
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+]
+
+
+def random_ua():
+    return random.choice(USER_AGENTS)
+
+
+def sleep_with_jitter(base_sleep: float, factor: float = 1.0):
+    """Sleep com jitter randômico para evitar padrão detectável."""
+    time.sleep(base_sleep * factor + random.uniform(0, base_sleep * 0.6))
+
+
+def backoff_sleep(tentativa: int, base: float = 5.0, maximo: float = 60.0):
+    """Backoff exponencial: 5s, 10s, 20s... com jitter."""
+    espera = min(base * (2 ** tentativa), maximo)
+    espera += random.uniform(0, espera * 0.3)
+    print(f"    [backoff] aguardando {espera:.1f}s (tentativa {tentativa + 1})")
+    time.sleep(espera)
 
 # ---------------------------------------------------------------------------
 # Configurações
@@ -46,7 +74,7 @@ USER_AGENT = (
     "(KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
 )
 HEADERS = {
-    "User-Agent": USER_AGENT,
+    "User-Agent": random_ua(),
     "Accept": "application/json, text/plain, */*",
     "Content-Type": "application/json",
     "Referer": "https://www.paodeacucar.com/",
@@ -205,8 +233,24 @@ def pedir_lista(multi: str, filtro: str, pagina: int) -> tuple[list, int, int]:
         "customerPlus": True,
         "filters": [filtro],
     }
-    resp = requests.post(URL_LISTA, json=payload, headers=HEADERS, timeout=TIMEOUT)
-    resp.raise_for_status()
+    headers = {
+        "User-Agent": random_ua(),
+        "Accept": "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+        "Referer": "https://www.paodeacucar.com/",
+        "Origin": "https://www.paodeacucar.com",
+    }
+    # Backoff + retry
+    for tentativa in range(3):
+        resp = requests.post(URL_LISTA, json=payload, headers=headers, timeout=TIMEOUT)
+        if resp.status_code in (429, 500, 502, 503, 504):
+            if tentativa < 2:
+                backoff_sleep(tentativa)
+                continue
+            resp.raise_for_status()
+        break
+    else:
+        resp.raise_for_status()
     dados = resp.json()
     return (
         dados.get("products") or [],
@@ -221,9 +265,23 @@ def nome_subsecao(filtro: str) -> str:
 
 
 def pedir_detalhe(produto_id: int) -> dict | None:
-    resp = requests.get(URL_DETALHE.format(produto_id),
-                        params={"storeId": STORE_ID}, headers=HEADERS, timeout=TIMEOUT)
-    resp.raise_for_status()
+    headers_dyn = {
+        "User-Agent": random_ua(),
+        "Accept": "application/json, text/plain, */*",
+        "Referer": "https://www.paodeacucar.com/",
+        "Origin": "https://www.paodeacucar.com",
+    }
+    for tentativa in range(3):
+        resp = requests.get(URL_DETALHE.format(produto_id),
+                            params={"storeId": STORE_ID}, headers=headers_dyn, timeout=TIMEOUT)
+        if resp.status_code in (429, 500, 502, 503, 504):
+            if tentativa < 2:
+                backoff_sleep(tentativa)
+                continue
+            resp.raise_for_status()
+        break
+    else:
+        resp.raise_for_status()
     return resp.json().get("content")
 
 
@@ -271,7 +329,7 @@ def coletar_ids_subcat(multi: str, filtro: str, seccao_nome: str) -> list[dict]:
                     }
                     novos += 1
             pagina += 1
-            time.sleep(SLEEP_LISTA)
+            sleep_with_jitter(SLEEP_LISTA)
         print(f"    varredura {varredura}: únicos {len(vistos)}/{total_alvo} | novos: {novos}")
         if novos == 0:
             sem_novidade += 1
@@ -433,7 +491,7 @@ def main() -> None:
             salvar_json(progresso_detalhe, sorted(detalhes_feitos))
             print(f"    [{idx}/{len(pendentes)}] detalhes | cadastros novos: {novos_cad} | preços: {atualizados} | sem EAN/preço: {sem_ean}")
 
-        time.sleep(SLEEP_DETALHE)
+        sleep_with_jitter(SLEEP_DETALHE)
 
     salvar_json(ARQUIVO_PRODUTOS, list(produtos.values()))
     salvar_json(ARQUIVO_PRECOS, list(precos.values()))

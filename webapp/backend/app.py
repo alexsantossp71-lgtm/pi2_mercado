@@ -10,7 +10,7 @@ def run_analysis(item_id: str):
     if not pathlib.Path(script_path).exists():
         return {'error': 'analysis script not found'}
     # Run script (it writes files we can read)
-    subprocess.run(['python', script_path], check=False)
+    subprocess.run(['python3', script_path], check=False)
     # Read generated CSV for the requested item (simplified: return whole CSV)
     csv_path = os.path.join(os.path.dirname(__file__), '..', '..', 'prototipo', 'sazonalidade.csv')
     if not pathlib.Path(csv_path).exists():
