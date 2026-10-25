@@ -1,0 +1,230 @@
+[
+  {
+    "gtin_ean": "7898206501253",
+    "secao": "Matinais",
+    "nome_completo": "Fibras Orgânica NATIVE 300g",
+    "marca": "NATIVE",
+    "apresentacao": {
+      "quantidade": 300,
+      "unidade_medida": "g"
+    },
+    "imagem_url": "https://static.paodeacucar.com/img/uploads/1/25/33064025.png",
+    "data_cadastro": "2026-08-02"
+  },
+  {
+    "gtin_ean": "7895000471591",
+    "secao": "Matinais",
+    "nome_completo": "Granola Tradicional Com Mel Qualitá Pacote 800g",
+    "marca": "QUALITÁ",
+    "apresentacao": {
+      "quantidade": 800,
+      "unidade_medida": "g"
+    },
+    "imagem_url": "https://static.paodeacucar.com/img/uploads/1/132/33044132.png",
+    "data_cadastro": "2026-08-02"
+  },
+  {
+    "gtin_ean": "7891000310824",
+    "secao": "Laticínios",
+    "nome_completo": "Leite Integral Parmalat 1L",
+    "marca": "PARMALAT",
+    "apresentacao": {
+      "quantidade": 1,
+      "unidade_medida": "L"
+    },
+    "imagem_url": "https://static.paodeacucar.com/img/uploads/1/50/33044150.png",
+    "data_cadastro": "2026-08-02"
+  },
+  {
+    "gtin_ean": "7891000310831",
+    "secao": "Laticínios",
+    "nome_completo": "Leite Deslactose Parmalat 1L",
+    "marca": "PARMALAT",
+    "apresentacao": {
+      "quantidade": 1,
+      "unidade_medida": "L"
+    },
+    "imagem_url": "https://static.paodeacucar.com/img/uploads/1/51/33044151.png",
+    "data_cadastro": "2026-08-02"
+  },
+  {
+    "gtin_ean": "7891000310848",
+    "secao": "Laticínios",
+    "nome_completo": "Iogovital Natural 170g",
+    "marca": "ITAMBÉ",
+    "apresentacao": {
+      "quantidade": 170,
+      "unidade_medida": "g"
+    },
+    "imagem_url": "https://static.paodeacucar.com/img/uploads/1/52/33044152.png",
+    "data_cadastro": "2026-08-02"
+  },
+  {
+    "gtin_ean": "7891000310855",
+    "secao": "Bebidas",
+    "nome_completo": "Coca-Cola Lata 350ml",
+    "marca": "COCA-COLA",
+    "apresentacao": {
+      "quantidade": 350,
+      "unidade_medida": "ml"
+    },
+    "imagem_url": "https://static.paodeacucar.com/img/uploads/1/60/33044160.png",
+    "data_cadastro": "2026-08-02"
+  },
+  {
+    "gtin_ean": "7891000310862",
+    "secao": "Bebidas",
+    "nome_completo": "Água Mineral San Marino Sem Gás 500ml",
+    "marca": "SAN MARINO",
+    "apresentacao": {
+      "quantidade": 500,
+      "unidade_medida": "ml"
+    },
+    "imagem_url": "https://static.paodeacucar.com/img/uploads/1/61/33044161.png",
+    "data_cadastro": "2026-08-02"
+  },
+  {
+    "gtin_ean": "7891000310879",
+    "secao": "Higiene",
+    "nome_completo": "Pasta de Dente Colgate Total 12h 90g",
+    "marca": "COLGATE",
+    "apresentacao": {
+      "quantidade": 90,
+      "unidade_medida": "g"
+    },
+    "imagem_url": "https://static.paodeacucar.com/img/uploads/1/70/33044170.png",
+    "data_cadastro": "2026-08-02"
+  },
+  {
+    "gtin_ean": "7891000310886",
+    "secao": "Higiene",
+    "nome_completo": "Shampoo Seda Liso Perfeito 250ml",
+    "marca": "SEDA",
+    "apresentacao": {
+      "quantidade": 250,
+      "unidade_medida": "ml"
+    },
+    "imagem_url": "https://static.paodeacucar.com/img/uploads/1/71/33044171.png",
+    "data_cadastro": "2026-08-02"
+  },
+  {
+    "gtin_ean": "7891000310893",
+    "secao": "Limpeza",
+    "nome_completo": "Água Sanitária Bombril 500ml",
+    "marca": "BOMBRIL",
+    "apresentacao": {
+      "quantidade": 500,
+      "unidade_medida": "ml"
+    },
+    "imagem_url": "https://static.paodeacucar.com/img/uploads/1/80/33044180.png",
+    "data_cadastro": "2026-08-02"
+  },
+  {
+    "gtin_ean": "7891000310909",
+    "secao": "Limpeza",
+    "nome_completo": "Detergente Ypê Neutro 500ml",
+    "marca": "YPÊ",
+    "apresentacao": {
+      "quantidade": 500,
+      "unidade_medida": "ml"
+    },
+    "imagem_url": "https://static.paodeacucar.com/img/uploads/1/81/33044181.png",
+    "data_cadastro": "2026-08-02"
+  },
+  {
+    "gtin_ean": "7891000310916",
+    "secao": "Mercearia",
+    "nome_completo": "Arroz Tio João Tipo 1 5kg",
+    "marca": "TIO JOÃO",
+    "apresentacao": {
+      "quantidade": 5,
+      "unidade_medida": "kg"
+    },
+    "imagem_url": "https://static.paodeacucar.com/img/uploads/1/90/33044190.png",
+    "data_cadastro": "2026-08-02"
+  },
+  {
+    "gtin_ean": "7891000310923",
+    "secao": "Mercearia",
+    "nome_completo": "Feijão Carioca Camil 1kg",
+    "marca": "CAMIL",
+    "apresentacao": {
+      "quantidade": 1,
+      "unidade_medida": "kg"
+    },
+    "imagem_url": "https://static.paodeacucar.com/img/uploads/1/91/33044191.png",
+    "data_cadastro": "2026-08-02"
+  },
+  {
+    "gtin_ean": "7891000310930",
+    "secao": "Congelados",
+    "nome_completo": "Frango Assado Seara 1kg",
+    "marca": "SEARA",
+    "apresentacao": {
+      "quantidade": 1,
+      "unidade_medida": "kg"
+    },
+    "imagem_url": "https://static.paodeacucar.com/img/uploads/1/100/33044200.png",
+    "data_cadastro": "2026-08-02"
+  },
+  {
+    "gtin_ean": "7891000310947",
+    "secao": "Padaria",
+    "nome_completo": "Pão Francês Dia 50g",
+    "marca": "DIA",
+    "apresentacao": {
+      "quantidade": 50,
+      "unidade_medida": "g"
+    },
+    "imagem_url": "https://static.paodeacucar.com/img/uploads/1/110/33044210.png",
+    "data_cadastro": "2026-08-02"
+  },
+  {
+    "gtin_ean": "7891000310954",
+    "secao": "Açougue",
+    "nome_completo": "Alcatra Fria Sadia 300g",
+    "marca": "SADIA",
+    "apresentacao": {
+      "quantidade": 300,
+      "unidade_medida": "g"
+    },
+    "imagem_url": "https://static.paodeacucar.com/img/uploads/1/120/33044220.png",
+    "data_cadastro": "2026-08-02"
+  },
+  {
+    "gtin_ean": "7891000310961",
+    "secao": "Hortifrúti",
+    "nome_completo": "Banana Prata Unidade",
+    "marca": "SEM MARCA",
+    "apresentacao": {
+      "quantidade": 1,
+      "unidade_medida": "un"
+    },
+    "imagem_url": "https://static.paodeacucar.com/img/uploads/1/130/33044230.png",
+    "data_cadastro": "2026-08-02"
+  },
+  {
+    "gtin_ean": "7891000310978",
+    "secao": "Pet Shop",
+    "nome_completo": "Ração Para Cães Adulto Pedigree 10kg",
+    "marca": "PEDIGREE",
+    "apresentacao": {
+      "quantidade": 10,
+      "unidade_medida": "kg"
+    },
+    "imagem_url": "https://static.paodeacucar.com/img/uploads/1/140/33044240.png",
+    "data_cadastro": "2026-08-02"
+  },
+  {
+    "gtin_ean": "7891000310985",
+    "secao": "Bebidas Alcoólicas",
+    "nome_completo": "Cerveja Skol Lata 350ml",
+    "marca": "SKOL",
+    "apresentacao": {
+      "quantidade": 350,
+      "unidade_medida": "ml"
+    },
+    "imagem_url": "https://static.paodeacucar.com/img/uploads/1/150/33044250.png",
+    "data_cadastro": "2026-08-02"
+  }
+]

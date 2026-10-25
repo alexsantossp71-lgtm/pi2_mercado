@@ -37,21 +37,18 @@ def search_products(
         params.append(marca_clean)
 
     if q_clean:
-        conditions.append("(p.id IN (SELECT id FROM produtos_fts WHERE produtos_fts MATCH ?) OR LOWER(p.nome) LIKE ? OR LOWER(p.marca) LIKE ?)")
-        # Order-independent FTS: split the query into whitespace-separated
-        # tokens and AND-combine each token with a trailing wildcard, so
-        # "Biscoito club social" and "club social biscoito" match the same set.
-        words = q_clean.split()
-        fts_query = " AND ".join(f'"{w}"*' for w in words)
-        like_query = f"%{q_clean.lower()}%"
-        params.extend([fts_query, like_query, like_query])
+        conditions.append("p.id IN (SELECT id FROM produtos_fts WHERE produtos_fts MATCH ?)")
+        # Monta query FTS5 robusta (prefix search com * se necessário, ou termo limpo)
+        fts_query = " ".join([f'"{term}"*' for term in q_clean.split()])
+        params.append(fts_query)
 
     where_clause = " WHERE " + " AND ".join(conditions) if conditions else ""
 
     # Count total matching rows
     count_sql = f"SELECT COUNT(*) FROM produtos p {where_clause};"
     cursor.execute(count_sql, params)
-    total = cursor.fetchone()[0]
+    result = cursor.fetchone()
+    total = result[0] if result else 0
 
     total_pages = math.ceil(total / limit) if total > 0 else 0
     offset = (page - 1) * limit
@@ -155,6 +152,47 @@ def get_product_by_id(product_id: int) -> Optional[dict]:
         LEFT JOIN precos pr4 ON p.id = pr4.produto_id AND pr4.loja_id = 4
         WHERE p.id = ?;
     """, (product_id,))
+    row = cursor.fetchone()
+    conn.close()
+
+    if not row:
+        return None
+
+    return {
+        "id": row["id"],
+        "gtin_ean": row["gtin_ean"],
+        "nome": row["nome"],
+        "categoria": row["categoria"],
+        "marca": row["marca"],
+        "relevancia": row["relevancia"],
+        "imagem_url": row["imagem_url"],
+        "apresentacao": row["apresentacao"],
+        "preco": [row["p1"], row["p2"], row["p3"], row["p4"]],
+        "preco_regular": [row["r1"], row["r2"], row["r3"], row["r4"]],
+        "em_estoque": [bool(row["e1"]), bool(row["e2"]), bool(row["e3"]), bool(row["e4"])],
+    }
+
+
+def get_product_by_ean(ean: str) -> Optional[dict]:
+    """Busca produto por EAN/GTIN, retornando preços de todas as lojas."""
+    if not ean:
+        return None
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        SELECT
+            p.id, p.gtin_ean, p.nome, p.categoria, p.marca, p.relevancia, p.imagem_url, p.apresentacao,
+            pr1.preco_promocional AS p1, pr1.preco_regular AS r1, pr1.em_estoque AS e1,
+            pr2.preco_promocional AS p2, pr2.preco_regular AS r2, pr2.em_estoque AS e2,
+            pr3.preco_promocional AS p3, pr3.preco_regular AS r3, pr3.em_estoque AS e3,
+            pr4.preco_promocional AS p4, pr4.preco_regular AS r4, pr4.em_estoque AS e4
+        FROM produtos p
+        LEFT JOIN precos pr1 ON p.id = pr1.produto_id AND pr1.loja_id = 1
+        LEFT JOIN precos pr2 ON p.id = pr2.produto_id AND pr2.loja_id = 2
+        LEFT JOIN precos pr3 ON p.id = pr3.produto_id AND pr3.loja_id = 3
+        LEFT JOIN precos pr4 ON p.id = pr4.produto_id AND pr4.loja_id = 4
+        WHERE p.gtin_ean = ?;
+    """, (ean,))
     row = cursor.fetchone()
     conn.close()
 

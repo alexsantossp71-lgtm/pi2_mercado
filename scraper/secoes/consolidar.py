@@ -17,7 +17,9 @@ import shutil
 import sys
 from collections import Counter
 
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
+# Garante encoding UTF-8 no stdout sem fechar o buffer original
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
 
 from relevancia import calcular_relevancia
 
@@ -29,12 +31,14 @@ ARQUIVOS_PRODUTOS_LOJAS = [
     os.path.join(RAIZ, "produtos_pa.json"),
     os.path.join(RAIZ, "produtos_carrefour.json"),
     os.path.join(RAIZ, "produtos_atacadao.json"),
+    os.path.join(RAIZ, "produtos_soudaki.json"),
 ]
 
 LOJAS = {
     "carrefour": ("precos_carrefour_ampliado.json", "Carrefour"),
     "pao_de_acucar": ("precos_pao_de_acucar_ampliado.json", "Pão de Açúcar"),
     "atacadao": ("precos_atacadao_ampliado.json", "Atacadão"),
+    "soudaki": ("precos_soudaki_ampliado.json", "Soudaki"),
 }
 
 

@@ -1,0 +1,450 @@
+[
+  {
+    "gtin_ean": "7427305628327",
+    "supermercado": "Carrefour",
+    "preco_regular": 25.27,
+    "preco_promocional": 25.27,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7897186098135",
+    "supermercado": "Carrefour",
+    "preco_regular": 69.98,
+    "preco_promocional": 69.98,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7427319472145",
+    "supermercado": "Carrefour",
+    "preco_regular": 55.36,
+    "preco_promocional": 55.36,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7897186098111",
+    "supermercado": "Carrefour",
+    "preco_regular": 49.9,
+    "preco_promocional": 49.9,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7427319472152",
+    "supermercado": "Carrefour",
+    "preco_regular": 55.36,
+    "preco_promocional": 55.36,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7898682465698",
+    "supermercado": "Carrefour",
+    "preco_regular": 40.21,
+    "preco_promocional": 40.21,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7899069619383",
+    "supermercado": "Carrefour",
+    "preco_regular": 13220.89,
+    "preco_promocional": 13220.89,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7898563671293",
+    "supermercado": "Carrefour",
+    "preco_regular": 3149.2,
+    "preco_promocional": 3149.2,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7898563673228",
+    "supermercado": "Carrefour",
+    "preco_regular": 3698.38,
+    "preco_promocional": 3698.38,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7894472820609",
+    "supermercado": "Carrefour",
+    "preco_regular": 99.9,
+    "preco_promocional": 99.9,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7427305001274",
+    "supermercado": "Carrefour",
+    "preco_regular": 34.91,
+    "preco_promocional": 34.91,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7908152060268",
+    "supermercado": "Carrefour",
+    "preco_regular": 3418.14,
+    "preco_promocional": 3418.14,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7908152041847",
+    "supermercado": "Carrefour",
+    "preco_regular": 5063.42,
+    "preco_promocional": 5063.42,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7795401732195",
+    "supermercado": "Carrefour",
+    "preco_regular": 76.0,
+    "preco_promocional": 76.0,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7896863805110",
+    "supermercado": "Carrefour",
+    "preco_regular": 163.63,
+    "preco_promocional": 163.63,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7891116140055",
+    "supermercado": "Carrefour",
+    "preco_regular": 148.7,
+    "preco_promocional": 148.7,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7906690460298",
+    "supermercado": "Carrefour",
+    "preco_regular": 184.9,
+    "preco_promocional": 184.9,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7891841892007",
+    "supermercado": "Carrefour",
+    "preco_regular": 124.1,
+    "preco_promocional": 124.1,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "5010576148087",
+    "supermercado": "Carrefour",
+    "preco_regular": 260.99,
+    "preco_promocional": 260.99,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "5010576149305",
+    "supermercado": "Carrefour",
+    "preco_regular": 219.99,
+    "preco_promocional": 199.99,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7908103721224",
+    "supermercado": "Carrefour",
+    "preco_regular": 134.99,
+    "preco_promocional": 134.99,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7908103724690",
+    "supermercado": "Carrefour",
+    "preco_regular": 159.99,
+    "preco_promocional": 159.99,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "8720689007481",
+    "supermercado": "Carrefour",
+    "preco_regular": 71.69,
+    "preco_promocional": 71.69,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "4008600449171",
+    "supermercado": "Carrefour",
+    "preco_regular": 34.99,
+    "preco_promocional": 34.99,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "4008600449164",
+    "supermercado": "Carrefour",
+    "preco_regular": 34.99,
+    "preco_promocional": 34.99,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "8138780235212",
+    "supermercado": "Carrefour",
+    "preco_regular": 72.9,
+    "preco_promocional": 72.9,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7908103749792",
+    "supermercado": "Carrefour",
+    "preco_regular": 49.36,
+    "preco_promocional": 49.36,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "4894457274949",
+    "supermercado": "Carrefour",
+    "preco_regular": 81.09,
+    "preco_promocional": 81.09,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7908741213303",
+    "supermercado": "Carrefour",
+    "preco_regular": 58.29,
+    "preco_promocional": 58.29,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7896098815489",
+    "supermercado": "Carrefour",
+    "preco_regular": 45.99,
+    "preco_promocional": 45.99,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7898734370949",
+    "supermercado": "Carrefour",
+    "preco_regular": 71.99,
+    "preco_promocional": 65.99,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7897947620346",
+    "supermercado": "Carrefour",
+    "preco_regular": 11.99,
+    "preco_promocional": 11.99,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7897947620339",
+    "supermercado": "Carrefour",
+    "preco_regular": 11.99,
+    "preco_promocional": 11.99,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7897947620322",
+    "supermercado": "Carrefour",
+    "preco_regular": 11.99,
+    "preco_promocional": 11.99,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7897947620353",
+    "supermercado": "Carrefour",
+    "preco_regular": 15.99,
+    "preco_promocional": 15.99,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "8710103881230",
+    "supermercado": "Carrefour",
+    "preco_regular": 51.99,
+    "preco_promocional": 51.99,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7899838800745",
+    "supermercado": "Carrefour",
+    "preco_regular": 15.9,
+    "preco_promocional": 15.9,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7896647077801",
+    "supermercado": "Carrefour",
+    "preco_regular": 29.46,
+    "preco_promocional": 29.46,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7897371801687",
+    "supermercado": "Carrefour",
+    "preco_regular": 31.9,
+    "preco_promocional": 31.9,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7896000650252",
+    "supermercado": "Carrefour",
+    "preco_regular": 15.9,
+    "preco_promocional": 15.9,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7896409515367",
+    "supermercado": "Carrefour",
+    "preco_regular": 62.86,
+    "preco_promocional": 62.86,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "8058664087778",
+    "supermercado": "Carrefour",
+    "preco_regular": 59.9,
+    "preco_promocional": 59.9,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "8138752290300",
+    "supermercado": "Carrefour",
+    "preco_regular": 267.0,
+    "preco_promocional": 267.0,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7896098808429",
+    "supermercado": "Carrefour",
+    "preco_regular": 29.9,
+    "preco_promocional": 29.9,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7896409515381",
+    "supermercado": "Carrefour",
+    "preco_regular": 62.86,
+    "preco_promocional": 62.86,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7896409515404",
+    "supermercado": "Carrefour",
+    "preco_regular": 72.79,
+    "preco_promocional": 72.79,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "9001616691041",
+    "supermercado": "Carrefour",
+    "preco_regular": 56.0,
+    "preco_promocional": 56.0,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7896098808399",
+    "supermercado": "Carrefour",
+    "preco_regular": 29.9,
+    "preco_promocional": 29.9,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "4008600215622",
+    "supermercado": "Carrefour",
+    "preco_regular": 77.9,
+    "preco_promocional": 77.9,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "4008600115915",
+    "supermercado": "Carrefour",
+    "preco_regular": 27.9,
+    "preco_promocional": 27.9,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "9001616624025",
+    "supermercado": "Carrefour",
+    "preco_regular": 34.0,
+    "preco_promocional": 34.0,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7908161358493",
+    "supermercado": "Carrefour",
+    "preco_regular": 44.9,
+    "preco_promocional": 44.9,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7893345003750",
+    "supermercado": "Carrefour",
+    "preco_regular": 147.85,
+    "preco_promocional": 147.85,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7892746394856",
+    "supermercado": "Carrefour",
+    "preco_regular": 79.98,
+    "preco_promocional": 79.98,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "7896699011099",
+    "supermercado": "Carrefour",
+    "preco_regular": 60.99,
+    "preco_promocional": 60.99,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  },
+  {
+    "gtin_ean": "4008600062530",
+    "supermercado": "Carrefour",
+    "preco_regular": 113.9,
+    "preco_promocional": 113.9,
+    "em_estoque": true,
+    "data_coleta": "2026-09-02"
+  }
+]

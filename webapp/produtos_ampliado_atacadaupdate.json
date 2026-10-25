@@ -1,0 +1,30 @@
+[
+  {
+    "gtin_ean": "7896534405779",
+    "secao": "Mercearia",
+    "nome_completo": "PRODUTO_A_CONFIRMAR_7896534405779",
+    "marca": "MARCA_A_CONFIRMAR",
+    "apresentacao": {
+      "quantidade": 1,
+      "unidade_medida": "un"
+    },
+    "imagem_url": "",
+    "data_cadastro": "2026-08-19",
+    "preco_sugerido": 2.85,
+    "em_estoque": true
+  },
+  {
+    "gtin_ean": "78960451127112760",
+    "secao": "Mercearia",
+    "nome_completo": "PRODUTO_A_CONFIRMAR_78960457112760",
+    "marca": "MARCA_A_CONFIRMAR",
+    "apresentacao": {
+      "quantidade": 1,
+      "unidade_medida": "un"
+    },
+    "imagem_url": "",
+    "data_cadastro": "2026-08-19",
+    "preco_sugerido": 17.9,
+    "em_estoque": true
+  }
+]
