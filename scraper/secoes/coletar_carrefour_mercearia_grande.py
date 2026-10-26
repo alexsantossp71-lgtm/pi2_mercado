@@ -30,7 +30,7 @@ USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTM
 coletar_vtex({
     "nome_supermercado": "Carrefour",
     "chave_loja": "carrefour",
-    "base_url": "https://www.carrefour.com.br",
+    "base_url": "https://mercado.carrefour.com.br",
     "marcador_imagem": "carrefourbr",
     "user_agent": USER_AGENT,
     "folhas": mercearia,
