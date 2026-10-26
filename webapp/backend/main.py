@@ -111,6 +111,33 @@ def api_search_products(
     )
 
 
+@app.get("/api/produtos/buscar-por-ean")
+def get_precos_por_ean(
+    ean: str = Query(..., description="EAN/GTIN do produto (ex: 7891234567890)"),
+):
+    """
+    Retorna preços atuais de todas as lojas para um EAN específico.
+    Útil para atualização em tempo real quando o usuário seleciona o produto.
+    """
+    from services.product_service import get_product_by_ean
+    produto = get_product_by_ean(ean)
+    if not produto:
+        return {"ean": ean, "precos": [], "encontrado": False}
+    return {
+        "ean": ean,
+        "encontrado": True,
+        "nome": produto.get("nome"),
+        "marca": produto.get("marca"),
+        "categoria": produto.get("categoria"),
+        "precos": [
+            {"loja": "Carrefour", "preco_promocional": produto["preco"][0], "preco_regular": produto["preco_regular"][0], "em_estoque": produto["em_estoque"][0]},
+            {"loja": "Pão de Açúcar", "preco_promocional": produto["preco"][1], "preco_regular": produto["preco_regular"][1], "em_estoque": produto["em_estoque"][1]},
+            {"loja": "Atacadão", "preco_promocional": produto["preco"][2], "preco_regular": produto["preco_regular"][2], "em_estoque": produto["em_estoque"][2]},
+            {"loja": "Soudaki", "preco_promocional": produto["preco"][3], "preco_regular": produto["preco_regular"][3], "em_estoque": produto["em_estoque"][3]},
+        ]
+    }
+
+
 @app.get("/api/produtos/{product_id}", response_model=ProdutoOut)
 def api_get_product(product_id: int):
     prod = get_product_by_id(product_id)
@@ -180,7 +207,7 @@ def api_meta():
 
 
 # Endpoint para consultar preços por EAN (para uso em tempo real no frontend)
-@app.get("/api/produtos/precos-por-ean")
+@app.get("/api/produtos/buscar-por-ean")
 def get_precos_por_ean(
     ean: str = Query(..., description="EAN/GTIN do produto (ex: 7891234567890)"),
 ):
