@@ -9,10 +9,8 @@ Melhorias em relação à versão anterior:
   - Sleep 0.2s (reduzido de 0.3s, mantendo segurança).
   - Checkpoint a cada 30 folhas.
 """
-import io
 import json
 import os
-import sys
 
 from coletor_vtex import coletar_vtex
 
@@ -40,13 +38,14 @@ def main() -> None:
         "folhas": folhas,
         "pagina_tamanho": 50,
         "limite_max": 2500,
-        # Filtro de disponibilidade: só produtos com estoque no canal online
-        "filtro_fq": "isAvailablePerSalesChannel_1:1",
+        # Filtro removido: agora coleta todos os produtos (incluindo sem estoque online)
+        # e utiliza Multi-CEP para cobertura regional de preços
         "sleep": 0.2,
         "timeout": 20,
         "checkpoint_a_cada": 10,
         "arquivo_produtos": os.path.join(RAIZ, "produtos_carrefour.json"),
         "arquivo_precos": os.path.join(RAIZ, "precos_carrefour_ampliado.json"),
+        "multi_cep": True,
     })
 
 

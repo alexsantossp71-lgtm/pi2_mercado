@@ -169,13 +169,14 @@ def api_meta():
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    # Garante que a coluna data_coleta existe (ALTER TABLE incremental, sem DROP)
-    try:
-        cursor.execute(
-            "ALTER TABLE precos ADD COLUMN data_coleta TEXT DEFAULT NULL"
-        )
-    except Exception:
-        pass  # coluna já existe
+    # Garante que a coluna data_coleta existe (compatível com Postgres e SQLite)
+    if getattr(conn, "is_postgres", False):
+        cursor.execute("ALTER TABLE precos ADD COLUMN IF NOT EXISTS data_coleta TEXT")
+    else:
+        try:
+            cursor.execute("ALTER TABLE precos ADD COLUMN data_coleta TEXT DEFAULT NULL")
+        except Exception:
+            pass
 
     # Lojas cadastradas (fonte de verdade: tabela lojas)
     cursor.execute("SELECT chave, nome, icone FROM lojas ORDER BY id")
