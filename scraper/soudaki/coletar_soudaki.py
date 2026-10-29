@@ -71,8 +71,21 @@ HOJE = date.today().isoformat()
 HEADERS = {
     "User-Agent": ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
                    "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"),
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-    "Accept-Language": "pt-BR,pt;q=0.9,en;q=0.8",
+    "Accept": ("text/html,application/xhtml+xml,application/xml;q=0.9,"
+               "image/avif,image/webp,image/apng,*/*;q=0.8"),
+    "Accept-Language": "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7",
+    "Accept-Encoding": "gzip, deflate",
+    # Sem estes, o User-Agent de Chrome fica incoerente e denuncia o cliente.
+    "sec-ch-ua": ('"Google Chrome";v="126", "Chromium";v="126", '
+                  '"Not-A.Brand";v="24"'),
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": '"Windows"',
+    "Sec-Fetch-Dest": "document",
+    "Sec-Fetch-Mode": "navigate",
+    "Sec-Fetch-Site": "none",
+    "Sec-Fetch-User": "?1",
+    "Upgrade-Insecure-Requests": "1",
+    "Connection": "keep-alive",
 }
 
 SECOES_CONHECIDAS = [
@@ -401,6 +414,7 @@ SINAIS_BLOQUEIO = (
 
 # Sessão de navegador, criada só quando --navegador é usado.
 _NAVEGADOR = {"ativo": False, "pagina": None, "fechar": None}
+_SESSAO = {"obj": None}
 
 
 def parece_bloqueio(html: str) -> bool:
@@ -470,6 +484,26 @@ def _baixar_navegador(url: str, tentativas: int) -> str | None:
     return None
 
 
+def sessao():
+    """Sessão com cookies da home.
+
+    Um navegador nunca chega em /shop/<secao>/ sem antes ter visitado a
+    home e guardado os cookies dela. Uma requisição fria é justamente o
+    que um filtro de bot distingue com mais facilidade.
+    """
+    if _SESSAO["obj"] is not None:
+        return _SESSAO["obj"]
+    import requests
+    s = requests.Session()
+    s.headers.update(HEADERS)
+    _SESSAO["obj"] = s
+    try:
+        s.get(f"{BASE_URL}/", timeout=20)
+    except Exception:
+        pass  # sem cookies seguimos mesmo assim
+    return s
+
+
 def baixar(url: str, tentativas: int = 3, espera: float = 2.0) -> str | None:
     if _NAVEGADOR["ativo"]:
         return _baixar_navegador(url, tentativas)
@@ -478,14 +512,23 @@ def baixar(url: str, tentativas: int = 3, espera: float = 2.0) -> str | None:
     except ImportError:
         sys.exit("Falta a biblioteca requests. Instale com:\n"
                  "    pip install requests")
+    s = sessao()
+    cabecalhos = {"Referer": f"{BASE_URL}/", "Sec-Fetch-Site": "same-origin"}
     for n in range(tentativas):
         try:
-            r = requests.get(url, headers=HEADERS, timeout=30)
+            r = s.get(url, headers=cabecalhos, timeout=30)
             if r.status_code == 200:
-                return r.text
-            if r.status_code == 404:
+                # O site devolve 200 com o corpo do 404 institucional; sem
+                # esta checagem a seção passaria por vazia, sem explicação.
+                if not parece_bloqueio(r.text):
+                    return r.text
+                print(f"    tentativa {n+1}: 200 sem a loja "
+                      f"(desafio ou 404 institucional)", file=sys.stderr)
+            elif r.status_code == 404:
                 return None
-            print(f"    tentativa {n+1}: HTTP {r.status_code}", file=sys.stderr)
+            else:
+                print(f"    tentativa {n+1}: HTTP {r.status_code}",
+                      file=sys.stderr)
         except Exception as e:  # rede instável não deve derrubar a coleta
             print(f"    tentativa {n+1}: {type(e).__name__}: "
                   f"{str(e)[:90]}", file=sys.stderr)

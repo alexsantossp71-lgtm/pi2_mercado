@@ -431,3 +431,87 @@ desafio ou o 404 institucional" — antes, uma resposta 200 com o 404 do
 Webflow seria tratada como seção vazia, e a coleta terminaria com zero
 produtos sem explicar por quê. As respostas reais de hoje estão fixadas em
 teste.
+
+
+---
+
+## 10. Carrega no navegador, não carrega no cliente HTTP
+
+Com a confirmação de que a loja **abre normalmente no navegador**, as duas
+hipóteses da seção anterior se resolvem: a loja **não mudou de endereço**.
+`/shop/laticinios/` continua sendo o lugar certo. O que mudou é quem o site
+atende.
+
+### User-Agent não é a peça que falta
+
+Primeira coisa que se checa, e ela já estava feita. O coletor sempre mandou
+um User-Agent de Chrome:
+
+```
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36
+```
+
+É o **mesmo** User-Agent do coletor legado, que trouxe 349 produtos em
+25/10. Se o UA bastasse, nada teria quebrado. O filtro passou a olhar mais
+fundo.
+
+### O que faltava de verdade
+
+Duas lacunas concretas, agora fechadas:
+
+**1. Cabeçalhos incoerentes.** Declarávamos Chrome 126 mas não mandávamos
+nada que um Chrome 126 manda junto: `sec-ch-ua`, `Sec-Fetch-Dest`,
+`Sec-Fetch-Mode`, `Sec-Fetch-Site`, `Upgrade-Insecure-Requests`. Um UA de
+Chrome sem as *client hints* do Chrome é uma incoerência fácil de detectar.
+
+**2. Requisição fria, sem cookies.** O coletor ia direto em
+`/shop/<secao>/`. Um navegador nunca faz isso: ele passa pela home, recebe
+os cookies e só então navega, com `Referer`. Agora existe `sessao()`, que
+visita a home uma vez e reaproveita os cookies em todas as seções.
+
+### Um furo silencioso que isso revelou
+
+O site devolve o 404 institucional com **status 200**. O caminho `requests`
+só tratava `status_code == 404`, então a resposta passava como página
+válida, o parser não achava produto nenhum e a seção era contada como
+vazia — coleta terminando em zero **sem dizer o motivo**. Agora
+`parece_bloqueio()` roda nos dois caminhos, requests e navegador.
+
+### A escada de diagnóstico
+
+Como só a sua máquina tem o caminho de rede que funciona, o teste precisa
+rodar aí:
+
+```bash
+python3 scraper/soudaki/diagnostico_acesso.py
+```
+
+Ele sobe seis estratégias, da mais barata para a mais cara, e diz qual
+delas devolve a loja de verdade:
+
+| # | Estratégia | Custo |
+|---|---|---|
+| 1 | `requests`, cabeçalhos antigos | nenhum |
+| 2 | `requests`, cabeçalhos completos | nenhum |
+| 3 | sessão aquecida na home (cookies) | nenhum |
+| 4 | Playwright headless | precisa instalar |
+| 5 | Playwright headless, passando pela home | precisa instalar |
+| 6 | Playwright com janela aberta | precisa instalar |
+
+Cada linha sai como `OK` (com a contagem de produtos), `BLOQUEADO` (com o
+motivo: 404 do Webflow ou desafio do Cloudflare), `PARCIAL`, `PULADA` ou
+`ERRO`. Ao final ele imprime o comando de coleta correspondente à primeira
+que funcionou. Opções: `--secao bebidas`, `--so 3`, `--salvar` (grava o
+HTML de cada tentativa para inspeção).
+
+Se nem a estratégia 6 passar, aí sim o endereço mudou, e o jeito é abrir o
+F12 na aba Network e ver para onde a loja realmente vai.
+
+### Se precisar do Playwright
+
+```bash
+pip install playwright playwright-stealth && playwright install chromium
+python3 scraper/soudaki/coletar_soudaki.py --navegador
+python3 scraper/soudaki/integrar_soudaki.py --aplicar
+```

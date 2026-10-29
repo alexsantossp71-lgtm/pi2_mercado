@@ -472,3 +472,53 @@ def test_next_data_vence_mesmo_com_texto_suspeito():
             '<script id="__NEXT_DATA__" type="application/json">'
             + json.dumps(payload) + "</script></body></html>")
     assert not parece_bloqueio(html)
+
+
+# --------------------------------------------------------------------------- #
+# Escada de diagnóstico de acesso
+# --------------------------------------------------------------------------- #
+from diagnostico_acesso import avalia, conta_produtos  # noqa: E402
+
+HTML_404_REAL = ("<html><head><title>Not Found</title></head><body>"
+                 "<h1>Page not found</h1><p>The page you are looking for "
+                 "doesn't exist or has been moved.</p></body></html>")
+
+
+def _pagina(n: int) -> str:
+    prods = [{"id": f"p{i}", "name": f"Produto {i}"} for i in range(n)]
+    payload = {"props": {"pageProps": {"preloadedProducts": {"lat": prods}}}}
+    return ('<script id="__NEXT_DATA__" type="application/json">'
+            + json.dumps(payload) + "</script>")
+
+
+def test_avalia_reconhece_404_institucional():
+    veredito, obs = avalia(HTML_404_REAL, 200)
+    assert veredito == "BLOQUEADO"
+    assert "Webflow" in obs
+
+
+def test_avalia_reconhece_desafio_cloudflare():
+    html = "<html><body>Just a moment... challenges.cloudflare.com</body></html>"
+    assert avalia(html, 200)[0] == "BLOQUEADO"
+
+
+def test_avalia_reconhece_loja_de_verdade():
+    veredito, obs = avalia(_pagina(129), 200)
+    assert veredito == "OK"
+    assert "129 produtos" == obs
+
+
+def test_avalia_marca_parcial_quando_vem_sem_produtos():
+    payload = {"props": {"pageProps": {"preloadedProducts": {}}}}
+    html = ('<script id="__NEXT_DATA__" type="application/json">'
+            + json.dumps(payload) + "</script>")
+    assert avalia(html, 200)[0] == "PARCIAL"
+
+
+def test_avalia_trata_resposta_ausente():
+    assert avalia(None, "erro")[0] == "FALHOU"
+
+
+def test_conta_produtos_sem_next_data():
+    assert conta_produtos("<html>nada</html>") == 0
+    assert conta_produtos("") == 0
