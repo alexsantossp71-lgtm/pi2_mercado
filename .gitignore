@@ -46,3 +46,7 @@ _test_results.json
 # Saidas geradas pelos relatorios de cobertura
 scraper/cobertura_precos.json
 scraper/relatorio_cobertura.json
+
+# Backups do banco e mapa bruto do pareamento (regeneraveis)
+webapp/backend/dispensa.bak-*.db
+scraper/pareamento_soudaki_pa.json

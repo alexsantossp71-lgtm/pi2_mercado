@@ -1,0 +1,103 @@
+# EANs presentes no Soudaki e ausentes na coleta do PA.
+# Alvo de coleta dirigida no Pão de Açúcar.
+
+0618341198975  # Energy Gel Z2 Tropical Fruit
+0618341198982  # Energy Gel Z2+ Lemon
+0618341198999  # Energy Gel Z2+ Iced Coffee
+0618341199026  # Energy Gel Z2 Pitaya
+0618341199033  # Energy Gel Z2+ Freezin' Cola
+0619205590645  # Energy Gel Z2n Smooth Mint
+0751320180827  # Couve Flor Org 300G Capela
+0751320181121  # Tomate Italiano Org 500G Capela
+0751320181237  # Tomate Grape Org 180G Capela
+7891000001080  # Kit 2 Ninho Fases 1+ Primeira Infância 1 A 3 Anos 400g
+7891000119976  # **Prox Venc** Composto Lácteo Óleos Vegetais e Fibras Supreme Neslac 800g
+7891000201053  # **Prox Vencim** Café solúvel chapada diamantina Nescafé origens do Brasil
+7891010031350  # Colônia Para Bebês Refrescante Johnson&#39;s Baby Lavanda 200ml
+7891010504755  # Curativo transparente Band-Aid 40 unidades
+7891010504779  # Curativos Band-Aid Transparentes 10 Unidades
+7891010695415  # Curativos para pequenos ferimentos BAND-AID 16 unidades
+7891010877613  # Óleo Para Banho Johnson&#39;s Baby 200ml
+7891022505009  # Saponáceo em pó multiuso com cloro Sapólio Radium Bombril 300g
+7891022861075  # Sapólio cremoso com cloro Sapólio Radium Bombril 250ml
+7891025114185  # **Prox Venc** Composto Lácteo Milnutri Profutura 800G
+7891025124078  # Activia Líquido Aveia 800g
+7891040005826  # Micropore branco 25mmx4,5m Nexcare
+7891040042517  # Esparadrapo Nexcare Micropore Bege 25mm x 4.5m 1 unid
+7891040083046  # Gaze Nexcare 7.0cm x 7.0cm 10 unid
+7891040166091  # Super pano multiuso microfibra Scotch-Brite 3 unidades
+7891048014301  # Cobertura de sorvete morango Dr.Oetker 190g
+7891097000201  # Iogurte Ameixa Batavo Natural 170G
+7891097102868  # Iogurte Líquido Cereal Batavo 170g
+7891097104770  # Iogurte Batavo Grego Flocos 450G
+7891098041814  # Chá Matte Guaraná Leão Sabor Açaí 450ml
+7891150020689  # Lava Roupa Sabão Líquido Omo Lavagem Perfeita - 3l
+7891193010302  # **Prox Vencim**Pão de sanduíche integral Seven Boys 450g
+7891242211506  # Limpador Multiuso Lavanda UAU 500ml
+7891515517779  # Tirinhas de frango Perdigão 300g
+7892840815370  # Refrigerante Pepsi Twist Pet 200ml
+7894900556032  # Refresco Del Valle Frut Laranja 1L
+7894904000739  # Polpetone Seara Gourmet 320g
+7894904070565  # Costela Suína Barbecue Seara Congelada 1kg
+7896007921010  # Velas nº 8 Fiat Lux 8 unidades
+7896051164159  # Iogurte Itambé Kids Polpa Frutas 510g
+7896051166238  # Leite Fermentado Desnatado Itambé Garrafa 1,2kg Embalagem Econômica
+7896051166269  # Iogurte Líquido Frutas Vermelhas Itambé 1150g
+7896061978104  # Máscara tripla de proteção cirúrgica Elite 8 unidades
+7896076001903  # Papel higiênico folha dupla Daki 8 unidades
+7896083801831  # Limpador Sanitário Super Candida 500 mL
+7896089089929  # Café Solúvel Liofilizado Classique L'Or Vidro 84G
+7896090704644  # Acendedor em gel 80º Zulu 500g
+7896097604084  # Removedor perfumado de lavanda Búfalo 500ml
+7896098900208  # Detergente neutro Ypê 500ml
+7896098900239  # Detergente de coco Ypê 500ml
+7896196061337  # Arroz para risoto La Pastina 1kg
+7896205754458  # Macarrão Gravata com Ovos Adria 500g
+7896228100171  # Massa para pastel Massaleve 1kg
+7897076014276  # Chipa Maricota
+7897076027122  # Pão de queijo tradicional Daki 400g
+7897076027139  # Pão de queijo recheado com goiabada 300g Daki
+7897076027146  # Pão de queijo recheado com requeijão 300g Daki
+7897076027474  # Mini kibe Daki 300g
+7897076027511  # Bolinha de queijo Daki 300g
+7897974401284  # Queijo Grana Fracionado Gran Formaggio 200g RAR
+7898205923766  # Queijo Padrao Light Verde Campo 450G
+7898205923896  # Queijo minas padrão Lacfree Verde Campo aprox. 450g
+7898205924336  # Queijo Frescal Lacfree Verde Campo 250G
+7898205924480  # Iogurte de morango Lacfree Verde Campo 170g
+7898205924756  # Queijo minas padrão tradicional Verde Campo 450g
+7898205924800  # iogurte Probiotico Bmm Verde Campo 170G
+7898215151760  # Leite Longa Vida Piracanjuba Semidesnatado 1 Litro
+7898226511768  # Saco Para Lixo Reforçado Preto 110l Embalixo Com 25 Sacos De Lixo
+7898257742841  # Madioquinha Embal Benassi 500g *BH*
+7898267259476  # Salada tropical Natural Salads 200g
+7898445563524  # Hambúrguer de carne bovina Daki 280g
+7898462300294  # Pepino japonês Hortmix 500g
+7898462300676  # Pimentão verde Hortmix 340g
+7898462306333  # Mini cebola Bandeja 500g
+7898462311559  # Alho picado sem sal Hortmix 200g
+7898462315632  # Manga palmer Hortmix 400g
+7898462315717  # Manga Tommy Hortimix 400g
+7898571520675  # Yorgus Iogurte Natural sem Lactose 500g
+7898571520996  # **Prox Venc**Iorgute desnatado de mel Yorgus Grego 500g
+7898647781382  # Carregador veicular branco com 2 saídas USB i2GO
+7898647786493  # Suporte de smartphones para bike e moto i2GO
+7898647786561  # Suporte preto para celular Easy Desk i2GO
+7898661013339  # Suplemento Proteico Em Pó Puravida Collagen Protein Neutro 450g
+7898684481559  # Fórmula da beleza colágeno + ácido hialurônico sabor limão Gaab 200g
+7898684481863  # Fórmula da beleza colágeno sabor chocolate Gaab 240g
+7898684481917  # Sono da beleza sabor chocolate Gaab 240g
+7898684483003  # Super gummy Vit D manga 30 gomas
+7898728070480  # Mirtilo Ifrutus 125g
+7898728070657  # Couve Flor Ifrutus 350g
+7898728070664  # Alho poró Ifrutus 120g
+7898728070848  # Tomate Sweet Grape 180g
+7898921567077  # Batata pré frita 9mm Bem Brasil 400g
+7898930672335  # Filme de PVC Wyda 30m x 28cm
+7898930672694  # Papel manteiga Wyda 29cm x 7.5m
+7898942775604  # Água de Coco Integral OQ Garrafa 1l
+7898961335131  # Água Mineral Daki Sem Gás 510ml
+7898961335148  # **Prox Venc**Água mineral Daki 1,5l
+7898970313250  # **Prox Vencim**Salsinha picada Ifrutus 80g
+7898970313434  # Mandioquinha Em Cubos Embalada Ifrutus 250g
+7898970357070  # **Prox Venc** Bolo de chocolate Cabocla Mineira 400g

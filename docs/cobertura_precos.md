@@ -4,6 +4,14 @@
 **Fonte medida:** `webapp/backend/dispensa.db` (124.427 produtos, 112.095 linhas de preço, 4 lojas)
 **Ferramenta:** `python3 scraper/cobertura_precos.py`
 
+> **Atualização de 29/10/2026 — consolidação Soudaki × Pão de Açúcar.**
+> Depois desta avaliação, 332 fichas duplicadas do Soudaki foram consolidadas
+> com os produtos equivalentes do Pão de Açúcar. Os números atuais passaram a
+> ser: catálogo 124.095 produtos, comparáveis em ≥2 lojas 3.864 (3,11%),
+> paridade Soudaki × PA 38,5%. Ver
+> [`paridade_soudaki_pao_de_acucar.md`](paridade_soudaki_pao_de_acucar.md).
+> O restante deste documento preserva a medição original.
+
 ---
 
 ## Resumo
