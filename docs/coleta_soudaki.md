@@ -574,3 +574,72 @@ explícita:
 Nada do que foi feito nas seções 9 e 10 se perde nesse cenário: cabeçalhos
 coerentes, sessão com cookies e a detecção do 404-servido-como-200 são
 melhorias legítimas. Só não eram a causa.
+
+
+---
+
+## 12. Coletar sem ter Python na máquina
+
+O plano das seções anteriores dependia de rodar um script aí. Sem Python
+instalado, ele não serve. Mas o navegador sozinho dá conta: ele já tem o
+IP brasileiro, os cookies da sessão e a aprovação do Cloudflare. Falta só
+usá-lo como transporte.
+
+### Como fazer
+
+1. Abra **`https://soudaki.com/shop/laticinios/`** e espere carregar.
+2. Tecle **F12** e vá na aba **Console**.
+3. Se o Chrome reclamar, digite `allow pasting` e tecle Enter.
+4. Abra `scraper/soudaki/coletor_navegador.js`, copie **tudo** e cole no
+   console. Enter.
+5. Ele percorre as seções, vai dizendo quantos produtos achou em cada uma
+   e baixa **`soudaki_navegador.json`**.
+6. Mande esse arquivo para o repositório — anexar no chat já basta.
+
+Para só algumas seções: `coletarSoudaki(["laticinios", "bebidas"])`.
+
+Leva cerca de meio minuto. A pausa de 0,9 s entre seções é de propósito:
+não há razão para martelar o site.
+
+### O que o script faz, e o que ele não faz
+
+Ele faz **transporte e nada mais**. Para cada seção, busca a página com
+`fetch(..., {credentials: "include"})` — mesma origem, mesmos cookies,
+mesmo IP da aba aberta — e guarda o bloco `__NEXT_DATA__` cru.
+
+Ele **não** interpreta produto, preço, marca ou EAN. Essa lógica continua
+no Python, onde está testada. Duplicá-la em JavaScript seria criar uma
+segunda versão para divergir da primeira.
+
+Do lado de cá, `importar_coleta_navegador.py` recebe o arquivo e o entrega
+às mesmas funções do coletor normal:
+
+```bash
+python3 scraper/soudaki/importar_coleta_navegador.py soudaki_navegador.json
+python3 scraper/soudaki/integrar_soudaki.py --aplicar
+```
+
+### Verificado, não suposto
+
+O JS foi executado de ponta a ponta contra o ensaio local, num contexto de
+navegador simulado com Node, e o resultado passou pelo importador:
+
+| Medida | Coletor nativo | Via navegador |
+|---|---:|---:|
+| produtos | 1.538 | **1.538** |
+| em estoque | 1.132 | **1.132** |
+| EAN-13 válido | 375 (24,4%) | **375 (24,4%)** |
+| laticínios | 258 | **258** |
+| padaria | 502 | **502** |
+
+Idêntico. O caminho pelo navegador não perde nada.
+
+Um detalhe que a verificação pegou: a página serve parte dos produtos em
+`preloadedProducts` e parte no cache do Apollo (`Product:<sku>`). A
+primeira versão da contagem olhava só a primeira fonte e anunciava 129
+onde havia 258 — metade. Os dados iam completos, mas o número na tela
+assustaria à toa. Agora conta identificadores únicos das duas fontes, o
+que de quebra não conta duas vezes quem aparece nas duas.
+
+6 testes cobrem o importador, incluindo arquivo inexistente, JSON quebrado
+numa seção (não derruba as outras) e arquivo sem a chave `secoes`.

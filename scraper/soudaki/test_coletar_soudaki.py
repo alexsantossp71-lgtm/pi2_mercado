@@ -522,3 +522,68 @@ def test_avalia_trata_resposta_ausente():
 def test_conta_produtos_sem_next_data():
     assert conta_produtos("<html>nada</html>") == 0
     assert conta_produtos("") == 0
+
+
+# --------------------------------------------------------------------------- #
+# Coleta trazida do navegador
+# --------------------------------------------------------------------------- #
+import importar_coleta_navegador as IN  # noqa: E402
+
+
+def _arquivo_navegador(tmp_path, secoes):
+    destino = tmp_path / "soudaki_navegador.json"
+    destino.write_text(json.dumps({
+        "coletado_em": "2026-10-29T12:00:00Z",
+        "origem": "https://soudaki.com",
+        "secoes": secoes,
+    }), encoding="utf-8")
+    return destino
+
+
+def _next_data(produtos, secao="laticinios"):
+    return json.dumps({"props": {"pageProps": {
+        "preloadedProducts": {secao: produtos}}}})
+
+
+def test_importa_produtos_do_arquivo_do_navegador(tmp_path):
+    prods = [{"sku": "1", "name": "Leite Integral 1L", "price": {"amount": 599}}]
+    arq = _arquivo_navegador(tmp_path, {"laticinios": _next_data(prods)})
+    por_secao = IN.brutos_por_secao(IN.carregar(arq))
+    assert list(por_secao) == ["laticinios"]
+    assert len(por_secao["laticinios"]) == 1
+
+
+def test_aceita_secao_ja_desserializada(tmp_path):
+    """Tolera objeto em vez de texto, caso o JS mude de formato."""
+    prods = [{"sku": "9", "name": "Queijo Minas 500g", "price": {"amount": 100}}]
+    arq = _arquivo_navegador(
+        tmp_path, {"laticinios": json.loads(_next_data(prods))})
+    assert len(IN.brutos_por_secao(IN.carregar(arq))["laticinios"]) == 1
+
+
+def test_secao_com_json_quebrado_nao_derruba_o_resto(tmp_path):
+    prods = [{"sku": "2", "name": "Iogurte 170g", "price": {"amount": 299}}]
+    arq = _arquivo_navegador(tmp_path, {
+        "quebrada": "{isso nao e json",
+        "laticinios": _next_data(prods),
+    })
+    por_secao = IN.brutos_por_secao(IN.carregar(arq))
+    assert "quebrada" not in por_secao
+    assert len(por_secao["laticinios"]) == 1
+
+
+def test_recusa_arquivo_sem_a_chave_secoes(tmp_path):
+    arq = tmp_path / "errado.json"
+    arq.write_text(json.dumps({"produtos": []}), encoding="utf-8")
+    with pytest.raises(SystemExit):
+        IN.carregar(arq)
+
+
+def test_recusa_coleta_vazia(tmp_path):
+    with pytest.raises(SystemExit):
+        IN.carregar(_arquivo_navegador(tmp_path, {}))
+
+
+def test_recusa_arquivo_inexistente(tmp_path):
+    with pytest.raises(SystemExit):
+        IN.carregar(tmp_path / "nao_existe.json")
