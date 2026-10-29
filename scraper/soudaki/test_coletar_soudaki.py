@@ -315,3 +315,44 @@ def test_aceita_quando_nao_ha_divergencia_dietetica(a, b):
 def test_zero_lactose_nao_e_lido_como_zero_acucar():
     assert marcadores_dieteticos("Leite Zero Lactose") == {"semlactose"}
     assert marcadores_dieteticos("Refrigerante Zero") == {"semacucar"}
+
+
+# --------------------------------------------------------------------------- #
+# Descoberta de seções na vitrine
+# --------------------------------------------------------------------------- #
+from coletar_soudaki import descobrir_secoes  # noqa: E402
+
+
+def test_descobre_secoes_do_next_data():
+    payload = {"props": {"pageProps": {"categories": [
+        {"slug": "bebidas", "name": "Bebidas"},
+        {"slug": "hortifruti", "name": "Hortifrúti",
+         "children": [{"slug": "frutas", "name": "Frutas"}]},
+    ]}}}
+    html = ('<script id="__NEXT_DATA__" type="application/json">'
+            + json.dumps(payload) + "</script>")
+    achados = descobrir_secoes(html)
+    assert {"bebidas", "hortifruti", "frutas"} <= set(achados)
+
+
+def test_descobre_secoes_por_link_quando_nao_ha_next_data():
+    html = ('<a href="/shop/congelados/">Congelados</a>'
+            '<a href="/shop/limpeza/">Limpeza</a>')
+    assert set(descobrir_secoes(html)) == {"congelados", "limpeza"}
+
+
+def test_ignora_caminhos_que_nao_sao_secao():
+    html = ('<a href="/shop/carrinho/">Carrinho</a>'
+            '<a href="/shop/checkout/">Checkout</a>'
+            '<a href="/shop/bebidas/">Bebidas</a>')
+    assert descobrir_secoes(html) == ["bebidas"]
+
+
+def test_nao_repete_secao():
+    html = '<a href="/shop/bebidas/">B</a><a href="/shop/bebidas/">B</a>'
+    assert descobrir_secoes(html) == ["bebidas"]
+
+
+def test_vitrine_vazia_nao_quebra():
+    assert descobrir_secoes("") == []
+    assert descobrir_secoes("<html></html>") == []

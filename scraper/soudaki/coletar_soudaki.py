@@ -333,8 +333,64 @@ def normalizar(produto: dict, secao: str) -> dict | None:
 # --------------------------------------------------------------------------- #
 # Rede
 # --------------------------------------------------------------------------- #
+RE_LINK_SECAO = re.compile(r'/shop/([a-z0-9][a-z0-9\-]{2,60})/?["\'<\\]')
+
+# Trechos de caminho que aparecem depois de /shop/ mas não são seção.
+NAO_SECAO = {"produto", "product", "busca", "search", "carrinho", "cart",
+             "checkout", "conta", "account", "login", "favoritos", "pedidos"}
+
+
+def descobrir_secoes(html: str) -> list[str]:
+    """Lê as seções diretamente da vitrine, em vez de confiar na lista fixa.
+
+    A lista `SECOES_CONHECIDAS` foi herdada do coletor antigo e nunca foi
+    conferida contra o site. Se uma seção foi renomeada ou criada depois,
+    ela simplesmente não era coletada — e o erro é silencioso, porque a
+    seção inexistente só devolve zero produtos.
+
+    Procura em dois lugares: os objetos de categoria dentro do
+    `__NEXT_DATA__` e, como rede de segurança, qualquer link /shop/<slug>/
+    no HTML.
+    """
+    achados: list[str] = []
+    vistos: set[str] = set()
+
+    def registrar(slug) -> None:
+        s = str(slug or "").strip().strip("/").lower()
+        if (s and s not in vistos and s not in NAO_SECAO
+                and re.fullmatch(r"[a-z0-9][a-z0-9\-]{2,60}", s)):
+            vistos.add(s)
+            achados.append(s)
+
+    dados = extrair_next_data(html)
+    if dados is not None:
+        pilha = [dados]
+        while pilha:
+            no = pilha.pop()
+            if isinstance(no, dict):
+                # Objeto de categoria: tem slug e algo que o nomeie.
+                tem_nome = any(k for k in no
+                               if _chave(k) in ("name", "title", "label",
+                                                "categoryname", "displayname"))
+                for chave, valor in no.items():
+                    if _chave(chave) in ("slug", "urlkey", "handle", "path") \
+                            and isinstance(valor, str) and tem_nome:
+                        registrar(valor.rsplit("/", 1)[-1])
+                    pilha.append(valor)
+            elif isinstance(no, list):
+                pilha.extend(no)
+
+    for slug in RE_LINK_SECAO.findall(html or ""):
+        registrar(slug)
+    return achados
+
+
 def baixar(url: str, tentativas: int = 3, espera: float = 2.0) -> str | None:
-    import requests
+    try:
+        import requests
+    except ImportError:
+        sys.exit("Falta a biblioteca requests. Instale com:\n"
+                 "    pip install requests")
     for n in range(tentativas):
         try:
             r = requests.get(url, headers=HEADERS, timeout=30)
@@ -342,9 +398,12 @@ def baixar(url: str, tentativas: int = 3, espera: float = 2.0) -> str | None:
                 return r.text
             if r.status_code == 404:
                 return None
+            print(f"    tentativa {n+1}: HTTP {r.status_code}", file=sys.stderr)
         except Exception as e:  # rede instável não deve derrubar a coleta
-            print(f"    tentativa {n+1}: {type(e).__name__}", file=sys.stderr)
-        time.sleep(espera * (n + 1))
+            print(f"    tentativa {n+1}: {type(e).__name__}: "
+                  f"{str(e)[:90]}", file=sys.stderr)
+        if n + 1 < tentativas:
+            time.sleep(espera * (n + 1))
     return None
 
 
@@ -492,7 +551,34 @@ def main() -> None:
                     help="Segundos entre requisições (padrão: 0.6).")
     args = ap.parse_args()
 
-    secoes = args.secoes or SECOES_CONHECIDAS
+    secoes = args.secoes
+    if not secoes and not args.reprocessar:
+        # Descobre as seções na própria vitrine; a lista fixa entra só como
+        # complemento, para o caso de alguma não aparecer no menu.
+        print(f"Descobrindo seções em {BASE_URL}/shop/ ...")
+        indice = baixar(f"{BASE_URL}/shop/")
+        if indice is None:
+            # Sem a vitrine não há o que coletar. Abortar aqui evita insistir
+            # em 25 seções, com retentativas, quando o problema é a conexão.
+            sys.exit(
+                f"Não foi possível acessar {BASE_URL}/shop/.\n"
+                "Verifique a conexão e se o site responde no navegador.\n"
+                "Para integrar as coletas que já estão no repositório:\n"
+                "    python3 scraper/soudaki/atualizar_soudaki.py --sem-coleta"
+            )
+        descobertas = descobrir_secoes(indice)
+        if descobertas:
+            extras = [s for s in SECOES_CONHECIDAS if s not in descobertas]
+            secoes = descobertas + extras
+            print(f"  {len(descobertas)} descobertas na vitrine"
+                  f" + {len(extras)} da lista fixa = {len(secoes)}")
+            print(f"  {', '.join(descobertas[:12])}"
+                  f"{' ...' if len(descobertas) > 12 else ''}")
+        else:
+            secoes = SECOES_CONHECIDAS
+            print(f"  nada encontrado na vitrine; usando as {len(secoes)} "
+                  "seções conhecidas")
+    secoes = secoes or SECOES_CONHECIDAS
 
     brutos_por_secao: dict[str, list] = {}
     if args.reprocessar:

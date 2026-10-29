@@ -65,7 +65,28 @@ de barras: nunca casam com outra loja e contaminam qualquer contagem de
 | `sku` e `gtin_ean` **nunca se misturam** | Sem EAN, o identificador vira `SKU-SOUDAKI-<sku>` — explicitamente não é código de barras. |
 | `--diagnostico` imprime o schema observado | Transforma "onde está o EAN?" de adivinhação em medição. |
 
-### Fluxo recomendado
+### Um comando
+
+```bash
+python3 scraper/soudaki/atualizar_soudaki.py
+```
+
+Coleta `soudaki.com/shop/` e grava no banco, mostrando quanto mudou. Se a
+coleta falhar, o banco **não** é tocado.
+
+As seções são descobertas na própria vitrine — a lista fixa de 25 slugs veio
+do coletor antigo e nunca foi conferida contra o site; se alguma foi
+renomeada, ela some da coleta sem aviso, porque uma seção inexistente apenas
+devolve zero produtos. O que for descoberto entra primeiro, e a lista fixa
+complementa.
+
+Para integrar só o que já está no repositório, sem rede:
+
+```bash
+python3 scraper/soudaki/atualizar_soudaki.py --sem-coleta
+```
+
+### Passo a passo, quando quiser controlar
 
 ```bash
 # 1. Descobrir o que a origem expõe (1 seção, não grava nada)
@@ -270,3 +291,32 @@ O `--diagnostico` responde isso em uma requisição. Rode-o primeiro.
 | `scraper/coletar_e_integrar_soudaki.py` | Coletor antigo, mantido para referência |
 | `docs/paridade_soudaki_pao_de_acucar.md` | Etapa anterior: pareamento e paridade |
 | `docs/cobertura_precos.md` | Diagnóstico de cobertura das quatro lojas |
+
+---
+
+## 7. Integração das coletas que já estavam no repositório
+
+Sem acesso ao site, o que deu para fazer foi aproveitar as coletas do Soudaki
+já versionadas. O levantamento achou uma que nunca tinha chegado ao banco:
+`scraper/precos_daki_bebidas_ampliado.json`, de **25/10/2026** — mais recente
+que os dados de setembro que o sistema servia.
+
+`scraper/soudaki/converter_coleta_legada.py` passa essas coletas para o
+formato novo, separando SKU de EAN (o coletor antigo gravava os dois no mesmo
+campo) e recuperando EANs escondidos na URL da imagem.
+
+Resultado no banco:
+
+| | Antes | Depois |
+|---|---:|---:|
+| Preços do Soudaki | 1.539 | **1.584** |
+| ... disponíveis com preço | 1.133 | **1.171** |
+| Produtos com Soudaki + outra loja | 608 | **616** |
+| Preços de outubro | 0 | **345** |
+
+Verificado: integridade ok, 0 inconsistências no índice de busca, 0 pares
+(produto, loja) duplicados, busca inalterada, 42 + 6 testes passando. A
+segunda execução cria 0 produtos.
+
+O integrador também ganhou a regra de frescor: uma reexecução com dados
+antigos não rebaixa um preço mais novo que já esteja no banco.

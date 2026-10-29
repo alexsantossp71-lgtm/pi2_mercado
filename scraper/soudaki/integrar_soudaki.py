@@ -322,7 +322,7 @@ def integrar(db, coleta, aplicar: bool, caminho_db: Path) -> dict:
     shutil.copy2(caminho_db, backup)
     print(f"\n  backup: {backup}")
 
-    criados = precos_ins = precos_upd = 0
+    criados = precos_ins = precos_upd = precos_antigos = 0
     for chave, lista in plano.items():
         for item, pid in lista:
             if pid is None:
@@ -347,10 +347,15 @@ def integrar(db, coleta, aplicar: bool, caminho_db: Path) -> dict:
 
             pr = item["preco"]
             existente = cur.execute(
-                "SELECT id FROM precos WHERE produto_id = ? AND loja_id = ?",
+                "SELECT id, data_coleta FROM precos "
+                "WHERE produto_id = ? AND loja_id = ?",
                 (pid, LOJA_SOUDAKI),
             ).fetchone()
             if existente:
+                # Regra de frescor: coleta antiga não rebaixa preço mais novo.
+                if str(pr["data_coleta"] or "")[:10] < str(existente[1] or "")[:10]:
+                    precos_antigos += 1
+                    continue
                 cur.execute(
                     "UPDATE precos SET preco_promocional = ?, preco_regular = ?, "
                     "em_estoque = ?, data_coleta = ? WHERE id = ?",
@@ -375,6 +380,8 @@ def integrar(db, coleta, aplicar: bool, caminho_db: Path) -> dict:
     print(f"  produtos criados ... {criados}")
     print(f"  preços inseridos ... {precos_ins}")
     print(f"  preços atualizados . {precos_upd}")
+    if precos_antigos:
+        print(f"  preços ignorados ... {precos_antigos}  (banco já tem mais novo)")
     return {"total": total, "reaproveita": reaproveita, "criados": criados}
 
 
