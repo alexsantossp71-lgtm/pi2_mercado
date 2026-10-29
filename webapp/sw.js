@@ -2,7 +2,7 @@
    sw.js — Service Worker para Dispensa Planejada Santos (PWA)
    ================================================================ */
 
-const CACHE_NAME = 'dispensa-planejada-v3';
+const CACHE_NAME = 'dispensa-planejada-v4';
 const ASSETS_TO_CACHE = [
   './index.html',
   './manifest.json',
@@ -15,7 +15,11 @@ const ASSETS_TO_CACHE = [
   './js/searchEngine.js',
   './js/shoppingList.js',
   './js/priceCalculator.js',
-  './js/ui.js'
+  './js/ui.js',
+  './img/logos/carrefour.svg',
+  './img/logos/pao_de_acucar.svg',
+  './img/logos/atacadao.svg',
+  './img/logos/soudaki.svg'
 ];
 
 // Instalação do Service Worker
