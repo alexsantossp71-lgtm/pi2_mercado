@@ -430,3 +430,45 @@ def test_pagina_de_secao_inexistente_nao_quebra():
     finally:
         C.BASE_URL = original
         parar()
+
+
+# --------------------------------------------------------------------------- #
+# Detecção de bloqueio / 404 institucional
+# --------------------------------------------------------------------------- #
+from coletar_soudaki import parece_bloqueio  # noqa: E402
+
+
+def test_detecta_404_do_site_institucional():
+    """Resposta real de soudaki.com/shop/laticinios/ em 29/10/2026."""
+    html = ("<html><head><title>Not Found</title></head><body>"
+            "<h1>Page not found</h1><p>The page you are looking for "
+            "doesn't exist or has been moved.</p></body></html>")
+    assert parece_bloqueio(html)
+
+
+def test_detecta_desafio_cloudflare():
+    html = ("<html><body>Checking your Browser… Verifying..."
+            "<script src='https://challenges.cloudflare.com/turnstile/v0/api.js'>"
+            "</script></body></html>")
+    assert parece_bloqueio(html)
+
+
+def test_detecta_resposta_vazia():
+    assert parece_bloqueio("")
+    assert parece_bloqueio(None)
+
+
+def test_pagina_da_loja_nao_e_bloqueio():
+    payload = {"props": {"pageProps": {"preloadedProducts": {"x": []}}}}
+    html = ('<script id="__NEXT_DATA__" type="application/json">'
+            + json.dumps(payload) + "</script>")
+    assert not parece_bloqueio(html)
+
+
+def test_next_data_vence_mesmo_com_texto_suspeito():
+    """Se o payload da loja veio, a página serve — ainda que cite o desafio."""
+    payload = {"props": {"pageProps": {"preloadedProducts": {"x": []}}}}
+    html = ("<html><body>checking your browser"
+            '<script id="__NEXT_DATA__" type="application/json">'
+            + json.dumps(payload) + "</script></body></html>")
+    assert not parece_bloqueio(html)

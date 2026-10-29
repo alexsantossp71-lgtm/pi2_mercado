@@ -386,7 +386,93 @@ def descobrir_secoes(html: str) -> list[str]:
     return achados
 
 
+# Marcas de que a resposta não é a loja, e sim um bloqueio ou um 404 do site
+# institucional. Em 29/10/2026 o domínio passou a devolver o 404 do Webflow
+# para /shop/* em cliente simples, com Cloudflare Turnstile ativo na home.
+SINAIS_BLOQUEIO = (
+    "page not found",
+    "doesn't exist or has been moved",
+    "checking your browser",
+    "challenges.cloudflare.com",
+    "cf-challenge",
+    "just a moment",
+    "attention required",
+)
+
+# Sessão de navegador, criada só quando --navegador é usado.
+_NAVEGADOR = {"ativo": False, "pagina": None, "fechar": None}
+
+
+def parece_bloqueio(html: str) -> bool:
+    """Resposta 200 que não é a loja: desafio de bot ou 404 institucional."""
+    if not html:
+        return True
+    if '__NEXT_DATA__' in html:
+        return False
+    amostra = html[:4000].lower()
+    return any(s in amostra for s in SINAIS_BLOQUEIO)
+
+
+def abrir_navegador(headless: bool = True):
+    """Playwright com stealth, mesmo caminho já usado para o Carrefour."""
+    try:
+        from playwright.sync_api import sync_playwright
+    except ImportError:
+        sys.exit(
+            "O modo --navegador precisa do Playwright:\n"
+            "    pip install playwright playwright-stealth\n"
+            "    playwright install chromium"
+        )
+    pw = sync_playwright().start()
+    navegador = pw.chromium.launch(headless=headless)
+    contexto = navegador.new_context(
+        user_agent=HEADERS["User-Agent"],
+        locale="pt-BR",
+        viewport={"width": 1366, "height": 900},
+    )
+    try:  # o stealth é opcional; sem ele o desafio pode aparecer mais
+        from playwright_stealth import Stealth
+        Stealth().apply_stealth_sync(contexto)
+    except Exception:
+        pass
+    pagina = contexto.new_page()
+
+    def fechar():
+        for passo in (pagina.close, contexto.close, navegador.close, pw.stop):
+            try:
+                passo()
+            except Exception:
+                pass
+
+    _NAVEGADOR.update({"ativo": True, "pagina": pagina, "fechar": fechar})
+    return pagina
+
+
+def _baixar_navegador(url: str, tentativas: int) -> str | None:
+    pagina = _NAVEGADOR["pagina"]
+    for n in range(tentativas):
+        try:
+            pagina.goto(url, wait_until="domcontentloaded", timeout=45000)
+            # Dá tempo de o desafio resolver e de o app montar o __NEXT_DATA__.
+            try:
+                pagina.wait_for_selector("script#__NEXT_DATA__", timeout=15000)
+            except Exception:
+                pagina.wait_for_timeout(4000)
+            html = pagina.content()
+            if not parece_bloqueio(html):
+                return html
+            print(f"    tentativa {n+1}: bloqueio/desafio na página",
+                  file=sys.stderr)
+            pagina.wait_for_timeout(3000)
+        except Exception as e:
+            print(f"    tentativa {n+1}: {type(e).__name__}: {str(e)[:90]}",
+                  file=sys.stderr)
+    return None
+
+
 def baixar(url: str, tentativas: int = 3, espera: float = 2.0) -> str | None:
+    if _NAVEGADOR["ativo"]:
+        return _baixar_navegador(url, tentativas)
     try:
         import requests
     except ImportError:
@@ -550,6 +636,11 @@ def main() -> None:
                     help="Reprocessa o que está em raw/, sem acessar a rede.")
     ap.add_argument("--pausa", type=float, default=0.6,
                     help="Segundos entre requisições (padrão: 0.6).")
+    ap.add_argument("--navegador", action="store_true",
+                    help="Usa Playwright em vez de requests. Necessário "
+                         "quando o site responde com desafio de bot.")
+    ap.add_argument("--ver-navegador", action="store_true",
+                    help="Com --navegador, abre a janela em vez de headless.")
     ap.add_argument("--base-url", default=None,
                     help="Origem alternativa (espelho ou ensaio local). "
                          "Padrão: https://soudaki.com")
@@ -559,6 +650,10 @@ def main() -> None:
         global BASE_URL
         BASE_URL = args.base_url.rstrip("/")
         print(f"Origem: {BASE_URL}")
+
+    if args.navegador and not args.reprocessar:
+        print("Abrindo navegador (Playwright)...")
+        abrir_navegador(headless=not args.ver_navegador)
 
     secoes = args.secoes
     if not secoes and not args.reprocessar:
@@ -570,8 +665,12 @@ def main() -> None:
             # Sem a vitrine não há o que coletar. Abortar aqui evita insistir
             # em 25 seções, com retentativas, quando o problema é a conexão.
             sys.exit(
-                f"Não foi possível acessar {BASE_URL}/shop/.\n"
-                "Verifique a conexão e se o site responde no navegador.\n"
+                f"Não foi possível ler {BASE_URL}/shop/.\n\n"
+                "Em 29/10/2026 o domínio passou a devolver o 404 do site\n"
+                "institucional para /shop/* em cliente simples, com\n"
+                "Cloudflare Turnstile ativo. Se for esse o caso aqui, use\n"
+                "um navegador de verdade:\n"
+                "    python3 scraper/soudaki/coletar_soudaki.py --navegador\n\n"
                 "Para integrar as coletas que já estão no repositório:\n"
                 "    python3 scraper/soudaki/atualizar_soudaki.py --sem-coleta"
             )
@@ -673,4 +772,8 @@ def enriquecer_por_detalhe(registros: list[dict], pausa: float) -> None:
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    finally:
+        if _NAVEGADOR["fechar"]:
+            _NAVEGADOR["fechar"]()

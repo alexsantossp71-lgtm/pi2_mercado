@@ -375,3 +375,59 @@ ensaio à mão.
 Que o `soudaki.com` de hoje publica os produtos nesse formato. O ensaio usa o
 formato observado nos dados que temos. Se a página mudou, o
 `--diagnostico` mostra em uma requisição — é por isso que ele existe.
+
+
+---
+
+## 9. O que o site responde hoje (29/10/2026)
+
+Consegui alcançar `soudaki.com` por outro caminho de rede e sondei a origem
+diretamente. O resultado muda o diagnóstico da etapa anterior.
+
+| URL | Resposta |
+|---|---|
+| `soudaki.com/shop/laticinios/` | **404** — "Page not found" |
+| `soudaki.com/shop/` | **404** |
+| `soudaki.com/shop/search/?q=queijo` | **404** (a própria home linka para cá) |
+| `soudaki.com/` | 200, com **Cloudflare Turnstile** ativo |
+| `soudaki.com/robots.txt` | 200 — `/shop/` **não** é proibido |
+| `soudaki.com/sitemap.xml` | 200 — **nenhuma URL de loja** |
+
+O texto do 404 — *"The page you are looking for doesn't exist or has been
+moved"* — é o padrão do **Webflow**, que hospeda o site institucional. Ou
+seja: o domínio responde, mas `/shop/*` não chega à loja para um cliente
+simples.
+
+### Por que isso importa
+
+Não é um slug errado. A mesma seção `laticinios` **funcionou**: produziu 258
+produtos na coleta de 13/09, e `bebidas` produziu 349 em **25/10, quatro
+dias antes desta sondagem**. O coletor antigo usava `requests` puro.
+
+As duas explicações possíveis:
+
+1. **Proteção de bot** — o Cloudflare na home sugere que a loja só é
+   entregue a quem passa pelo desafio; um cliente HTTP recebe o 404 do
+   Webflow.
+2. **A loja saiu do domínio** nos últimos dias.
+
+Dá para separar as duas em dez segundos: **abra a URL no navegador**. Se a
+loja carregar, é proteção de bot. Se der 404 também, a loja mudou de
+endereço.
+
+### O que foi feito a respeito
+
+O coletor ganhou um modo com navegador de verdade, pelo mesmo caminho que o
+projeto já usa para o Carrefour (Playwright + stealth):
+
+```bash
+pip install playwright playwright-stealth && playwright install chromium
+python3 scraper/soudaki/coletar_soudaki.py --navegador
+python3 scraper/soudaki/coletar_soudaki.py --navegador --ver-navegador  # com janela
+```
+
+E `parece_bloqueio()` passou a distinguir "a loja respondeu" de "veio um
+desafio ou o 404 institucional" — antes, uma resposta 200 com o 404 do
+Webflow seria tratada como seção vazia, e a coleta terminaria com zero
+produtos sem explicar por quê. As respostas reais de hoje estão fixadas em
+teste.
