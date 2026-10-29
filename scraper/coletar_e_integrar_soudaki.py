@@ -48,6 +48,63 @@ def extrair_ean(url: str):
     m = RE_EAN_IMAGEM.search(url)
     return m.group(1) if m else None
 
+MAPA_CATEGORIAS = {
+    "hortifruti": "Hortifruti",
+    "bebidas": "Bebidas",
+    "cervejas-e-drinks": "Bebidas",
+    "vinhos-e-espumantes": "Bebidas",
+    "destilados": "Bebidas",
+    "laticinios": "Frios e Laticínios",
+    "padaria": "Padaria e Matinais",
+    "matinais": "Padaria e Matinais",
+    "saudaveis": "Alimentos",
+    "mercearia": "Mercearia",
+    "molhos-e-conservas": "Mercearia",
+    "biscoitos-e-salgadinhos": "Mercearia",
+    "chocolates-e-doces": "Mercearia",
+    "acougue-e-peixaria": "Carnes, Aves e Peixes",
+    "churrasco": "Carnes, Aves e Peixes",
+    "congelados": "Frios e Congelados",
+    "pratico-e-rapido": "Alimentos",
+    "sorvetes-e-acai": "Frios e Congelados",
+    "limpeza": "Limpeza e Lavanderia",
+    "higiene-e-beleza": "Higiene e Perfumaria",
+    "utilidades": "Utilidades Domésticas",
+    "pets": "Pet Care",
+    "bebe": "Bebê e Infantil",
+    "produtos-daki": "Alimentos",
+    "farmacia": "Suplementos Alimentares",
+}
+
+def normalizar_categoria(cat_raw: str, secao: str) -> str:
+    c = (cat_raw or "").strip()
+    c_lower = c.lower()
+    if "hortifruti" in c_lower or "fruta" in c_lower or "legume" in c_lower:
+        return "Hortifruti"
+    if "bebida" in c_lower or "refrigerante" in c_lower or "cerveja" in c_lower or "vinho" in c_lower:
+        return "Bebidas"
+    if "latic" in c_lower or "queijo" in c_lower or "iogurte" in c_lower:
+        return "Frios e Laticínios"
+    if "padaria" in c_lower or "matinal" in c_lower or "pão" in c_lower or "pao" in c_lower:
+        return "Padaria e Matinais"
+    if "carne" in c_lower or "peixe" in c_lower or "açougue" in c_lower or "acougue" in c_lower:
+        return "Carnes, Aves e Peixes"
+    if "limpeza" in c_lower:
+        return "Limpeza e Lavanderia"
+    if "higiene" in c_lower or "beleza" in c_lower or "perfum" in c_lower:
+        return "Higiene e Perfumaria"
+    if "pet" in c_lower:
+        return "Pet Care"
+    if "bebê" in c_lower or "bebe" in c_lower or "infantil" in c_lower:
+        return "Bebê e Infantil"
+    if "utilidade" in c_lower or "bazar" in c_lower:
+        return "Utilidades Domésticas"
+    if "congelado" in c_lower:
+        return "Frios e Congelados"
+    if "mercearia" in c_lower or "massa" in c_lower or "molho" in c_lower or "biscoito" in c_lower:
+        return "Mercearia"
+    return MAPA_CATEGORIAS.get(secao, c if c else "Mercearia")
+
 def coletar_secao(secao: str):
     url = f"{BASE_URL}/shop/{secao}/"
     for tentativa in range(3):
@@ -82,7 +139,8 @@ def coletar_secao(secao: str):
                         continue
 
                     sku = item.get("sku")
-                    cat_name = item.get("category", {}).get("categoryName") or secao.capitalize()
+                    cat_raw = item.get("category", {}).get("categoryName") or secao.capitalize()
+                    cat_name = normalizar_categoria(cat_raw, secao)
                     img_url = (item.get("packshot1_front_grid") or {}).get("url")
                     ean = extrair_ean(img_url)
 
@@ -111,6 +169,7 @@ def coletar_secao(secao: str):
                     })
             return itens
         except Exception as e:
+            print(f"    [erro tentativa {tentativa+1}/3] {e}")
             time.sleep(2 * (tentativa + 1))
     return []
 
@@ -134,6 +193,7 @@ def main():
     print(f"[Cache] {len(nome_to_id)} Nomes carregados")
 
     vistos_skus = set()
+    todos_coletados_list = []
     total_coletados = 0
     total_com_ean = 0
     total_match_ean = 0
@@ -153,6 +213,7 @@ def main():
             if sku in vistos_skus:
                 continue
             vistos_skus.add(sku)
+            todos_coletados_list.append(p)
             total_coletados += 1
 
             ean = p["ean"]
@@ -221,6 +282,36 @@ def main():
 
     conn.close()
     duracao = round(time.time() - t0, 1)
+
+    # Exportar também para os arquivos JSON (raiz, scraper/ e webapp/) para paridade de cache offline/local
+    try:
+        precos_json_list = []
+        for p in todos_coletados_list:
+            chave = p.get("ean") or p.get("sku")
+            precos_json_list.append({
+                "gtin_ean": chave,
+                "supermercado": "Soudaki",
+                "nome_completo": p["nome"],
+                "marca": p["marca"],
+                "secao": p["categoria"],
+                "categoria": p["categoria"],
+                "imagem_url": p["imagem_url"],
+                "preco_regular": p["preco"],
+                "preco_promocional": p["preco"],
+                "em_estoque": 1 if p["em_estoque"] else 0,
+                "data_coleta": HOJE
+            })
+        raiz_proj = Path(__file__).resolve().parent.parent
+        for path_dest in [
+            raiz_proj / "precos_soudaki_ampliado.json",
+            raiz_proj / "scraper" / "precos_soudaki_ampliado.json",
+            raiz_proj / "webapp" / "precos_soudaki_ampliado.json"
+        ]:
+            with open(path_dest, "w", encoding="utf-8") as f_out:
+                json.dump(precos_json_list, f_out, indent=2, ensure_ascii=False)
+        print(f"[JSON] precos_soudaki_ampliado.json exportado com sucesso para as 3 pastas!")
+    except Exception as e_json:
+        print(f"[Aviso] Falha ao exportar JSONs locais: {e_json}")
 
     print("\n" + "=" * 65)
     print(f"VARREDURA SOUDAKI FINALIZADA EM {duracao}s!")
