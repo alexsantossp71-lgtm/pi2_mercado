@@ -2,6 +2,25 @@
 """
 Relatório de cobertura por categoria (secao/subsecao) do scrape CEP-fallback.
 
+ATENÇÃO — ESCOPO LIMITADO (verificado em 2026-10-29)
+-----------------------------------------------------
+Este script lê os JSONs da RAIZ do repositório. Hoje esses arquivos são um
+recorte parcial e NÃO representam o catálogo publicado:
+
+  produtos_ampliado.json (raiz)    ->  39.833 produtos, 1 seção ("Mercearia")
+  webapp/produtos_ampliado.json    -> 147.541 produtos, 35 seções
+  webapp/backend/dispensa.db       -> 124.427 produtos carregados na API
+
+Como os preços de Atacadão e Pão de Açúcar foram coletados contra o catálogo
+antigo, apenas ~9% dos EANs deles cruzam com o recorte da raiz. Os percentuais
+impressos aqui ficam artificialmente baixos e não descrevem o app.
+
+Para avaliar a cobertura real, use:  python3 scraper/cobertura_precos.py
+Ele mede direto no banco que alimenta a API (SQLite local ou Neon).
+
+Mantido para reproduzir o diagnóstico histórico dos JSONs da raiz.
+-----------------------------------------------------
+
 Lê os 3 arquivos de preços na RAIZ e o catálogo unificado, e emite:
   - total de EANs do universo;
   - por secao (e subsecao): nº de EANs, % em_estoque por loja, % em_estoque
@@ -81,6 +100,19 @@ def main():
     catalogo = carregar_catalogo()
     universo = list(catalogo.keys())
     precos = {l: carregar_por_ean(ARQ[l]) for l in LOJAS}
+
+    catalogo_webapp = os.path.join(RAIZ, "webapp", "produtos_ampliado.json")
+    if os.path.exists(catalogo_webapp):
+        tam_raiz = os.path.getsize(CATALOGO)
+        tam_webapp = os.path.getsize(catalogo_webapp)
+        if tam_webapp > tam_raiz * 1.5:
+            print("*" * 72)
+            print("AVISO: o catálogo da raiz é um recorte parcial.")
+            print(f"  raiz  : {CATALOGO} ({tam_raiz/1e6:.1f} MB, {len(universo)} EANs)")
+            print(f"  webapp: {catalogo_webapp} ({tam_webapp/1e6:.1f} MB)")
+            print("  Os percentuais abaixo NÃO descrevem o app publicado.")
+            print("  Use: python3 scraper/cobertura_precos.py")
+            print("*" * 72 + "\n")
 
     # Por secao -> eans
     por_secao = defaultdict(list)
