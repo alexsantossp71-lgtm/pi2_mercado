@@ -5,9 +5,11 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-# Em produção, a Vercel injeta DATABASE_URL. Em desenvolvimento, esta chamada
-# permite usar o arquivo local criado a partir das variáveis do projeto.
-load_dotenv(Path(__file__).resolve().parents[2] / ".env.local")
+# Em produção, a Vercel injeta DATABASE_URL. Em desenvolvimento, estas chamadas
+# permitem usar o arquivo local criado a partir das variáveis do projeto.
+REPO_ROOT = Path(__file__).resolve().parents[2]
+load_dotenv(REPO_ROOT / ".env.local")
+load_dotenv(REPO_ROOT / ".env")
 load_dotenv()
 
 
@@ -51,7 +53,10 @@ class NeonCursor:
                 params = new_params
             else:
                 sql_pg = sql_pg.replace(fts_placeholder, "(unaccent(p.busca) ILIKE unaccent(%s) OR unaccent(p.nome) ILIKE unaccent(%s))")
-        self.cursor.execute(sql_pg, () if params is None else params)
+        if params is None:
+            self.cursor.execute(sql_pg)
+        else:
+            self.cursor.execute(sql_pg, params)
         self.description = self.cursor.description
         return self
 
