@@ -1,3 +1,4 @@
+.venv/
 # Credenciais - NUNCA versionar
 .env
 .env.local
@@ -50,3 +51,9 @@ scraper/relatorio_cobertura.json
 # Backups do banco e mapa bruto do pareamento (regeneraveis)
 webapp/backend/dispensa.bak-*.db
 scraper/pareamento_soudaki_pa.json
+
+# Coleta do Soudaki: dados brutos e saídas regeneráveis
+scraper/soudaki/raw/
+scraper/soudaki/soudaki_completo.json
+scraper/soudaki/produtos_soudaki.json
+scraper/soudaki/precos_soudaki.json
