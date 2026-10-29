@@ -4,7 +4,7 @@
    ================================================================ */
 
 import { buscarCategoriasAPI, buscarMarcasAPI } from './api.js';
-import { LOJAS, CHAVES_LOJA } from './dataLoader.js';
+import { LOJAS, CHAVES_LOJA, renderStoreLogo } from './dataLoader.js';
 import { buscarProdutos } from './searchEngine.js';
 import { getLista, getTotalItens, adicionarItem, removerItem, alterarQtd, limparLista, gerarTextoCompartilhamento, gerarCodigoLista } from './shoppingList.js';
 import { fmtBRL, totalPorLoja, melhorLojaUnica, divisaoMultiLoja, disponivelEm, motivoIndisponivel, itensIndisponiveisPorLoja } from './priceCalculator.js';
@@ -306,7 +306,7 @@ export function renderResultados() {
     return `
       <div class="${cardClass} store-card">
         <div class="store-header">
-          <span>${LOJAS[k].icone}</span>
+          <span class="store-logo-wrapper">${renderStoreLogo(k, 26)}</span>
           <p class="store-name">${LOJAS[k].nome}</p>
           ${melhor ? '<span class="badge badge-primary" style="margin-left:auto">MELHOR</span>' : ''}
         </div>
@@ -331,7 +331,7 @@ export function renderResultados() {
     card.className = 'card-flat split-store-card';
     card.innerHTML = `
       <div class="split-header">
-        <p class="split-store-name">${LOJAS[k].icone} ${LOJAS[k].nome}</p>
+        <p class="split-store-name">${renderStoreLogo(k, 20)} ${LOJAS[k].nome}</p>
         <span class="split-store-total">${fmtBRL(soma)}</span>
       </div>
       <ul class="split-items">
@@ -363,7 +363,7 @@ export function renderResultados() {
     const ringClass = ehMelhor ? 'card-highlight' : 'card-flat';
     return `
       <div class="${ringClass} store-card">
-        <p class="store-name">${LOJAS[k].icone} ${LOJAS[k].nome}</p>
+        <p class="store-name">${renderStoreLogo(k, 22)} ${LOJAS[k].nome}</p>
         <p class="store-price">${fmtBRL(v)}</p>
         ${notaFalta(k)}
         ${ehMelhor

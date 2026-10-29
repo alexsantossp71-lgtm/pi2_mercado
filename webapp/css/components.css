@@ -686,3 +686,35 @@
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+
+/* ================================================================
+   STORE LOGOS
+   ================================================================ */
+.store-logo-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-right: 4px;
+  flex-shrink: 0;
+  background: #ffffff;
+  padding: 1px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+.store-logo-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.store-header .store-logo-icon {
+  margin-right: 8px;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+.split-header .store-logo-icon {
+  margin-right: 6px;
+}
+
