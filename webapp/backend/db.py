@@ -30,19 +30,27 @@ class NeonCursor:
         sql_pg = sql.replace("?", "%s")
         # Se contiver chamada de FTS5 do SQLite, adapta para busca ILIKE na coluna 'busca' ou 'nome'
         if "produtos_fts" in sql_pg:
-            sql_pg = sql_pg.replace("p.id IN (SELECT id FROM produtos_fts WHERE produtos_fts MATCH %s)", "(p.busca ILIKE %s OR p.nome ILIKE %s)")
+            fts_placeholder = "p.id IN (SELECT id FROM produtos_fts WHERE produtos_fts MATCH %s)"
             if params:
-                # Transforma termo fts em wildcard para ILIKE
                 params_list = list(params)
-                # Para cada termo, se for o do fts (último ou penúltimo), duplica para busca e nome
                 new_params = []
+                words_conditions = []
                 for p in params_list:
                     if isinstance(p, str) and ('"' in p or '*' in p):
-                        cleaned = "%" + p.replace('"', '').replace('*', '').strip() + "%"
-                        new_params.extend([cleaned, cleaned])
+                        words = [w.strip('"*').strip() for w in p.split() if w.strip('"*').strip()]
+                        for w in words:
+                            words_conditions.append("(unaccent(p.busca) ILIKE unaccent(%s) OR unaccent(p.nome) ILIKE unaccent(%s))")
+                            new_params.extend([f"%{w}%", f"%{w}%"])
                     else:
                         new_params.append(p)
+                
+                clause = " AND ".join(words_conditions) if words_conditions else "(unaccent(p.busca) ILIKE unaccent(%s) OR unaccent(p.nome) ILIKE unaccent(%s))"
+                if not words_conditions:
+                    new_params.extend(["%%", "%%"])
+                sql_pg = sql_pg.replace(fts_placeholder, f"({clause})")
                 params = new_params
+            else:
+                sql_pg = sql_pg.replace(fts_placeholder, "(unaccent(p.busca) ILIKE unaccent(%s) OR unaccent(p.nome) ILIKE unaccent(%s))")
         self.cursor.execute(sql_pg, () if params is None else params)
         self.description = self.cursor.description
         return self
