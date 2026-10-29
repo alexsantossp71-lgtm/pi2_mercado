@@ -44,16 +44,16 @@ logger = logging.getLogger("dispensa.main")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    logger.info("Inicializando backend Dispensa Planejada FastAPI (Turso/LibSQL)...")
+    logger.info("Inicializando backend Dispensa Planejada FastAPI...")
     
-    # We can perform a quick connection test here
     try:
         from db import get_db_connection
         conn = get_db_connection()
+        engine = "PostgreSQL (Neon)" if getattr(conn, "is_postgres", False) else "SQLite3 Local"
         conn.close()
-        logger.info("Conexão com Turso LibSQL bem sucedida!")
+        logger.info(f"Conexão com banco de dados bem-sucedida! Motor: {engine}")
     except Exception as e:
-        logger.error(f"Erro ao conectar ao Turso: {e}")
+        logger.error(f"Erro ao conectar ao banco de dados: {e}")
         
     yield
     logger.info("Encerrando backend...")

@@ -30,3 +30,15 @@ node_modules/
 
 # Build local
 webapp/produtos.zip
+
+.vercel
+.env*
+
+# Logs e diagnosticos
+_diag*.txt
+_check*.txt
+_probe*.txt
+_out*.txt
+*.log
+_*.log
+_test_results.json

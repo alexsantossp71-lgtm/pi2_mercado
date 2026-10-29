@@ -4,7 +4,7 @@ Executes SQL queries against the SQLite SGBD (dispensa.db).
 """
 
 import math
-from typing import List, Optional, Tuple
+from typing import Dict, List, Optional, Tuple
 from db import get_db_connection
 
 
@@ -212,3 +212,47 @@ def get_product_by_ean(ean: str) -> Optional[dict]:
         "preco_regular": [row["r1"], row["r2"], row["r3"], row["r4"]],
         "em_estoque": [bool(row["e1"]), bool(row["e2"]), bool(row["e3"]), bool(row["e4"])],
     }
+
+
+def get_products_by_ids(product_ids: List[int]) -> Dict[int, dict]:
+    """Busca em lote múltiplos produtos por ID para otimização de consultas."""
+    if not product_ids:
+        return {}
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    placeholders = ",".join(["?"] * len(product_ids))
+    query = f"""
+        SELECT
+            p.id, p.gtin_ean, p.nome, p.categoria, p.marca, p.relevancia, p.imagem_url, p.apresentacao,
+            pr1.preco_promocional AS p1, pr1.preco_regular AS r1, pr1.em_estoque AS e1,
+            pr2.preco_promocional AS p2, pr2.preco_regular AS r2, pr2.em_estoque AS e2,
+            pr3.preco_promocional AS p3, pr3.preco_regular AS r3, pr3.em_estoque AS e3,
+            pr4.preco_promocional AS p4, pr4.preco_regular AS r4, pr4.em_estoque AS e4
+        FROM produtos p
+        LEFT JOIN precos pr1 ON p.id = pr1.produto_id AND pr1.loja_id = 1
+        LEFT JOIN precos pr2 ON p.id = pr2.produto_id AND pr2.loja_id = 2
+        LEFT JOIN precos pr3 ON p.id = pr3.produto_id AND pr3.loja_id = 3
+        LEFT JOIN precos pr4 ON p.id = pr4.produto_id AND pr4.loja_id = 4
+        WHERE p.id IN ({placeholders});
+    """
+    cursor.execute(query, product_ids)
+    rows = cursor.fetchall()
+    conn.close()
+
+    result = {}
+    for row in rows:
+        result[row["id"]] = {
+            "id": row["id"],
+            "gtin_ean": row["gtin_ean"],
+            "nome": row["nome"],
+            "categoria": row["categoria"],
+            "marca": row["marca"],
+            "relevancia": row["relevancia"],
+            "imagem_url": row["imagem_url"],
+            "apresentacao": row["apresentacao"],
+            "preco": [row["p1"], row["p2"], row["p3"], row["p4"]],
+            "preco_regular": [row["r1"], row["r2"], row["r3"], row["r4"]],
+            "em_estoque": [bool(row["e1"]), bool(row["e2"]), bool(row["e3"]), bool(row["e4"])],
+        }
+    return result

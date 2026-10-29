@@ -12,7 +12,7 @@ from models import (
     LojaTotal,
     MultilojaResumo,
 )
-from services.product_service import get_product_by_id
+from services.product_service import get_product_by_id, get_products_by_ids
 
 LOJAS = {
     "carrefour": {"nome": "Carrefour - Ponta da Praia", "icone": "🛍️", "index": 0},
@@ -25,10 +25,13 @@ CHAVES_LOJA = ["carrefour", "pao_de_acucar", "atacadao", "soudaki"]
 
 
 def calculate_basket_prices(request: CalculoRequest) -> CalculoResponse:
-    # Resolve items from SGBD
+    # Resolve items from SGBD (suporta mocks de get_product_by_id em testes)
+    ids_pedidos = list({item_in.id for item_in in request.itens})
+    produtos_map = get_products_by_ids(ids_pedidos)
+
     itens_resolvidos = []
     for item_in in request.itens:
-        prod = get_product_by_id(item_in.id)
+        prod = get_product_by_id(item_in.id) or produtos_map.get(item_in.id)
         if prod:
             itens_resolvidos.append({"produto": prod, "qtd": item_in.qtd})
 
@@ -79,10 +82,17 @@ def calculate_basket_prices(request: CalculoRequest) -> CalculoResponse:
     economia_unica = 0.0
 
     if lojas_com_preco:
-        lojas_ordenadas_unica = sorted(lojas_com_preco, key=lambda x: x.total)
+        # Prioriza lojas com a cesta mais completa (itens_disponiveis desc) e depois menor total (total asc)
+        lojas_ordenadas_unica = sorted(
+            lojas_com_preco,
+            key=lambda x: (-x.itens_disponiveis, x.total)
+        )
         melhor_loja = lojas_ordenadas_unica[0]
-        pior_loja = lojas_ordenadas_unica[-1]
-        economia_unica = round(pior_loja.total - melhor_loja.total, 2)
+
+        # Para pior loja, busca a loja com mesma completude ou o maior total
+        mesma_cobertura = [lt for lt in lojas_com_preco if lt.itens_disponiveis == melhor_loja.itens_disponiveis]
+        pior_loja = max(mesma_cobertura or lojas_com_preco, key=lambda x: x.total)
+        economia_unica = round(max(0.0, pior_loja.total - melhor_loja.total), 2)
 
     # 2. Multi-Store Optimization
     distribuicao_dict: Dict[str, List[ItemDivisao]] = {k: [] for k in CHAVES_LOJA}
