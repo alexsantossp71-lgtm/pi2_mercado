@@ -12,6 +12,14 @@
 > [`paridade_soudaki_pao_de_acucar.md`](paridade_soudaki_pao_de_acucar.md).
 > O restante deste documento preserva a medição original.
 
+> **Atualização de 29/10/2026 — importação dos preços de outubro.**
+> Em seguida, descobriu-se que coletas de outubro já presentes nos JSONs do
+> repositório nunca haviam chegado ao banco, que servia preços de setembro.
+> Depois de importá-las com `scraper/importar_precos.py`: comparáveis
+> **5.794 (4,67%)**, núcleo útil comparável **11,2%** (era 7,2%), idade da
+> coleta **4 dias** para Carrefour, Pão de Açúcar e Atacadão (era 46). Ver
+> [`importacao_precos.md`](importacao_precos.md).
+
 ---
 
 ## Resumo
