@@ -57,6 +57,17 @@ HEADERS_COMPLETOS = {
     "Connection": "keep-alive",
 }
 
+def onde_estou() -> str:
+    """País de saída desta máquina. Best-effort: sem rede, não atrapalha."""
+    try:
+        import requests
+        r = requests.get("https://api.country.is/", timeout=6)
+        d = r.json()
+        return f"{d.get('country', '?')} (IP {d.get('ip', '?')})"
+    except Exception:
+        return "indeterminado"
+
+
 PADRAO_NEXT = re.compile(
     r'<script id="__NEXT_DATA__"[^>]*>(.*?)</script>', re.S)
 
@@ -201,7 +212,15 @@ def main() -> None:
     BASE_URL = args.base_url.rstrip("/")
     url = f"{BASE_URL}/shop/{args.secao}/"
 
-    print(f"Alvo: {url}\n")
+    pais = onde_estou()
+    print(f"Alvo:   {url}")
+    print(f"Saindo de: {pais}")
+    if pais.startswith("BR"):
+        print("Você está no Brasil, que é o caso que interessa.")
+    elif pais != "indeterminado":
+        print("ATENÇÃO: fora do Brasil. A loja da Daki pode simplesmente\n"
+              "não ser servida para este país, e aí o teste não vale.")
+    print()
     print(f"{'estratégia':<34} {'veredito':<11} observação")
     print("-" * 78)
 
@@ -233,12 +252,20 @@ def main() -> None:
     print("-" * 78)
     if vencedora:
         print(f"\nFunciona: {vencedora}")
-        if vencedora.startswith(("1", "2", "3")):
-            print("A coleta normal já serve:\n"
-                  "    python3 scraper/soudaki/atualizar_soudaki.py")
+        if vencedora.startswith("1"):
+            print("\nLeitura: a estratégia 1 é exatamente o que o coletor\n"
+                  "sempre fez. Se ela passa daqui, nunca houve nada quebrado\n"
+                  "no coletor - o que decidia era de onde partia a requisição.\n"
+                  "Nada de proxy, nada de Playwright.")
+            print("\n    python3 scraper/soudaki/atualizar_soudaki.py")
+        elif vencedora.startswith(("2", "3")):
+            print("\nLeitura: cabeçalhos coerentes e/ou cookies da home\n"
+                  "resolvem. Já é o padrão do coletor.")
+            print("\n    python3 scraper/soudaki/atualizar_soudaki.py")
         else:
-            print("Use o modo navegador:\n"
-                  "    python3 scraper/soudaki/coletar_soudaki.py --navegador\n"
+            print("\nLeitura: só com navegador de verdade. Há proteção\n"
+                  "ativa de bot além da localização.")
+            print("\n    python3 scraper/soudaki/coletar_soudaki.py --navegador\n"
                   "    python3 scraper/soudaki/integrar_soudaki.py --aplicar")
     else:
         print("\nNenhuma estratégia leu a loja.")

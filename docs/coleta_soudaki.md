@@ -515,3 +515,62 @@ pip install playwright playwright-stealth && playwright install chromium
 python3 scraper/soudaki/coletar_soudaki.py --navegador
 python3 scraper/soudaki/integrar_soudaki.py --aplicar
 ```
+
+
+---
+
+## 11. Era a localização (correção do que está escrito acima)
+
+A pergunta certa foi "talvez proxy do Brasil?". Medi de onde saem as
+minhas requisições:
+
+```
+{"ip":"194.26.202.48","country":"US"}
+```
+
+**Estados Unidos.** E as coletas que deram certo — 1.538 produtos em
+13/09, 349 em 25/10 — rodaram na máquina do dono do projeto, em Santos.
+
+Isso corrige o diagnóstico das seções 9 e 10. Eu havia escrito que algo
+"mudou no site nos últimos quatro dias", porque o mesmo código funcionou
+em 25/10 e falhou em 29/10. A comparação era inválida: **as duas execuções
+saíram de países diferentes.** O mais provável é que nada tenha mudado. A
+Daki entrega em cidades brasileiras; servir a vitrine só para o Brasil é
+decisão de negócio banal, não defesa contra robô.
+
+Resumo honesto do que cada evidência diz:
+
+| Observação | O que eu concluí antes | O que ela realmente mostra |
+|---|---|---|
+| `/shop/*` → 404 daqui | o site mudou | um IP dos EUA recebe 404 |
+| funcionou em 25/10 | quebrou em 4 dias | rodou do Brasil, e segue valendo |
+| Turnstile na home | protege a loja | protege a home, e só |
+
+### Precisa de proxy?
+
+**Para você, não.** Você já está no Brasil — é só rodar na sua máquina. O
+proxy resolveria o *meu* problema, não o do projeto.
+
+Isso só vira questão se a coleta for automatizada um dia. Hoje não é: não
+há `.github/workflows/`, nem cron no `render.yaml` ou no `vercel.json`.
+Quando for, lembre que GitHub Actions, Render e Vercel rodam fora do
+Brasil, e a coleta vai falhar exatamente assim. As saídas seriam coletar
+localmente e versionar o JSON, usar um runner self-hosted em casa, ou
+pagar um proxy br — nessa ordem de bom senso.
+
+### O teste que fecha isso
+
+`diagnostico_acesso.py` agora imprime o país de saída antes de começar e
+avisa se você não estiver no Brasil. E a leitura do resultado ficou
+explícita:
+
+- **estratégia 1 passa** → é exatamente o que o coletor sempre fez. Nunca
+  houve nada quebrado; o que decidia era de onde partia a requisição.
+  Sem proxy, sem Playwright.
+- **2 ou 3 passam** → cabeçalhos coerentes e cookies ajudaram. Já é o
+  padrão do coletor.
+- **só 4-6 passam** → aí sim há proteção de bot de verdade.
+
+Nada do que foi feito nas seções 9 e 10 se perde nesse cenário: cabeçalhos
+coerentes, sessão com cookies e a detecção do 404-servido-como-200 são
+melhorias legítimas. Só não eram a causa.
