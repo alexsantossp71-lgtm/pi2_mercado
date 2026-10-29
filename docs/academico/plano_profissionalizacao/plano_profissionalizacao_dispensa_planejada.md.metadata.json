@@ -1,6 +1,0 @@
-{
-  "summary": "Plano completo de profissionalização do webapp Dispensa Planejada para o Projeto Integrador UNIVESP 2026.2.\n\nInclui:\n- Diagnóstico detalhado do estado atual (10 gaps críticos identificados)\n- Mapeamento completo das exigências UNIVESP vs. estado atual (5 avaliações, pesos e rubricas)\n- Roadmap em 6 fases: Refatoração Arquitetural, UX/UI Profissional, Deploy/Testes, Documentação Acadêmica, Solução Final, Vídeo\n- Proposta de arquitetura modular (separação HTML/CSS/JS, Backend FastAPI, Design System CSS puro)\n- Cronograma Gantt alinhado às quinzenas UNIVESP (ago-nov 2026)\n- 4 decisões técnicas pendentes para discussão (backend, CSS, deploy, features)\n- Checklist de entregáveis para nota máxima\n- Próximos passos imediatos",
-  "updatedAt": "2026-08-12T21:53:42.562508500Z",
-  "requestFeedback": true,
-  "userFacing": true
-}

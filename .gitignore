@@ -42,3 +42,24 @@ _out*.txt
 *.log
 _*.log
 _test_results.json
+
+# Academico (mantido apenas localmente)
+docs/academico/
+modelos_documentos/
+regulamentos/
+cronograma/
+plano proficionalização/
+geral/
+
+# Prototipos, teorias e arquivos arquivados (apenas localmente)
+prototipo/
+Teoria_scrap/
+archive/
+
+# Ferramentas locais de desenvolvimento e agentes
+.omo/
+.memory/
+.serena/
+.stitch/
+MEMORY.md
+nul
