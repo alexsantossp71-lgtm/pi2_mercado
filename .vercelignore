@@ -7,6 +7,8 @@
 **/.ruff_cache
 **/.codegraph
 **/.playwright-mcp
+docs/
+archive/
 .omo
 .agents
 
