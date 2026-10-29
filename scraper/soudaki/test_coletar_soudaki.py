@@ -356,3 +356,77 @@ def test_nao_repete_secao():
 def test_vitrine_vazia_nao_quebra():
     assert descobrir_secoes("") == []
     assert descobrir_secoes("<html></html>") == []
+
+
+# --------------------------------------------------------------------------- #
+# Ensaio ponta a ponta: servidor local no formato do site -> coletor
+# --------------------------------------------------------------------------- #
+import threading  # noqa: E402
+from http.server import HTTPServer  # noqa: E402
+
+
+def _subir_ensaio():
+    """Sobe o servidor de ensaio numa porta livre e devolve (url, parar)."""
+    import ensaio_local
+
+    if not ensaio_local.CATALOGO:
+        ensaio_local.carregar()
+    srv = HTTPServer(("127.0.0.1", 0), ensaio_local.Handler)
+    t = threading.Thread(target=srv.serve_forever, daemon=True)
+    t.start()
+    return f"http://127.0.0.1:{srv.server_port}", srv.shutdown
+
+
+def test_coleta_ponta_a_ponta_contra_o_formato_do_site():
+    """Exercita o caminho real: HTTP -> __NEXT_DATA__ -> registros.
+
+    O coletor não pode ser testado contra soudaki.com em CI, então o ensaio
+    serve os dados reais do repositório no formato que o site publica.
+    """
+    pytest.importorskip("requests")
+    import coletar_soudaki as C
+
+    url, parar = _subir_ensaio()
+    original = C.BASE_URL
+    try:
+        C.BASE_URL = url
+
+        # 1. a vitrine precisa revelar as seções
+        indice = C.baixar(f"{url}/shop/")
+        secoes = C.descobrir_secoes(indice)
+        assert "bebidas" in secoes
+
+        # 2. a seção precisa render produtos, inclusive os que ficam fora
+        #    de preloadedProducts (o ensaio põe metade num cache de estado)
+        brutos = C.coletar_secao("bebidas", salvar_raw=False)
+        assert len(brutos) > 100
+
+        # 3. normalização
+        regs = [r for r in (C.normalizar(b, "bebidas") for b in brutos) if r]
+        assert len(regs) == len(brutos)
+        assert all(r["nome_completo"] for r in regs)
+        assert all(r["sku"] for r in regs)
+        assert any(r["preco_promocional"] for r in regs)
+
+        # 4. nenhum SKU interno pode ter virado EAN
+        for r in regs:
+            if r["gtin_ean"]:
+                assert C.ean13_valido(r["gtin_ean"]), r["gtin_ean"]
+                assert r["gtin_ean"] != r["sku"] or C.ean13_valido(r["sku"])
+    finally:
+        C.BASE_URL = original
+        parar()
+
+
+def test_pagina_de_secao_inexistente_nao_quebra():
+    pytest.importorskip("requests")
+    import coletar_soudaki as C
+
+    url, parar = _subir_ensaio()
+    original = C.BASE_URL
+    try:
+        C.BASE_URL = url
+        assert C.coletar_secao("secao-que-nao-existe", salvar_raw=False) == []
+    finally:
+        C.BASE_URL = original
+        parar()

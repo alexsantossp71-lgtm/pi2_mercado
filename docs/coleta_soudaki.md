@@ -320,3 +320,58 @@ segunda execução cria 0 produtos.
 
 O integrador também ganhou a regra de frescor: uma reexecução com dados
 antigos não rebaixa um preço mais novo que já esteja no banco.
+
+
+---
+
+## 8. Ensaio local: o pipeline verificado sem o site
+
+O bloqueio de rede foi diagnosticado no nível do pacote: o TCP conecta em
+`172.67.71.57:443`, o `Client hello` do TLS é enviado e a conexão é derrubada
+(`SSL_ERROR_SYSCALL`). O filtro de saída lê o SNI, vê `soudaki.com` fora da
+lista e corta. GitHub passa pelo mesmo teste. Não é IPv6, não é DNS, não é o
+site fora do ar — é política de rede, e não há contorno legítimo.
+
+Para que restasse apenas uma incógnita (o formato que o site publica hoje),
+`scraper/soudaki/ensaio_local.py` serve os dados reais do Soudaki que estão
+no repositório no formato de uma página Next.js, com metade dos produtos em
+`preloadedProducts` e metade num cache de estado — justamente o caso que o
+coletor antigo perdia.
+
+```bash
+# terminal 1
+python3 scraper/soudaki/ensaio_local.py --porta 8777
+# terminal 2
+python3 scraper/soudaki/coletar_soudaki.py --base-url http://localhost:8777
+```
+
+O coletor ganhou `--base-url` para isso (também serve para apontar a um
+espelho).
+
+### O que o ensaio provou
+
+| Etapa | Resultado |
+|---|---|
+| Descoberta de seções na vitrine | 10 seções encontradas |
+| Varredura do payload | 1.538 produtos, **incluindo os do cache de estado** |
+| Extração de EAN | 375 válidos (24,4%), nenhum SKU virou EAN |
+| Estoque | 1.132 disponíveis — igual à origem |
+| Integração | 1.538 vinculados, 100% |
+| Conferência de preços | **0 preços da coleta faltando no banco** |
+| Reexecução | 0 produtos criados (idempotente) |
+
+O ensaio achou um bug — no próprio ensaio: `em_estoque` vem como inteiro
+`1/0` em algumas coletas e como string `"True"` em outras, e a primeira
+versão comparava só com a string, zerando o estoque. Vale registrar porque é
+exatamente o tipo de divergência de formato que derruba uma coleta real.
+
+Dois testes automatizados cobrem esse caminho
+(`test_coleta_ponta_a_ponta_contra_o_formato_do_site` e o de seção
+inexistente), então o pipeline não depende de alguém lembrar de rodar o
+ensaio à mão.
+
+### O que o ensaio NÃO prova
+
+Que o `soudaki.com` de hoje publica os produtos nesse formato. O ensaio usa o
+formato observado nos dados que temos. Se a página mudou, o
+`--diagnostico` mostra em uma requisição — é por isso que ele existe.

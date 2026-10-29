@@ -52,6 +52,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sys
 import time
@@ -64,7 +65,7 @@ BASE = Path(__file__).resolve().parent
 RAIZ = BASE.parent.parent
 RAW = BASE / "raw"
 
-BASE_URL = "https://soudaki.com"
+BASE_URL = os.environ.get("SOUDAKI_BASE_URL", "https://soudaki.com")
 HOJE = date.today().isoformat()
 
 HEADERS = {
@@ -549,7 +550,15 @@ def main() -> None:
                     help="Reprocessa o que está em raw/, sem acessar a rede.")
     ap.add_argument("--pausa", type=float, default=0.6,
                     help="Segundos entre requisições (padrão: 0.6).")
+    ap.add_argument("--base-url", default=None,
+                    help="Origem alternativa (espelho ou ensaio local). "
+                         "Padrão: https://soudaki.com")
     args = ap.parse_args()
+
+    if args.base_url:
+        global BASE_URL
+        BASE_URL = args.base_url.rstrip("/")
+        print(f"Origem: {BASE_URL}")
 
     secoes = args.secoes
     if not secoes and not args.reprocessar:
