@@ -7,8 +7,8 @@ raspagem de HTML renderizado.
 
 | Loja | Pasta | Técnica | `loja_id` | Saída | Integração Neon |
 | --- | --- | --- | --- | --- | --- |
-| Carrefour (Ponta da Praia) | `carrefour/` | API VTEX `carrefourbrfood.myvtex.com` (sem captcha) | 1 | JSON único com preço embutido | via ETL (pendente adaptador v2) |
-| Pão de Açúcar | `pao_de_acucar/` | API GPA `api.vendas.gpa.digital` | 2 | JSON único com preço embutido | via ETL (pendente adaptador v2) |
+| Carrefour (Ponta da Praia) | `carrefour/` | API VTEX `carrefourbrfood.myvtex.com` (sem captcha) | 1 | JSON único com preço embutido | `integrar_carrefour_pa.py` |
+| Pão de Açúcar | `pao_de_acucar/` | API GPA `api.vendas.gpa.digital` | 2 | JSON único com preço embutido | `integrar_carrefour_pa.py` |
 | Atacadão | `atacadao/` | API VTEX `atacadaobr.vtexcommercestable.com.br` + cache-buster `&_cb=` | 3 | `output/*.json` (produtos + preços) | direto: `--db` / `--integrar` |
 | Soudaki (Daki) | `soudaki/` | `__NEXT_DATA__` + rotas `/_next/data` do Next.js | 4 | `output/*.json` (produtos + preços) | direto: `--db` / `--integrar` |
 
@@ -67,12 +67,23 @@ A coleta do **Atacadão está pausada** — não retomar sem decisão do grupo.
 1. **Soudaki / Atacadão** — coletor grava direto no Neon
    (match por EAN-13 → nome normalizado; cria produto novo com
    `relevancia = 10` quando não há correspondência).
-2. **Carrefour / Pão de Açúcar** — hoje o catálogo dessas lojas é
-   publicado pelos JSONs `*_ampliado.json` via ETL
-   (`importar_json_para_sqlite.py` → `migrate_sqlite_to_neon.py`) e o
-   refresco pontual de preços usa `atualizar_precos_ean_cep.py`.
-   Os JSONs v2 (formato único com preço embutido) ainda não têm
-   integrador automático — adaptador pendente.
+2. **Carrefour / Pão de Açúcar** — os JSONs v2 (formato único com preço
+   embutido) entram pelo `integrar_carrefour_pa.py`, com o mesmo critério
+   dos integradores dos Soudaki/Atacadão: vínculo por EAN-13 (inclusive
+   os códigos internos `0000000*` do GPA, já usados no catálogo) ou nome
+   normalizado, produto novo com `relevancia = 10`, categoria resolvida
+   contra as canônicas do catálogo, filtro adulto aplicado e upsert de
+   preço por `(produto_id, loja_id)` — promoção vai em
+   `preco_promocional` e preço de lista em `preco_regular`:
+
+   ```bash
+   python scraper/integrar_carrefour_pa.py                 # simula (dry-run)
+   python scraper/integrar_carrefour_pa.py --db            # grava no Neon
+   python scraper/integrar_carrefour_pa.py --db --limite 200  # teste curto
+   ```
+
+   O refresco pontual de preços segue disponível via
+   `atualizar_precos_ean_cep.py`.
 3. Utilitários: `recoletar_por_ean.py` (releitura de preço/estoque para
    EANs específicos), `relatorio_cobertura.py` (métricas por loja,
    `--kpi`) e `atualizar_precos_ean_cep.py` (lote por EAN + CEP).

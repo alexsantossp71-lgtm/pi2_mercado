@@ -13,16 +13,19 @@ JSONs brutos por loja (fora do git)
         │
         ├── Soudaki e Atacadão ──► integração direta no Neon (--db / --integrar)
         │
-        └── Carrefour e Pão de Açúcar ──► ETL importar_json_para_sqlite.py
-                     │  (filtro_adulto.py remove seção adulta/sex shop)
-                     ▼
-             dispensa.db (SQLite local) ──► migrate_sqlite_to_neon.py
+        └── Carrefour e Pão de Açúcar ──► integrar_carrefour_pa.py (vínculo
+                     │  por EAN-13/nome, filtro adulto, upsert de preço)
                      ▼
               Neon PostgreSQL (produção)
                      │
                      ▼
         API FastAPI (/api) ──► PWA (despensaplanejada.vercel.app)
 ```
+
+> O caminho antigo via ETL (`importar_json_para_sqlite.py` →
+> `dispensa.db` → `migrate_sqlite_to_neon.py`) continua disponível como
+> alternativa para reconstruir o catálogo a partir dos JSONs
+> `*_ampliado.json` da primeira geração de coletores.
 
 ## Estrutura de pastas
 
@@ -43,7 +46,8 @@ scraper/
     teste_parser.py          testes unitários do parser
     README.md / COMECE_AQUI.txt
   filtro_adulto.py           filtro de conteúdo adulto (2 camadas) — na raiz,
-                             importado pelo ETL via parents[2]/scraper
+                             importado pelo ETL e pelo integrador
+  integrar_carrefour_pa.py   publicação dos JSONs v2 do Carrefour/PA no Neon
   atualizar_precos_ean_cep.py     atualização em lote de preços por EAN + CEP
   recoletar_por_ean.py            releitura de preço/estoque para EANs específicos
   relatorio_cobertura.py          métricas de cobertura por loja
@@ -171,13 +175,37 @@ Preços fazem upsert em `precos` por `(produto_id, loja_id)` com
 as pastas `soudaki/` e `atacadao/` precisam ficar um nível abaixo de
 `scraper/`.
 
-### Carrefour e Pão de Açúcar — publicação
+### Carrefour e Pão de Açúcar — publicação no Neon
 
-Os JSONs v2 dessas lojas (formato único com preço embutido) ainda não
-têm integrador automático no repositório — adaptador pendente. Hoje o
-catálogo é publicado pelos JSONs `*_ampliado.json` via ETL
-(`importar_json_para_sqlite.py` → `migrate_sqlite_to_neon.py`), e o
-refresco pontual de preços usa `atualizar_precos_ean_cep.py`.
+`integrar_carrefour_pa.py` lê os JSONs v2 (por padrão
+`scraper/carrefour/carrefour_produtos.json` e
+`scraper/pao_de_acucar/paodeacucar_produtos.json`) e publica com o mesmo
+critério dos integradores do Soudaki/Atacadão: vínculo por **EAN-13**
+(inclusive os códigos internos `0000000*` do GPA, já usados no catálogo)
+e, na falta, por **nome normalizado** — preenchendo o EAN do produto
+existente quando possível. Produto sem correspondência é criado com
+`relevancia = 10` e categoria resolvida contra as canônicas do catálogo
+(os corredores do Carrefour já são canônicos; os do Pão de Açúcar passam
+pelos pares de unificação da normalização). O filtro adulto é aplicado
+antes da gravação.
+
+Preços fazem upsert em `precos` por `(produto_id, loja_id)` com
+`data_coleta` extraída do `coleta_em` do JSON: o preço vigente vai em
+`preco_promocional` e o de lista (`preco_original`) em `preco_regular`,
+preservando a economia quando há promoção. Itens indisponíveis ou sem
+preço positivo são ignorados e contados. Por padrão o script apenas
+**simula**; `--db` grava (com commit único no fim) e `--limite N`
+processa os N primeiros de cada arquivo — ideal para validar antes:
+
+```bash
+python scraper/integrar_carrefour_pa.py --limite 200      # simula
+python scraper/integrar_carrefour_pa.py --db              # grava tudo
+python scraper/integrar_carrefour_pa.py --db --arquivo scraper/pao_de_acucar/paodeacucar_produtos.json
+```
+
+O script exige estar em `scraper/` (usa `filtro_adulto.py` da própria
+pasta e `webapp/backend/db.py` da raiz, que lê `DATABASE_URL` ou
+`NEON_DATABASE_URL` do `.env` da raiz do repositório).
 
 ## Filtro de conteúdo adulto
 

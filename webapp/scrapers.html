@@ -201,7 +201,9 @@
         <div>
           <h3>Carga no banco Neon/PostgreSQL</h3>
           <p>O <code>migrate_sqlite_to_neon.py</code> publica o catálogo e os preços no banco de produção.
-             O Soudaki e o Atacadão gravam direto no Neon durante a coleta (<code>--db</code>).</p>
+             O Soudaki e o Atacadão gravam direto no Neon durante a coleta (<code>--db</code>); os JSONs do
+             Carrefour e do Pão de Açúcar entram pelo <code>integrar_carrefour_pa.py</code>, com o mesmo critério
+             de vínculo por <strong>EAN-13</strong> ou nome normalizado.</p>
         </div>
       </li>
       <li>
