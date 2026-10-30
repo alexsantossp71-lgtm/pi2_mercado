@@ -5,6 +5,7 @@ Projeto Integrador em Computação II — UNIVESP 2026.2.
 
 **Aplicação publicada:** [despensaplanejada.vercel.app](https://despensaplanejada.vercel.app/)
 **Como os preços são coletados:** [página no app](https://despensaplanejada.vercel.app/scrapers.html) · [docs/scrapers.md](docs/scrapers.md)
+**Licença:** [MIT](LICENSE) · **Mudanças recentes:** [CHANGELOG](CHANGELOG.md)
 
 ## O que faz
 
@@ -18,8 +19,9 @@ Projeto Integrador em Computação II — UNIVESP 2026.2.
 
 | Indicador | Valor |
 | --- | --- |
-| Produtos no catálogo | 113.516 |
-| Produtos com preço em 2+ lojas (comparáveis) | 6.729 |
+| Produtos no catálogo | 93.115 |
+| Produtos com preço em 2+ lojas (comparáveis) | 6.719 |
+| Categorias do catálogo | 15 |
 | Supermercados monitorados | 4 — Carrefour Ponta da Praia, Pão de Açúcar, Atacadão, Soudaki |
 | Coleta mais recente | 30/10/2026 |
 
