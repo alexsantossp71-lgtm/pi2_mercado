@@ -1,0 +1,93 @@
+=====================================================================
+ SOUDAKI (DAKI) - GUIA DE INICIO RAPIDO (computador novo)
+ Projeto Integrador UNIVESP 2026.2 - pi2_mercado
+=====================================================================
+
+PACOTE:
+  scrap_soudaki.py   coletor v2.1 (com --sem-paginacao)
+  teste_parser.py    testes unitarios
+  README.md          documentacao completa
+  COMECE_AQUI.txt    este guia
+
+---------------------------------------------------------------------
+PASSO 1 - PREPARAR O PYTHON (5 min)
+---------------------------------------------------------------------
+No PowerShell (Windows):
+
+  python --version          # precisa ser 3.10 ou maior
+  pip install requests cloudscraper
+
+Se "python" nao existir: instale pela Microsoft Store (Python 3.13)
+ou python.org/downloads.
+
+---------------------------------------------------------------------
+PASSO 2 - TESTE RAPIDO (30 segundos)
+---------------------------------------------------------------------
+Dentro da pasta onde estao os arquivos:
+
+  python scrap_soudaki.py --probe --secao laticinios
+
+Espera: "buildId: ..." e "SKUs pre-carregados: XXX".
+Se aparecer [HTTP 403] -> rode: pip install cloudscraper e tente de novo.
+Se aparecer [HTTP 404] -> voce esta fora do Brasil (VPN ligada? desligue).
+
+---------------------------------------------------------------------
+PASSO 3 - COLETA COMPLETA (2-3 minutos)
+---------------------------------------------------------------------
+  python scrap_soudaki.py --secao all --sem-paginacao
+
+- "--sem-paginacao" e OBRIGATORIO para ser rapido: a rolagem infinita
+  do site ja traz o catalogo completo no pre-carregado (verificado em
+  campo: laticinios = 320 SKUs).
+- Coleta as 25 secoes em ~2-3 minutos (1 request por secao).
+
+SAIDA (pasta output\):
+  produtos_soudaki_full.json   catalogo dedup por SKU
+  precos_soudaki_full.json     precos/estoque do dia
+  checkpoint_<secao>.json      diagnostico por secao
+
+Cada execucao nova FAZ MERGE com os JSONs existentes (nao perde nada,
+nao duplica). Reexecutar e sempre seguro.
+
+---------------------------------------------------------------------
+PASSO 4 - GRAVAR NO NEON (quando quiser integrar ao app)
+---------------------------------------------------------------------
+Requisitos: git instalado + a string de conexao do Neon
+(painel Neon ou Vercel > Project > Settings > Environment Variables).
+
+  git clone https://github.com/alexsantossp71-lgtm/pi2_mercado.git
+  cd pi2_mercado\scraper\soudaki
+  pip install psycopg2-binary python-dotenv
+  mkdir output
+  copy <caminho-dos-seus-jsons>\output\*.json output\
+
+Conexao (escolha UMA forma):
+  a) Sessao:  $env:DATABASE_URL = "postgresql://usuario:senha@ep-xxx.neon.tech/neondb?sslmode=require"
+  b) Fixa:    crie o arquivo .env na RAIZ do repo com a linha:
+              DATABASE_URL=postgresql://usuario:senha@ep-xxx.neon.tech/neondb?sslmode=require
+              (confira se .env esta no .gitignore antes de commitar!)
+
+Gravacao:
+
+  python scrap_soudaki.py --integrar --dry-run   # simula, nao grava
+  python scrap_soudaki.py --integrar             # grava de verdade (loja_id=4)
+
+A integracao casa: por EAN -> por nome normalizado -> cria produto novo
+(relevancia 10) -> upsert em precos. Rodar 2x nao duplica.
+
+---------------------------------------------------------------------
+PROBLEMAS COMUNS
+---------------------------------------------------------------------
+  [HTTP 403]               Cloudflare desafiando -> pip install cloudscraper
+  [HTTP 404] no /shop/     IP fora do Brasil -> desligue VPN/proxy
+  SKUs pre-carregados: 0   Estrutura do site mudou -> guarde a saida do --probe
+  [paginação] nenhum...    NORMAL com --sem-paginacao (site nao tem paginacao)
+  python nao reconhecido   Reinstale Python marcando "Add to PATH" ou use a Store
+
+---------------------------------------------------------------------
+FLUXO RESUMIDO (cola rapida)
+---------------------------------------------------------------------
+  pip install requests cloudscraper
+  python scrap_soudaki.py --secao all --sem-paginacao
+  python scrap_soudaki.py --integrar --dry-run
+  python scrap_soudaki.py --integrar

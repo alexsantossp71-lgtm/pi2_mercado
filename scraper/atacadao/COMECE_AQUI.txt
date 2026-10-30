@@ -1,0 +1,62 @@
+================================================================
+ ATACADÃO v2.0 — COMECE AQUI
+================================================================
+
+O QUE É
+  Coletor completo do atacadao.com.br. Fala direto com a API da
+  plataforma VTEX (por baixo do site) — descobrimos que dá para
+  paginar de verdade usando um truque de cache-buster. Gera os
+  mesmos JSONs do Soudaki e grava no Neon com loja_id = 3.
+
+  Diferença importante p/ o Soudaki: este NÃO precisa de IP
+  brasileiro nem cloudscraper — a API da VTEX responde de qualquer
+  lugar. Só o `requests` é necessário.
+
+  IMPORTANTE: esta pasta já vem com a COLETA COMPLETA FEITA
+  (29/10/2026): 4.871 produtos e 4.871 preços em output\.
+  Você pode pular direto para o PASSO 3 (integrar no Neon).
+  Para recolher do zero: apague a pasta output\ e siga os passos.
+
+  MEDICAMENTOS FORA: decidimos (out/2026) não incluir a drogaria —
+  remédio não é item de cesta de supermercado. Além disso os slugs
+  de drogaria do site são "fantasmas" (a busca devolve o catálogo
+  inteiro). O coletor tem um guarda que detecta isso sozinho.
+
+PASSO 0 — PREPARO (uma vez)
+  PS> cd "G:\pi 2 - 2026\atacadao_v2"
+  PS> pip install requests
+  (para gravar no Neon: pip install psycopg2-binary python-dotenv)
+
+PASSO 1 — DIAGNÓSTICO (30 segundos, opcional)
+  PS> python scrap_atacadao.py --probe
+  Esperado:
+    ✔ PAGINAÇÃO FUNCIONANDO (lotes distintos + cache-buster OK)
+    ✔ COLETA OK: N produtos | EAN: 100%
+  Se aparecer qualquer ✘, me cole a saída inteira.
+
+PASSO 2 — COLETAR TUDO (só se quiser recolher; ~15 min,
+          pode parar com Ctrl+C e rodar de novo que retoma)
+  PS> python scrap_atacadao.py --secao all
+  Esperado no fim: 507/507 folhas, ~4.8 mil produtos, 0 falhas.
+
+PASSO 3 — INTEGRAR NO NEON
+  Copie a pasta para <repo>\scraper\atacadao\ (mesmo lugar do
+  soudaki_v2), com o .env do Neon na raiz do repo, e:
+
+  PS> python scrap_atacadao.py --integrar --dry-run   <- SIMULA, me mostre
+  PS> python scrap_atacadao.py --integrar             <- grava de verdade
+
+  O dry-run mostra: quantos casaram por EAN, por nome e quantos
+  produtos novos criaria. Grava com loja_id = 3 (Atacadão).
+
+TESTES OFFLINE (opcional)
+  PS> python teste_parser_atacadao.py     <- 39 testes, sem internet
+
+O QUE JÁ ESTÁ EMBUTIDO
+  - As 515 categorias (out/2026) vêm dentro do script: se a árvore
+    ao vivo falhar, ele usa essa cópia.
+  - Retry com backoff para 429/5xx.
+  - Guarda anti-path-fantasma (descarta categoria que devolve
+    produtos de outro departamento).
+  - Merge: rodar em outro dia só atualiza preços.
+================================================================

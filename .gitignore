@@ -33,9 +33,11 @@ scraper/test*.json
 scraper/catalogo_*.json
 scraper/carrefour_cesta_basica*.json
 scraper/enriquecimento_*.json
-scraper/secoes/dados/
-scraper/secoes/folhas_*.json
-scraper/openfoodfacts/
+# Dados de coleta dos coletores v2 (por loja)
+scraper/carrefour/*.json
+scraper/pao_de_acucar/*.json
+scraper/atacadao/output/
+scraper/soudaki/output/
 webapp/precos_*.json
 webapp/produtos_*.json
 

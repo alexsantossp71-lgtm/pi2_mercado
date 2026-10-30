@@ -7,62 +7,62 @@ pela API FastAPI.
 
 ```
 sites/APIs das lojas
-        │  coleta por seções (requests + BeautifulSoup)
+        │  4 coletores v2 (scraper/<loja>/scrap_<loja>.py)
         ▼
 JSONs brutos por loja (fora do git)
-        │  filtro_adulto.py  ── remove seção adulta/sex shop
-        ▼
-ETL  importar_json_para_sqlite.py ── normaliza, cruza por EAN-13/nome, monta catálogo
         │
-        ├──► dispensa.db (SQLite local, para desenvolvimento)
-        │            │  migrate_sqlite_to_neon.py
-        ▼            ▼
-      Neon PostgreSQL (produção)
+        ├── Soudaki e Atacadão ──► integração direta no Neon (--db / --integrar)
         │
-        ▼
-API FastAPI (/api) ──► PWA (despensaplanejada.vercel.app)
+        └── Carrefour e Pão de Açúcar ──► ETL importar_json_para_sqlite.py
+                     │  (filtro_adulto.py remove seção adulta/sex shop)
+                     ▼
+             dispensa.db (SQLite local) ──► migrate_sqlite_to_neon.py
+                     ▼
+              Neon PostgreSQL (produção)
+                     │
+                     ▼
+        API FastAPI (/api) ──► PWA (despensaplanejada.vercel.app)
 ```
 
 ## Estrutura de pastas
 
 ```text
 scraper/
-  secoes/                    coletores por seção (geração atual)
-    coletor_vtex.py          coletor VTEX genérico (Carrefour e Atacadão)
-    coletar_carrefour.py     orquestra o Carrefour (chamado pelo run_carrefour.bat)
-    coletar_atacadao.py      orquestra o Atacadão
-    coletar_pa.py            coletor do Pão de Açúcar (API GPA)
-    config_secoes.py         configuração das seções por loja
-    gerar_folhas.py          gera folhas_*.json (listas de categorias-alvo)
-    dimensionar.py           mede o tamanho de cada folha antes de coletar
-    consolidar.py            consolida saídas parciais
-    relevancia.py            pontua relevância de produtos
-    validar_atacadao.py      valida a coleta do Atacadão
-    rodar_carrefour_seguro.py execução do Carrefour com limites de segurança
-    run_pipeline_completa.py orquestrador com log (pipeline_log.txt)
-    run_*.bat                lançadores locais (máquina do autor, Windows)
-  filtro_adulto.py           filtro de conteúdo adulto (2 camadas)
-  coletar_e_integrar_soudaki.py   Soudaki/Daki — grava direto no Neon (loja_id=4)
-  coletar_carrefour_categorias_db.py  cesta básica do Carrefour — grava Neon + SQLite
+  README.md                  visão geral, comandos e regras de caminho
+  requirements.txt           dependências dos coletores
+  carrefour/
+    scrap_carrefour.py       coletor v2 — API VTEX carrefourbrfood (loja_id=1)
+  pao_de_acucar/
+    scrap_paodeacucar.py     coletor v2 — API GPA api.vendas.gpa.digital (loja_id=2)
+  atacadao/
+    scrap_atacadao.py        coletor v2 — API VTEX atacadaobr + cache-buster (loja_id=3)
+    teste_parser_atacadao.py testes unitários do parser
+    README.md / COMECE_AQUI.txt
+  soudaki/
+    scrap_soudaki.py         coletor v2 — __NEXT_DATA__ do Next.js (loja_id=4)
+    teste_parser.py          testes unitários do parser
+    README.md / COMECE_AQUI.txt
+  filtro_adulto.py           filtro de conteúdo adulto (2 camadas) — na raiz,
+                             importado pelo ETL via parents[2]/scraper
   atualizar_precos_ean_cep.py     atualização em lote de preços por EAN + CEP
   recoletar_por_ean.py            releitura de preço/estoque para EANs específicos
-  enriquecer_orfaos.py            vincula produtos sem EAN ao catálogo
-  enriquecer_overlap_atacadao.py  completa o overlap do Atacadão
-  cruzar_produtos.py              cruza Open Food Facts (BR) com Carrefour → catalogo_unificado.json
   relatorio_cobertura.py          métricas de cobertura por loja
-  _run_batch.py                   executor em lote
 webapp/backend/
   importar_json_para_sqlite.py    ETL: JSONs → dispensa.db (SQLite)
   migrate_sqlite_to_neon.py       carga: SQLite → Neon/PostgreSQL
-  normalizar_categorias_neon.py   manutenção: normaliza categorias fragmentadas no Neon
 ```
+
+Os coletores v1 (`secoes/coletor_vtex.py`, `secoes/coletar_*.py`,
+`coletar_e_integrar_soudaki.py` v1, enriquecedores pontuais) foram
+removidos: eram substituídos pelos v2 e permanecem no histórico do git
+(`git log --diff-filter=D -- scraper/`) caso precise consultá-los.
 
 ## Pré-requisitos
 
 - Python 3.10+ e as bibliotecas dos coletores:
 
 ```bash
-python -m pip install requests beautifulsoup4 psycopg2-binary
+cd scraper && python -m pip install -r requirements.txt
 ```
 
 - Para o backend/ETL (raiz do repositório):
@@ -82,44 +82,102 @@ o backend cai no SQLite local `webapp/backend/dispensa.db`.
 
 ## Coletores por loja
 
-### Carrefour (Ponta da Praia) e Atacadão — plataforma VTEX
+### Carrefour (Ponta da Praia) — API VTEX
 
-Ambos usam o `secoes/coletor_vtex.py`, que percorre folhas de categoria declaradas
-em `secoes/folhas_carrefour.json` / `secoes/folhas_atacadao.json`, paginando cada
-folha com truncamento configurável (`limite_max`). Os arquivos de folhas são
-gerados pelo `gerar_folhas.py` a partir do mapa de seções (`config_secoes.py`).
+`scrap_carrefour.py` fala direto com a API clássica da VTEX
+(`carrefourbrfood.myvtex.com/api/catalog_system`), que responde sem o
+captcha da vitrine. Percorre os **11 corredores de mercado** do menu
+(Drogaria, Utilidades Domésticas e Pet Care desativados a pedido),
+paginando de 50 em 50; quando um corredor atinge o limite de paginação da
+VTEX (`_from` ≈ 2500), desce para as subcategorias e deduplica por id+EAN.
 
-Fluxos de execução:
+```bash
+python carrefour/scrap_carrefour.py --probe            # diagnóstico
+python carrefour/scrap_carrefour.py --listar-corredores
+python carrefour/scrap_carrefour.py                    # coleta completa
+python carrefour/scrap_carrefour.py --corredores "Mercearia,Bebidas"
+```
 
-- `coletar_carrefour.py` e `coletar_atacadao.py` — coleta por loja.
-- `run_pipeline_completa.py` — roda a esteira inteira com log em
-  `secoes/pipeline_log.txt`.
-- `rodar_carrefour_seguro.py` — execução do Carrefour com limites de segurança
-  (evita bloqueio por volume).
-- `run_carrefour.bat` / `run_atacadao.bat` / `run_pa.bat` — lançadores no Windows
-  da máquina do autor (caminhos locais; servem de exemplo de agendamento).
-
-Saída: JSONs de catálogo e preços por loja (`produtos_*.json`, `precos_*.json` —
-mantidos fora do git por tamanho).
+Saída: JSON único (`{fonte, loja_id, produtos: [...]}`) com preço,
+estoque, EAN, imagem e URL por produto.
 
 ### Pão de Açúcar — API GPA
 
-`secoes/coletar_pa.py` consulta a API oficial do GPA e percorre as 8
-multi-categorias válidas de mercado (alimentos, bebidas, limpeza, perfumaria,
-bazar, descartáveis, bebê e criança, pet), paginando cada subcategoria.
-Saída: JSONs do Pão de Açúcar.
+`scrap_paodeacucar.py` usa a camada de dados oficial
+(`api.vendas.gpa.digital`): listagem por departamento via
+`POST /pa/search/category-page` (100 itens/página) e detalhe via
+`GET /pa/v4/products/ecom/{id}` (EAN + preço autoritativo). São **5
+departamentos** ativos (alimentos, bebidas, limpeza, perfumaria, bebê e
+criança); bazar, petshop, descartáveis e afins estão desativados.
 
-### Soudaki (Daki) — gravação direta no Neon
+```bash
+python pao_de_acucar/scrap_paodeacucar.py --probe
+python pao_de_acucar/scrap_paodeacucar.py --listar-departamentos
+python pao_de_acucar/scrap_paodeacucar.py              # ~13 mil produtos, algumas horas
+python pao_de_acucar/scrap_paodeacucar.py --departamentos "bebidas" --limite-teste 50
+```
 
-`coletar_e_integrar_soudaki.py` extrai produtos, preços e estoques de
-`soudaki.com/shop/<secao>/` (25 categorias) e **grava direto no Neon**
-(`loja_id = 4`), vinculando por EAN-13 ou nome normalizado com o catálogo
-compartilhado. Requer `DATABASE_URL` apontando para o Neon.
+Saída: mesmo formato do Carrefour (`loja_id=2`).
 
-### Coletor de categorias do Carrefour (cesta básica)
+### Atacadão — API VTEX com cache-buster
 
-`coletar_carrefour_categorias_db.py` coleta categorias essenciais da cesta básica
-em `mercado.carrefour.com.br` e grava direto no Neon e no SQLite.
+`scrap_atacadao.py` consulta `atacadaobr.vtexcommercestable.com.br`.
+Duas descobertas de campo são essenciais: (1) a paginação `_from/_to`
+exige `&_cb=<aleatório>`, porque o CloudFront ignora a query string no
+cache e devolve sempre a página 1; (2) `fq=isAvailablePerSalesChannel_1:1`
+filtra só o que é vendável online. Percorre as **515 folhas de categoria**
+(nível 3) com checkpoint a cada 25 folhas.
+
+```bash
+python atacadao/scrap_atacadao.py --probe              # diagnóstico
+python atacadao/scrap_atacadao.py --listar-categorias
+python atacadao/scrap_atacadao.py --secao all --db --dry-run   # simula integração
+python atacadao/scrap_atacadao.py --secao all --db
+python atacadao/scrap_atacadao.py --integrar --dry-run # só integra JSONs existentes
+```
+
+Saída: `output/produtos_atacadao_full.json` + `precos_atacadao_full.json`
+(schema do Soudaki v2) + `checkpoint_atacadao.json` (retomada).
+
+> **A coleta do Atacadão está pausada** (catálogo mantido no banco);
+> não retomar sem decisão do grupo.
+
+### Soudaki (Daki) — Next.js com gravação direta
+
+`scrap_soudaki.py` extrai o lote pré-carregado do `__NEXT_DATA__` de
+`soudaki.com/shop/<secao>/` (**25 seções**), com plano B nas rotas
+`/_next/data/<buildId>/` e fallback SSR `?page=N`. Verificado em campo:
+a rolagem infinita já vem completa no lote inicial — `--sem-paginacao`
+pula a descoberta. O site só entrega a loja para **IP brasileiro**.
+
+```bash
+python soudaki/scrap_soudaki.py --probe --secao laticinios
+python soudaki/scrap_soudaki.py --secao all --sem-paginacao --db --dry-run
+python soudaki/scrap_soudaki.py --integrar            # só integra JSONs existentes
+```
+
+Saída: `output/produtos_soudaki_full.json` + `precos_soudaki_full.json`.
+
+### Integração no Neon (Soudaki e Atacadão)
+
+Ambos os coletores gravam direto no Neon com `--db` (coleta + gravação)
+ou `--integrar` (só grava os JSONs já coletados), sempre com `--dry-run`
+disponível para simular. O vínculo é por **EAN-13** e, na falta, por
+**nome normalizado** (preenchendo o EAN do produto existente quando
+possível); produto sem correspondência é criado com `relevancia = 10`.
+Preços fazem upsert em `precos` por `(produto_id, loja_id)` com
+`data_coleta` de hoje. A integração resolve a raiz do repo via
+`Path(__file__).parents[2]` e importa `webapp/backend/db.py` — por isso
+as pastas `soudaki/` e `atacadao/` precisam ficar um nível abaixo de
+`scraper/`.
+
+### Carrefour e Pão de Açúcar — publicação
+
+Os JSONs v2 dessas lojas (formato único com preço embutido) ainda não
+têm integrador automático no repositório — adaptador pendente. Hoje o
+catálogo é publicado pelos JSONs `*_ampliado.json` via ETL
+(`importar_json_para_sqlite.py` → `migrate_sqlite_to_neon.py`), e o
+refresco pontual de preços usa `atualizar_precos_ean_cep.py`.
 
 ## Filtro de conteúdo adulto
 
@@ -127,7 +185,8 @@ em `mercado.carrefour.com.br` e grava direto no Neon e no SQLite.
 da VTEX) e análise de nome/marca — para remover produtos íntimos do catálogo.
 Itens de uso pessoal legítimos (absorventes, coletores menstruais, preservativos)
 têm exceções explícitas para não serem descartados por falso positivo. É usado
-na coleta (coletor VTEX) e no ETL.
+na coleta e no ETL (`webapp/backend/importar_json_para_sqlite.py`); por isso
+precisa ficar na raiz de `scraper/`.
 
 ## Atualização de preços
 
@@ -142,14 +201,13 @@ na coleta (coletor VTEX) e no ETL.
 
 ## ETL e carga no banco
 
-1. **ETL local** — `webapp/backend/importar_json_para_sqlite.py` lê os JSONs,
-   normaliza nomes (`nome_normalizado`), cruza produtos por EAN-13/nome e recria
-   `dispensa.db`. Com `REMOVER_PRODUTOS_SEM_PRECO=True`, pula produtos do catálogo
-   sem preço em nenhuma loja. **Apaga o banco anterior** — faça backup.
+1. **ETL local** — `webapp/backend/importar_json_para_sqlite.py` lê os JSONs
+   (`produtos_ampliado.json` + `precos_*_ampliado.json`), normaliza nomes
+   (`nome_normalizado`), cruza produtos por EAN-13/nome e recria
+   `dispensa.db`. Com `REMOVER_PRODUTOS_SEM_PRECO=True`, pula produtos do
+   catálogo sem preço em nenhuma loja. **Apaga o banco anterior** — faça backup.
 2. **Carga no Neon** — `webapp/backend/migrate_sqlite_to_neon.py` publica
    catálogo e preços no PostgreSQL de produção (requer `DATABASE_URL`).
-3. **Manutenção de categorias** — `normalizar_categorias_neon.py` unifica
-   nomenclaturas fragmentadas entre lojas (ex.: "Limpeza" × "Limpeza e Lavanderia").
 
 ### Schema (Neon)
 
@@ -165,12 +223,12 @@ Toda consulta de preço válido deve usar `COALESCE(...) IS NOT NULL AND COALESC
 
 ## Convenções do repositório
 
-- JSONs de coleta e bancos (`*.db`, `produtos.zip`) **não são versionados** —
-  ficam apenas no disco do autor; os dados vivos são o Neon. Os padrões estão no
-  `.gitignore`.
-- Logs de execução (`*_log.txt`, `*_err.txt`, `pipeline_log.txt`) também ficam
-  fora do git.
+- JSONs de coleta, checkpoints e bancos (`*.db`, `produtos.zip`) **não são
+  versionados** — ficam apenas no disco do autor; os dados vivos são o Neon.
+  Os padrões estão no `.gitignore` (`scraper/*/output/`, `scraper/<loja>/*.json`).
+- Logs de execução (`*_log.txt`, `*_err.txt`) também ficam fora do git.
 - A coleta do **Atacadão está pausada** (catálogo mantido no banco); não retomar
   sem decisão do grupo.
-- Respeite os limites dos sites: use `rodar_carrefour_seguro.py` e prefira lotes
-  pequenos na atualização por EAN + CEP.
+- Respeite os limites dos sites: prefira `--probe`/`--limite-teste` antes de uma
+  coleta completa, mantenha os delays padrão e lotes pequenos na atualização por
+  EAN + CEP.

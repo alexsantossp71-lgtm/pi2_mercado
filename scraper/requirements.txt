@@ -1,0 +1,7 @@
+# Dependências dos coletores (scraper/)
+# Instalar de dentro da pasta scraper/:  python -m pip install -r requirements.txt
+
+requests>=2.31.0
+cloudscraper>=1.2.71        # opcional/recomendado: plano B contra Cloudflare
+psycopg2-binary>=2.9.10     # usado pela integração Neon (webapp/backend/db.py)
+python-dotenv>=1.0.1

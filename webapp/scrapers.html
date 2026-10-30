@@ -173,11 +173,11 @@
       <li>
         <span class="step-num" aria-hidden="true">1</span>
         <div>
-          <h3>Coleta por seções</h3>
+          <h3>Coleta por loja</h3>
           <p>Coletores dedicados percorrem todas as categorias de mercado de cada loja e gravam os catálogos brutos em JSON:
-             <code>scraper/secoes/coletor_vtex.py</code> (Carrefour e Atacadão, plataforma VTEX),
-             <code>scraper/secoes/coletar_pa.py</code> (Pão de Açúcar, API oficial GPA) e
-             <code>scraper/coletar_e_integrar_soudaki.py</code> (Soudaki/Daki, leitura direta do site).</p>
+             <code>scraper/carrefour/scrap_carrefour.py</code> e <code>scraper/atacadao/scrap_atacadao.py</code> (plataforma VTEX),
+             <code>scraper/pao_de_acucar/scrap_paodeacucar.py</code> (API oficial GPA) e
+             <code>scraper/soudaki/scrap_soudaki.py</code> (Soudaki/Daki, leitura direta do site).</p>
         </div>
       </li>
       <li>
@@ -201,7 +201,7 @@
         <div>
           <h3>Carga no banco Neon/PostgreSQL</h3>
           <p>O <code>migrate_sqlite_to_neon.py</code> publica o catálogo e os preços no banco de produção.
-             O Soudaki e o coletor de categorias do Carrefour gravam direto no Neon durante a coleta.</p>
+             O Soudaki e o Atacadão gravam direto no Neon durante a coleta (<code>--db</code>).</p>
         </div>
       </li>
       <li>
