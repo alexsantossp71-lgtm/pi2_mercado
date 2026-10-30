@@ -19,9 +19,29 @@ logs/
 scratch/
 scraper/test*.json
 
-# Dados grandes (usar Turso/Git LFS, nao o git)
-webapp/backend/dispensa.db
+# Dados grandes: bancos e JSONs de coleta ficam FORA do git (produção = Neon)
+webapp/backend/*.db
+webapp/backend/*.backup
 %TEMP%/
+
+# JSONs de coleta/ETL (mantidos apenas no PC; dados vivos no Neon)
+/precos_*.json
+/produtos_ampliado*.json
+scraper/precos_*.json
+scraper/produtos*.json
+scraper/test*.json
+scraper/catalogo_*.json
+scraper/carrefour_cesta_basica*.json
+scraper/enriquecimento_*.json
+scraper/secoes/dados/
+scraper/secoes/folhas_*.json
+scraper/openfoodfacts/
+webapp/precos_*.json
+webapp/produtos_*.json
+
+# Logs de execucao do scraper
+scraper/*_log.txt
+scraper/*_err.txt
 
 # Node / ferramentas
 node_modules/
@@ -42,6 +62,8 @@ _out*.txt
 *.log
 _*.log
 _test_results.json
+atualizacao_*.txt
+atualizacao_*.err
 
 # Academico (mantido apenas localmente)
 docs/academico/
