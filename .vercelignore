@@ -1,4 +1,4 @@
-# Dados locais e artefatos grandes — o backend em produção lê do Turso, não destes arquivos
+# Dados locais e artefatos grandes — o backend em produção lê do Neon, não destes arquivos
 .git
 *.bak
 *.log
@@ -33,7 +33,7 @@ node_modules
 turso_cli
 turso
 
-# Bancos SQLite locais — produção usa Turso
+# Bancos SQLite locais — produção usa Neon/PostgreSQL
 dispensa*.db
 dispensa*.backup
 webapp/backend/*.db
