@@ -203,7 +203,9 @@
           <p>O <code>migrate_sqlite_to_neon.py</code> publica o catálogo e os preços no banco de produção.
              O Soudaki e o Atacadão gravam direto no Neon durante a coleta (<code>--db</code>); os JSONs do
              Carrefour e do Pão de Açúcar entram pelo <code>integrar_carrefour_pa.py</code>, com o mesmo critério
-             de vínculo por <strong>EAN-13</strong> ou nome normalizado.</p>
+             de vínculo por <strong>EAN-13</strong> ou nome normalizado — promoções vão em <code>preco_promocional</code>
+             e preço de lista em <code>preco_regular</code>, com <code>--db</code> para gravar e <code>--limite</code>
+             para testar com poucos itens antes.</p>
         </div>
       </li>
       <li>

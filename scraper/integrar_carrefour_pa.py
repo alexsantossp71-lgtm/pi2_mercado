@@ -137,6 +137,68 @@ def ean_valido(ean) -> str | None:
     return None
 
 
+def _apresentacao(p: dict) -> str | None:
+    """Monta 'apresentacao' a partir de unidade + multiplicador do JSON v2.
+
+    O JSON v2 não traz um campo 'apresentacao' pronto; ele tem 'unidade'
+    ('un', 'kg', 'L'...) e 'multiplicador' (1.0, 6.0, 12.0...). Devolve
+    algo como '6.0 un' quando o multiplicador > 1, ou só a unidade.
+    """
+    un = (p.get("unidade") or "").strip()
+    mult = p.get("multiplicador")
+    if mult is not None:
+        try:
+            mult = float(mult)
+        except (TypeError, ValueError):
+            mult = None
+    if mult and mult != 1.0:
+        return f"{mult:g} {un}".strip() or None
+    return un or None
+
+
+def _em_estoque(p: dict) -> bool:
+    """Disponibilidade combinando 'disponivel' e 'estoque > 0'.
+
+    O Carrefour usa 99999 como "infinito" — conta como em estoque. Se
+    'estoque' for ausente, confia só em 'disponivel'.
+    """
+    if p.get("disponivel") is False:
+        return False
+    est = p.get("estoque")
+    if est is None:
+        return bool(p.get("disponivel"))
+    try:
+        return int(est) > 0
+    except (TypeError, ValueError):
+        return bool(p.get("disponivel"))
+
+
+def _split_preco(p: dict) -> tuple:
+    """Converte (preco, preco_original) -> (preco_promocional, preco_regular).
+
+    Regra do schema: preco_promocional = NULL quando não há promoção.
+    O app lê o preço efetivo como COALESCE(preco_promocional, preco_regular).
+    Promo = preco estritamente menor que preco_original (tolerância 1 centavo).
+    """
+    preco = p.get("preco")
+    original = p.get("preco_original")
+    try:
+        preco = round(float(preco), 2) if preco is not None else None
+    except (TypeError, ValueError):
+        preco = None
+    try:
+        original = round(float(original), 2) if original is not None else None
+    except (TypeError, ValueError):
+        original = None
+    if preco is None:
+        return (None, original)
+    if original is None or abs(preco - original) < 0.005:
+        # Sem promoção (ou sem original) — só regular
+        return (None, original if original is not None else preco)
+    # Tem promoção: preco < original
+    return (preco, original)
+
+
 def data_da_coleta(meta: dict) -> str:
     bruto = (meta or {}).get("coleta_em") or ""
     for fmt in ("%Y-%m-%d %H:%M:%S", "%Y-%m-%dT%H:%M:%S", "%Y-%m-%d"):
@@ -238,8 +300,8 @@ def integrar(arquivos: list[Path], gravar: bool, limite: int | None,
                             "marca, relevancia, imagem_url, apresentacao, busca) "
                             "VALUES (?, ?, ?, ?, 10, ?, ?, ?) RETURNING id",
                             (ean, nome, categoria, marca,
-                             p.get("imagem_url") or None,
-                             p.get("apresentacao") or None, busca))
+                             p.get("imagem") or None,
+                             _apresentacao(p), busca))
                     else:
                         # SQLite local não tem `busca` — o migrate_sqlite_to_neon
                         # a computa (nome + marca + categoria) na carga.
@@ -248,39 +310,57 @@ def integrar(arquivos: list[Path], gravar: bool, limite: int | None,
                             "marca, relevancia, imagem_url, apresentacao) "
                             "VALUES (?, ?, ?, ?, 10, ?, ?) RETURNING id",
                             (ean, nome, categoria, marca,
-                             p.get("imagem_url") or None,
-                             p.get("apresentacao") or None))
+                             p.get("imagem") or None,
+                             _apresentacao(p)))
                     prod_id = c.fetchone()["id"]
                     nome_to_id[nome.lower().strip()] = prod_id
                     if ean:
                         ean_to_id[ean] = prod_id
 
-            # Preço efetivo vai em preco_promocional; lista em preco_regular
-            preco_original = p.get("preco_original")
-            try:
-                preco_original = (round(float(preco_original), 2)
-                                  if preco_original is not None else None)
-            except (TypeError, ValueError):
-                preco_original = None
-            regular = preco_original if (preco_original and preco_original >= preco) \
-                else preco
+            # Preço: promoção em preco_promocional, lista em preco_regular.
+            # Sem promo (preco == preco_original): preco_promocional = NULL.
+            # O app lê: COALESCE(preco_promocional, preco_regular).
+            preco_promo, preco_reg = _split_preco(p)
+            # preco_promo pode ser None (sem promo), mas preco_reg é sempre >= preco
+            # Validado acima: preco > 0 e disponivel=True
+            if preco_reg is None:
+                # Preço inválido após split (raro) — pula
+                stats["invalidos"] += 1
+                continue
+            em_estoque = _em_estoque(p)
 
             if gravar:
                 c.execute("SELECT id FROM precos WHERE produto_id = ? AND "
                           "loja_id = ? LIMIT 1", (prod_id, loja_id))
                 linha = c.fetchone()
-                vals = (preco, regular, disponivel, data_coleta)
+                vals = (preco_promo, preco_reg, em_estoque, data_coleta)
                 if linha:
                     c.execute("UPDATE precos SET preco_promocional = ?, "
                               "preco_regular = ?, em_estoque = ?, data_coleta = ? "
                               "WHERE id = ?", vals + (linha["id"],))
                     stats["precos_atual"] += 1
                 else:
-                    c.execute("INSERT INTO precos (produto_id, loja_id, "
-                              "preco_promocional, preco_regular, em_estoque, "
-                              "data_coleta) VALUES (?, ?, ?, ?, ?, ?)",
-                              (prod_id, loja_id) + vals)
-                    stats["precos_novos"] += 1
+                    try:
+                        c.execute("INSERT INTO precos (produto_id, loja_id, "
+                                  "preco_promocional, preco_regular, em_estoque, "
+                                  "data_coleta) VALUES (?, ?, ?, ?, ?, ?)",
+                                  (prod_id, loja_id) + vals)
+                        stats["precos_novos"] += 1
+                    except Exception as e:
+                        # Pode ocorrer quando o JSON tem o mesmo produto 2x
+                        # (nome duplicado sem EAN) e a segunda ocorrência
+                        # bate no UNIQUE(produto_id, loja_id). Em SQLite a
+                        # falha é isolada; em Postgres abortaria a transação.
+                        n = stats.get("_skip_dup", 0) + 1
+                        stats["_skip_dup"] = n
+                        if n <= 3:
+                            print(f"   [skip] produto_id={prod_id} "
+                                  f"loja_id={loja_id} nome={nome[:50]!r}: {e}")
+                        if postgres:
+                            try:
+                                conn.connection.rollback()
+                            except Exception:
+                                pass
 
         print(f"\n== {caminho.parent.name}/{caminho.name} → loja_id={loja_id} "
               f"(coleta {data_coleta})")

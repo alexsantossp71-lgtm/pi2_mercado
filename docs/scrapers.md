@@ -48,6 +48,7 @@ scraper/
   filtro_adulto.py           filtro de conteúdo adulto (2 camadas) — na raiz,
                              importado pelo ETL e pelo integrador
   integrar_carrefour_pa.py   publicação dos JSONs v2 do Carrefour/PA no Neon
+  teste_integrador_pa.py     testes das funções puras do integrador (offline)
   atualizar_precos_ean_cep.py     atualização em lote de preços por EAN + CEP
   recoletar_por_ean.py            releitura de preço/estoque para EANs específicos
   relatorio_cobertura.py          métricas de cobertura por loja
@@ -190,10 +191,15 @@ pelos pares de unificação da normalização). O filtro adulto é aplicado
 antes da gravação.
 
 Preços fazem upsert em `precos` por `(produto_id, loja_id)` com
-`data_coleta` extraída do `coleta_em` do JSON: o preço vigente vai em
-`preco_promocional` e o de lista (`preco_original`) em `preco_regular`,
-preservando a economia quando há promoção. Itens indisponíveis ou sem
-preço positivo são ignorados e contados. Por padrão o script apenas
+`data_coleta` extraída do `coleta_em` do JSON: quando há promoção
+(`preco < preco_original`) o valor promocional vai em `preco_promocional`
+e o de lista em `preco_regular`; sem promoção, `preco_promocional = NULL`
+e o preço vigente fica só em `preco_regular` — o app lê com
+`COALESCE(preco_promocional, preco_regular)`. `em_estoque` combina
+`disponivel` e `estoque > 0` (o `99999` do Carrefour conta como "infinito").
+Campos do JSON v2 mapeados: `imagem` → `imagem_url`, `unidade`+`multiplicador`
+→ `apresentacao` (ex.: `"6 un"` para pack 6 unidades). Itens indisponíveis
+ou sem preço positivo são ignorados e contados. Por padrão o script apenas
 **simula**; `--db` grava (com commit único no fim) e `--limite N`
 processa os N primeiros de cada arquivo — ideal para validar antes:
 
@@ -201,11 +207,15 @@ processa os N primeiros de cada arquivo — ideal para validar antes:
 python scraper/integrar_carrefour_pa.py --limite 200      # simula
 python scraper/integrar_carrefour_pa.py --db              # grava tudo
 python scraper/integrar_carrefour_pa.py --db --arquivo scraper/pao_de_acucar/paodeacucar_produtos.json
+python scraper/teste_integrador_pa.py                     # testes das funções puras (offline)
 ```
 
 O script exige estar em `scraper/` (usa `filtro_adulto.py` da própria
 pasta e `webapp/backend/db.py` da raiz, que lê `DATABASE_URL` ou
-`NEON_DATABASE_URL` do `.env` da raiz do repositório).
+`NEON_DATABASE_URL` do `.env` da raiz do repositório). Os testes em
+`teste_integrador_pa.py` cobrem offline (sem banco) as funções puras
+`ean_valido`, `_split_preco`, `_em_estoque`, `_apresentacao`,
+`resolver_categoria` e `data_da_coleta`.
 
 ## Filtro de conteúdo adulto
 

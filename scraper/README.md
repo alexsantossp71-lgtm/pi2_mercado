@@ -73,13 +73,19 @@ A coleta do **Atacadão está pausada** — não retomar sem decisão do grupo.
    os códigos internos `0000000*` do GPA, já usados no catálogo) ou nome
    normalizado, produto novo com `relevancia = 10`, categoria resolvida
    contra as canônicas do catálogo, filtro adulto aplicado e upsert de
-   preço por `(produto_id, loja_id)` — promoção vai em
-   `preco_promocional` e preço de lista em `preco_regular`:
+   preço por `(produto_id, loja_id)` — quando há promoção (`preco <
+   preco_original`) o valor promocional vai em `preco_promocional` e o
+   de lista em `preco_regular`; sem promoção, `preco_promocional = NULL`
+   (o app lê `COALESCE(preco_promocional, preco_regular)`). Campos do
+   JSON v2 mapeados: `imagem` → `imagem_url`, `unidade`+`multiplicador`
+   → `apresentacao`, `disponivel`+`estoque > 0` → `em_estoque`
+   (Carrefour usa `99999` como "infinito"):
 
    ```bash
    python scraper/integrar_carrefour_pa.py                 # simula (dry-run)
    python scraper/integrar_carrefour_pa.py --db            # grava no Neon
    python scraper/integrar_carrefour_pa.py --db --limite 200  # teste curto
+   python scraper/teste_integrador_pa.py                   # testes das funções puras
    ```
 
    O refresco pontual de preços segue disponível via
