@@ -43,6 +43,22 @@ LOJAS_DATA = [
     (4, "soudaki", "Soudaki", "🧁"),
 ]
 
+# Unificação de categorias fragmentadas (mesma regra de
+# normalizar_categorias_neon.py — mantém SQLite local igual ao Neon).
+CATEGORIA_CANONICA = {
+    "Limpeza": "Limpeza e Lavanderia",
+    "Perfumaria": "Higiene e Perfumaria",
+    "Higiene e Beleza": "Higiene e Perfumaria",
+    "Bebê e Criança": "Bebê e Infantil",
+    "Carnes, aves e peixes": "Açougue e Peixaria",
+    "Matinais": "Padaria e Matinais",
+}
+
+
+def normalizar_categoria(nome: str) -> str:
+    """Aplica o mapa de unificação de seções (idempotente)."""
+    return CATEGORIA_CANONICA.get(nome, nome)
+
 ARQUIVOS_PRECOS = {
     "carrefour": "precos_carrefour_ampliado.json",
     "pao_de_acucar": "precos_pao_de_acucar_ampliado.json",
@@ -198,7 +214,7 @@ def run_etl():
     for i, prod in enumerate(produtos_raw, start=1):
         gtin = prod.get("gtin_ean")
         nome = prod.get("nome_completo") or prod.get("nome") or "Produto sem nome"
-        categoria = prod.get("secao") or prod.get("categoria") or "Geral"
+        categoria = normalizar_categoria(prod.get("secao") or prod.get("categoria") or "Geral")
         marca = prod.get("marca") or "Não Informada"
         relevancia = prod.get("relevancia", 0)
         imagem_url = prod.get("imagem_url")
@@ -259,6 +275,7 @@ def run_etl():
                     categoria = info["categoria"]
                 if info.get("imagem_url"):
                     imagem_url = info["imagem_url"]
+            categoria = normalizar_categoria(categoria)
 
             if not nome:
                 nome = f"Produto EAN {gtin}"

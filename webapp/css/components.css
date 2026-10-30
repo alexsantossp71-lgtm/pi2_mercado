@@ -718,3 +718,76 @@
   margin-right: 6px;
 }
 
+/* ================================================================
+   PRODUCT THUMBS (sugestões e lista)
+   ================================================================ */
+.prod-thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-light);
+  background: #ffffff;
+  object-fit: contain;
+  padding: 2px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.prod-thumb-sm {
+  width: 38px;
+  height: 38px;
+}
+.prod-thumb-placeholder {
+  font-size: 1.1em;
+  color: var(--color-text-tertiary);
+  background: var(--color-surface-alt);
+}
+
+/* Item com múltiplas linhas (produto: nome+thumb+preço / preços por loja) */
+.dropdown-item {
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-1);
+}
+
+.dropdown-item .dropdown-item-main {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  min-width: 0;
+}
+.dropdown-item .dropdown-item-info {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.dropdown-item .store-prices {
+  width: 100%;
+  margin-top: 0;
+  padding-left: calc(38px + var(--space-3)); /* alinha com o texto (largura do thumb) */
+  flex-wrap: wrap;
+  row-gap: var(--space-1);
+}
+
+.product-cell {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.product-cell .product-name {
+  margin: 0;
+}
+
+/* Cobertura da loja nos resultados */
+.store-coverage {
+  margin-top: var(--space-1);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary-700);
+}
+.card-flat .store-coverage {
+  color: var(--color-text-secondary);
+}
+
+

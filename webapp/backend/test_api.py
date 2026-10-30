@@ -68,7 +68,8 @@ def test_calculate_prices_ignores_out_of_stock():
         "preco_regular": [None, None, None],
         "em_estoque": [False, True, False],
     }
-    with patch("services.price_service.get_product_by_id", return_value=product):
+    with patch("services.price_service.get_product_by_id", return_value=product), \
+         patch("services.price_service.get_products_by_ids", return_value={}):
         with TestClient(app) as client:
             response = client.post("/api/calcular", json={"itens": [{"id": 99, "qtd": 1}]})
 
@@ -78,3 +79,26 @@ def test_calculate_prices_ignores_out_of_stock():
     assert totais["carrefour"]["total"] == 0
     assert totais["pao_de_acucar"]["total"] == 5
     assert data["multiloja"]["total"] == 5
+
+
+def test_produtos_lote():
+    """POST /api/produtos/lote retorna produtos por ID em uma chamada só."""
+    with TestClient(app) as client:
+        busca = client.get("/api/produtos?q=arroz&limit=3")
+        assert busca.status_code == 200
+        ids = [p["id"] for p in busca.json()["produtos"][:3]]
+        assert ids
+
+        resposta = client.post("/api/produtos/lote", json={"ids": ids})
+        assert resposta.status_code == 200
+        produtos = resposta.json()
+        retornados = {p["id"] for p in produtos}
+        assert retornados == set(ids)
+        for p in produtos:
+            assert "nome" in p and "preco" in p and len(p["preco"]) == 4
+
+    # Lote vazio -> lista vazia
+    with TestClient(app) as client:
+        resposta = client.post("/api/produtos/lote", json={"ids": []})
+        assert resposta.status_code == 200
+        assert resposta.json() == []

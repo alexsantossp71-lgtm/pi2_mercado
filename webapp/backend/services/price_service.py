@@ -31,7 +31,9 @@ def calculate_basket_prices(request: CalculoRequest) -> CalculoResponse:
 
     itens_resolvidos = []
     for item_in in request.itens:
-        prod = get_product_by_id(item_in.id) or produtos_map.get(item_in.id)
+        # Map em lote primeiro (1 query); get_product_by_id só como fallback
+        # (mantém compatibilidade com mocks dos testes unitários).
+        prod = produtos_map.get(item_in.id) or get_product_by_id(item_in.id)
         if prod:
             itens_resolvidos.append({"produto": prod, "qtd": item_in.qtd})
 

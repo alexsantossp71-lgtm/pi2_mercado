@@ -6,7 +6,7 @@
 
 import { buscarMarcasAPI, buscarMetaAPI, buscarProdutoPorIdAPI } from './api.js';
 import { buscarProdutos } from './searchEngine.js';
-import { onListaChange, restaurarDoStorage, limparLista, adicionarItem } from './shoppingList.js';
+import { onListaChange, restaurarDoStorage, limparLista, adicionarItem, atualizarPrecosLista } from './shoppingList.js';
 import { initUI, popularCategorias, renderLista } from './ui.js';
 
 /**
@@ -83,9 +83,13 @@ async function init() {
     console.warn('[Meta] Falha ao carregar metadados:', e);
   }
 
-  // 3. Restaura lista do localStorage
+  // 3. Restaura lista do localStorage e de link compartilhado (?lista=id:qtd,...)
   await restaurarDoStorage();
   await restaurarDaURL();
+
+  // 3b. Atualiza preços da lista restaurada com dados frescos do SGBD
+  // (snapshot salvo pode estar desatualizado ou vindo de link compartilhado)
+  atualizarPrecosLista();
 
   // 4. Inicializa event bindings da UI
   initUI();

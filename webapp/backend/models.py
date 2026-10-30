@@ -28,6 +28,11 @@ class BuscaResponse(BaseModel):
     produtos: List[ProdutoOut]
 
 
+class ProdutosLoteRequest(BaseModel):
+    """Corpo do POST /api/produtos/lote — reidratação da lista salva."""
+    ids: List[int] = Field(default_factory=list, description="IDs dos produtos (máx. 200)")
+
+
 class CategoriaOut(BaseModel):
     nome: str
     quantidade_produtos: int

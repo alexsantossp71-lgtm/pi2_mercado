@@ -29,14 +29,19 @@ from models import (
     MarcaOut,
     MetaResponse,
     ProdutoOut,
+    ProdutosLoteRequest,
 )
 from services.product_service import (
     get_brands,
     get_categories,
     get_product_by_id,
+    get_products_by_ids,
     search_products,
 )
 from services.price_service import calculate_basket_prices
+
+# Nomes das lojas na ordem fixa dos índices de preço (loja_id 1..4)
+LOJA_NOMES = ["Carrefour", "Pão de Açúcar", "Atacadão", "Soudaki"]
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
 logger = logging.getLogger("dispensa.main")
@@ -45,7 +50,7 @@ logger = logging.getLogger("dispensa.main")
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("Inicializando backend Dispensa Planejada FastAPI...")
-    
+
     try:
         from db import get_db_connection
         conn = get_db_connection()
@@ -54,7 +59,24 @@ async def lifespan(app: FastAPI):
         logger.info(f"Conexão com banco de dados bem-sucedida! Motor: {engine}")
     except Exception as e:
         logger.error(f"Erro ao conectar ao banco de dados: {e}")
-        
+
+    # Migração leve executada UMA vez no boot (antes ficava no /api/meta,
+    # rodando DDL a cada requisição e adicionando latência no Neon).
+    try:
+        from db import get_db_connection as _g
+        _conn = _g()
+        _cur = _conn.cursor()
+        if getattr(_conn, "is_postgres", False):
+            _cur.execute("ALTER TABLE precos ADD COLUMN IF NOT EXISTS data_coleta TEXT")
+        else:
+            try:
+                _cur.execute("ALTER TABLE precos ADD COLUMN data_coleta TEXT DEFAULT NULL")
+            except Exception:
+                pass
+        _conn.close()
+    except Exception as e:
+        logger.warning(f"Migração leve de data_coleta ignorada: {e}")
+
     yield
     logger.info("Encerrando backend...")
 
@@ -111,40 +133,26 @@ def api_search_products(
     )
 
 
-@app.get("/api/produtos/buscar-por-ean")
-def get_precos_por_ean(
-    ean: str = Query(..., description="EAN/GTIN do produto (ex: 7891234567890)"),
-):
-    """
-    Retorna preços atuais de todas as lojas para um EAN específico.
-    Útil para atualização em tempo real quando o usuário seleciona o produto.
-    """
-    from services.product_service import get_product_by_ean
-    produto = get_product_by_ean(ean)
-    if not produto:
-        return {"ean": ean, "precos": [], "encontrado": False}
-    return {
-        "ean": ean,
-        "encontrado": True,
-        "nome": produto.get("nome"),
-        "marca": produto.get("marca"),
-        "categoria": produto.get("categoria"),
-        "precos": [
-            {"loja": "Carrefour", "preco_promocional": produto["preco"][0], "preco_regular": produto["preco_regular"][0], "em_estoque": produto["em_estoque"][0]},
-            {"loja": "Pão de Açúcar", "preco_promocional": produto["preco"][1], "preco_regular": produto["preco_regular"][1], "em_estoque": produto["em_estoque"][1]},
-            {"loja": "Atacadão", "preco_promocional": produto["preco"][2], "preco_regular": produto["preco_regular"][2], "em_estoque": produto["em_estoque"][2]},
-            {"loja": "Soudaki", "preco_promocional": produto["preco"][3], "preco_regular": produto["preco_regular"][3], "em_estoque": produto["em_estoque"][3]},
-        ]
-    }
-
-
 @app.get("/api/produtos/{product_id}", response_model=ProdutoOut)
 def api_get_product(product_id: int):
     prod = get_product_by_id(product_id)
     if not prod:
         raise HTTPException(status_code=404, detail="Produto não encontrado.")
-    logger.info(f"DEBUG api_get_product({product_id}): preco={prod.get('preco')} len={len(prod.get('preco',[]))}")
     return prod
+
+
+@app.post("/api/produtos/lote", response_model=list[ProdutoOut])
+def api_get_products_batch(request: ProdutosLoteRequest):
+    """
+    Retorna vários produtos por ID em uma única chamada.
+    Usado pelo frontend para reidratar a lista salva no localStorage
+    (e links compartilhados) com preços frescos do SGBD, sem N requisições.
+    """
+    ids = list(dict.fromkeys(request.ids))[:200]  # dedupe + teto de segurança
+    if not ids:
+        return []
+    produtos_map = get_products_by_ids(ids)
+    return [produtos_map[i] for i in ids if i in produtos_map]
 
 
 @app.get("/api/categorias", response_model=list[CategoriaOut])
@@ -168,8 +176,6 @@ def api_meta():
     from db import get_db_connection
     conn = get_db_connection()
     cursor = conn.cursor()
-
-    # A coluna data_coleta já existe no banco de dados e na tabela precos
 
     # Lojas cadastradas (fonte de verdade: tabela lojas)
     cursor.execute("SELECT chave, nome, icone FROM lojas ORDER BY id")
@@ -220,10 +226,9 @@ def get_precos_por_ean(
         "marca": produto.get("marca"),
         "categoria": produto.get("categoria"),
         "precos": [
-            {"loja": "Carrefour", "preco_promocional": produto["preco"][0], "preco_regular": produto["preco_regular"][0], "em_estoque": produto["em_estoque"][0]},
-            {"loja": "Pão de Açúcar", "preco_promocional": produto["preco"][1], "preco_regular": produto["preco_regular"][1], "em_estoque": produto["em_estoque"][1]},
-            {"loja": "Atacadão", "preco_promocional": produto["preco"][2], "preco_regular": produto["preco_regular"][2], "em_estoque": produto["em_estoque"][2]},
-            {"loja": "Soudaki", "preco_promocional": produto["preco"][3], "preco_regular": produto["preco_regular"][3], "em_estoque": produto["em_estoque"][3]},
+            {"loja": LOJA_NOMES[i], "preco_promocional": produto["preco"][i],
+             "preco_regular": produto["preco_regular"][i], "em_estoque": produto["em_estoque"][i]}
+            for i in range(min(4, len(produto["preco"])))
         ]
     }
 

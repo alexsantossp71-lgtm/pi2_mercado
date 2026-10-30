@@ -5,6 +5,7 @@
 
 import { LOJAS } from './dataLoader.js';
 import { fmtBRL, melhorLojaUnica, divisaoMultiLoja } from './priceCalculator.js';
+import { buscarProdutosPorIdsAPI } from './api.js';
 
 const STORAGE_KEY = 'dispensa_planejada_lista';
 
@@ -88,6 +89,32 @@ export function getTotalItens() {
   return total;
 }
 
+/**
+ * Atualiza (in place) os produtos da lista com dados frescos do SGBD.
+ * A lista salva no localStorage carrega um snapshot do produto com os preços
+ * da época em que foi adicionada; aqui buscamos o estado atual em uma única
+ * chamada em lote (POST /api/produtos/lote) e substituímos os objetos.
+ * Em caso de falha (offline etc.) a lista segue com o snapshot — nada quebra.
+ */
+export async function atualizarPrecosLista() {
+  if (!lista.size) return;
+  const ids = [...lista.keys()];
+  try {
+    const mapa = await buscarProdutosPorIdsAPI(ids);
+    let alterados = 0;
+    lista.forEach((item, id) => {
+      const fresco = mapa.get(id);
+      if (fresco) {
+        item.produto = fresco;
+        alterados++;
+      }
+    });
+    if (alterados) notificar();
+  } catch (e) {
+    console.warn('[shoppingList] Refresh de preços ignorado:', e);
+  }
+}
+
 /* ================================================================
    PERSISTÊNCIA (localStorage)
    ================================================================ */
@@ -143,11 +170,14 @@ export function gerarTextoCompartilhamento() {
   });
 
   // Resultado do cálculo: a parte que realmente vale compartilhar
-  const { loja, total, piorLoja, economia } = melhorLojaUnica(lista);
+  const { loja, total, piorLoja, economia, cobertura } = melhorLojaUnica(lista);
   const { distribuicao, lojasOrdenadas, total: totalMulti, indisponiveis } = divisaoMultiLoja(lista);
 
   if (loja) {
     texto += `\n🏆 *Melhor loja única:* ${LOJAS[loja].nome} — ${fmtBRL(total)}`;
+    if (cobertura && cobertura.total > 0 && cobertura.disponiveis < cobertura.total) {
+      texto += ` (cobre ${cobertura.disponiveis} de ${cobertura.total} itens)`;
+    }
     if (economia > 0 && piorLoja) {
       texto += ` (economia de ${fmtBRL(economia)} vs. ${LOJAS[piorLoja].nome})`;
     }

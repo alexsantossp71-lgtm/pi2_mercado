@@ -51,6 +51,24 @@ export async function buscarProdutoPorIdAPI(id) {
   return res.json();
 }
 
+/**
+ * Busca vários produtos por ID em uma única chamada (POST /api/produtos/lote).
+ * Retorna um Map<id, produto> com os encontrados.
+ */
+export async function buscarProdutosPorIdsAPI(ids) {
+  if (!ids || !ids.length) return new Map();
+  const res = await fetch(`${API_URL}/api/produtos/lote`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ ids })
+  });
+  if (!res.ok) throw new Error('Falha ao buscar produtos em lote');
+  const produtos = await res.json();
+  const mapa = new Map();
+  (produtos || []).forEach(p => mapa.set(p.id, p));
+  return mapa;
+}
+
 export async function buscarMetaAPI() {
   const res = await fetch(`${API_URL}/api/meta`);
   if (!res.ok) throw new Error('Falha ao buscar metadados');

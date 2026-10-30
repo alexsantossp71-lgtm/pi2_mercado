@@ -25,6 +25,30 @@ const precoSemOferta = '<span class="price-unavailable-icon" role="img" aria-lab
 const precoSemEstoque = '<span class="price-unavailable-icon price-out-of-stock" role="img" aria-label="Fora de estoque" title="Fora de estoque no momento da coleta">⊘</span>';
 const precoIndisponivel = precoSemOferta; // fallback compat
 
+/**
+ * Miniatura do produto (lazy). Se a imagem falhar (hotlink bloqueado, offline
+ * etc.), um handler global em capture-phase substitui pelo placeholder.
+ */
+function buildThumbHTML(produto, classe) {
+  const url = produto && produto.imagem_url;
+  if (!url) return `<span class="prod-thumb prod-thumb-placeholder ${classe}" aria-hidden="true">🛒</span>`;
+  return `<img class="prod-thumb ${classe}" src="${escapeHtml(url)}" alt="" loading="lazy" referrerpolicy="no-referrer">`;
+}
+
+/** Instala (uma vez) o fallback visual para thumbnails que falharem. */
+function installThumbErrorFallback() {
+  document.addEventListener('error', (e) => {
+    const img = e.target;
+    if (img && img.tagName === 'IMG' && img.classList.contains('prod-thumb')) {
+      const ph = document.createElement('span');
+      ph.className = `${img.className} prod-thumb-placeholder`;
+      ph.setAttribute('aria-hidden', 'true');
+      ph.textContent = '🛒';
+      img.replaceWith(ph);
+    }
+  }, true);
+}
+
 
 /**
  * Build per-store price HTML for a product, with reason-based ⊘ display.
@@ -79,10 +103,13 @@ export async function popularCategorias() {
   try {
     const categorias = await buscarCategoriasAPI();
     selectCategoria.innerHTML = '<option value="">Todas as seções</option>';
-    categorias.forEach(({ nome }) => {
+    categorias.forEach(({ nome, quantidade_produtos }) => {
       const option = document.createElement('option');
       option.value = nome;
-      option.textContent = nome;
+      // Contagem no rótulo ajuda o usuário a entender o que existe em cada seção
+      option.textContent = quantidade_produtos != null
+        ? `${nome} (${quantidade_produtos.toLocaleString('pt-BR')})`
+        : nome;
       selectCategoria.appendChild(option);
     });
   } catch (err) {
@@ -123,12 +150,15 @@ async function renderSugestoes() {
     const pricesHTML = buildStorePricesHTML(p);
 
     div.innerHTML = `
-      <div>
-        <p class="item-name">${escapeHtml(p.nome)}</p>
-        <p class="item-meta">${escapeHtml(p.categoria)} • ${escapeHtml(p.marca)}</p>
+      <div class="dropdown-item-main">
+        ${buildThumbHTML(p, 'prod-thumb-sm')}
+        <div class="dropdown-item-info">
+          <p class="item-name">${escapeHtml(p.nome)}</p>
+          <p class="item-meta">${escapeHtml(p.categoria)} • ${escapeHtml(p.marca)}</p>
+        </div>
+        <span class="item-price">${precoExib}</span>
       </div>
-      <div class="store-prices">${pricesHTML}</div>
-      <span class="item-price">${precoExib}</span>`;
+      <div class="store-prices">${pricesHTML}</div>`;
 
     div.addEventListener('click', () => selecionarProduto(p));
     sugestoes.appendChild(div);
@@ -262,8 +292,13 @@ export function renderLista() {
 
     tr.innerHTML = `
       <td>
-        <p class="product-name">${escapeHtml(produto.nome)}</p>
-        <p class="product-meta">${escapeHtml(produto.categoria)} • ${escapeHtml(produto.marca)}</p>
+        <div class="product-cell">
+          ${buildThumbHTML(produto, 'prod-thumb-sm')}
+          <div>
+            <p class="product-name">${escapeHtml(produto.nome)}</p>
+            <p class="product-meta">${escapeHtml(produto.categoria)} • ${escapeHtml(produto.marca)}</p>
+          </div>
+        </div>
         <p class="mobile-best-price">Melhor preço: <strong>${melhorPrecoHTML}</strong></p>
       </td>
       <td class="text-center">
@@ -291,35 +326,50 @@ export function renderLista() {
    ================================================================ */
 export function renderResultados() {
   const lista = getLista();
-  const { loja, total, piorLoja, economia } = melhorLojaUnica(lista);
+  const { loja, total, piorLoja, economia, indisponiveis, cobertura } = melhorLojaUnica(lista);
   const todosTotais = totalPorLoja(lista);
-  const faltas = itensIndisponiveisPorLoja(lista);
+  const faltas = indisponiveis;
+  const totalItens = lista.size;
   const notaFalta = (k) => faltas[k] > 0
     ? `<p class="store-missing">${faltas[k]} ${faltas[k] === 1 ? 'item indisponível' : 'itens indisponíveis'} nesta loja</p>`
     : '';
+  const notaCobertura = (k) => totalItens > 0
+    ? `<p class="store-coverage">Cobre ${totalItens - faltas[k]} de ${totalItens} ${totalItens === 1 ? 'item' : 'itens'}</p>`
+    : '';
 
-  // OPÇÃO 1: Melhor loja única
+  // OPÇÃO 1: Melhor loja única (cobertura primeiro, preço depois — igual ao backend)
   const r1 = $('#resultadoLojaUnica');
   r1.innerHTML = CHAVES_LOJA.map(k => {
     const melhor = k === loja;
     const cardClass = melhor ? 'card-highlight' : 'card-flat';
+    const cobreTudo = totalItens > 0 && faltas[k] === 0;
     return `
       <div class="${cardClass} store-card">
         <div class="store-header">
           <span class="store-logo-wrapper">${renderStoreLogo(k, 26)}</span>
           <p class="store-name">${LOJAS[k].nome}</p>
-          ${melhor ? '<span class="badge badge-primary" style="margin-left:auto">MELHOR</span>' : ''}
+          ${melhor ? `<span class="badge badge-primary" style="margin-left:auto">MELHOR${cobreTudo ? '' : ' (PARCIAL)'}</span>` : ''}
         </div>
         <p class="store-price ${melhor ? 'is-best' : ''}">${fmtBRL(todosTotais[k])}</p>
+        ${notaCobertura(k)}
         ${notaFalta(k)}
       </div>`;
   }).join('');
 
-  // OPÇÃO 2: Multi-loja
-  const { distribuicao, lojasOrdenadas, total: totalOtim, indisponiveis } = divisaoMultiLoja(lista);
+  // OPÇÃO 2: Multi-loja — economia honesta: comparada com a MELHOR loja única
+  // (não com a pior), que é a alternativa real do consumidor.
+  const { distribuicao, lojasOrdenadas, total: totalOtim, indisponiveis: semPrecoNenhuma } = divisaoMultiLoja(lista);
   $('#valorTotalOtimizado').textContent = fmtBRL(totalOtim);
-  const economiaMulti = piorLoja != null ? todosTotais[piorLoja] - totalOtim : 0;
+  const economiaMulti = (total != null && total > 0) ? Math.max(0, total - totalOtim) : 0;
   $('#economiaMulti').textContent = fmtBRL(economiaMulti);
+  const rotuloEconomia = $('#economiaMulti')
+    ? $('#economiaMulti').closest('.savings-pill')
+    : null;
+  if (rotuloEconomia) {
+    rotuloEconomia.innerHTML = economiaMulti > 0
+      ? `💰 Você economiza <span id="economiaMulti" class="savings-value">${fmtBRL(economiaMulti)}</span> vs. comprar tudo na melhor loja`
+      : `ℹ️ Dividir a compra não reduz o total desta lista (vs. melhor loja única: ${fmtBRL(total || 0)})`;
+  }
 
   const divLojas = $('#divisaoLojas');
   divLojas.innerHTML = '';
@@ -349,7 +399,7 @@ export function renderResultados() {
         <span class="split-store-total price-unavailable">—</span>
       </div>
       <ul class="split-items">
-        ${indisponiveis.map(i => `<li><span>${i.qtd}× ${escapeHtml(i.nome)}</span><span class="price-unavailable">indisponível</span></li>`).join('')}
+        ${semPrecoNenhuma.map(i => `<li><span>${i.qtd}× ${escapeHtml(i.nome)}</span><span class="price-unavailable">indisponível</span></li>`).join('')}
       </ul>`;
     divLojas.appendChild(cardIndisp);
   }
@@ -476,6 +526,9 @@ function initThemeToggle() {
 export function initUI() {
   // Theme
   initThemeToggle();
+
+  // Fallback global para miniaturas de produto que não carregarem
+  installThumbErrorFallback();
 
   // Filtros
   selectCategoria.addEventListener('change', () => {

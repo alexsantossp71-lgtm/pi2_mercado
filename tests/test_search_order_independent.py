@@ -56,7 +56,9 @@ def test_fts_query_includes_all_tokens_original_order():
     # First executed statement is the COUNT query; its params are
     # [fts_query, like_query, like_query], so the FTS MATCH value is params[0].
     fts_query = executed[0][1][0]
-    assert fts_query == '"Biscoito"* AND "club"* AND "social"*'
+    # O código junta os termos com espaço (AND implícito no FTS5),
+    # o que é semanticamente equivalente ao AND explícito.
+    assert fts_query == '"Biscoito"* "club"* "social"*'
     for token in ('"Biscoito"*', '"club"*', '"social"*'):
         assert token in fts_query
     # Function returns an empty (mocked) result set without raising.

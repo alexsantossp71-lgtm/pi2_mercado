@@ -78,23 +78,27 @@ export function totalPorLoja(lista) {
 }
 
 /**
- * Determina a melhor loja única (menor total global).
- * Desempate: prefere a loja com maior número de itens disponíveis,
- * para não premiar loja que cobre menos da lista.
+ * Determina a melhor loja única.
+ * Regra (alinhada com o backend /api/calcular): primeiro maximiza a COBERTURA
+ * (itens disponíveis), depois desempata pelo MENOR total. Assim uma loja que
+ * só tem metade da lista não vence uma que tem tudo.
  * @param {Map} lista
- * @returns {{ loja: string|null, total: number, piorLoja: string|null, economia: number, indisponiveis: Object }}
+ * @returns {{ loja: string|null, total: number, piorLoja: string|null, economia: number, indisponiveis: Object, cobertura: {disponiveis:number, total:number} }}
  */
 export function melhorLojaUnica(lista) {
   const totais = totalPorLoja(lista);
   const indisponiveis = itensIndisponiveisPorLoja(lista);
+  const totalItensDistintos = lista.size;
   const comPreco = Object.keys(totais).filter(k => totais[k] > 0);
 
   if (!comPreco.length) {
-    return { loja: null, total: 0, piorLoja: null, economia: 0, indisponiveis };
+    return { loja: null, total: 0, piorLoja: null, economia: 0, indisponiveis, cobertura: { disponiveis: 0, total: totalItensDistintos } };
   }
 
+  // Cobertura (itens disponíveis) primeiro, menor total depois
+  const disponiveis = (k) => totalItensDistintos - indisponiveis[k];
   const ordenadas = comPreco.sort((a, b) =>
-    totais[a] - totais[b] || indisponiveis[a] - indisponiveis[b]);
+    disponiveis(b) - disponiveis(a) || totais[a] - totais[b]);
   const melhor = ordenadas[0];
   const pior = ordenadas[ordenadas.length - 1];
 
@@ -103,7 +107,8 @@ export function melhorLojaUnica(lista) {
     total: totais[melhor],
     piorLoja: pior,
     economia: totais[pior] - totais[melhor],
-    indisponiveis
+    indisponiveis,
+    cobertura: { disponiveis: disponiveis(melhor), total: totalItensDistintos }
   };
 }
 
