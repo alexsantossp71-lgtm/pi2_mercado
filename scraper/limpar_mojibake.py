@@ -80,6 +80,58 @@ def decodificar_mojibake(texto: str) -> str:
         return texto  # não era double-encoded; devolve intacto
 
 
+# Alias de categoria — o Soudaki usa "Churrasco" como seção da loja,
+# mas nossa categoria canônica é "Açougue e Peixaria". Mapeamentos
+# espelhados do integrar_carrefour_pa.py / normalizar_categorias_neon.py.
+ALIASES_CATEGORIA = {
+    "churrasco": "Açougue e Peixaria",
+    "carnes": "Açougue e Peixaria",
+    "carnes aves e peixes": "Açougue e Peixaria",
+    "carnes, aves e peixes": "Açougue e Peixaria",
+    "limpeza": "Limpeza e Lavanderia",
+    "perfumaria": "Higiene e Perfumaria",
+    "higiene e beleza": "Higiene e Perfumaria",
+    "bebe e crianca": "Bebê e Infantil",
+    "bebes": "Bebê e Infantil",
+    "matinais": "Padaria e Matinais",
+}
+
+# Categorias canônicas (mesmas do integrar_carrefour_pa.py)
+CATEGORIAS_CANONICAS = {
+    "Mercearia", "Açougue e Peixaria", "Hortifruti", "Frios e Laticínios",
+    "Padaria e Matinais", "Congelados", "Bebidas",
+    "Pratos Prontos e Massas Frescas", "Bebê e Infantil",
+    "Limpeza e Lavanderia", "Higiene e Perfumaria", "Alimentos",
+}
+
+
+def _norm(txt: str) -> str:
+    """Minúsculo, sem acentos, espaços colapsados."""
+    import unicodedata
+    t = unicodedata.normalize("NFD", (txt or "").lower())
+    return " ".join("".join(c for c in t if unicodedata.category(c) != "Mn").split())
+
+
+def resolver_categoria(categoria: str) -> str:
+    """Normaliza categoria para a canônica do catálogo.
+
+    Ex.: "Churrasco" → "Açougue e Peixaria"; "limpeza" → "Limpeza e Lavanderia".
+    Se já é canônica ou não há alias, devolve inalterada.
+    """
+    if not categoria:
+        return categoria
+    if categoria in CATEGORIAS_CANONICAS:
+        return categoria
+    n = _norm(categoria)
+    if n in ALIASES_CATEGORIA:
+        return ALIASES_CATEGORIA[n]
+    # Tenta casar com canônica normalizada
+    for canon in CATEGORIAS_CANONICAS:
+        if _norm(canon) == n:
+            return canon
+    return categoria
+
+
 def _norm_nome(nome: str) -> str:
     """Normalização para match: lower + trim + colapsa espaços."""
     return " ".join((nome or "").lower().split())
@@ -181,9 +233,13 @@ def limpar(conn, aplicar: bool, so_ids: bool):
         nome_corr = decodificar_mojibake(m["nome"])
         marca_corr = decodificar_mojibake(m["marca"]) if m["marca"] else m["marca"]
         cat_corr = decodificar_mojibake(m["categoria"]) if m["categoria"] else m["categoria"]
+        # Normaliza categoria para a canônica (ex.: "Churrasco" -> "Açougue e Peixaria")
+        cat_corr = resolver_categoria(cat_corr) if cat_corr else cat_corr
 
-        # Se a decodificação falhou (nome não mudou), pula
-        if nome_corr == m["nome"] and marca_corr == m["marca"] and cat_corr == m["categoria"]:
+        # Se a decodificação falhou (nome não mudou) E categoria também não
+        # mudou, pula
+        if (nome_corr == m["nome"] and marca_corr == m["marca"]
+                and cat_corr == m["categoria"]):
             stats["erros"] += 1
             continue
 

@@ -102,8 +102,39 @@ def test_norm_nome():
     print("✔ _norm_nome")
 
 
+def test_resolver_categoria():
+    # Caso do screenshot do usuário: "Churrasco" → "Açougue e Peixaria"
+    assert mod.resolver_categoria("Churrasco") == "Açougue e Peixaria"
+    # Outros aliases do Soudaki
+    assert mod.resolver_categoria("Carnes") == "Açougue e Peixaria"
+    assert mod.resolver_categoria("Limpeza") == "Limpeza e Lavanderia"
+    assert mod.resolver_categoria("Perfumaria") == "Higiene e Perfumaria"
+    assert mod.resolver_categoria("Bebês") == "Bebê e Infantil"
+    assert mod.resolver_categoria("Matinais") == "Padaria e Matinais"
+
+    # Categorias canônicas — devolve inalterada
+    assert mod.resolver_categoria("Açougue e Peixaria") == "Açougue e Peixaria"
+    assert mod.resolver_categoria("Mercearia") == "Mercearia"
+    assert mod.resolver_categoria("Bebidas") == "Bebidas"
+
+    # Caso normalizado por acento ("açougue e peixaria" lowercase → canônica)
+    assert mod.resolver_categoria("açougue e peixaria") == "Açougue e Peixaria"
+    assert mod.resolver_categoria("HORTIFRUTI") == "Hortifruti"
+
+    # Sem correspondência → devolve inalterada
+    assert mod.resolver_categoria("Cervejas e Drinks") == "Cervejas e Drinks"
+    assert mod.resolver_categoria("Molhos e Conservas") == "Molhos e Conservas"
+
+    # Vazio
+    assert mod.resolver_categoria("") == ""
+    assert mod.resolver_categoria(None) is None
+
+    print("✔ resolver_categoria")
+
+
 if __name__ == "__main__":
     test_tem_mojibake()
     test_decodificar_mojibake()
     test_norm_nome()
-    print("\n[TODOS OS TESTES] ✔ 3/3 passaram")
+    test_resolver_categoria()
+    print("\n[TODOS OS TESTES] ✔ 4/4 passaram")

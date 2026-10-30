@@ -117,12 +117,22 @@ def _sleep() -> None:
 
 
 def baixar(sess, url: str, tentativas: int = 3):
-    """GET com retry/backoff. Retorna Response ou None."""
+    """GET com retry/backoff. Retorna Response ou None.
+
+    Força r.encoding='utf-8' porque o site Soudaki serve páginas em UTF-8
+    mas NÃO declara charset no Content-Type — sem isso, o requests aplica
+    ISO-8859-1 (default da RFC 2616) e mojibakeia todo o conteúdo
+    ('Linguiça' vira 'LinguiÃ§a' antes do json.loads, e o JSON é gravado
+    no Neon já corrompido).
+    """
     for t in range(tentativas):
         try:
             sess.headers["User-Agent"] = random.choice(USER_AGENTS)
             r = sess.get(url, timeout=30)
             if r.status_code == 200:
+                # Site serve UTF-8 sem declarar — força antes de ler r.text
+                if not r.encoding or r.encoding.lower() in ("iso-8859-1", "latin-1"):
+                    r.encoding = "utf-8"
                 return r
             if t < tentativas - 1:
                 time.sleep(2 * (t + 1))
