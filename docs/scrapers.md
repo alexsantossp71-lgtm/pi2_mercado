@@ -49,6 +49,8 @@ scraper/
                              importado pelo ETL e pelo integrador
   integrar_carrefour_pa.py   publicação dos JSONs v2 do Carrefour/PA no Neon
   teste_integrador_pa.py     testes das funções puras do integrador (offline)
+  limpar_mojibake.py         limpeza de produtos com double-encoding UTF-8
+  teste_limpar_mojibake.py   testes das funções de detecção/decodificação
   atualizar_precos_ean_cep.py     atualização em lote de preços por EAN + CEP
   recoletar_por_ean.py            releitura de preço/estoque para EANs específicos
   relatorio_cobertura.py          métricas de cobertura por loja
@@ -236,6 +238,18 @@ precisa ficar na raiz de `scraper/`.
   (outro arquivo), `--limite N` (tamanho do lote), `--desde N` (índice inicial).
 - `relatorio_cobertura.py` — métricas de cobertura por loja (`--kpi` para o
   painel resumido), usadas para decidir as próximas coletas.
+- `limpar_mojibake.py` — limpeza pontual de produtos com mojibake (double-
+  encoding UTF-8) legados do banco. Detecta nomes como "LinguiÃ§a" (Ã + §)
+  e os reverte para "Linguiça" (ç), distinguindo de "Ã" legítimo em
+  "São"/"Coração"/"Âmbar". Se existir versão correta correspondente (mesmo
+  EAN ou nome), deleta o duplicata migrando os preços; senão corrige in-place.
+  `--dry-run` apenas lista; `--aplicar` modifica o banco:
+
+  ```bash
+  python scraper/limpar_mojibake.py                 # detecta, não grava
+  python scraper/limpar_mojibake.py --aplicar       # corrige/deleta
+  python scraper/limpar_mojibake.py --ids           # só lista IDs afetados
+  ```
 
 ## ETL e carga no banco
 

@@ -92,6 +92,8 @@ A coleta do **Atacadão está pausada** — não retomar sem decisão do grupo.
    `atualizar_precos_ean_cep.py`.
 3. Utilitários: `recoletar_por_ean.py` (releitura de preço/estoque para
    EANs específicos), `relatorio_cobertura.py` (métricas por loja,
-   `--kpi`) e `atualizar_precos_ean_cep.py` (lote por EAN + CEP).
+   `--kpi`), `atualizar_precos_ean_cep.py` (lote por EAN + CEP) e
+   `limpar_mojibake.py` (limpeza de produtos com double-encoding UTF-8
+   legados do banco — `--dry-run` detecta, `--aplicar` corrige).
 
 Documentação técnica completa: [`docs/scrapers.md`](../docs/scrapers.md).
