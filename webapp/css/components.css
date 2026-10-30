@@ -57,11 +57,11 @@
   box-shadow: var(--shadow-md);
 }
 
-/* Warning / CTA (#E7390D) */
+/* Warning / CTA (#F26716 — laranja único da marca) */
 .btn-cta {
-  background: var(--color-warning-500);
+  background: var(--color-accent-500);
   color: #ffffff;
-  border: 2px solid #941f05;
+  border: 2px solid var(--color-accent-700);
   font-weight: var(--font-weight-extrabold);
   font-size: var(--font-size-base);
   padding: var(--space-4) var(--space-8);
@@ -71,7 +71,7 @@
   width: 100%;
 }
 .btn-cta:hover {
-  background: var(--color-warning-600);
+  background: var(--color-accent-600);
   box-shadow: var(--shadow-lg);
   transform: translateY(-1px);
 }
@@ -546,7 +546,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  padding: var(--space-2);
+  padding: var(--space-3);
   border-radius: var(--radius-lg);
   transition: background var(--transition-fast);
 }
@@ -554,21 +554,53 @@
   background: var(--color-surface);
 }
 
+/* Check circular grande (alvo de toque ~44px com o padding do item) */
 .checkbox-item input[type="checkbox"] {
-  width: 20px;
-  height: 20px;
-  accent-color: var(--color-primary-600);
+  appearance: none;
+  -webkit-appearance: none;
+  width: 28px;
+  height: 28px;
+  margin: 0;
+  border: 2px solid var(--color-border);
+  border-radius: 50%;
+  background: var(--color-surface);
+  display: inline-grid;
+  place-content: center;
   flex-shrink: 0;
   cursor: pointer;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+.checkbox-item input[type="checkbox"]::before {
+  content: "";
+  width: 13px;
+  height: 13px;
+  transform: scale(0);
+  transition: transform 120ms ease;
+  background: #ffffff;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+.checkbox-item input[type="checkbox"]:checked {
+  background: var(--color-primary-600);
+  border-color: var(--color-primary-600);
+}
+.checkbox-item input[type="checkbox"]:checked::before {
+  transform: scale(1);
 }
 
 .checkbox-item .check-label {
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-base);
   font-weight: var(--font-weight-medium);
   color: var(--color-text-primary);
 }
 .checkbox-item .check-qty {
   color: var(--color-text-tertiary);
+}
+.checkbox-item.marcado .check-label {
+  text-decoration: line-through;
+  opacity: 0.55;
+}
+.checkbox-item.marcado .check-qty {
+  opacity: 0.55;
 }
 
 /* ================================================================
@@ -613,6 +645,9 @@
 }
 .savings-pill .savings-value {
   font-weight: var(--font-weight-extrabold);
+}
+.savings-pill--neutro {
+  background: rgba(255, 255, 255, 0.12);
 }
 
 /* ================================================================
@@ -788,6 +823,187 @@
 }
 .card-flat .store-coverage {
   color: var(--color-text-secondary);
+}
+
+/* Microcopy do selo MELHOR (Opção 1) */
+.store-note {
+  margin-top: var(--space-1);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary-600);
+}
+
+/* Legenda do comparativo + preços parciais (honestidade dos totais) */
+.grid-legend {
+  margin-top: var(--space-3);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+}
+.preco-parcial {
+  color: var(--color-text-tertiary);
+  font-weight: var(--font-weight-bold);
+  margin-left: 2px;
+}
+.loja-parcial {
+  border-style: dashed;
+}
+.loja-parcial .store-price {
+  color: var(--color-text-secondary);
+}
+
+/* ================================================================
+   RESUMO-RESPOSTA (recomendação no topo dos resultados)
+   ================================================================ */
+.resumo-resposta .resumo-titulo {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.85;
+  margin-bottom: var(--space-2);
+}
+.resumo-resposta .resumo-linha {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-tight);
+}
+.resumo-resposta .resumo-total {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-extrabold);
+}
+.resumo-resposta .resumo-sub {
+  font-size: var(--font-size-sm);
+  opacity: 0.85;
+  margin-top: var(--space-2);
+  max-width: 60ch;
+}
+.btn-resumo {
+  margin-top: var(--space-4);
+  background: #ffffff;
+  color: #04261e;
+  border-color: #04261e;
+}
+.btn-resumo:hover {
+  background: var(--color-primary-100);
+}
+
+/* ================================================================
+   MENOR PREÇO COMPACTO NA TABELA (melhor preço + "+N lojas")
+   ================================================================ */
+.preco-compacto {
+  display: block;
+  text-align: center;
+}
+.preco-melhor {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-600);
+  white-space: nowrap;
+}
+.btnOutrasLojas {
+  display: inline-flex;
+  align-items: center;
+  margin-left: var(--space-2);
+  border: 1px solid var(--color-border-light);
+  background: var(--color-surface);
+  color: var(--color-text-secondary);
+  font-family: var(--font-family);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-full);
+  padding: var(--space-1) var(--space-2);
+  min-height: 28px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+.btnOutrasLojas:hover {
+  background: var(--color-primary-50);
+  border-color: var(--color-primary-500);
+}
+.btnOutrasLojas[aria-expanded="true"] {
+  background: var(--color-primary-100);
+}
+.so-uma-loja {
+  display: inline-block;
+  margin-left: var(--space-2);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+  white-space: nowrap;
+}
+.outras-lojas-pop {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-top: var(--space-2);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2) var(--space-3);
+  box-shadow: var(--shadow-md);
+  animation: fadeIn var(--transition-fast) both;
+}
+.outra-loja-linha {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+/* ================================================================
+   CHIPS DE PRODUTOS POPULARES (estado vazio)
+   ================================================================ */
+.atalhos-lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  justify-content: center;
+  margin-top: var(--space-4);
+}
+.chip-atalho {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-4);
+  min-height: 40px;
+  background: var(--color-surface);
+  border: 2px solid var(--color-border-light);
+  border-radius: var(--radius-full);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.chip-atalho:hover {
+  border-color: var(--color-primary-500);
+  background: var(--color-primary-50);
+  transform: translateY(-1px);
+}
+.chip-atalho:active {
+  transform: scale(0.96);
+}
+
+/* ================================================================
+   BARRA DE PROGRESSO DO CHECKLIST
+   ================================================================ */
+.checklist-progress-bar {
+  height: 10px;
+  background: var(--color-surface-alt);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: var(--space-4);
+}
+.checklist-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--color-primary-500), var(--color-primary-600));
+  border-radius: var(--radius-full);
+  transition: width var(--transition-normal);
 }
 
 

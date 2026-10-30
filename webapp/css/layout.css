@@ -45,6 +45,13 @@
   align-items: center;
 }
 
+/* Pill compacta: só aparece no mobile, no lugar das 3 pills */
+.pill-compacto { display: none; }
+@media (max-width: 639px) {
+  .header-meta > .pill:not(.pill-compacto) { display: none; }
+  .pill-compacto { display: inline-flex; }
+}
+
 /* ================================================================
    MAIN
    ================================================================ */
@@ -214,16 +221,29 @@
   font-weight: var(--font-weight-medium);
 }
 
-/* Comparativo best indicator */
+/* Comparativo best indicator — família laranja única (accent) */
 .best-indicator {
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-bold);
-  color: var(--color-warning-600);
+  color: var(--color-accent-700);
 }
 .diff-indicator {
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-medium);
-  color: var(--color-error-500);
+  color: var(--color-accent-600);
+}
+.diff-partial {
+  color: var(--color-text-tertiary);
+  font-style: italic;
+}
+/* No escuro, laranja mais claro para contraste */
+.dark .best-indicator,
+:root:not(.light) .best-indicator {
+  color: var(--color-accent-400);
+}
+.dark .diff-indicator,
+:root:not(.light) .diff-indicator {
+  color: var(--color-accent-400);
 }
 
 /* ================================================================

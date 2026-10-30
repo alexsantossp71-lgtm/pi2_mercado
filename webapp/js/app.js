@@ -68,6 +68,10 @@ async function init() {
     if (pillData && meta.ultima_coleta_fmt) {
       pillData.textContent = `🗓️ Dados: ${meta.ultima_coleta_fmt}`;
     }
+    const pillDataCurto = document.getElementById('pillDataCurto');
+    if (pillDataCurto && meta.ultima_coleta_fmt) {
+      pillDataCurto.textContent = meta.ultima_coleta_fmt;
+    }
     const footerLojas = document.getElementById('footerLojas');
     if (footerLojas && meta.lojas && meta.lojas.length) {
       const nomes = meta.lojas.map(l => l.nome);

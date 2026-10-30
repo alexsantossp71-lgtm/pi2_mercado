@@ -17,8 +17,8 @@
 
   <!-- Design System CSS -->
   <link rel="stylesheet" href="css/design-system.css" />
-  <link rel="stylesheet" href="css/components.css?v=6" />
-  <link rel="stylesheet" href="css/layout.css?v=6" />
+  <link rel="stylesheet" href="css/components.css?v=7" />
+  <link rel="stylesheet" href="css/layout.css?v=7" />
 </head>
 <body>
 
@@ -45,6 +45,7 @@
       <span class="pill">📍 Santos, SP</span>
       <span class="pill">📏 Raio: 5 km</span>
       <span class="pill" id="pillData">🗓️ Dados: —</span>
+      <span class="pill pill-compacto">📍 Santos · 5 km · 🗓️ <span id="pillDataCurto">—</span></span>
       <button id="themeToggle" class="theme-toggle" aria-label="Alternar tema claro/escuro" title="Alternar tema">
         🌙
       </button>
@@ -117,6 +118,13 @@
       <div id="listaVazia" class="empty-state" style="margin-top: var(--space-6);">
         <span class="empty-icon" aria-hidden="true">🛍️</span>
         <p>Sua lista está vazia. Adicione produtos para começar.</p>
+        <div class="atalhos-lista" aria-label="Produtos populares — adicionar com um toque">
+          <button type="button" class="chip-atalho" data-termo="arroz">🍚 Arroz</button>
+          <button type="button" class="chip-atalho" data-termo="feijão">🫘 Feijão</button>
+          <button type="button" class="chip-atalho" data-termo="café">☕ Café</button>
+          <button type="button" class="chip-atalho" data-termo="leite">🥛 Leite</button>
+          <button type="button" class="chip-atalho" data-termo="detergente">🧴 Detergente</button>
+        </div>
       </div>
 
       <!-- Tabela da lista -->
@@ -164,6 +172,9 @@
         <button id="btnNovaBusca" class="btn btn-ghost" aria-label="Fazer nova consulta">← Nova consulta</button>
       </div>
 
+      <!-- Resumo-resposta: recomendação direta no topo -->
+      <div id="resumoResultado" class="card-gradient-primary resumo-resposta hidden" aria-live="polite"></div>
+
       <!-- OPÇÃO 1: Melhor Loja Única -->
       <div class="card">
         <div style="display: flex; align-items: flex-start; gap: var(--space-2); margin-bottom: var(--space-4);">
@@ -202,6 +213,7 @@
         <h3 style="font-weight: var(--font-weight-bold); color: var(--color-text-primary);">Comparativo Geral</h3>
         <p class="section-subtitle" style="margin-bottom: var(--space-4);">Valor total da lista se comprada 100% em cada mercado.</p>
         <div id="comparativoGeral" class="stores-grid"></div>
+        <p id="comparativoLegenda" class="grid-legend hidden">* Valor apenas dos itens disponíveis nesta loja — não é o total do pedido. O selo “MENOR PREÇO” considera só lojas com a lista completa.</p>
       </div>
     </section>
 
@@ -211,9 +223,12 @@
         <h2 id="checklistTitulo" class="section-title">Modo Checklist Presencial</h2>
         <span id="checklistProgresso" class="checklist-progress"></span>
       </div>
+      <div class="checklist-progress-bar" role="progressbar" aria-label="Progresso da lista" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div id="checklistProgressoFill" class="checklist-progress-fill" style="width:0%"></div>
+      </div>
       <p class="section-subtitle" style="margin-bottom: var(--space-4);">Marque os produtos conforme vai pegando no corredor. A lista é organizada por categoria.</p>
       <div id="checklistCorpo" class="checklist-body"></div>
-      <button id="btnSairChecklist" class="btn btn-subtle btn-lg" style="margin-top: var(--space-6);" aria-label="Voltar aos resultados">
+      <button id="btnSairChecklist" class="btn btn-ghost btn-lg" style="margin-top: var(--space-6);" aria-label="Voltar aos resultados">
         ← Voltar aos resultados
       </button>
     </section>
@@ -228,7 +243,7 @@
 </footer>
 
 <!-- JavaScript Modules -->
-<script type="module" src="js/app.js?v=6"></script>
+<script type="module" src="js/app.js?v=7"></script>
 
 </body>
 </html>

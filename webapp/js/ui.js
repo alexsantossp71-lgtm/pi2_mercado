@@ -284,11 +284,33 @@ export function renderLista() {
   corpoLista.innerHTML = '';
   lista.forEach(({ produto, qtd }, id) => {
     const tr = document.createElement('tr');
-    const precosDisponiveis = (produto.preco || []).filter(preco => preco != null);
-    const melhorPreco = precosDisponiveis.length ? Math.min(...precosDisponiveis) : null;
+    const precosIdx = (produto.preco || [])
+      .map((v, i) => ({ v, i }))
+      .filter(x => x.v != null)
+      .sort((a, b) => a.v - b.v);
+    const melhorPrecoInfo = precosIdx[0] || null;
+    const kMelhor = melhorPrecoInfo ? CHAVES_LOJA[melhorPrecoInfo.i] : null;
+    const melhorPreco = melhorPrecoInfo ? melhorPrecoInfo.v : null;
     const melhorPrecoHTML = melhorPreco != null ? fmtBRL(melhorPreco) : precoIndisponivel;
-    const pricesHTML = buildStorePricesHTML(produto);
-    const precoCell = `<div class="store-prices">${pricesHTML}</div>`;
+    const nLojasComPreco = precosIdx.length;
+
+    // Coluna compacta: melhor preço + botão "+N lojas" com popover (em vez de 4 preços apertados)
+    let precoCompactoHTML = precoIndisponivel;
+    if (melhorPreco != null && kMelhor) {
+      const outrasLinhas = CHAVES_LOJA.map((k, i) => {
+        const v = (produto.preco || [])[i];
+        const valor = v != null ? fmtBRL(v) : precoSemOferta;
+        return `<div class="outra-loja-linha"><span>${LOJAS[k].icone} ${escapeHtml(LOJAS[k].nome)}</span><span>${valor}</span></div>`;
+      }).join('');
+      precoCompactoHTML = `
+        <div class="preco-compacto">
+          <span class="preco-melhor" title="Menor preço: ${escapeHtml(LOJAS[kMelhor].nome)}">${renderStoreLogo(kMelhor, 18)} ${fmtBRL(melhorPreco)}</span>
+          ${nLojasComPreco > 1
+            ? `<button type="button" class="btnOutrasLojas" aria-expanded="false" aria-label="Ver preços nas outras lojas">+${nLojasComPreco - 1} loja${nLojasComPreco > 2 ? 's' : ''}</button>`
+            : '<span class="so-uma-loja">só 1 loja</span>'}
+          <div class="outras-lojas-pop hidden">${outrasLinhas}</div>
+        </div>`;
+    }
 
     tr.innerHTML = `
       <td>
@@ -299,7 +321,7 @@ export function renderLista() {
             <p class="product-meta">${escapeHtml(produto.categoria)} • ${escapeHtml(produto.marca)}</p>
           </div>
         </div>
-        <p class="mobile-best-price">Melhor preço: <strong>${melhorPrecoHTML}</strong></p>
+        <p class="mobile-best-price">Melhor preço: <strong>${kMelhor ? LOJAS[kMelhor].icone + ' ' : ''}${melhorPrecoHTML}</strong></p>
       </td>
       <td class="text-center">
         <div class="qty-stepper">
@@ -308,7 +330,7 @@ export function renderLista() {
           <button class="btnQtdMais" aria-label="Aumentar quantidade de ${escapeHtml(produto.nome)}">+</button>
         </div>
       </td>
-      <td class="text-center col-mobile-hidden">${precoCell}</td>
+      <td class="text-center col-mobile-hidden">${precoCompactoHTML}</td>
       <td class="text-center">
         <button class="btn-icon btnRemover" title="Remover" aria-label="Remover ${escapeHtml(produto.nome)}">✕</button>
       </td>`;
@@ -316,6 +338,20 @@ export function renderLista() {
     tr.querySelector('.btnQtdMenos').addEventListener('click', () => alterarQtd(id, -1));
     tr.querySelector('.btnQtdMais').addEventListener('click', () => alterarQtd(id, +1));
     tr.querySelector('.btnRemover').addEventListener('click', () => removerItem(id));
+    const btnOutras = tr.querySelector('.btnOutrasLojas');
+    if (btnOutras) {
+      btnOutras.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const pop = tr.querySelector('.outras-lojas-pop');
+        const jaAberto = !pop.classList.contains('hidden');
+        $$('.outras-lojas-pop').forEach(p => p.classList.add('hidden'));
+        $$('.btnOutrasLojas').forEach(b => b.setAttribute('aria-expanded', 'false'));
+        if (!jaAberto) {
+          pop.classList.remove('hidden');
+          btnOutras.setAttribute('aria-expanded', 'true');
+        }
+      });
+    }
 
     corpoLista.appendChild(tr);
   });
@@ -330,6 +366,7 @@ export function renderResultados() {
   const todosTotais = totalPorLoja(lista);
   const faltas = indisponiveis;
   const totalItens = lista.size;
+  const cobreTudo = (k) => totalItens > 0 && faltas[k] === 0;
   const notaFalta = (k) => faltas[k] > 0
     ? `<p class="store-missing">${faltas[k]} ${faltas[k] === 1 ? 'item indisponível' : 'itens indisponíveis'} nesta loja</p>`
     : '';
@@ -337,22 +374,43 @@ export function renderResultados() {
     ? `<p class="store-coverage">Cobre ${totalItens - faltas[k]} de ${totalItens} ${totalItens === 1 ? 'item' : 'itens'}</p>`
     : '';
 
+  // ITEM 4 — Resumo-resposta: recomendação direta antes das opções
+  const resumo = $('#resumoResultado');
+  if (resumo) {
+    if (loja) {
+      const temTudo = cobreTudo(loja);
+      resumo.innerHTML = `
+        <p class="resumo-titulo">🎯 Nossa recomendação</p>
+        <p class="resumo-linha"><strong>${escapeHtml(LOJAS[loja].nome)}</strong> — ${temTudo ? 'lista completa por' : 'melhor cobertura, por'} <strong class="resumo-total">${fmtBRL(total)}</strong></p>
+        <p class="resumo-sub">${temTudo
+          ? 'Você leva todos os itens em uma única loja, pelo menor total.'
+          : `Nenhuma loja tem a lista completa — faltam ${faltas[loja]} ${faltas[loja] === 1 ? 'item' : 'itens'} nesta. Veja a Opção 2 para dividir a compra.`}</p>
+        <button type="button" id="btnResumoChecklist" class="btn btn-resumo">✅ Abrir checklist desta lista</button>`;
+      resumo.classList.remove('hidden');
+      const b = $('#btnResumoChecklist');
+      if (b) b.addEventListener('click', abrirChecklist);
+    } else {
+      resumo.classList.add('hidden');
+    }
+  }
+
   // OPÇÃO 1: Melhor loja única (cobertura primeiro, preço depois — igual ao backend)
   const r1 = $('#resultadoLojaUnica');
   r1.innerHTML = CHAVES_LOJA.map(k => {
     const melhor = k === loja;
     const cardClass = melhor ? 'card-highlight' : 'card-flat';
-    const cobreTudo = totalItens > 0 && faltas[k] === 0;
+    const cobreTudoAqui = cobreTudo(k);
     return `
       <div class="${cardClass} store-card">
         <div class="store-header">
           <span class="store-logo-wrapper">${renderStoreLogo(k, 26)}</span>
           <p class="store-name">${LOJAS[k].nome}</p>
-          ${melhor ? `<span class="badge badge-primary" style="margin-left:auto">MELHOR${cobreTudo ? '' : ' (PARCIAL)'}</span>` : ''}
+          ${melhor ? `<span class="badge badge-primary" style="margin-left:auto">MELHOR${cobreTudoAqui ? '' : ' (PARCIAL)'}</span>` : ''}
         </div>
         <p class="store-price ${melhor ? 'is-best' : ''}">${fmtBRL(todosTotais[k])}</p>
         ${notaCobertura(k)}
         ${notaFalta(k)}
+        ${melhor ? `<p class="store-note">${cobreTudoAqui ? '✔ pedido completo aqui, pelo menor total' : 'melhor cobertura disponível hoje'}</p>` : ''}
       </div>`;
   }).join('');
 
@@ -362,13 +420,22 @@ export function renderResultados() {
   $('#valorTotalOtimizado').textContent = fmtBRL(totalOtim);
   const economiaMulti = (total != null && total > 0) ? Math.max(0, total - totalOtim) : 0;
   $('#economiaMulti').textContent = fmtBRL(economiaMulti);
+  // ITEM 3 — Economia honesta: só divulga a divisão quando compensa de verdade
+  const LIMIAR_COMPENSA = 1.0; // R$ 1,00
   const rotuloEconomia = $('#economiaMulti')
     ? $('#economiaMulti').closest('.savings-pill')
     : null;
   if (rotuloEconomia) {
-    rotuloEconomia.innerHTML = economiaMulti > 0
-      ? `💰 Você economiza <span id="economiaMulti" class="savings-value">${fmtBRL(economiaMulti)}</span> vs. comprar tudo na melhor loja`
-      : `ℹ️ Dividir a compra não reduz o total desta lista (vs. melhor loja única: ${fmtBRL(total || 0)})`;
+    rotuloEconomia.classList.remove('savings-pill--neutro');
+    if (economiaMulti >= LIMIAR_COMPENSA) {
+      rotuloEconomia.innerHTML = `💰 Você economiza <span id="economiaMulti" class="savings-value">${fmtBRL(economiaMulti)}</span> vs. comprar tudo na melhor loja`;
+    } else if (economiaMulti > 0) {
+      rotuloEconomia.classList.add('savings-pill--neutro');
+      rotuloEconomia.innerHTML = `🤏 Diferença de só ${fmtBRL(economiaMulti)} — não compensa dividir a compra. Fique na loja única (Opção 1).`;
+    } else {
+      rotuloEconomia.classList.add('savings-pill--neutro');
+      rotuloEconomia.innerHTML = `ℹ️ Dividir a compra não reduz o total desta lista (vs. melhor loja única: ${fmtBRL(total || 0)})`;
+    }
   }
 
   const divLojas = $('#divisaoLojas');
@@ -404,23 +471,34 @@ export function renderResultados() {
     divLojas.appendChild(cardIndisp);
   }
 
-  // Comparativo geral
+  // ITEM 1 — Comparativo honesto: "MENOR PREÇO" só para loja com a lista completa
   const comp = $('#comparativoGeral');
-  const melhorComp = Math.min(...Object.values(todosTotais).filter(v => v > 0));
+  const completas = CHAVES_LOJA.filter(cobreTudo);
+  const melhorComp = completas.length ? Math.min(...completas.map(k => todosTotais[k])) : null;
+  const temParcial = CHAVES_LOJA.some(k => !cobreTudo(k));
   comp.innerHTML = CHAVES_LOJA.map(k => {
     const v = todosTotais[k];
-    const ehMelhor = v === melhorComp && v > 0;
+    const completa = cobreTudo(k);
+    const ehMelhor = melhorComp != null && completa && v === melhorComp;
     const ringClass = ehMelhor ? 'card-highlight' : 'card-flat';
+    const precoHTML = v > 0
+      ? `${fmtBRL(v)}${completa ? '' : '<span class="preco-parcial" title="Valor apenas dos itens disponíveis nesta loja">*</span>'}`
+      : '<span class="price-unavailable">—</span>';
+    const indicador = ehMelhor
+      ? '<span class="best-indicator">⭐ MENOR PREÇO — lista completa</span>'
+      : (completa && melhorComp != null)
+        ? `<span class="diff-indicator">+${fmtBRL(v - melhorComp)} vs. menor</span>`
+        : '<span class="diff-indicator diff-partial">não tem a lista completa</span>';
     return `
-      <div class="${ringClass} store-card">
+      <div class="${ringClass} store-card${completa ? '' : ' loja-parcial'}">
         <p class="store-name">${renderStoreLogo(k, 22)} ${LOJAS[k].nome}</p>
-        <p class="store-price">${fmtBRL(v)}</p>
+        <p class="store-price${ehMelhor ? ' is-best' : ''}">${precoHTML}</p>
         ${notaFalta(k)}
-        ${ehMelhor
-          ? '<span class="best-indicator">⭐ MENOR PREÇO</span>'
-          : `<span class="diff-indicator">+${fmtBRL(v - melhorComp)} vs. menor</span>`}
+        ${indicador}
       </div>`;
   }).join('');
+  const legenda = $('#comparativoLegenda');
+  if (legenda) legenda.classList.toggle('hidden', !temParcial);
 
   secaoResultados.classList.remove('hidden');
   secaoResultados.scrollIntoView({ behavior: 'smooth' });
@@ -430,6 +508,14 @@ export function renderResultados() {
    MODO CHECKLIST
    ================================================================ */
 let totalItensChecklist = 0;
+
+/** ITEM 4/8 — abre o modo checklist (usado pelo resumo e pelo botão ao final) */
+function abrirChecklist() {
+  if (!getLista().size) { alert('Adicione itens à lista primeiro.'); return; }
+  secaoChecklist.classList.remove('hidden');
+  renderChecklist();
+  secaoChecklist.scrollIntoView({ behavior: 'smooth' });
+}
 
 function renderChecklist() {
   const lista = getLista();
@@ -466,7 +552,11 @@ function renderChecklist() {
           <span class="check-qty">× ${qtd}</span>
         </div>`;
 
-      li.querySelector('.checkItem').addEventListener('change', atualizarProgresso);
+      const cb = li.querySelector('.checkItem');
+      cb.addEventListener('change', () => {
+        li.classList.toggle('marcado', cb.checked);
+        atualizarProgresso();
+      });
       listaUl.appendChild(li);
     });
 
@@ -480,7 +570,14 @@ function renderChecklist() {
 function atualizarProgresso() {
   const checks = $$('.checkItem');
   const marcados = [...checks].filter(c => c.checked).length;
-  $('#checklistProgresso').textContent = `✅ ${marcados} de ${totalItensChecklist} produtos marcados`;
+  $('#checklistProgresso').textContent = `✅ ${marcados} de ${totalItensChecklist} ${totalItensChecklist === 1 ? 'produto' : 'produtos'} marcados`;
+  const fill = $('#checklistProgressoFill');
+  if (fill) {
+    const pct = totalItensChecklist ? Math.round(100 * marcados / totalItensChecklist) : 0;
+    fill.style.width = pct + '%';
+    const barra = fill.closest('.checklist-progress-bar');
+    if (barra) barra.setAttribute('aria-valuenow', String(pct));
+  }
 }
 
 /* ================================================================
@@ -631,12 +728,7 @@ export function initUI() {
   btnAbrirChecklist.className = 'btn btn-primary btn-lg';
   btnAbrirChecklist.style.marginTop = 'var(--space-8)';
   btnAbrirChecklist.textContent = '✅ Abrir Modo Checklist de Compras';
-  btnAbrirChecklist.addEventListener('click', () => {
-    if (!getLista().size) { alert('Adicione itens à lista primeiro.'); return; }
-    secaoChecklist.classList.remove('hidden');
-    renderChecklist();
-    secaoChecklist.scrollIntoView({ behavior: 'smooth' });
-  });
+  btnAbrirChecklist.addEventListener('click', abrirChecklist);
   const compContainer = $('#comparativoGeral').closest('.card');
   if (compContainer) compContainer.appendChild(btnAbrirChecklist);
 
@@ -649,6 +741,27 @@ export function initUI() {
   if (btnCompartilhar) {
     btnCompartilhar.addEventListener('click', compartilharWhatsApp);
   }
+
+  // ITEM 10 — Chips de produtos populares no estado vazio
+  async function adicionarPorTermo(termo) {
+    const resultados = await buscarProdutos(termo, '', '');
+    if (!resultados || !resultados.length) {
+      alert(`Nada encontrado para "${termo}".`);
+      return;
+    }
+    adicionarItem(resultados[0], 1);
+  }
+  $$('#listaVazia .chip-atalho').forEach(chip => {
+    chip.addEventListener('click', () => adicionarPorTermo(chip.dataset.termo));
+  });
+
+  // Fecha popovers de preços ao clicar fora
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.preco-compacto')) {
+      $$('.outras-lojas-pop').forEach(p => p.classList.add('hidden'));
+      $$('.btnOutrasLojas').forEach(b => b.setAttribute('aria-expanded', 'false'));
+    }
+  });
 
   // Filtro: mostrar só produtos com preço em 2+ lojas
   if (filtroMinLojas) {
