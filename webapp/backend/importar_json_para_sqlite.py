@@ -71,6 +71,13 @@ def normalizar_categoria(nome: str) -> str:
     """Aplica o mapa de unificação de seções (idempotente)."""
     return CATEGORIA_CANONICA.get(nome, nome)
 
+
+# Remove do catálogo produtos sem preço em nenhuma loja — hoje eles aparecem na
+# busca sem oferta nenhuma (ex.: bazar do Atacadão coletado sem preço). Só é
+# aplicado se ao menos um arquivo de preços carregar, para não esvaziar a base
+# num checkout sem precos_*.json.
+REMOVER_PRODUTOS_SEM_PRECO = True
+
 ARQUIVOS_PRECOS = {
     "carrefour": "precos_carrefour_ampliado.json",
     "pao_de_acucar": "precos_pao_de_acucar_ampliado.json",
@@ -188,10 +195,12 @@ def run_etl():
     precos_sem_ean_por_nome = {}
     precos_flv_por_nome = {}
     loja_id_map = {"carrefour": 1, "pao_de_acucar": 2, "atacadao": 3, "soudaki": 4}
+    arquivos_preco_carregados = 0
 
     for loja_chave, filename in ARQUIVOS_PRECOS.items():
         filepath = DATA_DIR / filename
         if filepath.exists():
+            arquivos_preco_carregados += 1
             print(f"[ETL] Lendo precos de {filename}...")
             with open(filepath, "r", encoding="utf-8") as f:
                 p_list = json.load(f)
@@ -223,6 +232,11 @@ def run_etl():
     preco_tuples = []
     eans_cadastrados = set()
     bloqueados_catalogo = 0
+    sem_preco_catalogo = 0
+    pular_sem_preco = REMOVER_PRODUTOS_SEM_PRECO and arquivos_preco_carregados > 0
+    if REMOVER_PRODUTOS_SEM_PRECO and not pular_sem_preco:
+        print("[AVISO] Nenhum precos_*.json carregado — filtro de produtos sem "
+              "preco DESLIGADO nesta execucao.")
 
     for i, prod in enumerate(produtos_raw, start=1):
         gtin = prod.get("gtin_ean")
@@ -239,13 +253,9 @@ def run_etl():
         imagem_url = prod.get("imagem_url")
         apresentacao = format_apresentacao(prod.get("apresentacao"))
 
-        prod_tuples.append((i, gtin, nome, categoria, marca, relevancia, imagem_url, apresentacao))
-        fts_tuples.append((i, nome, categoria, marca))
-        if gtin:
-            eans_cadastrados.add(gtin)
-
         # Preços por loja — passo 1: match por GTIN
         lojas_com_preco = set()
+        n_preco_antes = len(preco_tuples)
         if gtin and gtin in precos_por_ean:
             p_dict = precos_por_ean[gtin]
             for loja_chave, l_id in loja_id_map.items():
@@ -269,6 +279,16 @@ def run_etl():
                         reg = info.get("preco_regular")
                         est = 1 if info.get("em_estoque") else 0
                         preco_tuples.append((i, l_id, prom, reg, est, None, info.get("data_coleta")))
+
+        # Produto sem preço em nenhuma loja: fora do catálogo (configurável)
+        if pular_sem_preco and len(preco_tuples) == n_preco_antes:
+            sem_preco_catalogo += 1
+            continue
+
+        prod_tuples.append((i, gtin, nome, categoria, marca, relevancia, imagem_url, apresentacao))
+        fts_tuples.append((i, nome, categoria, marca))
+        if gtin:
+            eans_cadastrados.add(gtin)
 
     # 4. Cadastra produtos órfãos (existem em preços mas não no catálogo)
     eans_orfaos = set(precos_por_ean.keys()) - eans_cadastrados
@@ -400,6 +420,7 @@ def run_etl():
     print(f"\n[ETL SUCCESS] SGBD SQLite criado com sucesso em {elapsed:.2f}s!")
     print(f"  - Produtos do catalogo: {len(produtos_raw):,}")
     print(f"  - Bloqueados adulto/sex shop (catalogo): {bloqueados_catalogo:,}")
+    print(f"  - Sem preço em nenhuma loja (catalogo): {sem_preco_catalogo:,}")
     print(f"  - Produtos orfaos cadastrados: {orfaos_count:,}")
     print(f"  - Total de produtos: {total_prod:,}")
     print(f"  - Total de precos ativos: {total_precos:,}")
