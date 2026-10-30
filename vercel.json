@@ -10,6 +10,10 @@
       "use": "@vercel/static"
     },
     {
+      "src": "webapp/scrapers.html",
+      "use": "@vercel/static"
+    },
+    {
       "src": "webapp/css/*",
       "use": "@vercel/static"
     },
@@ -62,6 +66,10 @@
     {
       "src": "/sw.js",
       "dest": "/webapp/sw.js"
+    },
+    {
+      "src": "/scrapers.html",
+      "dest": "/webapp/scrapers.html"
     },
     {
       "src": "/(.*)",

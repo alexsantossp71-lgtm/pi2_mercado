@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Como coletamos os preços — Despensa Planejada Santos</title>
+  <meta name="description" content="Pipeline de coleta de preços do comparador: coletores automatizados do Carrefour, Pão de Açúcar, Atacadão e Soudaki, ETL e banco Neon/PostgreSQL. Projeto Integrador UNIVESP." />
+  <meta name="theme-color" content="#059669" />
+  <link rel="icon" href="assets/img/icon-192.png" />
+
+  <!-- Design System CSS (mesmo do app) -->
+  <link rel="stylesheet" href="css/design-system.css" />
+  <link rel="stylesheet" href="css/components.css?v=8" />
+  <link rel="stylesheet" href="css/layout.css?v=8" />
+
+  <script>
+    /* Tema: aplica preferência salva antes da pintura para evitar flash */
+    (function () {
+      var t = localStorage.getItem('dispensa_theme');
+      if (t === 'dark' || (!t && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else if (t === 'light') {
+        document.documentElement.classList.add('light');
+      }
+    })();
+  </script>
+
+  <style>
+    /* Estilos específicos desta página (usam os tokens do design system) */
+    .page-header {
+      position: sticky; top: 0; z-index: 50;
+      background: var(--color-bg);
+      border-bottom: 2px solid var(--color-border);
+      padding: var(--space-4) var(--space-4);
+    }
+    .page-header-inner {
+      max-width: 1080px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; gap: var(--space-3);
+    }
+    .page-header-brand { display: flex; align-items: center; gap: var(--space-2); min-width: 0; }
+    .page-header-brand .brand-icon { font-size: 1.5rem; }
+    .page-header-brand h1 {
+      font-size: var(--font-size-lg); font-weight: var(--font-weight-extrabold);
+      color: var(--color-text-primary); margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .page-actions { display: flex; align-items: center; gap: var(--space-2); flex-shrink: 0; }
+    .theme-toggle {
+      background: var(--color-surface); border: 2px solid var(--color-border);
+      border-radius: 999px; width: 42px; height: 42px; font-size: 1.1rem;
+      cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+    }
+    .main-page { max-width: 1080px; margin: 0 auto; padding: var(--space-5) var(--space-4) var(--space-8); }
+    .page-title { font-size: var(--font-size-3xl); font-weight: var(--font-weight-extrabold); color: var(--color-text-primary); margin: 0 0 var(--space-2); }
+    .page-subtitle { font-size: var(--font-size-lg); color: var(--color-text-secondary); margin: 0 0 var(--space-6); max-width: 46em; }
+
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3); margin-top: var(--space-5); }
+    @media (max-width: 700px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+    .stat-box {
+      background: var(--color-surface); border: 2px solid var(--color-border);
+      border-radius: var(--radius-lg, 14px); padding: var(--space-4); text-align: center;
+    }
+    .stat-value { font-size: var(--font-size-2xl); font-weight: var(--font-weight-extrabold); color: var(--color-text-primary); margin: 0; }
+    .stat-label { font-size: var(--font-size-xs); color: var(--color-text-secondary); margin: var(--space-1) 0 0; }
+
+    .pipeline { list-style: none; margin: var(--space-4) 0 0; padding: 0; display: grid; gap: var(--space-3); }
+    .pipeline li {
+      display: flex; gap: var(--space-3); align-items: flex-start;
+      background: var(--color-surface); border: 2px solid var(--color-border);
+      border-radius: var(--radius-lg, 14px); padding: var(--space-4);
+    }
+    .step-num {
+      flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%;
+      background: var(--color-primary-500, #084a24); color: var(--color-text-inverse);
+      font-weight: var(--font-weight-bold); font-size: var(--font-size-base);
+      display: inline-flex; align-items: center; justify-content: center; margin-top: 2px;
+    }
+    .pipeline h3 { margin: 0 0 var(--space-1); font-size: var(--font-size-base); font-weight: var(--font-weight-bold); color: var(--color-text-primary); }
+    .pipeline p { margin: 0; font-size: var(--font-size-sm); color: var(--color-text-secondary); line-height: 1.5; }
+    .pipeline code {
+      font-family: ui-monospace, 'Cascadia Mono', 'Courier New', monospace;
+      font-size: 0.8em; background: var(--color-surface-alt); border: 1px solid var(--color-border-light);
+      border-radius: 6px; padding: 1px 6px; color: var(--color-text-primary); white-space: nowrap;
+    }
+
+    .store-row {
+      display: flex; align-items: center; gap: var(--space-4);
+      background: var(--color-surface); border: 2px solid var(--color-border);
+      border-radius: var(--radius-lg, 14px); padding: var(--space-4);
+    }
+    .store-row + .store-row { margin-top: var(--space-3); }
+    .store-logo { flex-shrink: 0; width: 44px; height: 44px; }
+    .store-info { flex: 1; min-width: 0; }
+    .store-info h3 { margin: 0; font-size: var(--font-size-lg); font-weight: var(--font-weight-bold); color: var(--color-text-primary); display: flex; align-items: center; gap: var(--space-2); flex-wrap: wrap; }
+    .store-info p { margin: 2px 0 0; font-size: var(--font-size-sm); color: var(--color-text-secondary); }
+    .store-nums { text-align: right; flex-shrink: 0; }
+    .store-nums .n { margin: 0; font-size: var(--font-size-xl); font-weight: var(--font-weight-extrabold); color: var(--color-text-primary); }
+    .store-nums .d { margin: 0; font-size: var(--font-size-xs); color: var(--color-text-tertiary); }
+    .badge-status {
+      display: inline-block; font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold);
+      border: 1.5px solid var(--color-border); border-radius: 999px; padding: 2px 10px;
+      background: var(--color-surface-alt); color: var(--color-text-secondary);
+    }
+    .badge-status.pausado { border-color: var(--color-warning-500, #e7390d); color: var(--color-warning-500, #e7390d); background: transparent; }
+    @media (max-width: 620px) {
+      .store-row { flex-wrap: wrap; }
+      .store-nums { text-align: left; width: 100%; display: flex; gap: var(--space-3); align-items: baseline; }
+    }
+
+    .note {
+      margin-top: var(--space-4); font-size: var(--font-size-xs);
+      color: var(--color-text-tertiary); line-height: 1.5;
+    }
+    .links-row { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-4); }
+    .section-gap { margin-top: var(--space-6); }
+    .card { background: var(--color-surface); border: 2px solid var(--color-border); border-radius: var(--radius-xl, 18px); padding: var(--space-6); }
+    .card h2 { margin: 0 0 var(--space-2); font-size: var(--font-size-2xl); font-weight: var(--font-weight-extrabold); color: var(--color-text-primary); }
+    .card > p.lead { margin: 0; font-size: var(--font-size-base); color: var(--color-text-secondary); line-height: 1.55; }
+  </style>
+</head>
+<body>
+
+<!-- ==================== HEADER ==================== -->
+<header class="page-header" role="banner">
+  <div class="page-header-inner">
+    <div class="page-header-brand">
+      <span class="brand-icon" aria-hidden="true">🛒</span>
+      <h1>Despensa Planejada Santos</h1>
+    </div>
+    <div class="page-actions">
+      <a class="btn btn-ghost" href="/" aria-label="Voltar ao comparador de preços">← Voltar ao comparador</a>
+      <button id="themeToggle" class="theme-toggle" aria-label="Alternar tema claro/escuro" title="Alternar tema">🌙</button>
+    </div>
+  </div>
+</header>
+
+<main class="main-page" id="main" role="main">
+
+  <!-- ==================== HERO + NÚMEROS ==================== -->
+  <section class="card" aria-labelledby="tituloHero">
+    <h2 id="tituloHero" class="page-title">De onde vêm os preços</h2>
+    <p class="page-subtitle">
+      Nenhum preço aqui é estimado. Tudo vem de coleta automatizada nos sites e APIs dos
+      próprios supermercados de Santos, gravada no nosso banco e exposta pela API do comparador.
+      Esta página explica o caminho que cada preço percorre até a sua lista.
+    </p>
+
+    <div class="stats-grid" role="list" aria-label="Números da base de dados">
+      <div class="stat-box" role="listitem">
+        <p class="stat-value">113.516</p>
+        <p class="stat-label">produtos no catálogo</p>
+      </div>
+      <div class="stat-box" role="listitem">
+        <p class="stat-value">6.729</p>
+        <p class="stat-label">com preço em 2+ lojas (comparáveis)</p>
+      </div>
+      <div class="stat-box" role="listitem">
+        <p class="stat-value">4</p>
+        <p class="stat-label">supermercados monitorados</p>
+      </div>
+      <div class="stat-box" role="listitem">
+        <p class="stat-value">30/10/2026</p>
+        <p class="stat-label">coleta mais recente</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PIPELINE ==================== -->
+  <section class="card section-gap" aria-labelledby="tituloPipeline">
+    <h2 id="tituloPipeline">O caminho do preço: da prateleira ao app</h2>
+    <p class="lead">Cinco etapas automatizadas, todas documentadas no repositório do projeto.</p>
+
+    <ol class="pipeline">
+      <li>
+        <span class="step-num" aria-hidden="true">1</span>
+        <div>
+          <h3>Coleta por seções</h3>
+          <p>Coletores dedicados percorrem todas as categorias de mercado de cada loja e gravam os catálogos brutos em JSON:
+             <code>scraper/secoes/coletor_vtex.py</code> (Carrefour e Atacadão, plataforma VTEX),
+             <code>scraper/secoes/coletar_pa.py</code> (Pão de Açúcar, API oficial GPA) e
+             <code>scraper/coletar_e_integrar_soudaki.py</code> (Soudaki/Daki, leitura direta do site).</p>
+        </div>
+      </li>
+      <li>
+        <span class="step-num" aria-hidden="true">2</span>
+        <div>
+          <h3>Filtro de conteúdo adulto</h3>
+          <p>Antes da integração, o <code>scraper/filtro_adulto.py</code> remove produtos da seção adulta/sex shop
+             em duas camadas (seção de origem + nome e marca), com exceções preservadas para itens de uso pessoal legítimos.</p>
+        </div>
+      </li>
+      <li>
+        <span class="step-num" aria-hidden="true">3</span>
+        <div>
+          <h3>ETL e cruzamento</h3>
+          <p>O <code>importar_json_para_sqlite.py</code> normaliza nomes, vincula o mesmo produto de lojas diferentes por
+             <strong>EAN-13</strong> ou nome normalizado, monta o catálogo unificado e descarta itens sem preço em nenhuma loja.</p>
+        </div>
+      </li>
+      <li>
+        <span class="step-num" aria-hidden="true">4</span>
+        <div>
+          <h3>Carga no banco Neon/PostgreSQL</h3>
+          <p>O <code>migrate_sqlite_to_neon.py</code> publica o catálogo e os preços no banco de produção.
+             O Soudaki e o coletor de categorias do Carrefour gravam direto no Neon durante a coleta.</p>
+        </div>
+      </li>
+      <li>
+        <span class="step-num" aria-hidden="true">5</span>
+        <div>
+          <h3>API + aplicativo</h3>
+          <p>A API FastAPI (<code>/api</code>) consulta o Neon em tempo real: busca com ranqueamento, preços frescos em lote
+             e cálculo da cesta. O app é um PWA — funciona instalado no celular e offline com os dados já carregados.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ==================== LOJAS ==================== -->
+  <section class="card section-gap" aria-labelledby="tituloLojas">
+    <h2 id="tituloLojas">As quatro lojas monitoradas</h2>
+    <p class="lead">Números de produtos com preço válido registrado no banco, por loja.</p>
+
+    <div style="margin-top: var(--space-4);">
+      <div class="store-row">
+        <span class="store-logo" aria-hidden="true">
+          <svg viewBox="0 0 51 34" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%"><path clip-rule="evenodd" d="M25.6339 0C20.2716 0 18.1768 7.68829 18.1768 16.8493C18.1768 26.0149 20.2716 33.6 25.6339 33.6C28.853 33.6 31.5961 31.6929 31.6058 30.1262C31.6058 29.7839 31.476 29.4567 31.1919 29.1694C29.6672 27.6797 29.0719 26.1893 29.0641 24.8746C29.0564 22.3641 31.2099 20.4956 33.1924 20.4956C35.922 20.4956 37.5305 22.6645 37.5305 25.4722C37.5305 28.1329 36.4082 30.3521 35.1903 32.126C35.1419 32.1984 35.1213 32.2788 35.1213 32.35C35.1213 32.4871 35.202 32.6027 35.324 32.6027C35.3989 32.6027 35.4848 32.5629 35.5778 32.4682L49.2793 19.0685C49.9619 18.4775 50.3997 17.7865 50.3997 16.8023C50.3997 15.8155 49.9619 15.1245 49.2793 14.5373L35.5778 1.13313C35.4848 1.04104 35.3989 0.999242 35.324 0.999242C35.1994 0.999242 35.1213 1.11549 35.1213 1.2546C35.1213 1.32644 35.1419 1.40678 35.1903 1.48058C36.4082 3.25309 37.5305 5.47232 37.5305 8.12978C37.5305 10.9368 35.922 13.1097 33.1924 13.1097C31.2099 13.1097 29.0564 11.2385 29.0641 8.72802C29.0719 7.41594 29.6672 5.92426 31.1919 4.4352C31.476 4.14653 31.6058 3.82063 31.6058 3.4771C31.5961 1.90901 28.853 0 25.6339 0Z" fill="#1E5BC6" fill-rule="evenodd"/><path clip-rule="evenodd" d="M14.4233 0.960248C14.5075 0.874123 14.5905 0.839417 14.6609 0.839417C14.7872 0.839417 14.8752 0.953821 14.8721 1.09329C14.8677 1.17684 14.8325 1.26747 14.7526 1.34845C11.6253 5.3256 9.34947 9.97696 9.34947 16.4267C9.34947 22.8738 11.6253 27.4332 14.7526 31.4097C14.8325 31.4901 14.8677 31.5858 14.8721 31.6655C14.8752 31.8057 14.7872 31.9194 14.6609 31.9194C14.5905 31.9194 14.5075 31.8854 14.4233 31.7973L1.08981 18.6106C0.424862 18.029 0 17.3496 0 16.3804C0 15.4092 0.424862 14.7292 1.08981 14.1514L14.4233 0.960248Z" fill="#ED1C24" fill-rule="evenodd"/></svg>
+        </span>
+        <div class="store-info">
+          <h3>Carrefour — Ponta da Praia</h3>
+          <p>Plataforma VTEX (<code style="font-size:0.9em">mercado.carrefour.com.br</code>) · todas as seções, com paginação completa · vínculo por EAN-13.</p>
+        </div>
+        <div class="store-nums">
+          <p class="n">95.114</p>
+          <p class="d">produtos · coleta 30/10/2026</p>
+        </div>
+      </div>
+
+      <div class="store-row">
+        <span class="store-logo" aria-hidden="true">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%"><path d="M20 3C11.5 3 5 9.5 5 18C5 26.5 12 34 20 37C28 34 35 26.5 35 18C35 9.5 28.5 3 20 3Z" fill="#007A33"/><path d="M20 7.5C13.5 7.5 8.5 12.5 8.5 19C8.5 25.5 14 31.5 20 34C26 31.5 31.5 25.5 31.5 19C31.5 12.5 26.5 7.5 20 7.5Z" fill="#70B836"/><path d="M20 12C15.5 12 12 15.5 12 20C12 24.5 16 28.5 20 30.5C24 28.5 28 24.5 28 20C28 15.5 24.5 12 20 12Z" fill="#005A26"/><path d="M20 16.5C17.5 16.5 15.5 18.5 15.5 21C15.5 23.5 18 25.5 20 27C22 25.5 24.5 23.5 24.5 21C24.5 18.5 22.5 16.5 20 16.5Z" fill="#FFFFFF"/></svg>
+        </span>
+        <div class="store-info">
+          <h3>Pão de Açúcar</h3>
+          <p>API oficial GPA · 8 seções de mercado (alimentos, bebidas, limpeza, perfumaria, bazar, descartáveis, bebê e pet).</p>
+        </div>
+        <div class="store-nums">
+          <p class="n">17.116</p>
+          <p class="d">produtos · coleta 30/10/2026</p>
+        </div>
+      </div>
+
+      <div class="store-row">
+        <span class="store-logo" aria-hidden="true">
+          <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%"><circle cx="22" cy="22" r="21" fill="#E31B23" stroke="#F37021" stroke-width="2"/><circle cx="22" cy="22" r="18" fill="#E31B23"/><path d="M12 32L20.5 10H23.5L32 32H27.5L25.8 27H18.2L16.5 32H12ZM19.5 23H24.5L22 15.5L19.5 23Z" fill="#FFFFFF"/><path d="M7 23C7 23 14 26 22 26C30 26 37 23 37 23" stroke="#003366" stroke-width="3" stroke-linecap="round"/></svg>
+        </span>
+        <div class="store-info">
+          <h3>Atacadão <span class="badge-status pausado">coleta pausada</span></h3>
+          <p>Plataforma VTEX · catálogo atacadista mantido no banco; retomada de coleta sob demanda.</p>
+        </div>
+        <div class="store-nums">
+          <p class="n">6.428</p>
+          <p class="d">produtos · coleta 29/10/2026</p>
+        </div>
+      </div>
+
+      <div class="store-row">
+        <span class="store-logo" aria-hidden="true">
+          <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%"><rect width="44" height="44" rx="10" fill="#7C3AED"/><path d="M24 7L12 23H21L19 37L32 19H23L24 7Z" fill="#FBBF24"/></svg>
+        </span>
+        <div class="store-info">
+          <h3>Soudaki (Daki)</h3>
+          <p>Leitura direta do site (<code style="font-size:0.9em">soudaki.com</code>) · 25 categorias · gravação direta no Neon por EAN-13 ou nome.</p>
+        </div>
+        <div class="store-nums">
+          <p class="n">3.645</p>
+          <p class="d">produtos · coleta 29/10/2026</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="note">
+      Números registrados em 30/10/2026, considerando produtos com preço válido
+      (promocional ou regular) no banco de produção. A loja física de referência é o
+      Carrefour Ponta da Praia; os preços são coletados com CEP de Santos, SP, e podem
+      variar por unidade, estoque e condições da oferta. Confirme o preço na loja antes de comprar.
+    </p>
+  </section>
+
+  <!-- ==================== ATUALIZAÇÃO ==================== -->
+  <section class="card section-gap" aria-labelledby="tituloAtualizacao">
+    <h2 id="tituloAtualizacao">Como os preços são atualizados</h2>
+    <p class="lead">
+      Entre coletas completas, o <code>atualizar_precos_ean_cep.py</code> relê preço e estoque de cada EAN
+      com CEP de Santos nos três maiores mercados e gera lotes de atualização que passam pelo mesmo ETL.
+      O <code>relatorio_cobertura.py</code> audita quantos produtos têm preço em cada loja, orientando as próximas coletas.
+    </p>
+  </section>
+
+  <!-- ==================== CÓDIGO ABERTO ==================== -->
+  <section class="card section-gap" aria-labelledby="tituloCodigo">
+    <h2 id="tituloCodigo">Código aberto</h2>
+    <p class="lead">
+      Todo o pipeline está no repositório do projeto, incluindo a documentação técnica dos coletores.
+    </p>
+    <div class="links-row">
+      <a class="btn btn-primary" href="https://github.com/alexsantossp71-lgtm/pi2_mercado" target="_blank" rel="noopener">📁 Repositório no GitHub</a>
+      <a class="btn btn-ghost" href="https://github.com/alexsantossp71-lgtm/pi2_mercado/blob/master/docs/scrapers.md" target="_blank" rel="noopener">📄 Documentação técnica (docs/scrapers.md)</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer" role="contentinfo">
+  <p>Despensa Planejada Santos — Projeto Integrador em Computação II (UNIVESP 2026.2)</p>
+  <p><a href="/">Comparador de preços</a> · dados reais coletados dos sites Carrefour, Pão de Açúcar, Atacadão e Soudaki.</p>
+</footer>
+
+<script>
+  /* Toggle de tema — mesmo comportamento do app */
+  (function () {
+    var toggle = document.getElementById('themeToggle');
+    if (document.documentElement.classList.contains('dark')) toggle.textContent = '☀️';
+    toggle.addEventListener('click', function () {
+      var isDark = document.documentElement.classList.toggle('dark');
+      document.documentElement.classList.toggle('light', !isDark);
+      toggle.textContent = isDark ? '☀️' : '🌙';
+      localStorage.setItem('dispensa_theme', isDark ? 'dark' : 'light');
+    });
+  })();
+</script>
+
+</body>
+</html>

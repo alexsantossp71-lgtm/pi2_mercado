@@ -2,9 +2,10 @@
    sw.js — Service Worker para Dispensa Planejada Santos (PWA)
    ================================================================ */
 
-const CACHE_NAME = 'dispensa-planejada-v7';
+const CACHE_NAME = 'dispensa-planejada-v8';
 const ASSETS_TO_CACHE = [
   './index.html',
+  './scrapers.html',
   './manifest.json',
   './css/design-system.css',
   './css/components.css',
