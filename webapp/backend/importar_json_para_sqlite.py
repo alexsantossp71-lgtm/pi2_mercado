@@ -7,9 +7,21 @@ import json
 import os
 import re
 import sqlite3
+import sys
 import time
 import unicodedata
 from pathlib import Path
+
+# Filtro de produtos adultos/sex shop (mesmo módulo usado na coleta).
+# Se o módulo não existir neste checkout, segue com filtro desligado.
+try:
+    sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "scraper"))
+    from filtro_adulto import eh_produto_bloqueado
+except ImportError:
+    print("[AVISO] scraper/filtro_adulto.py não encontrado — filtro de produtos "
+          "adultos DESLIGADO neste ETL.")
+    def eh_produto_bloqueado(nome: str = "", marca: str = "", secao: str = "") -> bool:
+        return False
 
 
 def _norm_nome_flv(s: str) -> str:
@@ -210,12 +222,19 @@ def run_etl():
     fts_tuples = []
     preco_tuples = []
     eans_cadastrados = set()
+    bloqueados_catalogo = 0
 
     for i, prod in enumerate(produtos_raw, start=1):
         gtin = prod.get("gtin_ean")
         nome = prod.get("nome_completo") or prod.get("nome") or "Produto sem nome"
         categoria = normalizar_categoria(prod.get("secao") or prod.get("categoria") or "Geral")
         marca = prod.get("marca") or "Não Informada"
+
+        # Bloqueio de produtos adultos/sex shop (ver scraper/filtro_adulto.py)
+        if eh_produto_bloqueado(nome, marca, categoria):
+            bloqueados_catalogo += 1
+            continue
+
         relevancia = prod.get("relevancia", 0)
         imagem_url = prod.get("imagem_url")
         apresentacao = format_apresentacao(prod.get("apresentacao"))
@@ -258,6 +277,7 @@ def run_etl():
 
     if eans_orfaos:
         print(f"[ETL] Cadastrando {len(eans_orfaos)} produtos orfaos (presentes em precos mas ausentes no catalogo)...")
+        bloqueados_orfaos = 0
         for gtin in sorted(eans_orfaos):
             p_dict = precos_por_ean[gtin]
             # Tenta extrair nome dos dados de preço (campo 'nome' ou 'nome_completo')
@@ -277,6 +297,11 @@ def run_etl():
                     imagem_url = info["imagem_url"]
             categoria = normalizar_categoria(categoria)
 
+            # Bloqueio de produtos adultos/sex shop também entre os órfãos
+            if eh_produto_bloqueado(nome or "", marca, categoria):
+                bloqueados_orfaos += 1
+                continue
+
             if not nome:
                 nome = f"Produto EAN {gtin}"
 
@@ -294,7 +319,7 @@ def run_etl():
             next_id += 1
             orfaos_count += 1
 
-    # 4b. Orfaos FLV sem EAN (fruta avulsa que nao casou com nenhum produto do catalogo)
+        print(f"[ETL] Orfaos bloqueados (adulto/sex shop): {bloqueados_orfaos}")
     if precos_sem_ean_por_nome:
         # nomes normalizados ja presentes no catalogo (FLV) — ja receberam fallback
         catalog_flv_nomes = set()
@@ -374,6 +399,7 @@ def run_etl():
 
     print(f"\n[ETL SUCCESS] SGBD SQLite criado com sucesso em {elapsed:.2f}s!")
     print(f"  - Produtos do catalogo: {len(produtos_raw):,}")
+    print(f"  - Bloqueados adulto/sex shop (catalogo): {bloqueados_catalogo:,}")
     print(f"  - Produtos orfaos cadastrados: {orfaos_count:,}")
     print(f"  - Total de produtos: {total_prod:,}")
     print(f"  - Total de precos ativos: {total_precos:,}")

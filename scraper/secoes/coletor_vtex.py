@@ -59,11 +59,13 @@ def backoff_sleep(tentativa: int, base: float = 5.0, maximo: float = 60.0):
 try:
     from ..ceps import CEPS as CEPS_LIST
     from ..gravar_precos_cep import gravar_precos_cep
+    from ..filtro_adulto import eh_produto_bloqueado
 except ImportError:
     # Fallback para execução direta de secoes/
     sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     from ceps import CEPS as CEPS_LIST
     from gravar_precos_cep import gravar_precos_cep
+    from filtro_adulto import eh_produto_bloqueado
 
 # ---------------------------------------------------------------------------
 # Utilitários
@@ -312,12 +314,12 @@ def buscar_pagina(cfg: dict, slug: str, offset: int, limite: int) -> list:
     return resp.json()
 
 
-def coletar_folha(cfg: dict, folha: dict) -> tuple[int, int, int]:
-    """Coleta uma folha. Retorna (produtos_validos, duplicados, sem_ean)."""
+def coletar_folha(cfg: dict, folha: dict) -> tuple[int, int, int, int]:
+    """Coleta uma folha. Retorna (produtos_validos, duplicados, sem_ean, bloqueados_adulto)."""
     slug = folha["slug"]
     limite = cfg["limite_max"]
     offset = 0
-    validos = duplicados = sem_ean = 0
+    validos = duplicados = sem_ean = bloqueados = 0
     vistos = cfg["vistos_execucao"]
     multi_cep = cfg.get("multi_cep", False)
     headers = {"User-Agent": cfg["user_agent"]}
@@ -335,6 +337,14 @@ def coletar_folha(cfg: dict, folha: dict) -> tuple[int, int, int]:
             break
 
         for prod in produtos:
+            # Bloqueio de produtos adultos/sex shop (ver scraper/filtro_adulto.py)
+            if eh_produto_bloqueado(
+                prod.get("productName", ""),
+                prod.get("brand") or "",
+                folha.get("secao", ""),
+            ):
+                bloqueados += 1
+                continue
             ean = extrair_ean(prod)
             if not ean:
                 # FLV sem EAN: tenta manter via nome (fruta avulsa por peso)
@@ -418,7 +428,7 @@ def coletar_folha(cfg: dict, folha: dict) -> tuple[int, int, int]:
         if offset >= limite:
             break
 
-    return validos, duplicados, sem_ean
+    return validos, duplicados, sem_ean, bloqueados
 
 
 # ---------------------------------------------------------------------------
@@ -463,14 +473,15 @@ def coletar_vtex(cfg: dict) -> None:
     print(f"Catálogo em retomada: {len(cfg['produtos'])} produtos | {len(cfg['precos'])} preços")
     print("-" * 72)
 
-    total_validos = total_duplicados = total_sem_ean = 0
+    total_validos = total_duplicados = total_sem_ean = total_bloqueados = 0
     n_concluidas = 0
 
     for i, folha in enumerate(pendentes, 1):
-        validos, duplicados, sem_ean = coletar_folha(cfg, folha)
+        validos, duplicados, sem_ean, bloqueados = coletar_folha(cfg, folha)
         total_validos += validos
         total_duplicados += duplicados
         total_sem_ean += sem_ean
+        total_bloqueados += bloqueados
         feitas.add(folha["slug"])
         n_concluidas += 1
 
@@ -492,6 +503,7 @@ def coletar_vtex(cfg: dict) -> None:
     print("-" * 72)
     print(f"Folhas concluídas: {n_concluidas}")
     print(f"Produtos válidos (EAN+preço): {total_validos:,} | duplicados: {total_duplicados:,} | sem EAN/preço: {total_sem_ean:,}")
+    print(f"Bloqueados (adulto/sex shop): {total_bloqueados:,}")
     print(f"Catálogo total: {len(cfg['produtos']):,} | preços {cfg['nome_supermercado']}: {len(cfg['precos']):,}")
     if cfg["erros"]:
         print(f"Erros de requisição: {len(cfg['erros'])} (primeiros 5):")
