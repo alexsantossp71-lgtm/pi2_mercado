@@ -70,14 +70,35 @@ def decodificar_mojibake(texto: str) -> str:
 
     "LinguiÃ§a" (Ã + § como 2 chars Unicode) → "Linguiça" (ç como 1 char).
     Se a decodificação falhar (não é mojibake real), devolve o original.
+
+    Só processa textos que tenham mojibake confirmado (chama tem_mojibake).
+    Para textos legítimos ("Linguiça", "Coração"), devolve inalterado.
+
+    Usa errors='replace' para tolerar bytes órfãos no fim do texto
+    (alguns nomes do Soudaki terminam com 'Â' (byte 0xC2) que começa uma
+    sequência UTF-8 de 2 bytes mas não tem o segundo byte, ex.: '...1LÂ').
+    Esses bytes órfãos são substituídos por '�' e depois removidos.
     """
-    if not texto:
+    if not texto or not tem_mojibake(texto):
+        # Não tem mojibake (ou é vazio) — devolve inalterado
         return texto
     try:
         # Cada char Unicode → byte Latin-1; conjunto de bytes → UTF-8 string
         return texto.encode('latin-1').decode('utf-8')
     except (UnicodeEncodeError, UnicodeDecodeError):
-        return texto  # não era double-encoded; devolve intacto
+        # Tenta com errors='replace' para bytes órfãos (trailing Â isolado)
+        try:
+            r = texto.encode('latin-1').decode('utf-8', errors='replace')
+            # Remove U+FFFD (replacement char) que pode ter sobrado de bytes
+            # órfãos, e trim trailing whitespace (NBSP que virou 'Â\xa0' etc.)
+            r = r.replace('\ufffd', '').rstrip()
+            # Só devolve se o resultado NÃO tem mais mojibake (corrigiu) E
+            # não é vazio
+            if r and not tem_mojibake(r):
+                return r
+            return texto
+        except (UnicodeEncodeError, UnicodeDecodeError):
+            return texto  # não era double-encoded; devolve intacto
 
 
 # Alias de categoria — o Soudaki usa "Churrasco" como seção da loja,
@@ -228,8 +249,17 @@ def limpar(conn, aplicar: bool, so_ids: bool):
 
     stats = {"corrigidos_inplace": 0, "deletados_duplicata": 0,
              "precos_migrados": 0, "precos_perdidos": 0, "erros": 0}
+    total = len(mojis)
+    BATCH = 50  # commit a cada 50 produtos (evita timeout em transações longas)
+    postgres = getattr(conn, "is_postgres", False)
 
-    for m in mojis:
+    for i, m in enumerate(mojis, 1):
+        if aplicar and i % 20 == 0:
+            print(f"  [progresso] {i}/{total} "
+                  f"(inplace={stats['corrigidos_inplace']}, "
+                  f"del={stats['deletados_duplicata']}, "
+                  f"erros={stats['erros']})", flush=True)
+
         nome_corr = decodificar_mojibake(m["nome"])
         marca_corr = decodificar_mojibake(m["marca"]) if m["marca"] else m["marca"]
         cat_corr = decodificar_mojibake(m["categoria"]) if m["categoria"] else m["categoria"]
@@ -264,15 +294,22 @@ def limpar(conn, aplicar: bool, so_ids: bool):
             # ON CONFLICT (produto_id, loja_id) → mantém o preço existente,
             # deleta o duplicata
             try:
+                # Conta antes para estatística
+                c.execute("SELECT COUNT(*) AS n FROM precos WHERE produto_id = ?",
+                          (m["id"],))
+                n_antes = c.fetchone()["n"]
+
                 c.execute("""
                     UPDATE precos SET produto_id = ?
                     WHERE produto_id = ?
-                      AND NOT EXISTS (
-                        SELECT 1 FROM precos p2
-                        WHERE p2.produto_id = ? AND p2.loja_id = precos.loja_id
+                      AND loja_id NOT IN (
+                        SELECT loja_id FROM precos WHERE produto_id = ?
                       )
                 """, (id_correto, m["id"], id_correto))
-                stats["precos_migrados"] += c.cursor.rowcount if hasattr(c.cursor, 'rowcount') else 0
+                n_migrados = c.cursor.rowcount if hasattr(c.cursor, 'rowcount') else 0
+                if n_migrados < 0:
+                    n_migrados = 0
+                stats["precos_migrados"] += n_migrados
 
                 # Preços que colidiram (já existiam no correto para a mesma loja)
                 c.execute("SELECT COUNT(*) AS n FROM precos WHERE produto_id = ?",
@@ -287,11 +324,12 @@ def limpar(conn, aplicar: bool, so_ids: bool):
             except Exception as e:
                 print(f"[ERRO] id={m['id']}: {e}")
                 stats["erros"] += 1
-                if getattr(conn, "is_postgres", False):
+                if postgres:
                     try:
                         conn.connection.rollback()
                     except Exception:
                         pass
+                continue
         else:
             # Caso B: não há versão correta → corrigir in-place
             if not aplicar:
@@ -311,11 +349,25 @@ def limpar(conn, aplicar: bool, so_ids: bool):
             except Exception as e:
                 print(f"[ERRO] id={m['id']}: {e}")
                 stats["erros"] += 1
-                if getattr(conn, "is_postgres", False):
+                if postgres:
                     try:
                         conn.connection.rollback()
                     except Exception:
                         pass
+                continue
+
+        # Commit em lote para evitar transações muito longas
+        if aplicar and i % BATCH == 0:
+            try:
+                conn.connection.commit()
+                print(f"  [commit lote {i//BATCH}] {i}/{total} processados",
+                      flush=True)
+            except Exception as e:
+                print(f"  [ERRO commit lote] {e}")
+                try:
+                    conn.connection.rollback()
+                except Exception:
+                    pass
 
     # Commit
     if aplicar:

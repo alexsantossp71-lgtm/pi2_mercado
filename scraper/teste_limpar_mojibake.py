@@ -77,7 +77,18 @@ def test_decodificar_mojibake():
     assert mod.decodificar_mojibake("") == ""
     assert mod.decodificar_mojibake(None) is None
 
-    print("✔ decodificar_mojibake")
+    # --- Casos de bytes órfãos (Â no fim sem 2o byte) ---
+    # "MistÃ©rio" + "Â" órfão no fim → decodifica "Mistério" e remove o "Â" sobrando
+    r = mod.decodificar_mojibake("Amaciante MistÃ©rio Mon Bijou 1LÂ")
+    assert "Mistério" in r, f"esperava 'Mistério' em {r!r}"
+    assert "Â" not in r, f"não esperava 'Â' em {r!r}"
+    assert r == "Amaciante Mistério Mon Bijou 1L"
+
+    # Vários Â órfãos (NBSP trailing: Â\xa0Â\xa0)
+    r = mod.decodificar_mojibake("Salgadinho ParmesÃ£o 80gÂ\xa0Â\xa0Â")
+    assert "Parmesão" in r, f"esperava 'Parmesão' em {r!r}"
+    assert "Â" not in r
+    print("✔ decodificar_mojibake (com bytes órfãos)")
 
 
 def test_norm_nome():
