@@ -339,11 +339,19 @@
 @media (min-width: 640px) {
   .filters-row {
     flex-direction: row;
+    align-items: stretch;
+    width: 100%;
   }
 
   .filters-row > .select {
     width: auto;
     min-width: 180px;
+    flex: 0 0 auto;
+  }
+
+  .filters-row > .input-group {
+    flex: 1 1 auto;
+    min-width: 0;
   }
 
   .stores-grid {
