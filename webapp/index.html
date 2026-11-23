@@ -17,8 +17,8 @@
 
   <!-- Design System CSS -->
   <link rel="stylesheet" href="css/design-system.css" />
-  <link rel="stylesheet" href="css/components.css?v=9" />
-  <link rel="stylesheet" href="css/layout.css?v=9" />
+  <link rel="stylesheet" href="css/components.css?v=10" />
+  <link rel="stylesheet" href="css/layout.css?v=10" />
 </head>
 <body>
 
@@ -117,13 +117,19 @@
       <!-- Estado vazio -->
       <div id="listaVazia" class="empty-state" style="margin-top: var(--space-6);">
         <span class="empty-icon" aria-hidden="true">🛍️</span>
-        <p>Sua lista está vazia. Adicione produtos para começar.</p>
+        <p>Sua lista está vazia. Adicione produtos para começar ou recupere uma lista salva.</p>
         <div class="atalhos-lista" aria-label="Produtos populares — adicionar com um toque">
           <button type="button" class="chip-atalho" data-termo="arroz">🍚 Arroz</button>
           <button type="button" class="chip-atalho" data-termo="feijão">🫘 Feijão</button>
           <button type="button" class="chip-atalho" data-termo="café">☕ Café</button>
           <button type="button" class="chip-atalho" data-termo="leite">🥛 Leite</button>
           <button type="button" class="chip-atalho" data-termo="detergente">🧴 Detergente</button>
+        </div>
+        <div style="margin-top: var(--space-3);">
+          <button id="btnAbrirListasVazio" class="btn btn-secondary btn-sm" aria-label="Abrir gerenciador de listas">
+            📁 Minhas Listas Salvas
+          </button>
+        </div>
         </div>
       </div>
 
@@ -133,7 +139,10 @@
           <h3 style="font-weight: var(--font-weight-semibold); color: var(--color-text-primary);">
             Itens na lista <span id="contagemItens" class="badge-count"></span>
           </h3>
-          <div style="display: flex; gap: var(--space-2);">
+          <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
+            <button id="btnGerenciarListas" class="btn btn-secondary btn-sm" aria-label="Gerenciar listas de compras" title="Salvar, recuperar e organizar listas">
+              📁 Minhas Listas
+            </button>
             <button id="btnCompartilhar" class="btn btn-ghost btn-sm hidden" aria-label="Compartilhar lista via WhatsApp" title="Compartilhar via WhatsApp">
               📤 Compartilhar
             </button>
@@ -233,6 +242,67 @@
       </button>
     </section>
 
+    <!-- ==================== MODAL DE GERENCIAMENTO DE LISTAS ==================== -->
+    <div id="modalListas" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modalListasTitulo">
+      <div class="modal-container">
+        <div class="modal-header">
+          <h3 id="modalListasTitulo" class="modal-title">
+            <span>📁</span> Gerenciar Listas de Compras
+          </h3>
+          <button id="btnFecharModalListas" class="modal-close" aria-label="Fechar modal">✕</button>
+        </div>
+        
+        <div class="modal-body">
+          <!-- Seção 1: Salvar Lista Ativa -->
+          <div class="modal-section">
+            <h4 class="modal-section-title">💾 Salvar Lista Atual</h4>
+            <p class="section-subtitle" style="margin-bottom: var(--space-3);">Dê um nome para salvar os itens atuais e acessá-los quando quiser.</p>
+            <div class="input-row">
+              <input id="inputNomeLista" type="text" class="input" placeholder="Ex: Compras do Mês, Churrasco..." style="flex: 1;" />
+              <button id="btnSalvarLocal" class="btn btn-primary btn-sm" title="Salvar no navegador">
+                Salvar Local
+              </button>
+              <button id="btnSalvarNuvem" class="btn btn-accent btn-sm" title="Salvar na nuvem e gerar código">
+                ☁️ Salvar Nuvem
+              </button>
+            </div>
+          </div>
+
+          <!-- Seção 2: Minhas Listas Salvas -->
+          <div class="modal-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-3);">
+              <h4 class="modal-section-title" style="margin-bottom: 0;">📑 Listas Salvas no Navegador</h4>
+              <button id="btnExportarAtualJSON" class="btn btn-ghost btn-sm" title="Baixar lista atual em formato JSON">
+                ⬇️ Exportar JSON
+              </button>
+            </div>
+            <div id="containerListasSalvas" class="saved-lists-grid">
+              <!-- Preenchido via JavaScript -->
+            </div>
+          </div>
+
+          <!-- Seção 3: Recuperar da Nuvem ou Arquivo -->
+          <div class="modal-section">
+            <h4 class="modal-section-title">☁️ Recuperar da Nuvem ou Arquivo</h4>
+            <div style="display: flex; flex-direction: column; gap: var(--space-3);">
+              <div class="input-row">
+                <input id="inputCodigoNuvem" type="text" class="input" placeholder="Digite o código da lista (ex: 8 dígitos)" style="flex: 1;" />
+                <button id="btnCarregarNuvem" class="btn btn-secondary btn-sm">
+                  🔍 Carregar
+                </button>
+              </div>
+              <div>
+                <input type="file" id="inputFileLista" accept=".json" class="hidden" />
+                <button id="btnImportarJSON" class="btn btn-ghost btn-sm" style="width: 100%;">
+                  📂 Importar arquivo JSON do seu computador
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </main>
 
@@ -243,7 +313,7 @@
 </footer>
 
 <!-- JavaScript Modules -->
-<script type="module" src="js/app.js?v=9"></script>
+<script type="module" src="js/app.js?v=10"></script>
 
 </body>
 </html>

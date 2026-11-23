@@ -6,7 +6,24 @@
 import { buscarCategoriasAPI, buscarMarcasAPI } from './api.js';
 import { LOJAS, CHAVES_LOJA, renderStoreLogo } from './dataLoader.js';
 import { buscarProdutos } from './searchEngine.js';
-import { getLista, getTotalItens, adicionarItem, removerItem, alterarQtd, limparLista, gerarTextoCompartilhamento, gerarCodigoLista } from './shoppingList.js';
+import {
+  getLista,
+  getTotalItens,
+  adicionarItem,
+  removerItem,
+  alterarQtd,
+  limparLista,
+  gerarTextoCompartilhamento,
+  gerarCodigoLista,
+  obterListasSalvasLocal,
+  salvarListaAtualComo,
+  carregarListaSalva,
+  excluirListaSalva,
+  exportarListaJSON,
+  importarListaJSON,
+  salvarListaNuvem,
+  carregarListaNuvem,
+} from './shoppingList.js';
 import { fmtBRL, totalPorLoja, melhorLojaUnica, divisaoMultiLoja, disponivelEm, motivoIndisponivel, itensIndisponiveisPorLoja } from './priceCalculator.js';
 
 /* ================================================================
@@ -92,6 +109,19 @@ const secaoChecklist   = $('#modoChecklist');
 const btnNovaBusca     = $('#btnNovaBusca');
 const btnSairChecklist = $('#btnSairChecklist');
 const btnCompartilhar  = $('#btnCompartilhar');
+const btnGerenciarListas = $('#btnGerenciarListas');
+const btnAbrirListasVazio = $('#btnAbrirListasVazio');
+const modalListas      = $('#modalListas');
+const btnFecharModalListas = $('#btnFecharModalListas');
+const inputNomeLista   = $('#inputNomeLista');
+const btnSalvarLocal   = $('#btnSalvarLocal');
+const btnSalvarNuvem   = $('#btnSalvarNuvem');
+const btnExportarAtualJSON = $('#btnExportarAtualJSON');
+const containerListasSalvas = $('#containerListasSalvas');
+const inputCodigoNuvem = $('#inputCodigoNuvem');
+const btnCarregarNuvem = $('#btnCarregarNuvem');
+const btnImportarJSON  = $('#btnImportarJSON');
+const inputFileLista   = $('#inputFileLista');
 
 let produtoSelecionado = null;
 let debounceTimerMarca;
@@ -618,6 +648,114 @@ function initThemeToggle() {
 }
 
 /* ================================================================
+   MODAL DE GERENCIAMENTO DE LISTAS
+   ================================================================ */
+export function mostrarToast(mensagem, duracao = 3500) {
+  const toast = document.createElement('div');
+  toast.className = 'toast-msg';
+  toast.innerHTML = mensagem;
+  document.body.appendChild(toast);
+  setTimeout(() => {
+    toast.style.transition = 'opacity 0.3s ease-out';
+    toast.style.opacity = '0';
+    setTimeout(() => toast.remove(), 300);
+  }, duracao);
+}
+
+export function renderModalListas() {
+  if (!containerListasSalvas) return;
+  const listas = obterListasSalvasLocal();
+
+  if (!listas.length) {
+    containerListasSalvas.innerHTML = `
+      <div style="text-align: center; color: var(--color-text-muted); padding: var(--space-4); font-size: var(--font-size-sm);">
+        Nenhuma lista salva ainda no seu navegador.
+      </div>`;
+    return;
+  }
+
+  containerListasSalvas.innerHTML = '';
+  listas.forEach(l => {
+    const dataFmt = l.atualizadoEm
+      ? new Date(l.atualizadoEm).toLocaleDateString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+      : '';
+    const card = document.createElement('div');
+    card.className = 'saved-list-card';
+    card.innerHTML = `
+      <div class="saved-list-info">
+        <span class="saved-list-name">${escapeHtml(l.nome)}</span>
+        <span class="saved-list-meta">
+          <span>📦 ${l.totalItens || 0} ${l.totalItens === 1 ? 'item' : 'itens'}</span>
+          ${dataFmt ? `<span>• 🕒 ${dataFmt}</span>` : ''}
+          ${l.codigo ? `<span class="saved-list-badge-cloud" title="Código para recuperar em qualquer lugar">☁️ ${escapeHtml(l.codigo)}</span>` : ''}
+        </span>
+      </div>
+      <div class="saved-list-actions">
+        <button class="btn btn-primary btn-sm btn-sm-icon btn-carregar-lista" title="Carregar esta lista">
+          📂 Abrir
+        </button>
+        <button class="btn btn-ghost btn-sm btn-sm-icon btn-exportar-lista" title="Exportar para arquivo JSON">
+          ⬇️
+        </button>
+        <button class="btn-danger-text btn-sm-icon btn-excluir-lista" title="Excluir lista">
+          🗑️
+        </button>
+      </div>
+    `;
+
+    card.querySelector('.btn-carregar-lista').addEventListener('click', () => {
+      carregarListaSalva(l.id);
+      fecharModalListas();
+      mostrarToast(`✅ Lista "<b>${escapeHtml(l.nome)}</b>" carregada!`);
+    });
+
+    card.querySelector('.btn-exportar-lista').addEventListener('click', () => {
+      const payload = {
+        app: 'Despensa Planejada Santos',
+        versao: '2.0.0',
+        nome: l.nome,
+        exportadoEm: new Date().toISOString(),
+        totalItens: l.totalItens,
+        itens: l.itens,
+      };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${l.nome.replace(/\s+/g, '_')}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      mostrarToast(`⬇️ Arquivo <b>${escapeHtml(l.nome)}.json</b> baixado!`);
+    });
+
+    card.querySelector('.btn-excluir-lista').addEventListener('click', () => {
+      if (confirm(`Deseja excluir a lista "${l.nome}"?`)) {
+        excluirListaSalva(l.id);
+        renderModalListas();
+        mostrarToast(`🗑️ Lista excluída.`);
+      }
+    });
+
+    containerListasSalvas.appendChild(card);
+  });
+}
+
+export function abrirModalListas() {
+  if (modalListas) {
+    modalListas.classList.remove('hidden');
+    renderModalListas();
+  }
+}
+
+export function fecharModalListas() {
+  if (modalListas) {
+    modalListas.classList.add('hidden');
+  }
+}
+
+/* ================================================================
    EVENT BINDINGS
    ================================================================ */
 export function initUI() {
@@ -766,6 +904,122 @@ export function initUI() {
   // Filtro: mostrar só produtos com preço em 2+ lojas
   if (filtroMinLojas) {
     filtroMinLojas.addEventListener('change', () => renderSugestoes());
+  }
+
+  // ================================================================
+  // Gerenciamento de Listas (Modal, LocalStorage, Nuvem e Arquivo)
+  // ================================================================
+  if (btnGerenciarListas) {
+    btnGerenciarListas.addEventListener('click', abrirModalListas);
+  }
+  if (btnAbrirListasVazio) {
+    btnAbrirListasVazio.addEventListener('click', abrirModalListas);
+  }
+  if (btnFecharModalListas) {
+    btnFecharModalListas.addEventListener('click', fecharModalListas);
+  }
+  if (modalListas) {
+    modalListas.addEventListener('click', (e) => {
+      if (e.target === modalListas) fecharModalListas();
+    });
+  }
+
+  // Salvar no navegador (LocalStorage)
+  if (btnSalvarLocal) {
+    btnSalvarLocal.addEventListener('click', () => {
+      try {
+        const nome = inputNomeLista.value;
+        const salva = salvarListaAtualComo(nome);
+        renderModalListas();
+        inputNomeLista.value = '';
+        mostrarToast(`✅ Lista "<b>${escapeHtml(salva.nome)}</b>" salva no navegador!`);
+      } catch (err) {
+        alert(err.message);
+      }
+    });
+  }
+
+  // Salvar na Nuvem (API)
+  if (btnSalvarNuvem) {
+    btnSalvarNuvem.addEventListener('click', async () => {
+      const nome = inputNomeLista.value;
+      const textoOriginal = btnSalvarNuvem.textContent;
+      try {
+        btnSalvarNuvem.disabled = true;
+        btnSalvarNuvem.textContent = 'Salvando...';
+        const res = await salvarListaNuvem(nome);
+        renderModalListas();
+        inputNomeLista.value = '';
+        mostrarToast(`☁️ Lista salva na nuvem!<br>Código de acesso: <b>${escapeHtml(res.codigo)}</b>`, 5000);
+      } catch (err) {
+        alert('Erro ao salvar na nuvem: ' + err.message);
+      } finally {
+        btnSalvarNuvem.disabled = false;
+        btnSalvarNuvem.textContent = textoOriginal;
+      }
+    });
+  }
+
+  // Exportar lista atual para arquivo JSON
+  if (btnExportarAtualJSON) {
+    btnExportarAtualJSON.addEventListener('click', () => {
+      try {
+        exportarListaJSON();
+        mostrarToast('⬇️ Arquivo JSON baixado com sucesso!');
+      } catch (err) {
+        alert(err.message);
+      }
+    });
+  }
+
+  // Recuperar lista da Nuvem pelo código
+  if (btnCarregarNuvem) {
+    btnCarregarNuvem.addEventListener('click', async () => {
+      const codigo = (inputCodigoNuvem.value || '').trim();
+      if (!codigo) {
+        alert('Digite o código da lista que deseja recuperar.');
+        return;
+      }
+      const textoOriginal = btnCarregarNuvem.textContent;
+      try {
+        btnCarregarNuvem.disabled = true;
+        btnCarregarNuvem.textContent = 'Buscando...';
+        const res = await carregarListaNuvem(codigo);
+        fecharModalListas();
+        inputCodigoNuvem.value = '';
+        mostrarToast(`☁️ Lista "<b>${escapeHtml(res.nome)}</b>" recuperada da nuvem!`);
+      } catch (err) {
+        alert('Não foi possível recuperar a lista: ' + err.message);
+      } finally {
+        btnCarregarNuvem.disabled = false;
+        btnCarregarNuvem.textContent = textoOriginal;
+      }
+    });
+  }
+
+  // Importar lista de arquivo JSON local
+  if (btnImportarJSON && inputFileLista) {
+    btnImportarJSON.addEventListener('click', () => {
+      inputFileLista.click();
+    });
+
+    inputFileLista.addEventListener('change', (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (evt) => {
+        try {
+          const resultado = importarListaJSON(evt.target.result);
+          fecharModalListas();
+          mostrarToast(`📂 <b>${resultado.totalItens} itens</b> importados do arquivo!`);
+        } catch (err) {
+          alert('Erro ao importar arquivo: ' + err.message);
+        }
+      };
+      reader.readAsText(file);
+      e.target.value = '';
+    });
   }
 
   // Listener para re-render automático da lista

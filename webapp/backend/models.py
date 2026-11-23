@@ -102,3 +102,27 @@ class MetaResponse(BaseModel):
     lojas: List[LojaMeta] = Field(default_factory=list)
     ultima_coleta: Optional[str] = None  # ISO "2026-09-13"
     ultima_coleta_fmt: Optional[str] = None  # pt-BR "13/09/2026"
+
+
+class SalvarListaRequest(BaseModel):
+    codigo: Optional[str] = Field(None, description="Código opcional para atualizar lista existente")
+    nome: str = Field(..., min_length=1, max_length=100, description="Nome da lista")
+    itens: List[Dict] = Field(..., description="Itens da lista [{id, qtd, produto}]")
+
+
+class ListaSalvaOut(BaseModel):
+    codigo: str
+    nome: str
+    itens: List[Dict]
+    total_itens: int
+    criado_em: str
+    atualizado_em: str
+
+
+class ListaResumoOut(BaseModel):
+    codigo: str
+    nome: str
+    total_itens: int
+    criado_em: str
+    atualizado_em: str
+

@@ -59,6 +59,62 @@ def test_calculate_prices_sql():
         assert "multiloja" in calc_data
 
 
+def test_salvar_e_recuperar_lista_api():
+    with TestClient(app) as client:
+        # 1. Salvar nova lista
+        payload = {
+            "nome": "Compras do Fim de Semana",
+            "itens": [
+                {"id": 1, "qtd": 2, "produto": {"id": 1, "nome": "Arroz 5kg"}},
+                {"id": 2, "qtd": 1, "produto": {"id": 2, "nome": "Feijão 1kg"}},
+            ],
+        }
+        res_save = client.post("/api/listas", json=payload)
+        assert res_save.status_code == 200
+        saved_data = res_save.json()
+        codigo = saved_data["codigo"]
+        assert codigo
+        assert saved_data["nome"] == "Compras do Fim de Semana"
+        assert saved_data["total_itens"] == 3
+        assert len(saved_data["itens"]) == 2
+
+        # 2. Recuperar lista pelo código
+        res_get = client.get(f"/api/listas/{codigo}")
+        assert res_get.status_code == 200
+        get_data = res_get.json()
+        assert get_data["codigo"] == codigo
+        assert get_data["nome"] == "Compras do Fim de Semana"
+        assert len(get_data["itens"]) == 2
+
+        # 3. Listar listas recentes
+        res_list = client.get("/api/listas")
+        assert res_list.status_code == 200
+        list_data = res_list.json()
+        assert any(item["codigo"] == codigo for item in list_data)
+
+        # 4. Atualizar lista existente
+        payload_update = {
+            "codigo": codigo,
+            "nome": "Compras do Fim de Semana (Atualizado)",
+            "itens": [
+                {"id": 1, "qtd": 5, "produto": {"id": 1, "nome": "Arroz 5kg"}},
+            ],
+        }
+        res_up = client.post("/api/listas", json=payload_update)
+        assert res_up.status_code == 200
+        assert res_up.json()["nome"] == "Compras do Fim de Semana (Atualizado)"
+        assert res_up.json()["total_itens"] == 5
+
+        # 5. Excluir lista
+        res_del = client.delete(f"/api/listas/{codigo}")
+        assert res_del.status_code == 200
+
+        # 6. Confirmar 404 após exclusão
+        res_404 = client.get(f"/api/listas/{codigo}")
+        assert res_404.status_code == 404
+
+
+
 def test_calculate_prices_ignores_out_of_stock():
     product = {
         "id": 99,

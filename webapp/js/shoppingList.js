@@ -5,9 +5,10 @@
 
 import { LOJAS } from './dataLoader.js';
 import { fmtBRL, melhorLojaUnica, divisaoMultiLoja } from './priceCalculator.js';
-import { buscarProdutosPorIdsAPI } from './api.js';
+import { buscarProdutosPorIdsAPI, salvarListaAPI, buscarListaAPI, excluirListaAPI } from './api.js';
 
 const STORAGE_KEY = 'dispensa_planejada_lista';
+const SAVED_LISTS_KEY = 'dispensa_planejada_listas_salvas';
 
 /**
  * Estado da lista de compras.
@@ -214,3 +215,224 @@ export function gerarCodigoLista() {
   });
   return partes.join(',');
 }
+
+/* ================================================================
+   GERENCIADOR DE MÚLTIPLAS LISTAS (LOCAL E NUVEM)
+   ================================================================ */
+
+/**
+ * Retorna todas as listas salvas no localStorage.
+ * @returns {Array<Object>}
+ */
+export function obterListasSalvasLocal() {
+  try {
+    const raw = localStorage.getItem(SAVED_LISTS_KEY);
+    if (!raw) return [];
+    const listas = JSON.parse(raw);
+    return Array.isArray(listas) ? listas : [];
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * Salva a lista ativa atual com um nome no localStorage.
+ * @param {string} nome - Nome descritivo da lista
+ * @param {string|null} codigo - Código de compartilhamento na nuvem (opcional)
+ * @returns {Object} A lista salva
+ */
+export function salvarListaAtualComo(nome, codigo = null) {
+  if (!lista.size) {
+    throw new Error('A lista está vazia. Adicione itens antes de salvar.');
+  }
+
+  const listas = obterListasSalvasLocal();
+  const agora = new Date().toISOString();
+  const itens = [];
+  lista.forEach(({ produto, qtd }, id) => {
+    itens.push({ id, qtd, produto });
+  });
+
+  const nomeLimpo = (nome || '').trim() || `Lista de ${new Date().toLocaleDateString('pt-BR')}`;
+  
+  // Se já existir lista com o mesmo código ou nome, atualiza
+  const idxExistente = listas.findIndex(l => (codigo && l.codigo === codigo) || l.nome.toLowerCase() === nomeLimpo.toLowerCase());
+
+  const listaObjeto = {
+    id: idxExistente >= 0 ? listas[idxExistente].id : 'lista_' + Date.now().toString(36),
+    codigo: codigo || (idxExistente >= 0 ? listas[idxExistente].codigo : null),
+    nome: nomeLimpo,
+    totalItens: getTotalItens(),
+    itens,
+    criadoEm: idxExistente >= 0 ? listas[idxExistente].criadoEm : agora,
+    atualizadoEm: agora,
+  };
+
+  if (idxExistente >= 0) {
+    listas[idxExistente] = listaObjeto;
+  } else {
+    listas.unshift(listaObjeto);
+  }
+
+  try {
+    localStorage.setItem(SAVED_LISTS_KEY, JSON.stringify(listas));
+  } catch (e) {
+    console.warn('[Storage] Falha ao persistir listas salvas:', e);
+  }
+
+  return listaObjeto;
+}
+
+/**
+ * Carrega uma lista salva para ser a lista ativa atual.
+ * @param {string} id - ID da lista salva
+ */
+export function carregarListaSalva(id) {
+  const listas = obterListasSalvasLocal();
+  const encontrada = listas.find(l => l.id === id || l.codigo === id);
+  if (!encontrada) {
+    throw new Error('Lista salva não encontrada.');
+  }
+
+  lista.clear();
+  (encontrada.itens || []).forEach(({ id: itemId, qtd, produto }) => {
+    if (produto && itemId) {
+      lista.set(itemId, { produto, qtd: Number(qtd) || 1 });
+    }
+  });
+
+  notificar();
+  return encontrada;
+}
+
+/**
+ * Exclui uma lista salva localmente.
+ * @param {string} id - ID da lista salva
+ */
+export function excluirListaSalva(id) {
+  const listas = obterListasSalvasLocal();
+  const novasListas = listas.filter(l => l.id !== id && l.codigo !== id);
+  localStorage.setItem(SAVED_LISTS_KEY, JSON.stringify(novasListas));
+  return novasListas;
+}
+
+/**
+ * Exporta a lista atual como um arquivo JSON para download.
+ * @param {string} nomeArquivo
+ */
+export function exportarListaJSON(nomeArquivo = 'minha_lista_dispensa') {
+  if (!lista.size) {
+    throw new Error('A lista está vazia. Adicione itens antes de exportar.');
+  }
+
+  const itens = [];
+  lista.forEach(({ produto, qtd }, id) => {
+    itens.push({ id, qtd, produto });
+  });
+
+  const payload = {
+    app: 'Despensa Planejada Santos',
+    versao: '2.0.0',
+    exportadoEm: new Date().toISOString(),
+    totalItens: getTotalItens(),
+    itens,
+  };
+
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${nomeArquivo.replace(/\s+/g, '_')}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+/**
+ * Importa uma lista de um texto JSON (carregado de arquivo).
+ * @param {string} jsonTexto
+ */
+export function importarListaJSON(jsonTexto) {
+  let dados;
+  try {
+    dados = JSON.parse(jsonTexto);
+  } catch {
+    throw new Error('Arquivo JSON inválido ou corrompido.');
+  }
+
+  const itens = Array.isArray(dados) ? dados : (dados.itens || []);
+  if (!Array.isArray(itens) || !itens.length) {
+    throw new Error('O arquivo não contém itens válidos de lista de compras.');
+  }
+
+  lista.clear();
+  let importados = 0;
+  itens.forEach(item => {
+    const prod = item.produto || item;
+    const id = item.id || prod.id;
+    const qtd = Number(item.qtd) || 1;
+    if (id && prod) {
+      lista.set(id, { produto: prod, qtd });
+      importados++;
+    }
+  });
+
+  if (!importados) {
+    throw new Error('Nenhum produto válido foi identificado no arquivo.');
+  }
+
+  notificar();
+  return {
+    sucesso: true,
+    totalItens: getTotalItens(),
+    nome: dados.nome || 'Lista Importada'
+  };
+}
+
+/**
+ * Salva a lista ativa no servidor/nuvem (API) e sincroniza localmente.
+ * @param {string} nome
+ * @param {string|null} codigo
+ */
+export async function salvarListaNuvem(nome, codigo = null) {
+  if (!lista.size) {
+    throw new Error('A lista está vazia. Adicione itens antes de salvar.');
+  }
+
+  const itens = [];
+  lista.forEach(({ produto, qtd }, id) => {
+    itens.push({ id, qtd, produto });
+  });
+
+  const res = await salvarListaAPI(nome, itens, codigo);
+  // Salva ou atualiza no localStorage com o código retornado
+  salvarListaAtualComo(res.nome, res.codigo);
+  return res;
+}
+
+/**
+ * Recupera uma lista da nuvem pelo código, popula a lista ativa e salva no histórico local.
+ * @param {string} codigo
+ */
+export async function carregarListaNuvem(codigo) {
+  const res = await buscarListaAPI(codigo);
+  if (!res || !Array.isArray(res.itens)) {
+    throw new Error('Resposta inválida do servidor.');
+  }
+
+  lista.clear();
+  res.itens.forEach(({ id, qtd, produto }) => {
+    if (id && produto) {
+      lista.set(id, { produto, qtd: Number(qtd) || 1 });
+    }
+  });
+
+  notificar();
+
+  // Salva no histórico local para acesso rápido posterior
+  salvarListaAtualComo(res.nome, res.codigo);
+
+  return res;
+}
+

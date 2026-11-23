@@ -5,9 +5,12 @@ Powered by SQLite SGBD Relacional + FTS5
 """
 
 from contextlib import asynccontextmanager
+import json
 import logging
 import os
+import secrets
 import sys
+from datetime import datetime
 from pathlib import Path
 from typing import Optional
 
@@ -25,11 +28,14 @@ from models import (
     CalculoRequest,
     CalculoResponse,
     CategoriaOut,
+    ListaResumoOut,
+    ListaSalvaOut,
     LojaMeta,
     MarcaOut,
     MetaResponse,
     ProdutoOut,
     ProdutosLoteRequest,
+    SalvarListaRequest,
 )
 from services.product_service import (
     get_brands,
@@ -52,11 +58,12 @@ async def lifespan(app: FastAPI):
     logger.info("Inicializando backend Dispensa Planejada FastAPI...")
 
     try:
-        from db import get_db_connection
+        from db import get_db_connection, init_listas_table
         conn = get_db_connection()
         engine = "PostgreSQL (Neon)" if getattr(conn, "is_postgres", False) else "SQLite3 Local"
+        init_listas_table(conn)
         conn.close()
-        logger.info(f"Conexão com banco de dados bem-sucedida! Motor: {engine}")
+        logger.info(f"Conexão com banco de dados bem-sucedida! Motor: {engine}. Tabela listas_compras pronta.")
     except Exception as e:
         logger.error(f"Erro ao conectar ao banco de dados: {e}")
 
@@ -231,6 +238,143 @@ def get_precos_por_ean(
             for i in range(min(4, len(produto["preco"])))
         ]
     }
+
+
+# ================================================================
+# ENDPOINTS: SALVAR E RECUPERAR LISTAS DE COMPRAS
+# ================================================================
+
+@app.post("/api/listas", response_model=ListaSalvaOut)
+def api_salvar_lista(req: SalvarListaRequest):
+    """Salva ou atualiza uma lista de compras no banco de dados."""
+    from db import get_db_connection, init_listas_table
+    conn = get_db_connection()
+    init_listas_table(conn)
+    cursor = conn.cursor()
+
+    agora = datetime.utcnow().isoformat()
+    total_itens = sum(int(item.get("qtd", 1)) for item in req.itens)
+    itens_json = json.dumps(req.itens, ensure_ascii=False)
+
+    codigo = (req.codigo or "").strip().lower()
+
+    if codigo:
+        cursor.execute("SELECT codigo, criado_em FROM listas_compras WHERE codigo = ?", (codigo,))
+        existente = cursor.fetchone()
+        if existente:
+            criado_em = existente.get("criado_em") or agora
+            cursor.execute("""
+                UPDATE listas_compras
+                SET nome = ?, itens_json = ?, total_itens = ?, atualizado_em = ?
+                WHERE codigo = ?
+            """, (req.nome.strip(), itens_json, total_itens, agora, codigo))
+            conn.commit()
+            conn.close()
+            return ListaSalvaOut(
+                codigo=codigo,
+                nome=req.nome.strip(),
+                itens=req.itens,
+                total_itens=total_itens,
+                criado_em=criado_em,
+                atualizado_em=agora,
+            )
+
+    # Novo código curto aleatório de 8 caracteres alfanuméricos
+    if not codigo:
+        codigo = secrets.token_hex(4)
+
+    cursor.execute("""
+        INSERT INTO listas_compras (codigo, nome, itens_json, total_itens, criado_em, atualizado_em)
+        VALUES (?, ?, ?, ?, ?, ?)
+    """, (codigo, req.nome.strip(), itens_json, total_itens, agora, agora))
+    conn.commit()
+    conn.close()
+
+    return ListaSalvaOut(
+        codigo=codigo,
+        nome=req.nome.strip(),
+        itens=req.itens,
+        total_itens=total_itens,
+        criado_em=agora,
+        atualizado_em=agora,
+    )
+
+
+@app.get("/api/listas/{codigo}", response_model=ListaSalvaOut)
+def api_buscar_lista(codigo: str):
+    """Recupera uma lista de compras pelo código único."""
+    from db import get_db_connection, init_listas_table
+    conn = get_db_connection()
+    init_listas_table(conn)
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "SELECT codigo, nome, itens_json, total_itens, criado_em, atualizado_em FROM listas_compras WHERE codigo = ?",
+        (codigo.strip().lower(),),
+    )
+    row = cursor.fetchone()
+    conn.close()
+
+    if not row:
+        raise HTTPException(status_code=404, detail="Lista de compras não encontrada.")
+
+    try:
+        itens = json.loads(row["itens_json"])
+    except Exception:
+        itens = []
+
+    return ListaSalvaOut(
+        codigo=row["codigo"],
+        nome=row["nome"],
+        itens=itens,
+        total_itens=row["total_itens"] or len(itens),
+        criado_em=row["criado_em"],
+        atualizado_em=row["atualizado_em"],
+    )
+
+
+@app.get("/api/listas", response_model=list[ListaResumoOut])
+def api_listar_listas(limit: int = Query(20, ge=1, le=100)):
+    """Lista as compras salvas recentemente."""
+    from db import get_db_connection, init_listas_table
+    conn = get_db_connection()
+    init_listas_table(conn)
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT codigo, nome, total_itens, criado_em, atualizado_em
+        FROM listas_compras
+        ORDER BY atualizado_em DESC
+        LIMIT ?
+    """, (limit,))
+    rows = cursor.fetchall()
+    conn.close()
+
+    return [
+        ListaResumoOut(
+            codigo=r["codigo"],
+            nome=r["nome"],
+            total_itens=r["total_itens"] or 0,
+            criado_em=r["criado_em"],
+            atualizado_em=r["atualizado_em"],
+        )
+        for r in rows
+    ]
+
+
+@app.delete("/api/listas/{codigo}")
+def api_excluir_lista(codigo: str):
+    """Exclui uma lista salva pelo código."""
+    from db import get_db_connection, init_listas_table
+    conn = get_db_connection()
+    init_listas_table(conn)
+    cursor = conn.cursor()
+
+    cursor.execute("DELETE FROM listas_compras WHERE codigo = ?", (codigo.strip().lower(),))
+    conn.commit()
+    conn.close()
+    return {"sucesso": True, "codigo": codigo}
+
 
 
 # Vercel ASGI fallback handler (Mangum). If mangum is unavailable, the module

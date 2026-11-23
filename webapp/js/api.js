@@ -74,3 +74,37 @@ export async function buscarMetaAPI() {
   if (!res.ok) throw new Error('Falha ao buscar metadados');
   return res.json();
 }
+
+export async function salvarListaAPI(nome, itens, codigo = null) {
+  const res = await fetch(`${API_URL}/api/listas`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ nome, itens, codigo })
+  });
+  if (!res.ok) throw new Error('Falha ao salvar lista no servidor');
+  return res.json();
+}
+
+export async function buscarListaAPI(codigo) {
+  const res = await fetch(`${API_URL}/api/listas/${encodeURIComponent(codigo)}`);
+  if (!res.ok) {
+    if (res.status === 404) throw new Error('Lista não encontrada no servidor');
+    throw new Error('Falha ao buscar lista no servidor');
+  }
+  return res.json();
+}
+
+export async function listarListasAPI() {
+  const res = await fetch(`${API_URL}/api/listas`);
+  if (!res.ok) throw new Error('Falha ao listar listas do servidor');
+  return res.json();
+}
+
+export async function excluirListaAPI(codigo) {
+  const res = await fetch(`${API_URL}/api/listas/${encodeURIComponent(codigo)}`, {
+    method: 'DELETE'
+  });
+  if (!res.ok) throw new Error('Falha ao excluir lista do servidor');
+  return res.json();
+}
+

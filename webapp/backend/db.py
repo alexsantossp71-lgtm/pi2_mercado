@@ -79,6 +79,9 @@ class NeonConnection:
     def cursor(self):
         return NeonCursor(self.connection)
 
+    def commit(self):
+        self.connection.commit()
+
     def close(self):
         self.connection.close()
 
@@ -111,6 +114,9 @@ class SQLiteConnection:
 
     def cursor(self):
         return SQLiteCursor(self.connection.cursor())
+
+    def commit(self):
+        self.connection.commit()
 
     def close(self):
         self.connection.close()
@@ -149,3 +155,20 @@ def get_db_connection():
         "Nenhum banco de dados configurado. Defina DATABASE_URL para Neon Postgres "
         "ou certifique-se de que dispensa.db exista localmente."
     )
+
+
+def init_listas_table(conn):
+    """Garante que a tabela de listas de compras existe tanto no SQLite quanto no PostgreSQL."""
+    cursor = conn.cursor()
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS listas_compras (
+            codigo VARCHAR(32) PRIMARY KEY,
+            nome VARCHAR(255) NOT NULL,
+            itens_json TEXT NOT NULL,
+            total_itens INTEGER DEFAULT 0,
+            criado_em VARCHAR(32) NOT NULL,
+            atualizado_em VARCHAR(32) NOT NULL
+        )
+    """)
+    conn.commit()
+
