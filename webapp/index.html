@@ -17,8 +17,8 @@
 
   <!-- Design System CSS -->
   <link rel="stylesheet" href="css/design-system.css" />
-  <link rel="stylesheet" href="css/components.css?v=10" />
-  <link rel="stylesheet" href="css/layout.css?v=10" />
+  <link rel="stylesheet" href="css/components.css?v=11" />
+  <link rel="stylesheet" href="css/layout.css?v=11" />
 </head>
 <body>
 
@@ -303,6 +303,45 @@
       </div>
     </div>
 
+    <!-- ==================== MODAL DE COMPARTILHAMENTO ==================== -->
+    <div id="modalCompartilhar" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modalCompartilharTitulo">
+      <div class="modal-container" style="max-width: 520px;">
+        <div class="modal-header">
+          <h3 id="modalCompartilharTitulo" class="modal-title">
+            <span>📤</span> Compartilhar Lista
+          </h3>
+          <button id="btnFecharModalCompartilhar" class="modal-close" aria-label="Fechar modal">✕</button>
+        </div>
+        
+        <div class="modal-body">
+          <!-- Link Direto -->
+          <div class="modal-section">
+            <h4 class="modal-section-title">🔗 Link da Lista</h4>
+            <p class="section-subtitle" style="margin-bottom: var(--space-3);">Envie este link para qualquer pessoa abrir a lista completa com preços atualizados.</p>
+            <div class="input-row">
+              <input id="inputLinkCompartilhar" type="text" readonly class="input" style="flex: 1; font-size: var(--font-size-xs);" />
+              <button id="btnCopiarLink" class="btn btn-primary btn-sm" title="Copiar link para a área de transferência">
+                📋 Copiar
+              </button>
+            </div>
+          </div>
+
+          <!-- Ações Rápidas -->
+          <div style="display: flex; flex-direction: column; gap: var(--space-3);">
+            <button id="btnEnviarWhatsApp" class="btn btn-accent btn-lg" style="width: 100%; background: #25D366; border-color: #128C7E; color: #ffffff;" title="Enviar lista formatada no WhatsApp">
+              💬 Enviar no WhatsApp
+            </button>
+            <button id="btnShareNativo" class="btn btn-secondary btn-lg hidden" style="width: 100%;" title="Compartilhar usando o menu do dispositivo">
+              📱 Mais Opções de Envio
+            </button>
+            <button id="btnCopiarTextoLista" class="btn btn-ghost btn-sm" style="width: 100%;" title="Copiar o texto formatado da lista">
+              📄 Copiar Resumo em Texto
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </main>
 
@@ -313,7 +352,7 @@
 </footer>
 
 <!-- JavaScript Modules -->
-<script type="module" src="js/app.js?v=10"></script>
+<script type="module" src="js/app.js?v=11"></script>
 
 </body>
 </html>

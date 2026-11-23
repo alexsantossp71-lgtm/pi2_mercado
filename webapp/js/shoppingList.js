@@ -216,6 +216,46 @@ export function gerarCodigoLista() {
   return partes.join(',');
 }
 
+/**
+ * Obtém ou gera link curto de compartilhamento (via nuvem se possível, fallback URL compacta).
+ * @param {string|null} nome
+ * @returns {Promise<{ url: string, codigo: string|null, texto: string, tipo: 'nuvem'|'compacto' }>}
+ */
+export async function obterOuGerarLinkCompartilhamento(nome = null) {
+  if (!lista.size) {
+    throw new Error('A lista está vazia.');
+  }
+
+  const texto = gerarTextoCompartilhamento();
+  const nomeLista = (nome || '').trim() || 'Minha Lista de Compras';
+
+  // Tenta salvar/sincronizar na nuvem para gerar link curto amigável (?c=CODIGO)
+  try {
+    const res = await salvarListaNuvem(nomeLista);
+    if (res && res.codigo) {
+      const url = `${location.origin}${location.pathname}?c=${encodeURIComponent(res.codigo)}`;
+      return {
+        url,
+        codigo: res.codigo,
+        texto,
+        tipo: 'nuvem'
+      };
+    }
+  } catch (err) {
+    console.warn('[Share] Não foi possível salvar na nuvem para link curto, usando fallback:', err);
+  }
+
+  // Fallback para URL com IDs compactos
+  const codigoCompacto = gerarCodigoLista();
+  const urlFallback = `${location.origin}${location.pathname}?lista=${encodeURIComponent(codigoCompacto)}`;
+  return {
+    url: urlFallback,
+    codigo: null,
+    texto,
+    tipo: 'compacto'
+  };
+}
+
 /* ================================================================
    GERENCIADOR DE MÚLTIPLAS LISTAS (LOCAL E NUVEM)
    ================================================================ */

@@ -23,6 +23,7 @@ import {
   importarListaJSON,
   salvarListaNuvem,
   carregarListaNuvem,
+  obterOuGerarLinkCompartilhamento,
 } from './shoppingList.js';
 import { fmtBRL, totalPorLoja, melhorLojaUnica, divisaoMultiLoja, disponivelEm, motivoIndisponivel, itensIndisponiveisPorLoja } from './priceCalculator.js';
 
@@ -122,6 +123,15 @@ const inputCodigoNuvem = $('#inputCodigoNuvem');
 const btnCarregarNuvem = $('#btnCarregarNuvem');
 const btnImportarJSON  = $('#btnImportarJSON');
 const inputFileLista   = $('#inputFileLista');
+
+const modalCompartilhar        = $('#modalCompartilhar');
+const btnFecharModalCompartilhar = $('#btnFecharModalCompartilhar');
+const inputLinkCompartilhar    = $('#inputLinkCompartilhar');
+const btnCopiarLink            = $('#btnCopiarLink');
+const btnEnviarWhatsApp        = $('#btnEnviarWhatsApp');
+const btnShareNativo           = $('#btnShareNativo');
+const btnCopiarTextoLista      = $('#btnCopiarTextoLista');
+let infoCompartilhamentoAtual  = null;
 
 let produtoSelecionado = null;
 let debounceTimerMarca;
@@ -611,15 +621,50 @@ function atualizarProgresso() {
 }
 
 /* ================================================================
-   COMPARTILHAR VIA WHATSAPP
+   MODAL DE COMPARTILHAMENTO UNIFICADO
    ================================================================ */
-function compartilharWhatsApp() {
-  const texto = gerarTextoCompartilhamento();
-  if (!texto) return;
-  const link = `${location.origin}${location.pathname}?lista=${encodeURIComponent(gerarCodigoLista())}`;
-  const completo = `${texto}\n\n🔗 Ver lista com preços atualizados:\n${link}`;
-  const url = `https://wa.me/?text=${encodeURIComponent(completo)}`;
-  window.open(url, '_blank');
+async function abrirModalCompartilhar() {
+  if (!getLista().size) {
+    alert('Adicione ao menos um item à lista antes de compartilhar.');
+    return;
+  }
+
+  if (modalCompartilhar) {
+    modalCompartilhar.classList.remove('hidden');
+  }
+
+  if (inputLinkCompartilhar) {
+    inputLinkCompartilhar.value = 'Gerando link da lista...';
+  }
+
+  if (btnShareNativo) {
+    if (navigator.share) {
+      btnShareNativo.classList.remove('hidden');
+    } else {
+      btnShareNativo.classList.add('hidden');
+    }
+  }
+
+  try {
+    const info = await obterOuGerarLinkCompartilhamento();
+    infoCompartilhamentoAtual = info;
+    if (inputLinkCompartilhar) {
+      inputLinkCompartilhar.value = info.url;
+    }
+  } catch (err) {
+    console.warn('[Share] Erro ao preparar compartilhamento:', err);
+    if (inputLinkCompartilhar) {
+      const fallbackUrl = `${location.origin}${location.pathname}?lista=${encodeURIComponent(gerarCodigoLista())}`;
+      inputLinkCompartilhar.value = fallbackUrl;
+      infoCompartilhamentoAtual = { url: fallbackUrl, texto: gerarTextoCompartilhamento() };
+    }
+  }
+}
+
+function fecharModalCompartilhar() {
+  if (modalCompartilhar) {
+    modalCompartilhar.classList.add('hidden');
+  }
 }
 
 /* ================================================================
@@ -877,7 +922,83 @@ export function initUI() {
 
   // Compartilhar
   if (btnCompartilhar) {
-    btnCompartilhar.addEventListener('click', compartilharWhatsApp);
+    btnCompartilhar.addEventListener('click', abrirModalCompartilhar);
+  }
+  if (btnFecharModalCompartilhar) {
+    btnFecharModalCompartilhar.addEventListener('click', fecharModalCompartilhar);
+  }
+  if (modalCompartilhar) {
+    modalCompartilhar.addEventListener('click', (e) => {
+      if (e.target === modalCompartilhar) fecharModalCompartilhar();
+    });
+  }
+
+  // Copiar link curto
+  if (btnCopiarLink && inputLinkCompartilhar) {
+    btnCopiarLink.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(inputLinkCompartilhar.value);
+        const original = btnCopiarLink.textContent;
+        btnCopiarLink.textContent = '✅ Copiado!';
+        setTimeout(() => { btnCopiarLink.textContent = original; }, 2000);
+        mostrarToast('📋 Link copiado para a área de transferência!');
+      } catch (err) {
+        inputLinkCompartilhar.select();
+        document.execCommand('copy');
+        mostrarToast('📋 Link copiado!');
+      }
+    });
+  }
+
+  // Enviar WhatsApp com link
+  if (btnEnviarWhatsApp) {
+    btnEnviarWhatsApp.addEventListener('click', () => {
+      const info = infoCompartilhamentoAtual || {
+        url: inputLinkCompartilhar?.value || '',
+        texto: gerarTextoCompartilhamento(),
+      };
+      const completo = `${info.texto}\n\n🔗 Ver lista com preços atualizados:\n${info.url}`;
+      const url = `https://wa.me/?text=${encodeURIComponent(completo)}`;
+      window.open(url, '_blank');
+    });
+  }
+
+  // Share Nativo (celular / navegadores modernos)
+  if (btnShareNativo) {
+    btnShareNativo.addEventListener('click', async () => {
+      const info = infoCompartilhamentoAtual || {
+        url: inputLinkCompartilhar?.value || '',
+        texto: gerarTextoCompartilhamento(),
+      };
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: 'Minha Lista — Despensa Planejada Santos',
+            text: info.texto,
+            url: info.url,
+          });
+        } catch (e) {
+          if (e.name !== 'AbortError') console.warn('[Share] Erro no share nativo:', e);
+        }
+      }
+    });
+  }
+
+  // Copiar texto completo
+  if (btnCopiarTextoLista) {
+    btnCopiarTextoLista.addEventListener('click', async () => {
+      const info = infoCompartilhamentoAtual || {
+        url: inputLinkCompartilhar?.value || '',
+        texto: gerarTextoCompartilhamento(),
+      };
+      const completo = `${info.texto}\n\n🔗 Ver lista com preços atualizados:\n${info.url}`;
+      try {
+        await navigator.clipboard.writeText(completo);
+        mostrarToast('📄 Resumo da lista copiado!');
+      } catch (err) {
+        mostrarToast('⚠️ Não foi possível copiar para a área de transferência.');
+      }
+    });
   }
 
   // ITEM 10 — Chips de produtos populares no estado vazio
