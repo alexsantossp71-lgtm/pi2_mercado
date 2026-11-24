@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Despensa Planejada Santos — Comparador de Preços de Supermercado</title>
-  <meta name="description" content="Compare preços de supermercados em Santos-SP. Monte sua lista de compras e descubra onde fica mais barato: Carrefour, Pão de Açúcar ou Atacadão." />
+  <meta name="description"
+    content="Compare preços de supermercados em Santos-SP. Monte sua lista de compras e descubra onde fica mais barato: Carrefour, Pão de Açúcar ou Atacadão." />
   <meta name="theme-color" content="#059669" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Despensa Planejada Santos" />
-  <meta property="og:description" content="Comparador de preços de supermercado para Santos-SP. Economia real na sua compra." />
+  <meta property="og:description"
+    content="Comparador de preços de supermercado para Santos-SP. Economia real na sua compra." />
   <meta property="og:type" content="website" />
 
   <!-- PWA Manifest -->
@@ -17,167 +20,176 @@
 
   <!-- Design System CSS -->
   <link rel="stylesheet" href="css/design-system.css" />
-  <link rel="stylesheet" href="css/components.css?v=11" />
-  <link rel="stylesheet" href="css/layout.css?v=11" />
+  <link rel="stylesheet" href="css/components.css?v=12" />
+  <link rel="stylesheet" href="css/layout.css?v=12" />
 </head>
+
 <body>
 
-<!-- Skip Link (Acessibilidade) -->
-<a href="#criador" class="skip-link">Pular para o conteúdo principal</a>
+  <!-- Skip Link (Acessibilidade) -->
+  <a href="#criador" class="skip-link">Pular para o conteúdo principal</a>
 
-<!-- ==================== LOADING OVERLAY ==================== -->
-<div id="loadingOverlay" class="loading-overlay hidden">
-  <div class="loading-spinner"></div>
-  <p>Carregando catálogo de produtos...</p>
-</div>
-
-<!-- ==================== HEADER ==================== -->
-<header class="header" role="banner">
-  <div class="container header-inner">
-    <div class="header-brand">
-      <h1>
-        <span class="brand-icon" aria-hidden="true">🛒</span>
-        Despensa Planejada Santos
-      </h1>
-      <p>Comparador de Preços de Supermercado — Projeto Integrador UNIVESP</p>
-    </div>
-    <div class="header-meta">
-      <span class="pill">📍 Santos, SP</span>
-      <span class="pill">📏 Raio: 5 km</span>
-      <span class="pill" id="pillData">🗓️ Dados: —</span>
-      <span class="pill pill-compacto">📍 Santos · 5 km · 🗓️ <span id="pillDataCurto">—</span></span>
-      <button id="themeToggle" class="theme-toggle" aria-label="Alternar tema claro/escuro" title="Alternar tema">
-        🌙
-      </button>
-    </div>
+  <!-- ==================== LOADING OVERLAY ==================== -->
+  <div id="loadingOverlay" class="loading-overlay hidden">
+    <div class="loading-spinner"></div>
+    <p>Carregando catálogo de produtos...</p>
   </div>
-</header>
 
-<!-- ==================== MAIN ==================== -->
-<main class="main" id="main" role="main">
-  <div class="container">
+  <!-- ==================== HEADER ==================== -->
+  <header class="header" role="banner">
+    <div class="container header-inner">
+      <div class="header-brand">
+        <h1>
+          <span class="brand-icon" aria-hidden="true">🛒</span>
+          Despensa Planejada Santos
+        </h1>
+        <p>Comparador de Preços de Supermercado — Projeto Integrador UNIVESP</p>
+      </div>
+      <div class="header-meta">
+        <span class="pill">📍 Santos, SP</span>
+        <span class="pill">📏 Raio: 5 km</span>
+        <span class="pill" id="pillData">🗓️ Dados: —</span>
+        <span class="pill pill-compacto">📍 Santos · 5 km · 🗓️ <span id="pillDataCurto">—</span></span>
+        <button id="themeToggle" class="theme-toggle" aria-label="Alternar tema claro/escuro" title="Alternar tema">
+          🌙
+        </button>
+      </div>
+    </div>
+  </header>
 
-    <!-- ==================== CRIADOR DE LISTA ==================== -->
-    <section id="criador" class="card section-creator" aria-labelledby="criadorTitulo">
-      <h2 id="criadorTitulo" class="section-title">Crie sua Lista de Compras</h2>
-      <p class="section-subtitle">Busque um produto pelo nome ou categoria e adicione à sua lista.</p>
+  <!-- ==================== MAIN ==================== -->
+  <main class="main" id="main" role="main">
+    <div class="container">
 
-      <div class="filters-bar" style="margin-top: var(--space-5);">
-        <!-- Linha 1: Campo de busca + quantidade + adicionar -->
-        <div class="search-row">
-          <div class="search-input-group input-group" style="flex: 1;">
-            <label for="campoBusca" class="sr-only">Buscar produto</label>
-            <span class="input-icon" aria-hidden="true">🔍</span>
-            <input id="campoBusca" type="text" autocomplete="off"
-                   placeholder="Digite o nome do produto..."
-                   class="input" role="combobox" aria-expanded="false" aria-controls="sugestoes" />
-            <div id="sugestoes" class="dropdown hidden" role="listbox"></div>
+      <!-- ==================== CRIADOR DE LISTA ==================== -->
+      <section id="criador" class="card section-creator" aria-labelledby="criadorTitulo">
+        <h2 id="criadorTitulo" class="section-title">Crie sua Lista de Compras</h2>
+        <p class="section-subtitle">Busque um produto pelo nome ou categoria e adicione à sua lista.</p>
+
+        <div class="filters-bar" style="margin-top: var(--space-5);">
+          <!-- Linha 1: Campo de busca + quantidade + adicionar -->
+          <div class="search-row">
+            <div class="search-input-group input-group" style="flex: 1;">
+              <label for="campoBusca" class="sr-only">Buscar produto</label>
+              <span class="input-icon" aria-hidden="true">🔍</span>
+              <input id="campoBusca" type="text" autocomplete="off" placeholder="Digite o nome do produto..."
+                class="input" role="combobox" aria-expanded="false" aria-controls="sugestoes" />
+              <div id="sugestoes" class="dropdown hidden" role="listbox"></div>
+            </div>
+
+            <div class="add-row">
+              <label for="selectQtd" class="sr-only">Quantidade</label>
+              <select id="selectQtd" class="select" style="width: auto; min-width: 80px;">
+                <option value="1">1 un</option>
+                <option value="2">2 un</option>
+                <option value="3">3 un</option>
+                <option value="4">4 un</option>
+                <option value="5">5 un</option>
+                <option value="6">6 un</option>
+                <option value="7">7 un</option>
+                <option value="8">8 un</option>
+                <option value="9">9 un</option>
+                <option value="10">10 un</option>
+              </select>
+              <button id="btnAdicionar" class="btn btn-primary" aria-label="Adicionar produto à lista">
+                + Adicionar
+              </button>
+            </div>
           </div>
 
-          <div class="add-row">
-            <label for="selectQtd" class="sr-only">Quantidade</label>
-            <select id="selectQtd" class="select" style="width: auto; min-width: 80px;">
-              <option value="1">1 un</option><option value="2">2 un</option><option value="3">3 un</option>
-              <option value="4">4 un</option><option value="5">5 un</option><option value="6">6 un</option>
-              <option value="7">7 un</option><option value="8">8 un</option><option value="9">9 un</option>
-              <option value="10">10 un</option>
+          <!-- Linha 2: Filtros de categoria e marca (refinamento) -->
+          <div class="filters-row">
+            <label for="selectCategoria" class="sr-only">Seção</label>
+            <select id="selectCategoria" class="select" style="width: auto; min-width: 180px;">
+              <option value="">Todas as seções</option>
             </select>
-            <button id="btnAdicionar" class="btn btn-primary" aria-label="Adicionar produto à lista">
-              + Adicionar
+
+            <div class="input-group" style="flex: 1;">
+              <label for="campoMarca" class="sr-only">Marca</label>
+              <span class="input-icon" aria-hidden="true">🏷️</span>
+              <input id="campoMarca" type="text" autocomplete="off" placeholder="Filtrar por marca (opcional)..."
+                class="input" />
+              <div id="sugestoesMarca" class="dropdown hidden" role="listbox"></div>
+            </div>
+          </div>
+
+          <!-- Linha 3: Filtro opcional -->
+          <div class="filter-row" style="margin-top: var(--space-2);">
+            <label class="filter-label">
+              <input type="checkbox" id="filtroMinLojas">
+              Mostrar só produtos com preço em 2+ lojas
+            </label>
+          </div>
+        </div>
+
+        <!-- Estado vazio -->
+        <div id="listaVazia" class="empty-state" style="margin-top: var(--space-6);">
+          <span class="empty-icon" aria-hidden="true">🛍️</span>
+          <p>Sua lista está vazia. Adicione produtos para começar ou recupere uma lista salva.</p>
+          <div class="atalhos-lista" aria-label="Produtos populares — adicionar com um toque">
+            <button type="button" class="chip-atalho" data-termo="arroz">🍚 Arroz</button>
+            <button type="button" class="chip-atalho" data-termo="feijão">🫘 Feijão</button>
+            <button type="button" class="chip-atalho" data-termo="café">☕ Café</button>
+            <button type="button" class="chip-atalho" data-termo="leite">🥛 Leite</button>
+            <button type="button" class="chip-atalho" data-termo="detergente">🧴 Detergente</button>
+          </div>
+          <div style="margin-top: var(--space-3);">
+            <button id="btnAbrirListasVazio" class="btn btn-secondary btn-sm" aria-label="Abrir gerenciador de listas">
+              📁 Minhas Listas Salvas
             </button>
           </div>
         </div>
+    </div>
 
-        <!-- Linha 2: Filtros de categoria e marca (refinamento) -->
-        <div class="filters-row">
-          <label for="selectCategoria" class="sr-only">Seção</label>
-          <select id="selectCategoria" class="select" style="width: auto; min-width: 180px;">
-            <option value="">Todas as seções</option>
-          </select>
-
-          <div class="input-group" style="flex: 1;">
-            <label for="campoMarca" class="sr-only">Marca</label>
-            <span class="input-icon" aria-hidden="true">🏷️</span>
-            <input id="campoMarca" type="text" autocomplete="off"
-                   placeholder="Filtrar por marca (opcional)..."
-                   class="input" />
-            <div id="sugestoesMarca" class="dropdown hidden" role="listbox"></div>
-          </div>
-        </div>
-
-        <!-- Linha 3: Filtro opcional -->
-        <div class="filter-row" style="margin-top: var(--space-2);">
-          <label class="filter-label">
-            <input type="checkbox" id="filtroMinLojas">
-            Mostrar só produtos com preço em 2+ lojas
-          </label>
-        </div>
-      </div>
-
-      <!-- Estado vazio -->
-      <div id="listaVazia" class="empty-state" style="margin-top: var(--space-6);">
-        <span class="empty-icon" aria-hidden="true">🛍️</span>
-        <p>Sua lista está vazia. Adicione produtos para começar ou recupere uma lista salva.</p>
-        <div class="atalhos-lista" aria-label="Produtos populares — adicionar com um toque">
-          <button type="button" class="chip-atalho" data-termo="arroz">🍚 Arroz</button>
-          <button type="button" class="chip-atalho" data-termo="feijão">🫘 Feijão</button>
-          <button type="button" class="chip-atalho" data-termo="café">☕ Café</button>
-          <button type="button" class="chip-atalho" data-termo="leite">🥛 Leite</button>
-          <button type="button" class="chip-atalho" data-termo="detergente">🧴 Detergente</button>
-        </div>
-        <div style="margin-top: var(--space-3);">
-          <button id="btnAbrirListasVazio" class="btn btn-secondary btn-sm" aria-label="Abrir gerenciador de listas">
-            📁 Minhas Listas Salvas
+    <!-- Tabela da lista -->
+    <div id="tabelaLista" class="hidden" style="margin-top: var(--space-6);">
+      <div class="list-header">
+        <h3 style="font-weight: var(--font-weight-semibold); color: var(--color-text-primary);">
+          Itens na lista <span id="contagemItens" class="badge-count"></span>
+        </h3>
+        <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
+          <button id="btnGerenciarListas" class="btn btn-secondary btn-sm" aria-label="Gerenciar listas de compras"
+            title="Salvar, recuperar e organizar listas">
+            📁 Minhas Listas
+          </button>
+          <button id="btnCompartilhar" class="btn btn-ghost btn-sm hidden" aria-label="Compartilhar lista via WhatsApp"
+            title="Compartilhar via WhatsApp">
+            📤 Compartilhar
+          </button>
+          <button id="btnLimparLista" class="btn-danger-text" aria-label="Limpar toda a lista">
+            🗑️ Limpar lista
           </button>
         </div>
-        </div>
+      </div>
+      <div class="table-wrapper">
+        <table class="table" aria-label="Lista de compras">
+          <thead>
+            <tr>
+              <th>Produto</th>
+              <th class="text-center">Qtd</th>
+              <th class="text-center col-mobile-hidden">Menor preço</th>
+              <th class="text-center">Ações</th>
+            </tr>
+          </thead>
+          <tbody id="corpoLista"></tbody>
+        </table>
       </div>
 
-      <!-- Tabela da lista -->
-      <div id="tabelaLista" class="hidden" style="margin-top: var(--space-6);">
-        <div class="list-header">
-          <h3 style="font-weight: var(--font-weight-semibold); color: var(--color-text-primary);">
-            Itens na lista <span id="contagemItens" class="badge-count"></span>
-          </h3>
-          <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
-            <button id="btnGerenciarListas" class="btn btn-secondary btn-sm" aria-label="Gerenciar listas de compras" title="Salvar, recuperar e organizar listas">
-              📁 Minhas Listas
-            </button>
-            <button id="btnCompartilhar" class="btn btn-ghost btn-sm hidden" aria-label="Compartilhar lista via WhatsApp" title="Compartilhar via WhatsApp">
-              📤 Compartilhar
-            </button>
-            <button id="btnLimparLista" class="btn-danger-text" aria-label="Limpar toda a lista">
-              🗑️ Limpar lista
-            </button>
-          </div>
-        </div>
-        <div class="table-wrapper">
-          <table class="table" aria-label="Lista de compras">
-            <thead>
-              <tr>
-                <th>Produto</th>
-                <th class="text-center">Qtd</th>
-                <th class="text-center col-mobile-hidden">Menor preço</th>
-                <th class="text-center">Ações</th>
-              </tr>
-            </thead>
-            <tbody id="corpoLista"></tbody>
-          </table>
-        </div>
-
-        <div class="cta-row">
-          <button id="btnCalcular" class="btn btn-cta" aria-label="Calcular melhor opção de compra">
-            🔍 CALCULAR MELHOR OPÇÃO DE COMPRA
-          </button>
-          <p class="cta-disclaimer">Preços reais coletados dos sites do Carrefour, Pão de Açúcar, Atacadão e Soudaki (todas as seções de mercado).</p>
-        </div>
+      <div class="cta-row">
+        <button id="btnCalcular" class="btn btn-cta" aria-label="Calcular melhor opção de compra">
+          🔍 CALCULAR MELHOR OPÇÃO DE COMPRA
+        </button>
+        <p class="cta-disclaimer">Preços reais coletados dos sites do Carrefour, Pão de Açúcar, Atacadão e Soudaki
+          (todas as seções de mercado).</p>
       </div>
+    </div>
     </section>
 
     <!-- ==================== RESULTADOS ==================== -->
     <section id="resultados" class="hidden section-results" aria-labelledby="resultadosTitulo">
       <div class="results-header">
-        <h2 id="resultadosTitulo" class="section-title" style="font-size: var(--font-size-2xl);">Resultados da Análise</h2>
+        <h2 id="resultadosTitulo" class="section-title" style="font-size: var(--font-size-2xl);">Resultados da Análise
+        </h2>
         <button id="btnNovaBusca" class="btn btn-ghost" aria-label="Fazer nova consulta">← Nova consulta</button>
       </div>
 
@@ -201,8 +213,10 @@
         <div style="display: flex; align-items: flex-start; gap: var(--space-2); margin-bottom: var(--space-4);">
           <span class="badge badge-accent">OPÇÃO 2</span>
           <div>
-            <h3 style="font-weight: var(--font-weight-bold); color: var(--color-text-primary);">Economia Máxima (Multi-Lojas)</h3>
-            <p class="section-subtitle">Divida a compra entre os mercados, levando cada produto onde está mais barato.</p>
+            <h3 style="font-weight: var(--font-weight-bold); color: var(--color-text-primary);">Economia Máxima
+              (Multi-Lojas)</h3>
+            <p class="section-subtitle">Divida a compra entre os mercados, levando cada produto onde está mais barato.
+            </p>
           </div>
         </div>
         <div class="multi-split">
@@ -220,9 +234,11 @@
       <!-- Comparativo Geral -->
       <div class="card">
         <h3 style="font-weight: var(--font-weight-bold); color: var(--color-text-primary);">Comparativo Geral</h3>
-        <p class="section-subtitle" style="margin-bottom: var(--space-4);">Valor total da lista se comprada 100% em cada mercado.</p>
+        <p class="section-subtitle" style="margin-bottom: var(--space-4);">Valor total da lista se comprada 100% em cada
+          mercado.</p>
         <div id="comparativoGeral" class="stores-grid"></div>
-        <p id="comparativoLegenda" class="grid-legend hidden">* Valor apenas dos itens disponíveis nesta loja — não é o total do pedido. O selo “MENOR PREÇO” considera só lojas com a lista completa.</p>
+        <p id="comparativoLegenda" class="grid-legend hidden">* Valor apenas dos itens disponíveis nesta loja — não é o
+          total do pedido. O selo “MENOR PREÇO” considera só lojas com a lista completa.</p>
       </div>
     </section>
 
@@ -232,18 +248,22 @@
         <h2 id="checklistTitulo" class="section-title">Modo Checklist Presencial</h2>
         <span id="checklistProgresso" class="checklist-progress"></span>
       </div>
-      <div class="checklist-progress-bar" role="progressbar" aria-label="Progresso da lista" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <div class="checklist-progress-bar" role="progressbar" aria-label="Progresso da lista" aria-valuemin="0"
+        aria-valuemax="100" aria-valuenow="0">
         <div id="checklistProgressoFill" class="checklist-progress-fill" style="width:0%"></div>
       </div>
-      <p class="section-subtitle" style="margin-bottom: var(--space-4);">Marque os produtos conforme vai pegando no corredor. A lista é organizada por categoria.</p>
+      <p class="section-subtitle" style="margin-bottom: var(--space-4);">Marque os produtos conforme vai pegando no
+        corredor. A lista é organizada por categoria.</p>
       <div id="checklistCorpo" class="checklist-body"></div>
-      <button id="btnSairChecklist" class="btn btn-ghost btn-lg" style="margin-top: var(--space-6);" aria-label="Voltar aos resultados">
+      <button id="btnSairChecklist" class="btn btn-ghost btn-lg" style="margin-top: var(--space-6);"
+        aria-label="Voltar aos resultados">
         ← Voltar aos resultados
       </button>
     </section>
 
     <!-- ==================== MODAL DE GERENCIAMENTO DE LISTAS ==================== -->
-    <div id="modalListas" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modalListasTitulo">
+    <div id="modalListas" class="modal-overlay hidden" role="dialog" aria-modal="true"
+      aria-labelledby="modalListasTitulo">
       <div class="modal-container">
         <div class="modal-header">
           <h3 id="modalListasTitulo" class="modal-title">
@@ -251,14 +271,16 @@
           </h3>
           <button id="btnFecharModalListas" class="modal-close" aria-label="Fechar modal">✕</button>
         </div>
-        
+
         <div class="modal-body">
           <!-- Seção 1: Salvar Lista Ativa -->
           <div class="modal-section">
             <h4 class="modal-section-title">💾 Salvar Lista Atual</h4>
-            <p class="section-subtitle" style="margin-bottom: var(--space-3);">Dê um nome para salvar os itens atuais e acessá-los quando quiser.</p>
+            <p class="section-subtitle" style="margin-bottom: var(--space-3);">Dê um nome para salvar os itens atuais e
+              acessá-los quando quiser.</p>
             <div class="input-row">
-              <input id="inputNomeLista" type="text" class="input" placeholder="Ex: Compras do Mês, Churrasco..." style="flex: 1;" />
+              <input id="inputNomeLista" type="text" class="input" placeholder="Ex: Compras do Mês, Churrasco..."
+                style="flex: 1;" />
               <button id="btnSalvarLocal" class="btn btn-primary btn-sm" title="Salvar no navegador">
                 Salvar Local
               </button>
@@ -270,7 +292,8 @@
 
           <!-- Seção 2: Minhas Listas Salvas -->
           <div class="modal-section">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-3);">
+            <div
+              style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-3);">
               <h4 class="modal-section-title" style="margin-bottom: 0;">📑 Listas Salvas no Navegador</h4>
               <button id="btnExportarAtualJSON" class="btn btn-ghost btn-sm" title="Baixar lista atual em formato JSON">
                 ⬇️ Exportar JSON
@@ -286,7 +309,8 @@
             <h4 class="modal-section-title">☁️ Recuperar da Nuvem ou Arquivo</h4>
             <div style="display: flex; flex-direction: column; gap: var(--space-3);">
               <div class="input-row">
-                <input id="inputCodigoNuvem" type="text" class="input" placeholder="Digite o código da lista (ex: 8 dígitos)" style="flex: 1;" />
+                <input id="inputCodigoNuvem" type="text" class="input"
+                  placeholder="Digite o código da lista (ex: 8 dígitos)" style="flex: 1;" />
                 <button id="btnCarregarNuvem" class="btn btn-secondary btn-sm">
                   🔍 Carregar
                 </button>
@@ -304,7 +328,8 @@
     </div>
 
     <!-- ==================== MODAL DE COMPARTILHAMENTO ==================== -->
-    <div id="modalCompartilhar" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modalCompartilharTitulo">
+    <div id="modalCompartilhar" class="modal-overlay hidden" role="dialog" aria-modal="true"
+      aria-labelledby="modalCompartilharTitulo">
       <div class="modal-container" style="max-width: 520px;">
         <div class="modal-header">
           <h3 id="modalCompartilharTitulo" class="modal-title">
@@ -312,15 +337,18 @@
           </h3>
           <button id="btnFecharModalCompartilhar" class="modal-close" aria-label="Fechar modal">✕</button>
         </div>
-        
+
         <div class="modal-body">
           <!-- Link Direto -->
           <div class="modal-section">
             <h4 class="modal-section-title">🔗 Link da Lista</h4>
-            <p class="section-subtitle" style="margin-bottom: var(--space-3);">Envie este link para qualquer pessoa abrir a lista completa com preços atualizados.</p>
+            <p class="section-subtitle" style="margin-bottom: var(--space-3);">Envie este link para qualquer pessoa
+              abrir a lista completa com preços atualizados.</p>
             <div class="input-row">
-              <input id="inputLinkCompartilhar" type="text" readonly class="input" style="flex: 1; font-size: var(--font-size-xs);" />
-              <button id="btnCopiarLink" class="btn btn-primary btn-sm" title="Copiar link para a área de transferência">
+              <input id="inputLinkCompartilhar" type="text" readonly class="input"
+                style="flex: 1; font-size: var(--font-size-xs);" />
+              <button id="btnCopiarLink" class="btn btn-primary btn-sm"
+                title="Copiar link para a área de transferência">
                 📋 Copiar
               </button>
             </div>
@@ -328,13 +356,17 @@
 
           <!-- Ações Rápidas -->
           <div style="display: flex; flex-direction: column; gap: var(--space-3);">
-            <button id="btnEnviarWhatsApp" class="btn btn-accent btn-lg" style="width: 100%; background: #25D366; border-color: #128C7E; color: #ffffff;" title="Enviar lista formatada no WhatsApp">
+            <button id="btnEnviarWhatsApp" class="btn btn-accent btn-lg"
+              style="width: 100%; background: #25D366; border-color: #128C7E; color: #ffffff;"
+              title="Enviar lista formatada no WhatsApp">
               💬 Enviar no WhatsApp
             </button>
-            <button id="btnShareNativo" class="btn btn-secondary btn-lg hidden" style="width: 100%;" title="Compartilhar usando o menu do dispositivo">
+            <button id="btnShareNativo" class="btn btn-secondary btn-lg hidden" style="width: 100%;"
+              title="Compartilhar usando o menu do dispositivo">
               📱 Mais Opções de Envio
             </button>
-            <button id="btnCopiarTextoLista" class="btn btn-ghost btn-sm" style="width: 100%;" title="Copiar o texto formatado da lista">
+            <button id="btnCopiarTextoLista" class="btn btn-ghost btn-sm" style="width: 100%;"
+              title="Copiar o texto formatado da lista">
               📄 Copiar Resumo em Texto
             </button>
           </div>
@@ -342,17 +374,19 @@
       </div>
     </div>
 
-  </div>
-</main>
+    </div>
+  </main>
 
-<!-- ==================== FOOTER ==================== -->
-<footer class="footer" role="contentinfo">
-  <p>Despensa Planejada Santos — Projeto Integrador em Computação II (UNIVESP 2026.2)</p>
-  <p>Dados reais coletados dos sites <span id="footerLojas">Carrefour, Pão de Açúcar, Atacadão e Soudaki</span>. Última coleta: <span id="footerData">—</span>. <a href="scrapers.html">Como coletamos os preços →</a></p>
-</footer>
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer" role="contentinfo">
+    <p>Despensa Planejada Santos — Projeto Integrador em Computação II (UNIVESP 2026.2)</p>
+    <p>Dados reais coletados dos sites <span id="footerLojas">Carrefour, Pão de Açúcar, Atacadão e Soudaki</span>.
+      Última coleta: <span id="footerData">—</span>. <a href="scrapers.html">Como coletamos os preços →</a></p>
+  </footer>
 
-<!-- JavaScript Modules -->
-<script type="module" src="js/app.js?v=11"></script>
+  <!-- JavaScript Modules -->
+  <script type="module" src="js/app.js?v=12"></script>
 
 </body>
+
 </html>

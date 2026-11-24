@@ -186,11 +186,25 @@ export function gerarTextoCompartilhamento() {
   }
 
   if (lojasOrdenadas.length > 1) {
-    texto += `\n💰 *Dividindo entre lojas:* ${fmtBRL(totalMulti)}\n`;
+    const economiaDividindo = (loja && total > totalMulti) ? ` (economia de ${fmtBRL(total - totalMulti)} vs. loja única)` : '';
+    texto += `\n💰 *Dividindo entre lojas:* ${fmtBRL(totalMulti)}${economiaDividindo}\n`;
+
+    const emojisLojas = {
+      atacadao: '🏬',
+      carrefour: '🛒',
+      pao_de_acucar: '🌿',
+      soudaki: '🏪',
+    };
+
     lojasOrdenadas.forEach(k => {
       const itens = distribuicao[k];
       const soma = itens.reduce((s, i) => s + i.custo, 0);
-      texto += `  ${LOJAS[k].icone} ${LOJAS[k].nome}: ${fmtBRL(soma)} (${itens.length} ${itens.length === 1 ? 'item' : 'itens'})\n`;
+      const emoji = emojisLojas[k] || '🏪';
+      const rotuloItens = itens.length === 1 ? 'item' : 'itens';
+      texto += `\n${emoji} *${LOJAS[k].nome}* — ${fmtBRL(soma)} (${itens.length} ${rotuloItens}):\n`;
+      itens.forEach(i => {
+        texto += `  • ${i.qtd}× ${i.nome} (${fmtBRL(i.custo)})\n`;
+      });
     });
   }
 
